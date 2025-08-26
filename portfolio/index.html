@@ -1,0 +1,561 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malith Rajamanthri - Full-Stack Developer</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <!-- Animated Star Background -->
+    <div class="stars-container">
+        <canvas id="starCanvas"></canvas>
+    </div>
+
+    <!-- Unified Action Button -->
+    <div class="action-container">
+        <button class="action-toggle" id="actionToggle">
+            <i class="fas fa-cog"></i>
+        </button>
+        <div class="action-menu" id="actionMenu">
+            <button class="action-item" id="themeAction">
+                <i class="fas fa-sun" id="themeIcon"></i>
+                <span>Toggle Theme</span>
+            </button>
+            <button class="action-item" id="chatbotAction">
+                <i class="fas fa-comments"></i>
+                <span>Open Chat</span>
+            </button>
+        </div>
+        <div class="chatbot-window" id="chatbotWindow">
+            <div class="chatbot-header">
+                <h3>💬 Chat with Malith</h3>
+                <button class="chatbot-close" id="chatbotClose">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="chatbot-messages" id="chatbotMessages">
+                <div class="message bot">
+                    Hi! I'm Malith's AI assistant. Ask me anything about his skills, projects, or experience! 🚀
+                </div>
+            </div>
+            <div class="chatbot-input">
+                <input type="text" id="chatbotInput" placeholder="Type your message...">
+                <button class="chatbot-send" id="chatbotSend">
+                    <i class="fas fa-paper-plane"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    
+    <main>
+        <!-- Navigation -->
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="nav-logo">
+                    <a href="#home">Malith Raja</a>
+                </div>
+                <ul class="nav-menu">
+                    <li class="nav-item">
+                        <a href="#home" class="nav-link">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#about" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#skills" class="nav-link">Skills</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#projects" class="nav-link">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#contact" class="nav-link">Contact</a>
+                    </li>
+                </ul>
+                <div class="hamburger">
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                    <span class="bar"></span>
+                </div>
+            </div>
+        </nav>
+        
+        <!-- Hero Section -->
+        <section id="home" class="hero">
+            <div class="hero-background">
+                <div class="floating-elements">
+                    <div class="floating-shape shape-1"></div>
+                    <div class="floating-shape shape-2"></div>
+                    <div class="floating-shape shape-3"></div>
+                    <div class="floating-shape shape-4"></div>
+                </div>
+            </div>
+            
+            <div class="hero-content">
+                <div class="hero-text">
+                    <div class="hero-greeting">
+                        <span class="greeting-text">Hello, I'm</span>
+                    </div>
+                    <h1 class="hero-title">
+                        <span class="name-highlight">Malith</span>
+                        <span class="name-secondary">Rajamanthri</span>
+                    </h1>
+                    <div class="hero-subtitle">
+                        <span class="typing-text" id="typingText"></span>
+                        <span class="cursor">|</span>
+                    </div>
+                    <p class="hero-description">
+                        Passionate Software Engineering student crafting digital experiences with modern technologies. 
+                        I blend creativity with code to build innovative solutions while pursuing excellence in sports and life.
+                    </p>
+                    
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="15">0</span>
+                            <span class="stat-label">Projects</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="5">0</span>
+                            <span class="stat-label">Technologies</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number" data-target="2">0</span>
+                            <span class="stat-label">Years Learning</span>
+                        </div>
+                    </div>
+                    
+                    <div class="hero-buttons">
+                        <a href="#projects" class="btn btn-primary">
+                            <span>Explore My Work</span>
+                            <i class="fas fa-arrow-right"></i>
+                        </a>
+                        <a href="#contact" class="btn btn-secondary">
+                            <span>Let's Connect</span>
+                            <i class="fas fa-paper-plane"></i>
+                        </a>
+                    </div>
+                    
+                    <div class="scroll-indicator">
+                        <span>Scroll to discover</span>
+                        <div class="scroll-arrow">
+                            <i class="fas fa-chevron-down"></i>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <div class="profile-container">
+                        <div class="profile-ring">
+                            <div class="ring-segment segment-1"></div>
+                            <div class="ring-segment segment-2"></div>
+                            <div class="ring-segment segment-3"></div>
+                        </div>
+                        <div class="profile-image">
+                            <img src="images/Me Profile Photo.jpg" alt="Malith Rajamanthri" id="profileImg">
+                            <div class="image-overlay"></div>
+                        </div>
+                        <div class="tech-icons">
+                            <div class="tech-icon tech-1">
+                                <i class="fab fa-js-square"></i>
+                            </div>
+                            <div class="tech-icon tech-2">
+                                <i class="fab fa-react"></i>
+                            </div>
+                            <div class="tech-icon tech-3">
+                                <i class="fab fa-node-js"></i>
+                            </div>
+                            <div class="tech-icon tech-4">
+                                <i class="fab fa-python"></i>
+                            </div>
+                            <div class="tech-icon tech-5">
+                                <i class="fab fa-html5"></i>
+                            </div>
+                            <div class="tech-icon tech-6">
+                                <i class="fab fa-css3-alt"></i>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Section -->
+        <section id="about" class="about">
+            <div class="container">
+                <h2 class="section-title">About Me</h2>
+                <div class="about-content">
+                    <div class="about-text">
+                        <p>I'm a passionate Software Engineering student at NIBM with a strong foundation in both technical skills and personal development. My journey in technology is driven by curiosity and a desire to create meaningful digital solutions.</p>
+                        <p>Beyond coding, I'm an active sports enthusiast who enjoys cricket and chess, which have taught me strategic thinking and teamwork. I believe in continuous learning and always strive to improve my skills while maintaining a balance between technical expertise and personal growth.</p>
+                        <div class="about-stats">
+                            <div class="stat">
+                                <span class="stat-number" data-target="15">5</span>
+                                <span class="stat-label">Projects Completed</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number" data-target="5">14</span>
+                                <span class="stat-label">Technologies Mastered</span>
+                            </div>
+                            <div class="stat">
+                                <span class="stat-number" data-target="2">2</span>
+                                <span class="stat-label">Years Learning</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Skills Section -->
+        <section id="skills" class="skills">
+            <div class="container">
+                <h2 class="section-title">My Skills</h2>
+                <div class="skills-grid">
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fas fa-code"></i>
+                        </div>
+                        <div class="skill-content">
+                            <h3>Programming Languages</h3>
+                            <p>Proficient in modern programming languages with strong problem-solving abilities.</p>
+                            <div class="skill-tech">
+                                <span>JavaScript</span>
+                                <span>HTML5</span>
+                                <span>CSS3</span>
+                                <span>Python</span>
+                                <span>Java</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fas fa-laptop-code"></i>
+                        </div>
+                        <div class="skill-content">
+                            <h3>Frameworks & Libraries</h3>
+                            <p>Experience with popular frameworks for building scalable applications.</p>
+                            <div class="skill-tech">
+                                <span>React</span>
+                                <span>Node.js</span>
+                                <span>Express</span>
+                                <span>Bootstrap</span>
+                                <span>jQuery</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fas fa-trophy"></i>
+                        </div>
+                        <div class="skill-content">
+                            <h3>Sports & Leadership</h3>
+                            <p>Active in sports with strong leadership and strategic thinking abilities.</p>
+                            <div class="skill-tech">
+                                <span>Cricket</span>
+                                <span>Chess</span>
+                                <span>Team Leadership</span>
+                                <span>Strategic Thinking</span>
+                                <span>Problem Solving</span>
+                                <span>Communication</span>
+                                <span>Time Management</span>
+                                <span>Adaptability</span>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="skill-card">
+                        <div class="skill-icon">
+                            <i class="fas fa-tools"></i>
+                        </div>
+                        <div class="skill-content">
+                            <h3>Tools & Learning</h3>
+                            <p>Experienced with development tools and committed to continuous learning.</p>
+                            <div class="skill-tech">
+                                <span>Git</span>
+                                <span>VS Code</span>
+                                <span>Figma</span>
+                                <span>Photoshop</span>
+                                <span>English Proficiency</span>
+                                <span>Self-Learning</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Projects Section -->
+        <section id="projects" class="projects">
+            <div class="container">
+                <h2 class="section-title">Featured Projects</h2>
+                <div class="projects-grid">
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="https://via.placeholder.com/400x250/667eea/ffffff?text=👤+Portfolio+Website" alt="Portfolio Website">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="#" class="project-link">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    <a href="#" class="project-link">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Personal Portfolio</h3>
+                            <p>A responsive portfolio website showcasing my skills and projects with modern design and smooth animations.</p>
+                            <div class="project-tech">
+                                <span>HTML5</span>
+                                <span>CSS3</span>
+                                <span>JavaScript</span>
+                                <span>Responsive Design</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="https://via.placeholder.com/400x250/764ba2/ffffff?text=🧮+Calculator+App" alt="Calculator App">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="#" class="project-link">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    <a href="#" class="project-link">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Interactive Calculator</h3>
+                            <p>A fully functional calculator with advanced operations and a sleek user interface.</p>
+                            <div class="project-tech">
+                                <span>JavaScript</span>
+                                <span>CSS3</span>
+                                <span>HTML5</span>
+                                <span>DOM Manipulation</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="https://via.placeholder.com/400x250/f093fb/ffffff?text=♟️+Chess+Game" alt="Chess Game">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="#" class="project-link">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    <a href="#" class="project-link">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Chess Game Application</h3>
+                            <p>A digital chess game with move validation, game state management, and intuitive gameplay.</p>
+                            <div class="project-tech">
+                                <span>JavaScript</span>
+                                <span>Game Logic</span>
+                                <span>CSS Grid</span>
+                                <span>Event Handling</span>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="project-card">
+                        <div class="project-image">
+                            <img src="https://via.placeholder.com/400x250/764ba2/ffffff?text=📊+Sports+Tracker" alt="Sports Tracker">
+                            <div class="project-overlay">
+                                <div class="project-links">
+                                    <a href="#" class="project-link">
+                                        <i class="fas fa-external-link-alt"></i>
+                                    </a>
+                                    <a href="#" class="project-link">
+                                        <i class="fab fa-github"></i>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="project-content">
+                            <h3>Sports Statistics Tracker</h3>
+                            <p>A web application for tracking cricket statistics with data visualization and performance analytics.</p>
+                            <div class="project-tech">
+                                <span>JavaScript</span>
+                                <span>Charts.js</span>
+                                <span>Local Storage</span>
+                                <span>Data Visualization</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Experience Section -->
+        <section id="experience" class="experience">
+            <div class="container">
+                <h2 class="section-title">Experience & Education</h2>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Undergraduate(Diploma) Student</h3>
+                            <h4>National Institute of Business Management (NIBM)</h4>
+                            <span class="timeline-date">2024 - 2025</span>
+                            <p>Pursuing my undergraduate degree with a focus on software engineering and business management. Actively developing my programming skills and working on personal projects.</p>
+                            <ul>
+                                <li>Learning modern web development technologies</li>
+                                <li>Building personal projects to enhance practical skills</li>
+                                <li>Participating in coding challenges and online courses</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Sports Achievements</h3>
+                            <h4>Cricket & Chess</h4>
+                            <span class="timeline-date">2017 - Present</span>
+                            <p>Active participation in cricket and chess, developing strategic thinking and teamwork skills that complement my technical abilities.</p>
+                            <ul>
+                                <li>Regular cricket player with strong team collaboration skills</li>
+                                <li>Chess enthusiast with strategic problem-solving abilities</li>
+                                <li>Multiple sports certificates and achievements</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>English Certificate Course</h3>
+                            <h4>Certified English Course</h4>
+                            <span class="timeline-date">2024</span>
+                            <p>Completed comprehensive English language course to enhance communication skills, essential for international software development collaboration.</p>
+                            <ul>
+                                <li>Improved written and verbal communication skills</li>
+                                <li>Enhanced technical documentation abilities</li>
+                                <li>Better prepared for global software engineering opportunities</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-dot"></div>
+                        <div class="timeline-content">
+                            <h3>Self-Directed Learning</h3>
+                            <h4>Web Development & Programming</h4>
+                            <span class="timeline-date">2024 - Present</span>
+                            <p>Passionate self-learner continuously expanding knowledge in web development, programming languages, and software engineering principles.</p>
+                            <ul>
+                                <li>Mastered HTML, CSS, JavaScript fundamentals</li>
+                                <li>Exploring modern frameworks like React and Node.js</li>
+                                <li>Building practical projects to apply learned concepts</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="certifications">
+                    <h3>Certifications & Achievements</h3>
+                    <div class="cert-grid">
+                        <div class="cert-item">
+                            <i class="fas fa-language"></i>
+                            <span>English Course Certificate</span>
+                        </div>
+                        <div class="cert-item">
+                            <i class="fas fa-trophy"></i>
+                            <span>Sports Certificates</span>
+                        </div>
+                        <div class="cert-item">
+                            <i class="fas fa-code"></i>
+                            <span>Web Development Projects</span>
+                        </div>
+                        <div class="cert-item">
+                            <i class="fas fa-graduation-cap"></i>
+                            <span>Academic Excellence</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact Section -->
+        <section id="contact" class="contact">
+            <div class="container">
+                <h2 class="section-title">Get In Touch</h2>
+                <div class="contact-content">
+                    <div class="contact-info">
+                        <h3>Let's Connect!</h3>
+                        <p>I'm always open to discussing new opportunities, collaborations, or just having a friendly chat about technology and development.</p>
+                        
+                        <div class="contact-details">
+                            <div class="contact-item">
+                                <i class="fas fa-envelope"></i>
+                                <span>thegr8malith@gmail.com</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-phone"></i>
+                                <span>0767421844</span>
+                            </div>
+                            <div class="contact-item">
+                                <i class="fas fa-map-marker-alt"></i>
+                                <span>Sri Lanka</span>
+                            </div>
+
+                        <div class="social-links">
+                            <a href="https://www.linkedin.com/in/malith-rajamanthri" class="social-link">
+                                <i class="fab fa-linkedin"></i>
+                            </a>
+                            <a href="https://github.com/Malith04" class="social-link">
+                                <i class="fab fa-github"></i>
+                            </a>
+                            <a href="" class="social-link">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <a href="https://www.gmail.com/malithrajamanthri@gmail.com" class="social-link">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+
+                    <form class="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="email" id="email" name="email" placeholder="Your Email" required>
+                        </div>
+                        <div class="form-group">
+                            <input type="text" id="subject" name="subject" placeholder="Subject" required>
+                        </div>
+                        <div class="form-group">
+                            <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </form>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Malith Rajamanthri. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
