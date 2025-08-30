@@ -3,7 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Malith Rajamanthri - Full-Stack Developer</title>
+    <title>Malith Rajamanthri - Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
     <link rel="stylesheet" href="styles.css">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
@@ -22,11 +23,11 @@
         <div class="action-menu" id="actionMenu">
             <button class="action-item" id="themeAction">
                 <i class="fas fa-sun" id="themeIcon"></i>
-                <span>Toggle Theme</span>
+                <span>Change Theme</span>
             </button>
             <button class="action-item" id="chatbotAction">
                 <i class="fas fa-comments"></i>
-                <span>Open Chat</span>
+                <span>Open to Chat</span>
             </button>
         </div>
         <div class="chatbot-window" id="chatbotWindow">
@@ -69,6 +70,9 @@
                     </li>
                     <li class="nav-item">
                         <a href="#projects" class="nav-link">Projects</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="#experience" class="nav-link">Experience</a>
                     </li>
                     <li class="nav-item">
                         <a href="#contact" class="nav-link">Contact</a>
@@ -183,31 +187,151 @@
 
         <!-- About Section -->
         <section id="about" class="about">
+            <div class="about-particles">
+                <div class="particle particle-1"></div>
+                <div class="particle particle-2"></div>
+                <div class="particle particle-3"></div>
+                <div class="particle particle-4"></div>
+                <div class="particle particle-5"></div>
+                <div class="particle particle-6"></div>
+            </div>
             <div class="container">
                 <h2 class="section-title">About Me</h2>
                 <div class="about-content">
-                    <div class="about-text">
-                        <p>I'm a passionate Software Engineering student at NIBM with a strong foundation in both technical skills and personal development. My journey in technology is driven by curiosity and a desire to create meaningful digital solutions.</p>
-                        <p>Beyond coding, I'm an active sports enthusiast who enjoys cricket and chess, which have taught me strategic thinking and teamwork. I believe in continuous learning and always strive to improve my skills while maintaining a balance between technical expertise and personal growth.</p>
-                        <div class="about-stats">
-                            <div class="stat">
-                                <span class="stat-number" data-target="15">5</span>
+                    <div class="about-main">
+                        <div class="about-text-wrapper">
+                            <div class="about-intro">
+                                <div class="intro-line">
+                                    <span class="highlight-text">Hello!</span> I'm Malith Rajamanthri
+                                </div>
+                                <div class="intro-subtitle">
+                                    <span class="typing-text">NIBM Undergraduate | Future Software Engineer | Kind & Selfless Creator</span>
+                                </div>
+                                <div class="intro-description">
+                                    <p class="fade-in-text">A passionate undergraduate student at the National Institute of Business Management (NIBM) with a clear ambition to become a Software Engineer. I'm a kind, lovely, and selfless person who loves creating websites and software solutions.</p>
+                                </div>
+                            </div>
+                            
+                            <div class="about-description">
+                                <div class="description-card card-1">
+                                    <div class="card-icon">
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </div>
+                                    <div class="card-content">
+                                        <h4>Academic Excellence</h4>
+                                        <p>Undergraduate student at NIBM with English certificate course and multiple achievements. Building expertise in programming, web development, and software engineering principles.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="description-card card-2">
+                                    <div class="card-icon">
+                                        <i class="fas fa-code"></i>
+                                    </div>
+                                    <div class="card-content">
+                                        <h4>Creative Developer</h4>
+                                        <p>Love creating websites and software solutions with a focus on user experience. Combining technical skills with creativity to build meaningful digital experiences.</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="description-card card-3">
+                                    <div class="card-icon">
+                                        <i class="fas fa-chess"></i>
+                                    </div>
+                                    <div class="card-content">
+                                        <h4>Sports & Strategy</h4>
+                                        <p>Active cricket player and chess enthusiast with sports certificates. These strategic games enhance my analytical thinking and problem-solving skills, valuable assets in software development.</p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="about-visual">
+                            <div class="skill-orbit">
+                                <div class="orbit-center">
+                                    <div class="center-avatar">
+                                        <img src="images/Me Profile Photo.jpg" alt="Malith Rajamanthri">
+                                        <div class="avatar-glow"></div>
+                                    </div>
+                                </div>
+                                <div class="orbit orbit-1">
+                                    <div class="orbit-item" data-skill="JavaScript">
+                                        <i class="fab fa-js-square"></i>
+                                    </div>
+                                </div>
+                                <div class="orbit orbit-2">
+                                    <div class="orbit-item" data-skill="React">
+                                        <i class="fab fa-react"></i>
+                                    </div>
+                                </div>
+                                <div class="orbit orbit-3">
+                                    <div class="orbit-item" data-skill="Python">
+                                        <i class="fab fa-python"></i>
+                                    </div>
+                                </div>
+                                <div class="orbit orbit-4">
+                                    <div class="orbit-item" data-skill="Node.js">
+                                        <i class="fab fa-node-js"></i>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="about-stats-new">
+                        <div class="stat-card stat-1">
+                            <div class="stat-icon">
+                                <i class="fas fa-project-diagram"></i>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-number" data-target="15">0</span>
                                 <span class="stat-label">Projects Completed</span>
+                                <div class="stat-progress">
+                                    <div class="progress-bar" data-width="90"></div>
+                                </div>
                             </div>
-                            <div class="stat">
-                                <span class="stat-number" data-target="5">14</span>
-                                <span class="stat-label">Technologies Mastered</span>
+                        </div>
+                        
+                        <div class="stat-card stat-2">
+                            <div class="stat-icon">
+                                <i class="fas fa-certificate"></i>
                             </div>
-                            <div class="stat">
-                                <span class="stat-number" data-target="2">2</span>
+                            <div class="stat-content">
+                                <span class="stat-number" data-target="5">0</span>
+                                <span class="stat-label">Certificates Earned</span>
+                                <div class="stat-progress">
+                                    <div class="progress-bar" data-width="80"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card stat-3">
+                            <div class="stat-icon">
+                                <i class="fas fa-calendar-alt"></i>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-number" data-target="2">0</span>
                                 <span class="stat-label">Years Learning</span>
+                                <div class="stat-progress">
+                                    <div class="progress-bar" data-width="60"></div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="stat-card stat-4">
+                            <div class="stat-icon">
+                                <i class="fas fa-heart"></i>
+                            </div>
+                            <div class="stat-content">
+                                <span class="stat-number" data-target="100">0</span>
+                                <span class="stat-label">Passion Level</span>
+                                <div class="stat-progress">
+                                    <div class="progress-bar" data-width="100"></div>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
         </section>
-
         <!-- Skills Section -->
         <section id="skills" class="skills">
             <div class="container">
@@ -224,7 +348,8 @@
                                 <span>JavaScript</span>
                                 <span>HTML5</span>
                                 <span>CSS3</span>
-                                <span>Python</span>
+                                <span>C#</span>
+                                <span>Spring-Boot</span>
                                 <span>Java</span>
                             </div>
                         </div>
@@ -278,9 +403,9 @@
                                 <span>Git</span>
                                 <span>VS Code</span>
                                 <span>Figma</span>
-                                <span>Photoshop</span>
-                                <span>English Proficiency</span>
+                                <span>English Knowledge</span>
                                 <span>Self-Learning</span>
+                                <span>AI Handling</span>
                             </div>
                         </div>
                     </div>
@@ -290,18 +415,38 @@
 
         <!-- Projects Section -->
         <section id="projects" class="projects">
+            <div class="floating-elements">
+                <div class="floating-shape shape-1">
+                    <i class="fas fa-code"></i>
+                </div>
+                <div class="floating-shape shape-2">
+                    <i class="fas fa-laptop-code"></i>
+                </div>
+                <div class="floating-shape shape-3">
+                    <i class="fas fa-mobile-alt"></i>
+                </div>
+                <div class="floating-shape shape-4">
+                    <i class="fas fa-database"></i>
+                </div>
+                <div class="floating-shape shape-5">
+                    <i class="fas fa-globe"></i>
+                </div>
+                <div class="floating-shape shape-6">
+                    <i class="fas fa-rocket"></i>
+                </div>
+            </div>
             <div class="container">
                 <h2 class="section-title">Featured Projects</h2>
                 <div class="projects-grid">
                     <div class="project-card">
                         <div class="project-image">
-                            <img src="https://via.placeholder.com/400x250/667eea/ffffff?text=👤+Portfolio+Website" alt="Portfolio Website">
+                            <img src="images/portfolio.jpg" alt="Personal Portfolio">
                             <div class="project-overlay">
                                 <div class="project-links">
-                                    <a href="#" class="project-link">
+                                    <a href="https://malith04.github.io/portfolio/" target="_blank" class="project-link">
                                         <i class="fas fa-external-link-alt"></i>
                                     </a>
-                                    <a href="#" class="project-link">
+                                    <a href="https://github.com/Malith04/portfolio" target="_blank" class="project-link">
                                         <i class="fab fa-github"></i>
                                     </a>
                                 </div>
@@ -316,83 +461,109 @@
                                 <span>JavaScript</span>
                                 <span>Responsive Design</span>
                             </div>
+                            <div class="project-actions">
+                                <a href="https://github.com/Malith04/my_portfolio.git" target="_blank" class="github-btn">
+                                    <i class="fab fa-github"></i>
+                                    <span>View Code</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
 
                     <div class="project-card">
                         <div class="project-image">
-                            <img src="https://via.placeholder.com/400x250/764ba2/ffffff?text=🧮+Calculator+App" alt="Calculator App">
+                            <img src="images/student registration.webp" alt="student registration">
                             <div class="project-overlay">
                                 <div class="project-links">
-                                    <a href="#" class="project-link">
+                                   <a href="https://malith04.github.io/student-registration-system/" target="_blank" class="project-link">
                                         <i class="fas fa-external-link-alt"></i>
                                     </a>
-                                    <a href="#" class="project-link">
+                                    <a href="https://github.com/Malith04/student-registration-system" target="_blank" class="project-link">
                                         <i class="fab fa-github"></i>
                                     </a>
                                 </div>
                             </div>
                         </div>
                         <div class="project-content">
-                            <h3>Interactive Calculator</h3>
-                            <p>A fully functional calculator with advanced operations and a sleek user interface.</p>
+                            <h3>Student Registration System</h3>
+                            <p>A Java fully functional registration form for a private class to handle data and give informations to students.</p>
                             <div class="project-tech">
                                 <span>JavaScript</span>
                                 <span>CSS3</span>
                                 <span>HTML5</span>
                                 <span>DOM Manipulation</span>
                             </div>
+                            <div class="project-actions">
+                                <a href="https://github.com/Malith04/Student-Registration-System.git" target="_blank" class="github-btn">
+                                    <i class="fab fa-github"></i>
+                                    <span>View Code</span>
+                                </a>
+                            </div>
                         </div>
                     </div>
 
                     <div class="project-card">
                         <div class="project-image">
-                            <img src="https://via.placeholder.com/400x250/f093fb/ffffff?text=♟️+Chess+Game" alt="Chess Game">
+                            <img src="images/web development.svg" alt="web design">
                             <div class="project-overlay">
                                 <div class="project-links">
-                                    <a href="#" class="project-link">
+                                    <a href="https://malith04.github.io/diploma-final-project/" target="_blank" class="project-link">
                                         <i class="fas fa-external-link-alt"></i>
                                     </a>
-                                    <a href="#" class="project-link">
+                                    <a href="https://github.com/Malith04/diploma-final-project" target="_blank" class="project-link">
                                         <i class="fab fa-github"></i>
                                     </a>
                                 </div>
                             </div>
                         </div>
                         <div class="project-content">
-                            <h3>Chess Game Application</h3>
-                            <p>A digital chess game with move validation, game state management, and intuitive gameplay.</p>
+                            <h3>Final Project of Diploma Final</h3>
+                            <p>A Gym Management System made to handle players for their easy.</p>
                             <div class="project-tech">
                                 <span>JavaScript</span>
-                                <span>Game Logic</span>
+                                <span>HTML</span>
                                 <span>CSS Grid</span>
-                                <span>Event Handling</span>
+                                <span>Firebase</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://github.com/Malith04/final-Web.git" target="_blank" class="github-btn">
+                                    <i class="fab fa-github"></i>
+                                    <span>View Code</span>
+                                </a>
                             </div>
                         </div>
                     </div>
 
                     <div class="project-card">
                         <div class="project-image">
-                            <img src="https://via.placeholder.com/400x250/764ba2/ffffff?text=📊+Sports+Tracker" alt="Sports Tracker">
+                            <img src="images/car rental service.jpg" alt="car rental service">
                             <div class="project-overlay">
                                 <div class="project-links">
-                                    <a href="#" class="project-link">
+                                    <a href="https://malith04.github.io/car-rental-system/" target="_blank" class="project-link">
                                         <i class="fas fa-external-link-alt"></i>
                                     </a>
-                                    <a href="#" class="project-link">
+                                    <a href="https://github.com/Malith04/car-rental-system" target="_blank" class="project-link">
                                         <i class="fab fa-github"></i>
                                     </a>
                                 </div>
                             </div>
                         </div>
                         <div class="project-content">
-                            <h3>Sports Statistics Tracker</h3>
-                            <p>A web application for tracking cricket statistics with data visualization and performance analytics.</p>
+                            <div class="project-header">
+                                <h3>Car Rental Management System</h3>
+                            </div>
+                            <p>A web application to rent vehicles to travel their trip, vacation or .</p>
                             <div class="project-tech">
-                                <span>JavaScript</span>
-                                <span>Charts.js</span>
-                                <span>Local Storage</span>
-                                <span>Data Visualization</span>
+                                <span>React</span>
+                                <span>Chart.js</span>
+                                <span>Node.js</span>
+                                <span>MongoDB</span>
+                            </div>
+                            <div class="project-actions">
+                                <a href="https://github.com/Malith04/DMW-CW.git" target="_blank" class="github-btn">
+                                    <i class="fab fa-github"></i>
+                                    <span>View Code</span>
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -494,56 +665,74 @@
         <section id="contact" class="contact">
             <div class="container">
                 <h2 class="section-title">Get In Touch</h2>
+                <p class="section-subtitle">Feel free to reach out for collaborations or just a friendly hello</p>
+                
                 <div class="contact-content">
-                    <div class="contact-info">
-                        <h3>Let's Connect!</h3>
-                        <p>I'm always open to discussing new opportunities, collaborations, or just having a friendly chat about technology and development.</p>
-                        
-                        <div class="contact-details">
-                            <div class="contact-item">
-                                <i class="fas fa-envelope"></i>
-                                <span>thegr8malith@gmail.com</span>
+                    <div class="contact-form-section">
+                        <form class="contact-form">
+                            <h3>Send Me a Message</h3>
+                            <div class="form-group">
+                                <input type="text" id="name" name="name" placeholder="Your Name" required>
                             </div>
-                            <div class="contact-item">
-                                <i class="fas fa-phone"></i>
-                                <span>0767421844</span>
+                            <div class="form-group">
+                                <input type="email" id="email" name="email" placeholder="Your Email" required>
                             </div>
-                            <div class="contact-item">
-                                <i class="fas fa-map-marker-alt"></i>
-                                <span>Sri Lanka</span>
+                            <div class="form-group">
+                                <input type="text" id="subject" name="subject" placeholder="Subject" required>
                             </div>
-
-                        <div class="social-links">
-                            <a href="https://www.linkedin.com/in/malith-rajamanthri" class="social-link">
-                                <i class="fab fa-linkedin"></i>
-                            </a>
-                            <a href="https://github.com/Malith04" class="social-link">
-                                <i class="fab fa-github"></i>
-                            </a>
-                            <a href="" class="social-link">
-                                <i class="fab fa-instagram"></i>
-                            </a>
-                            <a href="https://www.gmail.com/malithrajamanthri@gmail.com" class="social-link">
-                                <i class="fas fa-envelope"></i>
-                            </a>
-                        </div>
+                            <div class="form-group">
+                                <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Send Message</button>
+                        </form>
                     </div>
 
-                    <form class="contact-form">
-                        <div class="form-group">
-                            <input type="text" id="name" name="name" placeholder="Your Name" required>
+                    <div class="contact-info-section">
+                        <h3 class="contact-title">Let's Connect!</h3>
+                        <p class="contact-description">I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.</p>
+                        
+                        <div class="contact-grid">
+                            <div class="contact-item-new">
+                                <div class="contact-icon">
+                                    <i class="fas fa-envelope"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <span class="contact-label">Email</span>
+                                    <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=thegr8malith@gmail.com" class="contact-value">thegr8malith@gmail.com</a>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item-new">
+                                <div class="contact-icon">
+                                    <i class="fas fa-phone"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <span class="contact-label">Phone</span>
+                                    <a href="tel:+94767421844" class="contact-value">+94 76 742 1844</a>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item-new">
+                                <div class="contact-icon">
+                                    <i class="fab fa-linkedin"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <span class="contact-label">LinkedIn</span>
+                                    <a href="https://www.linkedin.com/in/malith-rajamanthri" target="_blank" class="contact-value">Malith Rajamanthri</a>
+                                </div>
+                            </div>
+                            
+                            <div class="contact-item-new">
+                                <div class="contact-icon">
+                                    <i class="fab fa-github"></i>
+                                </div>
+                                <div class="contact-details">
+                                    <span class="contact-label">GitHub</span>
+                                    <a href="https://github.com/Malith04" target="_blank" class="contact-value">Malith04</a>
+                                </div>
+                            </div>
                         </div>
-                        <div class="form-group">
-                            <input type="email" id="email" name="email" placeholder="Your Email" required>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" id="subject" name="subject" placeholder="Subject" required>
-                        </div>
-                        <div class="form-group">
-                            <textarea id="message" name="message" placeholder="Your Message" rows="5" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-primary">Send Message</button>
-                    </form>
+                    </div>
                 </div>
             </div>
         </section>

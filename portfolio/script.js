@@ -201,8 +201,7 @@ function typeWriter() {
         "Software Engineer",
         "Full-Stack Developer", 
         "Problem Solver",
-        "Cricket Enthusiast",
-        "Chess Player",
+        "Cricket Player",
         "Tech Innovator"
     ];
     
@@ -210,7 +209,7 @@ function typeWriter() {
     let charIndex = 0;
     let isDeleting = false;
     const typingSpeed = 100;
-    const deletingSpeed = 50;
+    const deletingSpeed = 70;
     const pauseTime = 2000;
     
     const typingElement = document.getElementById('typingText');
@@ -243,7 +242,7 @@ function typeWriter() {
     setTimeout(type, 1500);
 }
 
-// Counter animation function
+// Enhanced counter animation function
 function animateCounters() {
     const counters = document.querySelectorAll('.stat-number[data-target]');
     
@@ -259,7 +258,7 @@ function animateCounters() {
                 counter.textContent = Math.ceil(current);
                 requestAnimationFrame(updateCounter);
             } else {
-                counter.textContent = target + '+';
+                counter.textContent = target === 100 ? target + '%' : target + '+';
             }
         };
         
@@ -267,8 +266,94 @@ function animateCounters() {
     });
 }
 
+// Progress bar animation
+function animateProgressBars() {
+    const progressBars = document.querySelectorAll('.progress-bar');
+    
+    progressBars.forEach(bar => {
+        const width = bar.getAttribute('data-width');
+        if (width) {
+            setTimeout(() => {
+                bar.style.width = width + '%';
+            }, 3000);
+        }
+    });
+}
+
+// Orbit animation enhancement
+function enhanceOrbitAnimations() {
+    const orbitItems = document.querySelectorAll('.orbit-item');
+    
+    orbitItems.forEach((item, index) => {
+        item.addEventListener('mouseenter', () => {
+            // Pause orbit rotation on hover
+            const orbit = item.closest('.orbit');
+            orbit.style.animationPlayState = 'paused';
+        });
+        
+        item.addEventListener('mouseleave', () => {
+            // Resume orbit rotation
+            const orbit = item.closest('.orbit');
+            orbit.style.animationPlayState = 'running';
+        });
+    });
+}
+
+// Particle system enhancement
+function createParticles() {
+    const aboutSection = document.querySelector('.about');
+    const particlesContainer = document.querySelector('.about-particles');
+    
+    if (!particlesContainer) return;
+    
+    // Add more dynamic particles
+    for (let i = 7; i <= 12; i++) {
+        const particle = document.createElement('div');
+        particle.className = `particle particle-${i}`;
+        particle.style.top = Math.random() * 100 + '%';
+        particle.style.left = Math.random() * 100 + '%';
+        particle.style.animationDelay = Math.random() * 8 + 's';
+        particle.style.animationDuration = (6 + Math.random() * 4) + 's';
+        particlesContainer.appendChild(particle);
+    }
+}
+
+// Initialize About Me animations
+function initAboutAnimations() {
+    // Create additional particles
+    createParticles();
+    
+    // Enhance orbit interactions
+    enhanceOrbitAnimations();
+    
+    // Animate progress bars
+    animateProgressBars();
+    
+    // Intersection Observer for animations
+    const aboutSection = document.querySelector('.about');
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                // Trigger counter animations
+                setTimeout(() => {
+                    animateCounters();
+                }, 200);
+                
+                // Add visible class for additional animations
+                entry.target.classList.add('visible');
+            }
+        });
+    }, { threshold: 0.6 });
+    
+    if (aboutSection) {
+        observer.observe(aboutSection);
+    }
+}
+
 // Initialize components
 document.addEventListener('DOMContentLoaded', () => {
+    // Initialize About Me animations
+    initAboutAnimations();
     
     // Start counter animation after hero stats become visible
     setTimeout(() => {
@@ -773,7 +858,7 @@ class StarField {
                 
                 this.ctx.save();
                 this.ctx.globalAlpha = opacity;
-                this.ctx.strokeStyle = '#ff6b6b';
+                this.ctx.strokeStyle = '#c21b1b';
                 this.ctx.lineWidth = 1;
                 this.ctx.beginPath();
                 this.ctx.moveTo(this.stars[i].x, this.stars[i].y);
