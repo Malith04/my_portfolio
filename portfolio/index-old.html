@@ -1,0 +1,473 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Malith Rajamanthri - Portfolio</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@300;400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <header class="site-header">
+        <nav class="nav">
+            <a href="#home" class="brand">Malith Raja</a>
+            <button class="nav-toggle" id="navToggle" aria-label="Open navigation">
+                <span></span>
+                <span></span>
+            </button>
+            <div class="nav-links" id="navLinks">
+                <a href="#home" class="nav-link">Home</a>
+                <a href="#about" class="nav-link">About</a>
+                <a href="#skills" class="nav-link">Skills</a>
+                <a href="#projects" class="nav-link">Projects</a>
+                <a href="#experience" class="nav-link">Experience</a>
+                <a href="#contact" class="nav-link">Contact</a>
+            </div>
+            <a href="#contact" class="nav-cta">Let's Connect</a>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="hero">
+            <div class="hero-grid">
+                <div class="hero-text" data-reveal>
+                    <p class="eyebrow">Hello, I'm</p>
+                    <h1>Malith <span>Rajamanthri</span></h1>
+                    <p class="hero-role">
+                        <span id="roleText">Software Engineer</span>
+                        <span class="role-cursor">|</span>
+                    </p>
+                    <p class="hero-description">
+                        Passionate Software Engineering student crafting digital experiences with modern technologies. 
+                        I blend creativity with code to build innovative solutions while pursuing excellence in sports and life.
+                    </p>
+                    <div class="hero-actions">
+                        <a href="#projects" class="btn btn-primary">Explore My Work</a>
+                        <a href="#contact" class="btn btn-ghost">Let's Connect</a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat">
+                            <span class="stat-value" data-target="15">0</span>
+                            <span class="stat-label">Projects</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value" data-target="5">0</span>
+                            <span class="stat-label">Technologies</span>
+                        </div>
+                        <div class="stat">
+                            <span class="stat-value" data-target="2">0</span>
+                            <span class="stat-label">Years Learning</span>
+                        </div>
+                    </div>
+                </div>
+                <div class="hero-visual" data-reveal>
+                    <div class="portrait-card">
+                        <img src="images/me (2).jpg" alt="Malith Rajamanthri">
+                        <div class="portrait-glow"></div>
+                    </div>
+                    <div class="floating-card card-1">
+                        <i class="fab fa-react"></i>
+                        <span>React</span>
+                    </div>
+                    <div class="floating-card card-2">
+                        <i class="fab fa-js-square"></i>
+                        <span>JavaScript</span>
+                    </div>
+                    <div class="floating-card card-3">
+                        <i class="fab fa-node-js"></i>
+                        <span>Node.js</span>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="about">
+            <div class="section-head" data-reveal>
+                <h2>About Me</h2>
+                <p>NIBM Undergraduate | Future Software Engineer | Kind & Selfless Creator</p>
+            </div>
+            <div class="about-grid">
+                <div class="about-text" data-reveal>
+                    <p>
+                        A passionate undergraduate student at the National Institute of Business Management (NIBM) with a clear ambition to become a Software Engineer.
+                        I'm a kind, lovely, and selfless person who loves creating websites and software solutions.
+                    </p>
+                    <div class="about-cards">
+                        <article class="info-card">
+                            <div class="card-icon"><i class="fas fa-graduation-cap"></i></div>
+                            <div>
+                                <h3>Academic Excellence</h3>
+                                <p>Undergraduate student at NIBM with English certificate course and multiple achievements. Building expertise in programming, web development, and software engineering principles.</p>
+                            </div>
+                        </article>
+                        <article class="info-card">
+                            <div class="card-icon"><i class="fas fa-code"></i></div>
+                            <div>
+                                <h3>Creative Developer</h3>
+                                <p>Love creating websites and software solutions with a focus on user experience. Combining technical skills with creativity to build meaningful digital experiences.</p>
+                            </div>
+                        </article>
+                        <article class="info-card">
+                            <div class="card-icon"><i class="fas fa-chess"></i></div>
+                            <div>
+                                <h3>Sports & Strategy</h3>
+                                <p>Active cricket player and chess enthusiast with sports certificates. These strategic games enhance my analytical thinking and problem-solving skills, valuable assets in software development.</p>
+                            </div>
+                        </article>
+                    </div>
+                </div>
+                <div class="about-visual" data-reveal>
+                    <div class="about-portrait">
+                        <img src="images/Me Profile Photo.jpg" alt="Malith Rajamanthri">
+                        <div class="badge-list">
+                            <span>JavaScript</span>
+                            <span>React</span>
+                            <span>Python</span>
+                            <span>Node.js</span>
+                        </div>
+                    </div>
+                    <div class="about-stats">
+                        <div class="stat-card">
+                            <i class="fas fa-project-diagram"></i>
+                            <div>
+                                <span class="stat-value" data-target="15">0</span>
+                                <p>Projects Completed</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-certificate"></i>
+                            <div>
+                                <span class="stat-value" data-target="5">0</span>
+                                <p>Certificates Earned</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-calendar-alt"></i>
+                            <div>
+                                <span class="stat-value" data-target="2">0</span>
+                                <p>Years Learning</p>
+                            </div>
+                        </div>
+                        <div class="stat-card">
+                            <i class="fas fa-heart"></i>
+                            <div>
+                                <span class="stat-value" data-target="100">0</span>
+                                <p>Passion Level</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="skills">
+            <div class="section-head" data-reveal>
+                <h2>My Skills</h2>
+                <p>Modern tools, strong fundamentals, and a passion for learning.</p>
+            </div>
+            <div class="skills-grid">
+                <article class="skill-card" data-reveal>
+                    <div class="card-icon"><i class="fas fa-code"></i></div>
+                    <h3>Programming Languages</h3>
+                    <p>Proficient in modern programming languages with strong problem-solving abilities.</p>
+                    <div class="tag-list">
+                        <span>JavaScript</span>
+                        <span>HTML5</span>
+                        <span>CSS3</span>
+                        <span>C#</span>
+                        <span>Spring-Boot</span>
+                        <span>Java</span>
+                    </div>
+                </article>
+                <article class="skill-card" data-reveal>
+                    <div class="card-icon"><i class="fas fa-laptop-code"></i></div>
+                    <h3>Frameworks & Libraries</h3>
+                    <p>Experience with popular frameworks for building scalable applications.</p>
+                    <div class="tag-list">
+                        <span>React</span>
+                        <span>Node.js</span>
+                        <span>Express</span>
+                        <span>Bootstrap</span>
+                        <span>jQuery</span>
+                    </div>
+                </article>
+                <article class="skill-card" data-reveal>
+                    <div class="card-icon"><i class="fas fa-trophy"></i></div>
+                    <h3>Sports & Leadership</h3>
+                    <p>Active in sports with strong leadership and strategic thinking abilities.</p>
+                    <div class="tag-list">
+                        <span>Cricket</span>
+                        <span>Chess</span>
+                        <span>Team Leadership</span>
+                        <span>Strategic Thinking</span>
+                    </div>
+                </article>
+                <article class="skill-card" data-reveal>
+                    <div class="card-icon"><i class="fas fa-tools"></i></div>
+                    <h3>Tools & Technologies</h3>
+                    <p>Familiar with essential development tools and modern workflows.</p>
+                    <div class="tag-list">
+                        <span>Git</span>
+                        <span>GitHub</span>
+                        <span>VS Code</span>
+                        <span>Figma</span>
+                        <span>Photoshop</span>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="projects" class="projects">
+            <div class="section-head" data-reveal>
+                <h2>Featured Projects</h2>
+                <p>Real projects that show my creativity and problem-solving skills.</p>
+            </div>
+            <div class="projects-grid">
+                <article class="project-card" data-reveal>
+                    <div class="project-image">
+                        <img src="images/portfolio.jpg" alt="Personal Portfolio">
+                        <div class="project-links">
+                            <a href="https://malith04.github.io/portfolio/" target="_blank" rel="noopener" aria-label="Live demo"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="https://github.com/Malith04/portfolio" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Personal Portfolio</h3>
+                        <p>A responsive portfolio website showcasing my skills and projects with modern design and smooth animations.</p>
+                        <div class="tag-list">
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>JavaScript</span>
+                            <span>Responsive Design</span>
+                        </div>
+                        <a href="https://github.com/Malith04/my_portfolio.git" target="_blank" rel="noopener" class="project-cta">View Code</a>
+                    </div>
+                </article>
+                <article class="project-card" data-reveal>
+                    <div class="project-image">
+                        <img src="images/student registration.webp" alt="Student Registration System">
+                        <div class="project-links">
+                            <a href="" target="_blank" rel="noopener" aria-label="Live demo"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Student Registration System</h3>
+                        <p>A Java fully functional registration form for a private class to handle data and give informations to students.</p>
+                        <div class="tag-list">
+                            <span>JavaScript</span>
+                            <span>CSS3</span>
+                            <span>HTML5</span>
+                            <span>DOM Manipulation</span>
+                        </div>
+                        <a href="https://github.com/Malith04/Student-Registration-System.git" target="_blank" rel="noopener" class="project-cta">View Code</a>
+                    </div>
+                </article>
+                <article class="project-card" data-reveal>
+                    <div class="project-image">
+                        <img src="images/web development.svg" alt="Final Project of Diploma Final">
+                        <div class="project-links">
+                            <a href="https://malith04.github.io/diploma-final-project/" target="_blank" rel="noopener" aria-label="Live demo"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="https://github.com/Malith04/diploma-final-project" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Final Project of Diploma Final</h3>
+                        <p>A Gym Management System made to handle players for their easy.</p>
+                        <div class="tag-list">
+                            <span>JavaScript</span>
+                            <span>HTML5</span>
+                            <span>CSS3</span>
+                            <span>Firebase</span>
+                        </div>
+                        <a href="https://github.com/Malith04/final-Web.git" target="_blank" rel="noopener" class="project-cta">View Code</a>
+                    </div>
+                </article>
+                <article class="project-card" data-reveal>
+                    <div class="project-image">
+                        <img src="images/car rental service.jpg" alt="Car Rental Management System">
+                        <div class="project-links">
+                            <a href="https://malith04.github.io/car-rental-system/" target="_blank" rel="noopener" aria-label="Live demo"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="https://github.com/Malith04/car-rental-system" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Car Rental Management System</h3>
+                        <p>A web application to rent vehicles to travel their trip or vacations</p>
+                        <div class="tag-list">
+                            <span>HTML</span>
+                            <span>CSS</span>
+                            <span>Firebase</span>
+                        </div>
+                        <a href="https://github.com/Malith04/DMW-CW.git" target="_blank" rel="noopener" class="project-cta">View Code</a>
+                    </div>
+                </article>
+                <article class="project-card" data-reveal>
+                    <div class="project-image">
+                        <img src="images/shop_market.png" alt="Shop Market System">
+                        <div class="project-links">
+                            <a href="" target="_blank" rel="noopener" aria-label="Live demo"><i class="fas fa-external-link-alt"></i></a>
+                            <a href="" target="_blank" rel="noopener" aria-label="GitHub"><i class="fab fa-github"></i></a>
+                        </div>
+                    </div>
+                    <div class="project-content">
+                        <h3>Shop Market System</h3>
+                        <p>A Smart and User-Friendly website for customers for their daily goods and more items to buy easily.</p>
+                        <div class="tag-list">
+                            <span>React</span>
+                            <span>Firebase</span>
+                            <span>JavaScript</span>
+                        </div>
+                        <a href="https://github.com/Malith04/Shop-Market.git" target="_blank" rel="noopener" class="project-cta">View Code</a>
+                    </div>
+                </article>
+            </div>
+        </section>
+
+        <section id="experience" class="experience">
+            <div class="section-head" data-reveal>
+                <h2>Experience & Education</h2>
+                <p>Learning journey and achievements across education and sports.</p>
+            </div>
+            <div class="timeline">
+                <article class="timeline-item" data-reveal>
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Undergraduate(Diploma) Student</h3>
+                        <h4>National Institute of Business Management (NIBM)</h4>
+                        <span class="timeline-date">2024 - 2025</span>
+                        <p>Pursuing my undergraduate degree with a focus on software engineering and business management. Actively developing my programming skills and working on personal projects.</p>
+                        <ul>
+                            <li>Learning modern web development technologies</li>
+                            <li>Building personal projects to enhance practical skills</li>
+                            <li>Participating in coding challenges and online courses</li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="timeline-item" data-reveal>
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Sports Achievements</h3>
+                        <h4>Cricket & Chess</h4>
+                        <span class="timeline-date">2017 - Present</span>
+                        <p>Active participation in cricket and chess, developing strategic thinking and teamwork skills that complement my technical abilities.</p>
+                        <ul>
+                            <li>Regular cricket player with strong team collaboration skills</li>
+                            <li>Chess enthusiast with strategic problem-solving abilities</li>
+                            <li>Multiple sports certificates and achievements</li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="timeline-item" data-reveal>
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>English Certificate Course</h3>
+                        <h4>Certified English Course</h4>
+                        <span class="timeline-date">2024</span>
+                        <p>Completed comprehensive English language course to enhance communication skills, essential for international software development collaboration.</p>
+                        <ul>
+                            <li>Improved written and verbal communication skills</li>
+                            <li>Enhanced technical documentation abilities</li>
+                            <li>Better prepared for global software engineering opportunities</li>
+                        </ul>
+                    </div>
+                </article>
+                <article class="timeline-item" data-reveal>
+                    <div class="timeline-marker"></div>
+                    <div class="timeline-content">
+                        <h3>Self-Directed Learning</h3>
+                        <h4>Web Development & Programming</h4>
+                        <span class="timeline-date">2024 - Present</span>
+                        <p>Passionate self-learner continuously expanding knowledge in web development, programming languages, and software engineering principles.</p>
+                        <ul>
+                            <li>Mastered HTML, CSS, JavaScript fundamentals</li>
+                            <li>Exploring modern frameworks like React and Node.js</li>
+                            <li>Building practical projects to apply learned concepts</li>
+                        </ul>
+                    </div>
+                </article>
+            </div>
+            <div class="certifications" data-reveal>
+                <h3>Certifications & Achievements</h3>
+                <div class="cert-grid">
+                    <div class="cert-item"><i class="fas fa-language"></i><span>English Course Certificate</span></div>
+                    <div class="cert-item"><i class="fas fa-trophy"></i><span>Sports Certificates</span></div>
+                    <div class="cert-item"><i class="fas fa-code"></i><span>Web Development Projects</span></div>
+                    <div class="cert-item"><i class="fas fa-graduation-cap"></i><span>Academic Excellence</span></div>
+                </div>
+            </div>
+        </section>
+
+        <section id="contact" class="contact">
+            <div class="section-head" data-reveal>
+                <h2>Get In Touch</h2>
+                <p>Feel free to reach out for collaborations or just a friendly hello.</p>
+            </div>
+            <div class="contact-grid">
+                <form class="contact-form" data-reveal>
+                    <h3>Send Me a Message</h3>
+                    <label>
+                        <span>Your Name</span>
+                        <input type="text" name="name" placeholder="Your Name" required>
+                    </label>
+                    <label>
+                        <span>Your Email</span>
+                        <input type="email" name="email" placeholder="Your Email" required>
+                    </label>
+                    <label>
+                        <span>Subject</span>
+                        <input type="text" name="subject" placeholder="Subject" required>
+                    </label>
+                    <label>
+                        <span>Your Message</span>
+                        <textarea name="message" placeholder="Your Message" rows="5" required></textarea>
+                    </label>
+                    <button type="submit" class="btn btn-primary">Send Message</button>
+                </form>
+                <div class="contact-info" data-reveal>
+                    <h3>Let's Connect!</h3>
+                    <p>I'm always open to discussing new projects, creative ideas or opportunities to be part of your visions.</p>
+                    <div class="contact-items">
+                        <div class="contact-item">
+                            <i class="fas fa-envelope"></i>
+                            <div>
+                                <span>Email</span>
+                                <a href="https://mail.google.com/mail/u/0/?view=cm&fs=1&to=malithrajamanthri@gmail.com">malithrajamanthri@gmail.com</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fas fa-phone"></i>
+                            <div>
+                                <span>Phone</span>
+                                <a href="tel:+94767421844">+94 76 742 1844</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-linkedin"></i>
+                            <div>
+                                <span>LinkedIn</span>
+                                <a href="https://www.linkedin.com/in/malith-rajamanthri" target="_blank" rel="noopener">Malith Rajamanthri</a>
+                            </div>
+                        </div>
+                        <div class="contact-item">
+                            <i class="fab fa-github"></i>
+                            <div>
+                                <span>GitHub</span>
+                                <a href="https://github.com/Malith04" target="_blank" rel="noopener">Malith04</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <p>&copy; 2025 Malith Rajamanthri. All rights reserved.</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
