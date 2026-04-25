@@ -7,7 +7,7 @@ const Experience = () => {
       type: 'education',
       title: 'Software Engineering Student',
       organization: 'National Institute of Business Management (NIBM)',
-      period: '2023 - Present',
+      period: '2024 - Present',
       location: 'Sri Lanka',
       description: 'Pursuing undergraduate degree in Software Engineering with focus on modern web technologies and software development practices.',
       achievements: [
@@ -21,7 +21,7 @@ const Experience = () => {
       type: 'education',
       title: 'English Certificate Course',
       organization: 'NIBM',
-      period: '2023',
+      period: '2024',
       location: 'Sri Lanka',
       description: 'Enhanced communication skills and English proficiency for professional development.',
       achievements: [
@@ -35,8 +35,8 @@ const Experience = () => {
       type: 'experience',
       title: 'Sports Achievements',
       organization: 'Cricket & Baseball',
-      period: '2020 - Present',
-      location: 'Local Clubs',
+      period: '2020 - 2022',
+      location: 'School',
       description: 'Active participation in sports developing leadership and strategic thinking.',
       achievements: [
         'Cricket team player with multiple certificates',
