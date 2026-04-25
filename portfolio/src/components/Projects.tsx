@@ -79,8 +79,8 @@ const Projects = () => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.2 }}
-              whileHover={{ y: -10 }}
-              className="surface-card overflow-hidden hover:border-primary/50 transition-all group h-full flex flex-col"
+              whileHover={{ y: -10, scale: 1.02 }}
+              className="surface-card overflow-hidden hover:border-primary/50 dark:hover:border-primary/50 light:hover:border-slate-400/70 transition-all group h-full flex flex-col hover:shadow-2xl"
             >
               <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20">
                 {/* Fallback gradient background */}
@@ -121,7 +121,7 @@ const Projects = () => {
               </div>
 
               <div className="p-6 flex-1 flex flex-col">
-                <h3 className="text-xl font-display font-bold mb-3 flex items-center gap-2">
+                <h3 className="text-xl font-display font-bold mb-3 flex items-center gap-2 text-white">
                   {project.title}
                 </h3>
                 <p className="text-slate-400 mb-4 leading-relaxed text-sm flex-1">
@@ -163,7 +163,7 @@ const Projects = () => {
                     rel="noopener noreferrer"
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-primary hover:text-black rounded-lg transition-all font-medium text-sm flex-1 justify-center"
+                    className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-slate-200 hover:text-slate-900 dark:hover:bg-primary dark:hover:text-black rounded-lg transition-all font-medium text-sm flex-1 justify-center border border-transparent hover:border-slate-400 dark:hover:border-primary"
                   >
                     <Github size={16} />
                     <span>Code</span>
@@ -175,7 +175,7 @@ const Projects = () => {
                       rel="noopener noreferrer"
                       whileHover={{ scale: 1.05 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex items-center gap-2 px-4 py-2 bg-primary text-black hover:bg-accent rounded-lg transition-all font-medium text-sm flex-1 justify-center"
+                      className="flex items-center gap-2 px-4 py-2 bg-primary text-black hover:bg-yellow-600 dark:hover:bg-accent rounded-lg transition-all font-medium text-sm flex-1 justify-center shadow-lg hover:shadow-xl"
                     >
                       <ExternalLink size={16} />
                       <span>Live</span>
@@ -198,9 +198,9 @@ const Projects = () => {
             href="https://github.com/Malith04"
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.05 }}
+            whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-accent rounded-full font-semibold text-black hover:shadow-lg hover:shadow-primary/50 transition-all"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-accent rounded-full font-semibold text-black hover:shadow-lg hover:shadow-primary/50 dark:hover:shadow-primary/50 light:hover:shadow-slate-400/50 transition-all hover:from-yellow-600 hover:to-cyan-600"
           >
             <Github size={20} />
             <span>View All Projects on GitHub</span>

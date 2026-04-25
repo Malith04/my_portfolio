@@ -11,43 +11,68 @@ const ActionButton = ({ theme, onToggleTheme }: ActionButtonProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isChatOpen, setIsChatOpen] = useState(false)
   const [messages, setMessages] = useState([
-    { text: "Hi! I'm Malith's AI assistant. Ask me anything about his skills, projects, or experience! 🚀", isBot: true }
+    { text: "Hi there! 👋 I'm Malith's AI assistant. I can tell you about his skills in React & TypeScript, his latest projects like SoundWave Music App, or how to connect with him. What interests you most? 🚀", isBot: true }
   ])
   const [input, setInput] = useState('')
 
   const responses: Record<string, string[]> = {
     skills: [
-      "Malith is proficient in JavaScript, HTML5, CSS3, Python, Java, React, and Node.js. He's also skilled in tools like Git, VS Code, Figma!",
-      "His technical skills include modern web development frameworks and languages. He's also great at sports like Cricket and Chess!"
+      "Malith is skilled in React, TypeScript, JavaScript, Python, Java, Node.js, and modern web technologies. He's also proficient with Git, VS Code, and Figma!",
+      "His technical stack includes React 18, TypeScript, Tailwind CSS, Framer Motion, and Vite. He's passionate about creating modern, responsive web applications!",
+      "Malith excels in full-stack development with expertise in both frontend (React, CSS3, HTML5) and backend (Node.js, Python) technologies."
     ],
     projects: [
-      "Malith has worked on several exciting projects including this portfolio website, a student registration system, gym management system, and car rental application!",
-      "His projects showcase his full-stack development skills, from frontend design to backend functionality!"
+      "Malith has built amazing projects including: Supermarket System (React 19 + Firebase), SoundWave Music App (Spotify-inspired), and AgroSmart 2.0 (3D visualization)!",
+      "His portfolio showcases modern web applications with features like real-time data, 3D visualizations, and responsive design. Check out his Projects section!",
+      "Recent projects include this portfolio (React + TypeScript), music streaming app with live demo, and agricultural management system with 3D models."
     ],
     education: [
-      "Malith is currently an undergraduate student at NIBM, pursuing his dream of becoming a Software Engineer!",
-      "He's committed to continuous learning and has completed various courses including English proficiency and web development certifications."
+      "Malith is an undergraduate Software Engineering student at NIBM, passionate about learning cutting-edge technologies and building innovative solutions!",
+      "He's committed to continuous learning with 2+ years of development experience and expertise in modern web development frameworks."
     ],
     contact: [
-      "You can reach Malith at thegr8malith@gmail.com or call him at 0767421844. He's also active on LinkedIn and GitHub!",
-      "Feel free to connect with Malith through the contact form or reach out directly via email!"
+      "You can reach Malith at malithrajamanthri@gmail.com or call/WhatsApp him at +94 76 742 1844. He's also active on LinkedIn and social media!",
+      "Connect with Malith through the contact switcher below - choose Phone, Email, LinkedIn, Instagram, or Facebook. He responds quickly!"
+    ],
+    experience: [
+      "Malith has 2+ years of learning experience in software development, with hands-on projects in React, TypeScript, and full-stack development.",
+      "His experience includes building modern web applications, working with databases, and creating responsive user interfaces with the latest technologies."
+    ],
+    technologies: [
+      "Malith works with React 18, TypeScript, Tailwind CSS, Framer Motion, Vite, Node.js, Python, Java, Git, and modern development tools.",
+      "He's experienced with modern build tools like Vite, styling frameworks like Tailwind CSS, and animation libraries like Framer Motion."
+    ],
+    sports: [
+      "Besides coding, Malith enjoys playing Cricket and Baseball! He believes sports help develop teamwork and strategic thinking skills.",
+      "Malith is passionate about Cricket and Baseball, which complement his problem-solving skills in software development."
     ],
     default: [
-      "That's an interesting question! You can learn more about Malith by exploring his portfolio sections.",
-      "I'd be happy to tell you more about Malith's skills, projects, education, or experience. What interests you most?"
+      "That's an interesting question! I can tell you about Malith's skills, projects, education, experience, or contact information. What would you like to know?",
+      "I'd be happy to help! Ask me about Malith's technical skills, recent projects, education background, or how to get in touch with him.",
+      "Feel free to ask about Malith's expertise in React, TypeScript, his latest projects, or his journey as a Software Engineering student!"
     ]
   }
 
   const getBotResponse = (userMessage: string) => {
     const msg = userMessage.toLowerCase()
-    if (msg.includes('skill') || msg.includes('technology')) {
+    if (msg.includes('skill') || msg.includes('technology') || msg.includes('tech') || msg.includes('programming')) {
       return responses.skills[Math.floor(Math.random() * responses.skills.length)]
-    } else if (msg.includes('project') || msg.includes('work')) {
+    } else if (msg.includes('project') || msg.includes('work') || msg.includes('portfolio') || msg.includes('app')) {
       return responses.projects[Math.floor(Math.random() * responses.projects.length)]
-    } else if (msg.includes('education') || msg.includes('study')) {
+    } else if (msg.includes('education') || msg.includes('study') || msg.includes('university') || msg.includes('nibm')) {
       return responses.education[Math.floor(Math.random() * responses.education.length)]
-    } else if (msg.includes('contact') || msg.includes('email')) {
+    } else if (msg.includes('contact') || msg.includes('email') || msg.includes('phone') || msg.includes('reach')) {
       return responses.contact[Math.floor(Math.random() * responses.contact.length)]
+    } else if (msg.includes('experience') || msg.includes('background') || msg.includes('career')) {
+      return responses.experience[Math.floor(Math.random() * responses.experience.length)]
+    } else if (msg.includes('react') || msg.includes('typescript') || msg.includes('javascript') || msg.includes('python')) {
+      return responses.technologies[Math.floor(Math.random() * responses.technologies.length)]
+    } else if (msg.includes('sport') || msg.includes('cricket') || msg.includes('baseball') || msg.includes('hobby')) {
+      return responses.sports[Math.floor(Math.random() * responses.sports.length)]
+    } else if (msg.includes('hello') || msg.includes('hi') || msg.includes('hey')) {
+      return "Hello! 👋 I'm here to help you learn about Malith. Ask me about his skills, projects, or experience!"
+    } else if (msg.includes('thank') || msg.includes('thanks')) {
+      return "You're welcome! Feel free to ask me anything else about Malith's work or background! 😊"
     }
     return responses.default[Math.floor(Math.random() * responses.default.length)]
   }

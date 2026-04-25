@@ -8,12 +8,13 @@ const Experience = () => {
       title: 'Software Engineering Student',
       organization: 'National Institute of Business Management (NIBM)',
       period: '2024 - Present',
-      location: 'Sri Lanka',
+      location: 'NIBM',
       description: 'Pursuing undergraduate degree in Software Engineering with focus on modern web technologies and software development practices.',
       achievements: [
         'Completed multiple web development projects',
         'Achieved excellence in programming courses',
-        'Active participant in tech workshops'
+        'Active participant in tech workshops',
+        'Completed the Diploma in Software Engineering'
       ],
       color: 'from-blue-500 to-purple-600'
     },
@@ -22,7 +23,7 @@ const Experience = () => {
       title: 'English Certificate Course',
       organization: 'NIBM',
       period: '2024',
-      location: 'Sri Lanka',
+      location: 'NIBM',
       description: 'Enhanced communication skills and English proficiency for professional development.',
       achievements: [
         'Improved written and verbal communication',
@@ -36,7 +37,7 @@ const Experience = () => {
       title: 'Sports Achievements',
       organization: 'Cricket & Baseball',
       period: '2020 - 2022',
-      location: 'School',
+      location: 'Dharmaraja College, Kandy',
       description: 'Active participation in sports developing leadership and strategic thinking.',
       achievements: [
         'Cricket team player with multiple certificates',

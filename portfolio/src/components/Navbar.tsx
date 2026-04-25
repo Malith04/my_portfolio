@@ -12,7 +12,7 @@ const Navbar = () => {
       setScrolled(window.scrollY > 30)
       
       // Update active section based on scroll position
-      const sections = ['home', 'about', 'skills', 'projects', 'experience', 'contact']
+      const sections = ['home', 'about', 'skills', 'projects', 'experience', 'blog', 'contact']
       const scrollPosition = window.scrollY + 100
 
       for (const section of sections) {
@@ -39,6 +39,7 @@ const Navbar = () => {
     { name: 'Skills', href: '#skills' },
     { name: 'Projects', href: '#projects' },
     { name: 'Experience', href: '#experience' },
+    { name: 'Blog', href: '#blog' },
     { name: 'Contact', href: '#contact' },
   ]
 
@@ -79,10 +80,10 @@ const Navbar = () => {
             <motion.button
               key={link.name}
               onClick={() => scrollToSection(link.href)}
-              className={`text-sm uppercase tracking-[0.2em] transition-colors cursor-pointer ${
+              className={`text-sm uppercase tracking-[0.2em] transition-all cursor-pointer hover:scale-105 ${
                 activeSection === link.href.substring(1)
                   ? 'text-primary'
-                  : 'text-slate-300 hover:text-primary'
+                  : 'text-slate-300 hover:text-primary dark:text-slate-300 dark:hover:text-primary light:text-slate-700 light:hover:text-yellow-600'
               }`}
               whileHover={{ y: -2 }}
             >
@@ -115,10 +116,10 @@ const Navbar = () => {
               <button
                 key={link.name}
                 onClick={() => scrollToSection(link.href)}
-                className={`block w-full text-left rounded-xl px-4 py-3 text-sm uppercase tracking-[0.2em] transition-colors ${
+                className={`block w-full text-left rounded-xl px-4 py-3 text-sm uppercase tracking-[0.2em] transition-all hover:scale-105 ${
                   activeSection === link.href.substring(1)
-                    ? 'text-primary bg-white/5'
-                    : 'text-slate-300 hover:text-primary hover:bg-white/5'
+                    ? 'text-primary bg-white/5 dark:text-primary dark:bg-white/5 light:text-yellow-600 light:bg-slate-200/80'
+                    : 'text-slate-300 hover:text-primary hover:bg-white/5 dark:text-slate-300 dark:hover:text-primary dark:hover:bg-white/5 light:text-slate-700 light:hover:text-yellow-600 light:hover:bg-slate-200/60'
                 }`}
               >
                 {link.name}

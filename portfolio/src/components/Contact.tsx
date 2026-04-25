@@ -24,7 +24,7 @@ const Contact = () => {
       subtitle: 'Call or Message Me📞',
       value: '+94767421844',
       displayValue: '+94 76 742 1844',
-      link: 'tel:+94716108102',
+      link: 'tel:+94767421844',
       whatsappLink: 'https://wa.me/94767421844',
       color: 'from-green-500 to-emerald-600',
       bgPattern: 'from-green-500/10 to-emerald-500/10'
@@ -107,10 +107,10 @@ const Contact = () => {
               <motion.button
                 key={tab.key}
                 onClick={() => setActiveContact(tab.key)}
-                className={`relative flex items-center gap-2 px-4 py-3 rounded-xl font-medium text-sm transition-all ${
+                className={`relative flex items-center gap-2 px-4 py-3 rounded-xl font-medium text-sm transition-all hover:scale-105 ${
                   activeContact === tab.key
                     ? 'text-white'
-                    : 'text-slate-400 hover:text-slate-200'
+                    : 'text-slate-400 hover:text-slate-200 dark:hover:text-slate-200 light:hover:text-slate-700'
                 }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -178,9 +178,9 @@ const Contact = () => {
                       href={currentContact.link}
                       target={currentContact.link.startsWith('http') ? '_blank' : '_self'}
                       rel={currentContact.link.startsWith('http') ? 'noopener noreferrer' : ''}
-                      whileHover={{ scale: 1.05 }}
+                      whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
-                      className={`flex items-center gap-3 px-6 py-4 bg-gradient-to-r ${currentContact.color} rounded-xl font-semibold text-white shadow-lg hover:shadow-xl transition-all flex-1 justify-center min-w-[140px]`}
+                      className={`flex items-center gap-3 px-6 py-4 bg-gradient-to-r ${currentContact.color} rounded-xl font-semibold text-white shadow-lg hover:shadow-xl transition-all flex-1 justify-center min-w-[140px] hover:brightness-110`}
                     >
                       <ExternalLink size={20} />
                       <span>Open</span>
@@ -202,9 +202,9 @@ const Contact = () => {
 
                     <motion.button
                       onClick={() => copyToClipboard(currentContact.value)}
-                      whileHover={{ scale: 1.05 }}
+                      whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex items-center gap-3 px-6 py-4 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl font-semibold text-white transition-all"
+                      className="flex items-center gap-3 px-6 py-4 bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 light:hover:bg-slate-300 border border-white/20 dark:border-white/20 light:border-slate-300/60 rounded-xl font-semibold text-white dark:text-white light:text-slate-900 transition-all hover:shadow-lg"
                     >
                       <Copy size={20} />
                       <span>Copy</span>
@@ -229,10 +229,10 @@ const Contact = () => {
               <motion.button
                 key={tab.key}
                 onClick={() => setActiveContact(tab.key)}
-                whileHover={{ y: -5 }}
+                whileHover={{ y: -5, scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className={`surface-card p-4 text-center hover:border-primary/50 transition-all ${
-                  activeContact === tab.key ? 'border-primary/50 bg-primary/5' : ''
+                className={`surface-card p-4 text-center hover:border-primary/50 dark:hover:border-primary/50 light:hover:border-slate-400/70 transition-all hover:shadow-lg ${
+                  activeContact === tab.key ? 'border-primary/50 bg-primary/5 dark:border-primary/50 dark:bg-primary/5 light:border-slate-400/70 light:bg-slate-100/80' : ''
                 }`}
               >
                 <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${contact.color} flex items-center justify-center mx-auto mb-3 text-white`}>

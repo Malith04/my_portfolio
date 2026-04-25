@@ -16,6 +16,120 @@
       radial-gradient(900px 500px at 90% 10%, rgba(245, 200, 75, 0.16), transparent 55%),
       radial-gradient(700px 700px at 50% 100%, rgba(255, 122, 89, 0.1), transparent 60%);
     background-attachment: fixed;
+    transition: all 0.3s ease;
+  }
+
+  /* Light Theme Styles */
+  html.light body {
+    @apply bg-slate-50 text-slate-900;
+    background-image:
+      radial-gradient(1200px 600px at 10% -10%, rgba(77, 208, 225, 0.12), transparent 60%),
+      radial-gradient(900px 500px at 90% 10%, rgba(245, 200, 75, 0.10), transparent 55%),
+      radial-gradient(700px 700px at 50% 100%, rgba(255, 122, 89, 0.08), transparent 60%);
+  }
+
+  /* Surface and Card Styles */
+  html.light .surface-card {
+    @apply bg-white/90 border-slate-300/60 backdrop-blur-xl shadow-xl;
+  }
+
+  /* Text Color Overrides */
+  html.light .text-slate-100 {
+    @apply text-slate-900;
+  }
+
+  html.light .text-slate-200 {
+    @apply text-slate-800;
+  }
+
+  html.light .text-slate-300 {
+    @apply text-slate-700;
+  }
+
+  html.light .text-slate-400 {
+    @apply text-slate-600;
+  }
+
+  html.light .text-gray-400 {
+    @apply text-slate-600;
+  }
+
+  /* Border and Background Overrides */
+  html.light .border-white\/10 {
+    @apply border-slate-300/60;
+  }
+
+  html.light .border-white\/15 {
+    @apply border-slate-300/70;
+  }
+
+  html.light .border-white\/20 {
+    @apply border-slate-300/80;
+  }
+
+  html.light .bg-white\/5 {
+    @apply bg-white/90;
+  }
+
+  html.light .bg-white\/10 {
+    @apply bg-slate-100/90;
+  }
+
+  html.light .bg-white\/20 {
+    @apply bg-slate-200/80;
+  }
+
+  html.light .bg-black\/40 {
+    @apply bg-white/95;
+  }
+
+  html.light .bg-black\/90 {
+    @apply bg-white/95;
+  }
+
+  html.light .bg-black\/95 {
+    @apply bg-white/95;
+  }
+
+  html.light .bg-ink\/90 {
+    @apply bg-white/95;
+  }
+
+  html.light .bg-ink\/95 {
+    @apply bg-white/95;
+  }
+
+  /* Navbar and Navigation */
+  html.light nav {
+    @apply bg-white/95 border-slate-300/50;
+  }
+
+  /* Footer */
+  html.light footer {
+    @apply bg-white/95 border-slate-300/50;
+  }
+
+  /* Pills and Badges */
+  html.light .pill {
+    @apply border-slate-300/70 text-slate-700 bg-white/80;
+  }
+
+  /* Section Kicker */
+  html.light .section-kicker {
+    @apply text-slate-600;
+  }
+
+  /* Project Cards and Content */
+  html.light .surface-card h3 {
+    @apply text-slate-900;
+  }
+
+  html.light .surface-card p {
+    @apply text-slate-700;
+  }
+
+  html.light .surface-card .text-slate-400 {
+    @apply text-slate-600;
   }
 }
 
@@ -34,6 +148,162 @@
 
   .pill {
     @apply inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-xs uppercase tracking-[0.2em] text-slate-200;
+  }
+
+  /* Light Theme Component Overrides */
+  html.light .text-white {
+    color: #0f172a !important;
+  }
+
+  html.light button {
+    color: #0f172a !important;
+  }
+
+  html.light a {
+    color: #0f172a !important;
+  }
+
+  /* Enhanced Color Scheme for Light Theme */
+  html.light .text-primary {
+    color: #d97706 !important;
+  }
+
+  html.light .text-accent {
+    color: #0891b2 !important;
+  }
+
+  html.light .text-secondary {
+    color: #dc2626 !important;
+  }
+
+  /* Specific Hero Section Text Fixes */
+  html.light .text-primary.text-lg {
+    color: #ea580c !important; /* Bright orange for "Hello, I'm" */
+    font-weight: 600 !important;
+  }
+
+  /* Gradient Text in Light Theme - More Attractive */
+  html.light .text-gradient {
+    background: linear-gradient(135deg, #dc2626, #7c3aed, #059669, #d97706) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    font-weight: 800 !important;
+  }
+
+  /* Name "Rajamanthri" - Make it more attractive */
+  html.light h1 {
+    color: #1e293b !important;
+    font-weight: 800 !important;
+  }
+
+  /* Typing animation text */
+  html.light .text-slate-200 {
+    color: #475569 !important;
+    font-weight: 600 !important;
+  }
+
+  /* Description text */
+  html.light .text-slate-300 {
+    color: #334155 !important;
+  }
+
+  /* Additional Hero Section Enhancements */
+  html.light section#home p.text-primary {
+    color: #ea580c !important; /* Bright orange-600 for "Hello, I'm" */
+    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
+    font-weight: 700 !important;
+  }
+
+  /* Make sure all primary text in hero is visible */
+  html.light section#home .text-primary {
+    color: #ea580c !important;
+  }
+
+  /* Enhanced gradient for "Malith" - More vibrant */
+  html.light section#home .text-gradient {
+    background: linear-gradient(135deg, #dc2626 0%, #7c3aed 25%, #059669 50%, #ea580c 75%, #0891b2 100%) !important;
+    -webkit-background-clip: text !important;
+    -webkit-text-fill-color: transparent !important;
+    background-clip: text !important;
+    background-size: 200% 200% !important;
+    animation: gradientShift 3s ease-in-out infinite !important;
+  }
+
+  @keyframes gradientShift {
+    0%, 100% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+  }
+
+  /* Hover Effects for Light Theme */
+  html.light .hover\:bg-white\/10:hover {
+    background-color: rgba(148, 163, 184, 0.8) !important;
+  }
+
+  html.light .hover\:bg-white\/20:hover {
+    background-color: rgba(148, 163, 184, 0.9) !important;
+  }
+
+  html.light .hover\:text-primary:hover {
+    color: #d97706 !important;
+  }
+
+  html.light .hover\:text-slate-200:hover {
+    color: #475569 !important;
+  }
+
+  html.light .hover\:border-primary\/50:hover {
+    border-color: rgba(217, 119, 6, 0.7) !important;
+  }
+
+  html.light .hover\:border-primary:hover {
+    border-color: #d97706 !important;
+  }
+
+  /* Card Hover Effects */
+  html.light .surface-card:hover {
+    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
+    border-color: rgba(148, 163, 184, 0.7) !important;
+    transform: translateY(-5px);
+    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  }
+
+  /* Enhanced Button Hover Effects */
+  html.light .hover\:shadow-lg:hover {
+    box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
+  }
+
+  html.light .hover\:shadow-xl:hover {
+    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+  }
+
+  /* Pill/Badge Hover Effects */
+  html.light .pill:hover {
+    background-color: rgba(226, 232, 240, 0.9) !important;
+    border-color: rgba(148, 163, 184, 0.8) !important;
+    color: #1e293b !important;
+    transform: scale(1.05);
+    transition: all 0.3s ease;
+  }
+
+  /* Navigation Hover Effects */
+  html.light nav .hover\:text-primary:hover {
+    color: #d97706 !important;
+  }
+
+  html.light nav .hover\:bg-white\/5:hover {
+    background-color: rgba(226, 232, 240, 0.6) !important;
+  }
+
+  /* Contact Card Hover Effects */
+  html.light .hover\:bg-primary:hover {
+    background-color: #d97706 !important;
+    color: white !important;
+  }
+
+  html.light .hover\:bg-accent:hover {
+    background-color: #0891b2 !important;
+    color: white !important;
   }
 }
 

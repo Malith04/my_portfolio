@@ -1,10 +1,11 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { ArrowRight, Send, Mail, Phone, MapPin, Award, Heart } from 'lucide-react'
+import ResumeDownload from './ResumeDownload'
 
 const titles = [
   'Software Engineer',
-  'Full-Stack Developer',
+  'Full-Stack Developer', 
   'Problem Solver',
   'Cricket Player',
   'Tech Innovator'
@@ -66,14 +67,14 @@ const Hero = () => {
           <div className="flex flex-wrap gap-4">
             <a
               href="#projects"
-              className="group inline-flex items-center gap-2 rounded-full bg-primary px-8 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-ink transition-transform hover:scale-105 glow-primary-hover"
+              className="group inline-flex items-center gap-2 rounded-full bg-primary px-8 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-ink transition-all hover:scale-105 hover:bg-yellow-600 dark:hover:bg-primary light:hover:bg-yellow-600 glow-primary-hover hover:shadow-xl"
             >
               Explore My Work
               <ArrowRight className="group-hover:translate-x-1 transition-transform" size={18} />
             </a>
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 rounded-full border border-white/20 px-8 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white transition-all hover:border-primary hover:text-primary"
+              className="inline-flex items-center gap-2 rounded-full border border-white/20 dark:border-white/20 light:border-slate-300/60 px-8 py-4 text-sm font-semibold uppercase tracking-[0.2em] text-white dark:text-white light:text-slate-900 transition-all hover:border-primary hover:text-primary dark:hover:border-primary dark:hover:text-primary light:hover:border-yellow-600 light:hover:text-yellow-600 hover:scale-105 hover:shadow-lg"
             >
               Let's Connect
               <Send size={18} />
@@ -87,6 +88,11 @@ const Hero = () => {
                 <div className="text-xs uppercase tracking-[0.2em] text-slate-400">{stat.label}</div>
               </div>
             ))}
+          </div>
+
+          {/* Resume Download Section */}
+          <div className="mt-8">
+            <ResumeDownload />
           </div>
         </motion.div>
 
@@ -227,7 +233,7 @@ const Hero = () => {
                         </div>
                         <div className="min-w-0">
                           <p className="text-[10px] text-gray-400">Phone</p>
-                          <p className="text-xs text-white font-medium">0767421844</p>
+                          <p className="text-xs text-white font-medium">+94 76 742 1844</p>
                         </div>
                       </motion.div>
 

@@ -5,11 +5,14 @@ import Hero from './components/Hero'
 import About from './components/About'
 import Skills from './components/Skills'
 import Projects from './components/Projects'
+import ProjectCaseStudies from './components/ProjectCaseStudies'
 import Experience from './components/Experience'
 import Contact from './components/Contact'
+import Blog from './components/Blog'
 import StarField from './components/StarField'
 import ActionButton from './components/ActionButton'
 import LoadingScreen from './components/LoadingScreen'
+import SEO from './components/SEO'
 
 function App() {
   const [theme, setTheme] = useState<'dark' | 'light'>('dark')
@@ -30,6 +33,7 @@ function App() {
 
   return (
     <>
+      <SEO />
       <AnimatePresence mode="wait">
         {isLoading && (
           <LoadingScreen onLoadingComplete={() => setIsLoading(false)} />
@@ -47,13 +51,15 @@ function App() {
             <About />
             <Skills />
             <Projects />
+            <ProjectCaseStudies />
             <Experience />
+            <Blog />
             <Contact />
           </main>
 
           <footer className="mt-16 border-t border-white/10 bg-black/40 backdrop-blur-md py-10 text-center">
             <p className="text-slate-400">
-              (c) {new Date().getFullYear()} Malith Rajamanthri. Built with React, TypeScript and Tailwind CSS.
+              © {new Date().getFullYear()} Malith Rajamanthri. Built with React, TypeScript and Tailwind CSS.
             </p>
           </footer>
         </div>
