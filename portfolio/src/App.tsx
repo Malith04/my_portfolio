@@ -13,6 +13,12 @@ import StarField from './components/StarField'
 import ActionButton from './components/ActionButton'
 import LoadingScreen from './components/LoadingScreen'
 import SEO from './components/SEO'
+import GitHubStats from './components/GitHubStats'
+import AchievementTimeline from './components/AchievementTimeline'
+import TechStackComparison from './components/TechStackComparison'
+import VisitorAnalytics from './components/VisitorAnalytics'
+import MicroInteractions from './components/MicroInteractions'
+import { analyticsService } from './services/analytics'
 
 function App() {
   const [theme, setTheme] = useState<'dark' | 'light'>('dark')
@@ -22,6 +28,12 @@ function App() {
     const savedTheme = (localStorage.getItem('theme') as 'dark' | 'light') || 'dark'
     setTheme(savedTheme)
     document.documentElement.classList.toggle('light', savedTheme === 'light')
+
+    // Initialize analytics tracking
+    analyticsService.trackPageView(window.location.pathname)
+    
+    // Make analytics available globally for navigation tracking
+    ;(window as any).analyticsService = analyticsService
   }, [])
 
   const toggleTheme = () => {
@@ -43,16 +55,21 @@ function App() {
       {!isLoading && (
         <div className="relative min-h-screen overflow-x-hidden">
           <StarField />
+          <MicroInteractions />
           <Navbar />
           <ActionButton theme={theme} onToggleTheme={toggleTheme} />
+          <VisitorAnalytics />
 
           <main className="pt-6">
             <Hero />
             <About />
             <Skills />
+            <GitHubStats />
             <Projects />
             <ProjectCaseStudies />
+            <TechStackComparison />
             <Experience />
+            <AchievementTimeline />
             <Blog />
             <Contact />
           </main>

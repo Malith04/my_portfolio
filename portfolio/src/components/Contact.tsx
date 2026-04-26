@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { Phone, Mail, Linkedin, Instagram, Facebook, Copy, ExternalLink, MessageCircle } from 'lucide-react'
+import { Phone, Mail, Linkedin, Instagram, Facebook, Copy, ExternalLink, MessageCircle, Send } from 'lucide-react'
 
 const Contact = () => {
   const [activeContact, setActiveContact] = useState('phone')
@@ -244,30 +244,85 @@ const Contact = () => {
           })}
         </motion.div>
 
-        {/* Call to Action */}
+        {/* Quick Contact Form */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mt-16"
+          className="mt-16"
         >
           <div className="surface-card p-8 max-w-2xl mx-auto">
-            <h3 className="text-2xl font-display font-bold mb-4">
-              Let's Build Something <span className="text-gradient">Amazing</span> Together
-            </h3>
-            <p className="text-slate-400 mb-6 leading-relaxed">
-              Whether you have a project in mind, want to collaborate, or just want to say hello, 
-              I'm always excited to connect with fellow developers and innovators.
-            </p>
-            <motion.a
-              href="mailto:malithrajamanthri@gmail.com"
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-accent rounded-full font-semibold text-ink hover:shadow-lg hover:shadow-primary/50 transition-all"
-            >
-              <Mail size={20} />
-              <span>Send me an Email</span>
-            </motion.a>
+            <div className="text-center mb-8">
+              <h3 className="text-2xl font-display font-bold mb-4">
+                Quick <span className="text-gradient">Message</span>
+              </h3>
+              <p className="text-slate-400">
+                Send me a quick message and I'll get back to you within 24 hours
+              </p>
+            </div>
+
+            <form className="space-y-6">
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <label className="block text-sm font-medium text-slate-300 mb-2">
+                    Your Name
+                  </label>
+                  <input
+                    type="text"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-primary focus:outline-none text-white placeholder-slate-400 transition-colors"
+                    placeholder="John Doe"
+                  />
+                </div>
+                <div>
+                  <label className="block text-sm font-medium text-slate-300 mb-2">
+                    Email Address
+                  </label>
+                  <input
+                    type="email"
+                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-primary focus:outline-none text-white placeholder-slate-400 transition-colors"
+                    placeholder="john@example.com"
+                  />
+                </div>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">
+                  Subject
+                </label>
+                <select className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-primary focus:outline-none text-white transition-colors">
+                  <option value="">Select a subject</option>
+                  <option value="project">Project Collaboration</option>
+                  <option value="job">Job Opportunity</option>
+                  <option value="freelance">Freelance Work</option>
+                  <option value="general">General Inquiry</option>
+                </select>
+              </div>
+
+              <div>
+                <label className="block text-sm font-medium text-slate-300 mb-2">
+                  Message
+                </label>
+                <textarea
+                  rows={4}
+                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-primary focus:outline-none text-white placeholder-slate-400 transition-colors resize-none"
+                  placeholder="Tell me about your project or opportunity..."
+                />
+              </div>
+
+              <motion.button
+                type="submit"
+                whileHover={{ scale: 1.05 }}
+                whileTap={{ scale: 0.95 }}
+                className="w-full flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-accent rounded-xl font-semibold text-black hover:shadow-lg hover:shadow-primary/50 transition-all"
+              >
+                <Send size={20} />
+                <span>Send Message</span>
+              </motion.button>
+
+              <p className="text-center text-xs text-slate-500">
+                Your message will be sent directly to my email. I typically respond within 24 hours.
+              </p>
+            </form>
           </div>
         </motion.div>
       </div>

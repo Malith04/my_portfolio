@@ -53,6 +53,11 @@ const Navbar = () => {
         top: offsetTop,
         behavior: 'smooth'
       })
+      
+      // Track section navigation
+      if (typeof window !== 'undefined' && (window as any).analyticsService) {
+        ;(window as any).analyticsService.trackPageView(href)
+      }
     }
     
     setIsOpen(false)
