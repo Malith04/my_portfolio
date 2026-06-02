@@ -291,7 +291,7 @@ const Contact = () => {
                 </label>
                 <select className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-primary focus:outline-none text-white transition-colors">
                   <option value="">Select a subject</option>
-                  <option value="project">Project Collaboration</option>
+                  <option value="Project">Project Collaboration</option>
                   <option value="job">Job Opportunity</option>
                   <option value="freelance">Freelance Work</option>
                   <option value="general">General Inquiry</option>

@@ -4,17 +4,17 @@ import { Award, Calendar, Trophy, Star, Zap, Target, BookOpen, Code } from 'luci
 const AchievementTimeline = () => {
   const achievements = [
     {
-      year: '2024',
+      year: '2025',
       title: 'Advanced React Development',
-      category: 'Technical Milestone',
-      description: 'Mastered React 18 with TypeScript, built 3 major projects including SoundWave Music App with 10-band equalizer',
+      category: 'Learning Milestone',
+      description: 'Mastered React 18 with TypeScript,NextJS built 3 major projects including SoundWave Music App',
       icon: <Code size={20} />,
       color: 'from-blue-500 to-cyan-500',
       bgColor: 'bg-blue-500/20',
       skills: ['React 18', 'TypeScript', 'Web Audio API', 'PWA']
     },
     {
-      year: '2024',
+      year: '2025',
       title: 'Firebase Integration Expert',
       category: 'Backend Achievement',
       description: 'Successfully integrated Firebase authentication, Firestore database, and real-time features in multiple projects',
@@ -24,9 +24,9 @@ const AchievementTimeline = () => {
       skills: ['Firebase Auth', 'Firestore', 'Real-time DB', 'Cloud Functions']
     },
     {
-      year: '2023',
+      year: '2026',
       title: '3D Visualization Mastery',
-      category: 'Innovation Award',
+      category: 'Technical Growth',
       description: 'Implemented complex 3D farm visualization using React Three Fiber for AgroSmart 2.0 project',
       icon: <Trophy size={20} />,
       color: 'from-green-500 to-emerald-500',
@@ -34,7 +34,7 @@ const AchievementTimeline = () => {
       skills: ['Three.js', 'React Three Fiber', '3D Modeling', 'IoT Integration']
     },
     {
-      year: '2023',
+      year: '2024',
       title: 'NIBM Software Engineering',
       category: 'Education',
       description: 'Started Bachelor of Software Engineering at NIBM, focusing on modern web technologies and software architecture',
@@ -44,7 +44,7 @@ const AchievementTimeline = () => {
       skills: ['Software Architecture', 'Database Design', 'System Analysis', 'Project Management']
     },
     {
-      year: '2023',
+      year: '2026',
       title: 'Full-Stack Development',
       category: 'Technical Growth',
       description: 'Expanded skills to full-stack development with Node.js, Express, and modern frontend frameworks',
@@ -54,7 +54,7 @@ const AchievementTimeline = () => {
       skills: ['Node.js', 'Express', 'REST APIs', 'Database Integration']
     },
     {
-      year: '2022',
+      year: '2025',
       title: 'Web Development Foundation',
       category: 'Learning Milestone',
       description: 'Built strong foundation in HTML5, CSS3, JavaScript, and responsive design principles',
