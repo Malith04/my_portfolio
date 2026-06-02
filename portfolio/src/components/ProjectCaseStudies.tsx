@@ -23,7 +23,7 @@ const ProjectCaseStudies = () => {
       title: "SoundWave Music Streaming App",
       subtitle: "Spotify-Inspired Music Platform",
       category: "Web Application",
-      image: "/images/projects/soundwave-hero.jpg",
+      image: "/images/soundwave-app.avif",
       technologies: ["React 19", "TypeScript", "Web Audio API", "Tailwind CSS", "Framer Motion"],
       duration: "3 months",
       team: "Solo Project",
@@ -106,7 +106,7 @@ const ProjectCaseStudies = () => {
       title: "Supermarket Management System",
       subtitle: "Complete Inventory & Sales Platform",
       category: "Business Application",
-      image: "/images/projects/supermarket-hero.jpg",
+      image: "/images/supermarket-system.png",
       technologies: ["React", "Firebase", "Tailwind CSS", "Chart.js", "React Router"],
       duration: "4 months",
       team: "Team of 3",
@@ -189,7 +189,7 @@ const ProjectCaseStudies = () => {
       title: "AgroSmart 2.0",
       subtitle: "Smart Agriculture Management Platform",
       category: "IoT Application",
-      image: "/images/projects/agrosmart-hero.jpg",
+      image: "/images/agrosmart-system.webp",
       technologies: ["React", "Three.js", "Node.js", "MongoDB", "IoT Sensors"],
       duration: "6 months",
       team: "Team of 4",
@@ -298,6 +298,12 @@ const ProjectCaseStudies = () => {
             >
               {/* Project Image */}
               <div className="aspect-video bg-gradient-to-br from-primary/20 to-accent/20 relative overflow-hidden">
+                <img
+                  src={project.image}
+                  alt={`${project.title} preview`}
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute top-4 left-4">
                   <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-medium">

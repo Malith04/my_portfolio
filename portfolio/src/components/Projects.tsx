@@ -10,13 +10,13 @@ const Projects = () => {
     {
       title: 'Supermarket System',
       description: 'A comprehensive e-commerce platform with public product browsing, cart management, and admin portal. Features role-based access, Firebase integration, and complete order management system.',
-      image: '/images/supermarket-system.jpg',
+      image: '/images/supermarket-system.png',
       screenshots: [
-        '/images/supermarket-dashboard.jpg',
-        '/images/supermarket-products.jpg',
-        '/images/supermarket-cart.jpg'
+        '/images/supermarket-system.png',
+        '/images/portfolio.jpg',
+        '/images/web-development.svg'
       ],
-      demoGif: '/images/supermarket-demo.gif',
+      demoGif: '/images/supermarket-system.png',
       tech: ['React 19', 'Vite', 'Firebase', 'React Router', 'Lucide React', 'JavaScript'],
       github: 'https://github.com/Malith04/Supermarket-System.git',
       live: '#',
@@ -50,13 +50,13 @@ const handleLogin = async (email, password) => {
     {
       title: 'SoundWave Music App',
       description: 'A full-stack Spotify-inspired music streaming web app with PWA support. Features 10-band equalizer, AI recommendations, lyrics sync, and comprehensive admin dashboard.',
-      image: '/images/soundwave-app.jpg',
+      image: '/images/soundwave-app.avif',
       screenshots: [
-        '/images/soundwave-player.jpg',
-        '/images/soundwave-equalizer.jpg',
-        '/images/soundwave-playlist.jpg'
+        '/images/soundwave-app.avif',
+        '/images/web-development.svg',
+        '/images/portfolio.jpg'
       ],
-      demoGif: '/images/soundwave-demo.gif',
+      demoGif: '/images/soundwave-app.avif',
       tech: ['React 18', 'Tailwind CSS', 'Firebase', 'Howler.js', 'Web Audio API', 'YouTube API'],
       github: 'https://github.com/Malith04/SoundWave.git',
       live: 'https://amazing-soundwave.netlify.app',
@@ -97,13 +97,13 @@ const createEqualizer = (audioContext, source) => {
     {
       title: 'AgroSmart 2.0',
       description: 'Enhanced agricultural monitoring system with 3D digital twin visualization using React Three Fiber. Real-time IoT sensor integration with AI-based crop recommendations.',
-      image: '/images/agrosmart-system.jpg',
+      image: '/images/agrosmart-system.webp',
       screenshots: [
-        '/images/agrosmart-3d.jpg',
-        '/images/agrosmart-sensors.jpg',
-        '/images/agrosmart-analytics.jpg'
+        '/images/agrosmart-system.webp',
+        '/images/web-development.svg',
+        '/images/portfolio.jpg'
       ],
-      demoGif: '/images/agrosmart-demo.gif',
+      demoGif: '/images/agrosmart-system.webp',
       tech: ['React', 'Three.js', 'React Three Fiber', 'IoT Integration', 'AI Analytics', 'Real-time Data'],
       github: 'https://github.com/JayamalNarampanawa/AgroSmart.git',
       live: '#',
@@ -174,8 +174,14 @@ const FarmModel = ({ sensorData }) => {
               onClick={() => setSelectedProject(project)}
             >
               <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20">
+                <img
+                  src={project.image}
+                  alt={`${project.title} preview`}
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
                 {/* Demo GIF Preview */}
-                <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30" />
+                <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 mix-blend-multiply" />
                 
                 {/* Project-specific background patterns */}
                 {project.title === 'Supermarket System' && (
@@ -398,13 +404,12 @@ const FarmModel = ({ sensorData }) => {
                       {/* Screenshot Gallery */}
                       <div className="relative">
                         <div className="aspect-video bg-gradient-to-br from-primary/20 to-accent/20 rounded-xl overflow-hidden">
-                          <div className="w-full h-full bg-gradient-to-br from-primary/30 to-accent/30 flex items-center justify-center">
-                            <div className="text-center">
-                              <Image size={48} className="text-white/50 mx-auto mb-4" />
-                              <p className="text-white/70">Screenshot {currentScreenshot + 1} of {selectedProject.screenshots?.length || 3}</p>
-                              <p className="text-white/50 text-sm mt-2">Screenshots coming soon...</p>
-                            </div>
-                          </div>
+                          <img
+                            src={selectedProject.screenshots?.[currentScreenshot] || selectedProject.image}
+                            alt={`${selectedProject.title} screenshot ${currentScreenshot + 1}`}
+                            className="h-full w-full object-cover"
+                            loading="lazy"
+                          />
                         </div>
                         
                         {/* Screenshot Navigation */}

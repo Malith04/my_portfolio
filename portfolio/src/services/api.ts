@@ -241,7 +241,7 @@ export const mockData = {
       readTime: 8,
       author: {
         name: 'Malith Rajamanthri',
-        avatar: '/images/profile.jpg'
+        avatar: '/images/about-profile.jpg'
       }
     }
   ] as BlogPost[],
@@ -254,7 +254,7 @@ export const mockData = {
       technologies: ['React', 'TypeScript', 'Web Audio API', 'Tailwind CSS'],
       githubUrl: 'https://github.com/malith/soundwave',
       liveUrl: 'https://soundwave-demo.vercel.app',
-      imageUrl: '/images/projects/soundwave.jpg',
+      imageUrl: '/images/soundwave-app.avif',
       featured: true
     }
   ] as ProjectData[]

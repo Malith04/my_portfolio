@@ -84,7 +84,7 @@ TypeScript transforms React development by providing type safety and better deve
       date: "2024-04-20",
       readTime: 8,
       tags: ["React", "TypeScript", "Web Development"],
-      image: "/images/blog/react-typescript.jpg"
+      image: "/images/web-development.svg"
     },
     {
       id: 2,
@@ -157,7 +157,7 @@ The journey continues, and I'm excited about what's next!
       date: "2024-04-15",
       readTime: 6,
       tags: ["Learning", "Career", "Web Development"],
-      image: "/images/blog/learning-journey.jpg"
+      image: "/images/portfolio.jpg"
     },
     {
       id: 3,
@@ -258,7 +258,7 @@ Building SoundWave taught me so much about modern web development and user exper
       date: "2024-04-10",
       readTime: 10,
       tags: ["React", "Audio", "UI/UX", "TypeScript"],
-      image: "/images/blog/soundwave-project.jpg"
+      image: "/images/soundwave-app.avif"
     },
     {
       id: 4,
@@ -371,7 +371,7 @@ Happy coding! 🚀
       date: "2024-04-05",
       readTime: 5,
       tags: ["VS Code", "Productivity", "Tools", "React"],
-      image: "/images/blog/vscode-extensions.jpg"
+      image: "/images/web-development.svg"
     }
   ]
 
@@ -451,6 +451,12 @@ Happy coding! 🚀
             >
               {/* Post Image */}
               <div className="aspect-video bg-gradient-to-br from-primary/20 to-accent/20 relative overflow-hidden">
+                <img
+                  src={post.image}
+                  alt={`${post.title} preview`}
+                  className="absolute inset-0 h-full w-full object-cover transition-transform duration-500 group-hover:scale-105"
+                  loading="lazy"
+                />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
                 <div className="absolute bottom-4 left-4">
                   <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-medium">

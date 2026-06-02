@@ -148,7 +148,7 @@ const Hero = () => {
                   {/* Profile Image */}
                   <div className="absolute inset-6 rounded-[2rem] overflow-hidden border-2 border-white/20 shadow-2xl">
                     <motion.img
-                      src="/images/me (2).jpg"
+                      src="/images/hero-profile.jpg"
                       alt="Malith Rajamanthri"
                       className="w-full h-full object-cover"
                       animate={{ scale: isFlipped ? 1.1 : 1 }}

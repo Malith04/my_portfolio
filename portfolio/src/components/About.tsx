@@ -123,7 +123,7 @@ const About = () => {
             <div className="surface-card p-6">
               <div className="flex items-center gap-5">
                 <div className="h-20 w-20 rounded-2xl overflow-hidden border border-white/20">
-                  <img src="/images/Me Profile Photo.jpg" alt="Malith" className="h-full w-full object-cover" />
+                  <img src="/images/about-profile.jpg" alt="Malith" className="h-full w-full object-cover" />
                 </div>
                 <div>
                   <p className="section-kicker">Personal Focus</p>
