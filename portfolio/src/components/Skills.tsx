@@ -8,24 +8,25 @@ const Skills = () => {
       title: 'Programming Languages',
       description: 'Proficient in modern programming languages with strong problem-solving abilities.',
       skills: [
-        { name: 'JavaScript', level: 85, category: 'Advanced' },
-        { name: 'HTML5', level: 90, category: 'Advanced' },
-        { name: 'CSS3', level: 88, category: 'Advanced' },
+        { name: 'TypeScript', level: 90, category: 'Advanced' },
+        { name: 'JavaScript (ES6+)', level: 92, category: 'Expert' },
+        { name: 'HTML5 & CSS3', level: 95, category: 'Expert' },
+        { name: 'Java', level: 75, category: 'Intermediate' },
         { name: 'C#', level: 70, category: 'Intermediate' },
-        { name: 'Spring-Boot', level: 65, category: 'Intermediate' },
-        { name: 'Java', level: 75, category: 'Intermediate' }
+        { name: 'Python', level: 72, category: 'Intermediate' }
       ]
     },
     {
       icon: <Laptop size={28} />,
-      title: 'Frameworks & Libraries',
-      description: 'Experience with popular frameworks for building scalable applications.',
+      title: 'Frameworks & Modern UI',
+      description: 'Experience with cutting-edge frontend architecture, animation engines, and state systems.',
       skills: [
-        { name: 'React', level: 90, category: 'Advanced' },
-        { name: 'Node.js', level: 75, category: 'Intermediate' },
-        { name: 'Express', level: 70, category: 'Intermediate' },
-        { name: 'Bootstrap', level: 85, category: 'Advanced' },
-        { name: 'jQuery', level: 80, category: 'Advanced' }
+        { name: 'Next.js 15 & React 19', level: 92, category: 'Expert' },
+        { name: 'Tailwind CSS & Design Systems', level: 92, category: 'Expert' },
+        { name: 'Framer Motion & GSAP', level: 88, category: 'Advanced' },
+        { name: 'Zustand & TanStack Query', level: 85, category: 'Advanced' },
+        { name: 'Dexie.js (IndexedDB)', level: 82, category: 'Advanced' },
+        { name: 'Node.js & Express', level: 75, category: 'Intermediate' }
       ]
     },
     {

@@ -58,7 +58,7 @@ const TechStackComparison = () => {
         community: 85,
         jobMarket: 88
       },
-      reasoning: 'I chose React because of its flexibility, gentle learning curve, and massive ecosystem. For my projects like SoundWave and Supermarket System, React\'s component-based architecture and rich library ecosystem allowed me to build feature-rich applications quickly while maintaining clean, maintainable code.'
+      reasoning: "I chose React and Next.js because of their unmatched performance, rich ecosystem, and flexible architecture. For modern applications like ImpactEcho and SoundWave, React's component-driven paradigm and cutting-edge animation libraries like Framer Motion and GSAP allowed me to build ultra-responsive, immersive user interfaces with maintainable code."
     },
     'typescript-vs-javascript': {
       title: 'TypeScript vs JavaScript',

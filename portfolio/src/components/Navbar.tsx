@@ -74,10 +74,11 @@ const Navbar = () => {
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
         <motion.button
           onClick={() => scrollToSection('#home')}
-          className="font-display text-lg font-semibold tracking-tight text-white cursor-pointer"
+          className="font-display text-lg font-semibold tracking-tight text-white cursor-pointer flex items-center gap-2.5"
           whileHover={{ scale: 1.02 }}
         >
-          Malith Rajamanthri
+          <span className="w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_8px_#00f5d4] animate-pulse" />
+          <span>Malith <span className="text-primary font-mono text-sm tracking-normal font-normal">// UI/UX</span></span>
         </motion.button>
 
         <div className="hidden md:flex items-center gap-8">
@@ -87,8 +88,8 @@ const Navbar = () => {
               onClick={() => scrollToSection(link.href)}
               className={`text-sm uppercase tracking-[0.2em] transition-all cursor-pointer hover:scale-105 ${
                 activeSection === link.href.substring(1)
-                  ? 'text-primary'
-                  : 'text-slate-300 hover:text-primary dark:text-slate-300 dark:hover:text-primary light:text-slate-700 light:hover:text-yellow-600'
+                  ? 'text-primary font-semibold'
+                  : 'text-slate-300 hover:text-primary dark:text-slate-300 dark:hover:text-primary light:text-slate-700 light:hover:text-teal-600'
               }`}
               whileHover={{ y: -2 }}
             >
@@ -98,7 +99,10 @@ const Navbar = () => {
         </div>
 
         <div className="hidden md:flex items-center gap-4">
-          <span className="pill border-primary/40 text-primary">Available</span>
+          <span className="hud-badge">
+            <span className="w-1.5 h-1.5 rounded-full bg-accent animate-ping" />
+            AVAILABLE
+          </span>
         </div>
 
         <button

@@ -1,6 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
-import { ExternalLink, Github, ShoppingCart, Music, Sprout, Code, Image, Play, ChevronLeft, ChevronRight } from 'lucide-react'
+import { ExternalLink, Github, Radio, Music, Sprout, Code, Image, Play, ChevronLeft, ChevronRight } from 'lucide-react'
 
 const Projects = () => {
   const [selectedProject, setSelectedProject] = useState<any>(null)
@@ -8,43 +8,72 @@ const Projects = () => {
   const [currentScreenshot, setCurrentScreenshot] = useState(0)
   const projects = [
     {
-      title: 'Supermarket System',
-      description: 'A comprehensive e-commerce platform with public product browsing, cart management, and admin portal. Features role-based access, Firebase integration, and complete order management system.',
-      image: '/images/supermarket-system.png',
+      title: 'ImpactEcho — Cause Social & Verified Volunteering',
+      description: 'A revolutionary cause-driven social platform transforming grassroots activism into verified volunteer hours. Built under Innovior Interns Group One, where I served as the Frontend Engineer & UI/UX Designer. I architected the design system, multi-theme engine (dark/light/mono), fluid Framer Motion & GSAP animations, responsive Reels player with custom ReelActionBar, 24-hour ephemeral Stories creator, and Dexie.js offline caching.',
+      image: '/images/impactecho-app.png',
       screenshots: [
-        '/images/supermarket-system.png',
-        '/images/portfolio.jpg',
-        '/images/web-development.svg'
+        '/images/impactecho-app.png',
+        '/images/impactecho-preview.png',
+        '/images/portfolio.jpg'
       ],
-      demoGif: '/images/supermarket-system.png',
-      tech: ['React 19', 'Vite', 'Firebase', 'React Router', 'Lucide React', 'JavaScript'],
-      github: 'https://github.com/Malith04/Supermarket-System.git',
+      demoGif: '/images/impactecho-app.png',
+      tech: ['Next.js 15', 'React 19', 'TypeScript', 'TailwindCSS', 'Framer Motion 12', 'GSAP', 'Zustand', 'Dexie.js', 'TanStack Query'],
+      github: 'https://github.com/Malith04/ImpactEcho.git',
       live: '#',
-      category: 'personal',
-      icon: <ShoppingCart size={24} />,
+      category: 'featured',
+      role: 'Frontend Engineer & UI/UX Designer',
+      icon: <Radio size={24} />,
       features: [
-        'Product catalog & categories',
-        'Cart & checkout flow',
-        'Admin dashboard with metrics',
-        'Order tracking & status updates',
-        'Role-based access control',
-        'Responsive UI with dark mode'
+        'Custom Design System & Theme Engine (Dark, Light, Monochrome modes)',
+        'Mobile-first vertical Reels player with snap gestures (@use-gesture/react)',
+        'Custom ReelActionBar overlay with optimistic like, comment tray & Echo reposting',
+        '24-Hour ephemeral Stories creator with media upload, stickers & drawing canvas',
+        'Dexie.js (IndexedDB) client-side offline persistence & MiniSearch fast lookup',
+        'Fluid micro-interactions & physics-based spring animations with Framer Motion 12 & GSAP'
       ],
-      codeSnippet: `// Firebase Authentication Integration
-const handleLogin = async (email, password) => {
-  try {
-    const userCredential = await signInWithEmailAndPassword(auth, email, password);
-    const user = userCredential.user;
-    // Role-based routing
-    const userDoc = await getDoc(doc(db, 'users', user.uid));
-    if (userDoc.data().role === 'admin') {
-      navigate('/admin-dashboard');
-    } else {
-      navigate('/user-dashboard');
-    }
-  } catch (error) {
-    setError(error.message);
-  }
+      codeSnippet: `// ImpactEcho — ReelActionBar & Optimistic Reaction Engine
+// Role: Malith Rajamanthri — Frontend Engineer & UI/UX Designer
+export const ReelActionBar = ({ reelId, initialLiked, echoesCount }: ReelProps) => {
+  const [isLiked, setIsLiked] = useState(initialLiked);
+  const [echoCount, setEchoCount] = useState(echoesCount);
+
+  const handleEcho = async () => {
+    // Optimistic UI update with Framer Motion spring pop
+    setEchoCount((prev) => prev + 1);
+    toast.success("Echoed to your cause network!");
+    
+    // Broadcast via real-time gateway & update cache
+    await echoService.repost(reelId);
+  };
+
+  return (
+    <motion.div 
+      initial={{ opacity: 0, x: 20 }}
+      animate={{ opacity: 1, x: 0 }}
+      className="absolute right-4 bottom-24 flex flex-col items-center gap-5 z-30"
+    >
+      <motion.button 
+        whileTap={{ scale: 0.8 }}
+        onClick={() => setIsLiked(!isLiked)}
+        className={\`p-3.5 rounded-full backdrop-blur-xl border transition-all \${
+          isLiked 
+            ? 'bg-rose-500/20 border-rose-500/50 text-rose-400' 
+            : 'bg-black/40 border-white/10 text-white hover:bg-white/10'
+        }\`}
+      >
+        <Heart size={24} fill={isLiked ? "currentColor" : "none"} />
+      </motion.button>
+
+      <motion.button 
+        whileTap={{ scale: 0.85 }}
+        onClick={handleEcho}
+        className="p-3.5 rounded-full backdrop-blur-xl bg-black/40 border border-white/10 text-primary hover:border-primary/40"
+      >
+        <Repeat2 size={24} />
+        <span className="text-xs font-mono mt-1">{echoCount}</span>
+      </motion.button>
+    </motion.div>
+  );
 };`
     },
     {
@@ -184,9 +213,9 @@ const FarmModel = ({ sensorData }) => {
                 <div className="absolute inset-0 bg-gradient-to-br from-primary/30 to-accent/30 mix-blend-multiply" />
                 
                 {/* Project-specific background patterns */}
-                {project.title === 'Supermarket System' && (
-                  <div className="absolute inset-0 bg-gradient-to-br from-green-500/20 to-blue-500/20 flex items-center justify-center">
-                    <ShoppingCart size={80} className="text-white/20" />
+                {project.title.includes('ImpactEcho') && (
+                  <div className="absolute inset-0 bg-gradient-to-br from-cyan-500/30 via-violet-600/20 to-primary/30 flex items-center justify-center">
+                    <Radio size={80} className="text-primary/30 animate-pulse" />
                   </div>
                 )}
                 {project.title === 'SoundWave Music App' && (
@@ -204,11 +233,13 @@ const FarmModel = ({ sensorData }) => {
                 
                 <div className="absolute top-4 left-4">
                   <span className={`pill text-xs ${
-                    project.category === 'personal' 
-                      ? 'border-primary/40 text-primary' 
-                      : 'border-accent/40 text-accent'
+                    project.category === 'featured'
+                      ? 'border-primary/60 text-primary bg-primary/10 font-semibold'
+                      : project.category === 'personal' 
+                        ? 'border-primary/40 text-primary' 
+                        : 'border-accent/40 text-accent'
                   }`}>
-                    {project.category === 'personal' ? 'Personal' : 'Group'} Project
+                    {project.category === 'featured' ? '★ Featured UI/UX Lead' : project.category === 'personal' ? 'Personal' : 'Group'} Project
                   </span>
                 </div>
 
@@ -287,28 +318,100 @@ const FarmModel = ({ sensorData }) => {
                     </motion.a>
                   )}
                 </div>
+                {/* View Details Button */}
+                <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
+                  <div className="flex items-center gap-2 px-3 py-2 bg-white/20 backdrop-blur-sm rounded-lg text-white text-sm">
+                    <Image size={16} />
+                    <span>View Details</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="p-6 flex-1 flex flex-col">
+                <h3 className="text-xl font-display font-bold mb-3 flex items-center gap-2 text-white">
+                  {project.title}
+                </h3>
+                <p className="text-slate-400 mb-4 leading-relaxed text-sm flex-1">
+                  {project.description}
+                </p>
+                
+                <div className="mb-4">
+                  <h4 className="text-sm font-semibold text-primary mb-2">Key Features:</h4>
+                  <ul className="text-xs text-slate-400 space-y-1">
+                    {project.features.slice(0, 3).map((feature, j) => (
+                      <li key={j} className="flex items-start gap-2">
+                        <span className="text-primary mt-0.5">▹</span>
+                        <span>{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                
+                <div className="flex flex-wrap gap-1.5 mb-6">
+                  {project.tech.slice(0, 4).map((tech, j) => (
+                    <span
+                      key={j}
+                      className="px-2 py-1 bg-white/10 border border-primary/30 rounded-md text-xs text-primary font-medium"
+                    >
+                      {tech}
+                    </span>
+                  ))}
+                  {project.tech.length > 4 && (
+                    <span className="px-2 py-1 bg-white/5 border border-white/20 rounded-md text-xs text-slate-400">
+                      +{project.tech.length - 4} more
+                    </span>
+                  )}
+                </div>
+
+                <div className="flex gap-3 mt-auto">
+                  <motion.a
+                    href={project.github}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-slate-200 hover:text-slate-900 dark:hover:bg-primary dark:hover:text-black rounded-lg transition-all font-medium text-sm flex-1 justify-center border border-transparent hover:border-slate-400 dark:hover:border-primary"
+                  >
+                    <Github size={16} />
+                    <span>Code</span>
+                  </motion.a>
+                  {project.live !== '#' && (
+                    <motion.a
+                      href={project.live}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      whileHover={{ scale: 1.05 }}
+                      whileTap={{ scale: 0.95 }}
+                      className="flex items-center gap-2 px-4 py-2 bg-primary text-black hover:bg-yellow-600 dark:hover:bg-accent rounded-lg transition-all font-medium text-sm flex-1 justify-center shadow-lg hover:shadow-xl"
+                    >
+                      <ExternalLink size={16} />
+                      <span>Live</span>
+                    </motion.a>
+                  )}
+                </div>
               </div>
             </motion.div>
           ))}
         </div>
 
+        {/* View on GitHub CTA */}
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
           className="text-center mt-16"
         >
-          <p className="text-slate-400 mb-6">Want to see more of my work?</p>
+          <p className="text-slate-400 mb-6 font-mono text-sm tracking-wider">// WANT TO EXPLORE MORE CODE REPOSITORIES?</p>
           <motion.a
             href="https://github.com/Malith04"
             target="_blank"
             rel="noopener noreferrer"
             whileHover={{ scale: 1.05, y: -2 }}
             whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-accent rounded-full font-semibold text-black hover:shadow-lg hover:shadow-primary/50 dark:hover:shadow-primary/50 light:hover:shadow-slate-400/50 transition-all hover:from-yellow-600 hover:to-cyan-600"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-accent rounded-full font-semibold text-ink hover:shadow-lg hover:shadow-primary/50 transition-all hover:scale-105"
           >
             <Github size={20} />
-            <span>View All Projects on GitHub</span>
+            <span>View All Repositories on GitHub</span>
           </motion.a>
         </motion.div>
 
@@ -319,30 +422,33 @@ const FarmModel = ({ sensorData }) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+              className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4"
               onClick={() => setSelectedProject(null)}
             >
               <motion.div
-                initial={{ scale: 0.8, opacity: 0 }}
+                initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
-                exit={{ scale: 0.8, opacity: 0 }}
-                className="bg-ink/95 backdrop-blur-xl border border-white/10 rounded-2xl max-w-6xl w-full max-h-[90vh] overflow-hidden"
+                exit={{ scale: 0.9, opacity: 0 }}
+                className="bg-ink/95 backdrop-blur-xl border border-white/10 rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden"
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Modal Header */}
                 <div className="flex items-center justify-between p-6 border-b border-white/10">
                   <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-primary to-accent rounded-xl flex items-center justify-center">
+                    <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center text-ink">
                       {selectedProject.icon}
                     </div>
                     <div>
-                      <h3 className="text-2xl font-display font-bold text-white">{selectedProject.title}</h3>
-                      <p className="text-slate-400">{selectedProject.category === 'personal' ? 'Personal Project' : 'Group Project'}</p>
+                      <h3 className="text-2xl font-display font-semibold text-white">{selectedProject.title}</h3>
+                      <p className="text-primary text-xs font-mono mt-0.5">
+                        {selectedProject.role ? `${selectedProject.role} • ` : ''}
+                        {selectedProject.category === 'featured' ? '★ Featured Lead' : selectedProject.category === 'personal' ? 'Personal Project' : 'Group Project'}
+                      </p>
                     </div>
                   </div>
                   <button
                     onClick={() => setSelectedProject(null)}
-                    className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-lg flex items-center justify-center text-white transition-colors"
+                    className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-lg flex items-center justify-center text-white transition-colors text-xl"
                   >
                     ×
                   </button>
@@ -372,12 +478,12 @@ const FarmModel = ({ sensorData }) => {
                       <p className="text-slate-300 leading-relaxed">{selectedProject.description}</p>
                       
                       <div>
-                        <h4 className="text-lg font-semibold text-white mb-3">Key Features</h4>
+                        <h4 className="text-lg font-semibold text-white mb-3">Key Features & Architecture</h4>
                         <div className="grid md:grid-cols-2 gap-3">
                           {selectedProject.features.map((feature: string, index: number) => (
-                            <div key={index} className="flex items-start gap-3 p-3 bg-white/5 rounded-lg">
-                              <span className="text-primary mt-1">▹</span>
-                              <span className="text-slate-300">{feature}</span>
+                            <div key={index} className="flex items-start gap-3 p-3 bg-white/5 rounded-lg border border-white/5">
+                              <span className="text-primary mt-0.5">▹</span>
+                              <span className="text-slate-300 text-sm">{feature}</span>
                             </div>
                           ))}
                         </div>
@@ -389,7 +495,7 @@ const FarmModel = ({ sensorData }) => {
                           {selectedProject.tech.map((tech: string, index: number) => (
                             <span
                               key={index}
-                              className="px-3 py-2 bg-primary/20 border border-primary/30 rounded-lg text-primary font-medium"
+                              className="px-3 py-1.5 bg-primary/10 border border-primary/30 rounded-lg text-primary text-xs font-mono font-medium"
                             >
                               {tech}
                             </span>

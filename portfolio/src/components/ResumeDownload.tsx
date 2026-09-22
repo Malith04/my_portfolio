@@ -59,14 +59,14 @@ const ResumeDownload = () => {
     ],
     projects: [
       {
+        name: "ImpactEcho - Cause Social & Verified Volunteering",
+        tech: "Next.js 15, React 19, TypeScript, Tailwind CSS, Framer Motion 12, GSAP, Dexie.js, Zustand",
+        description: "Cause-driven social platform turning grassroots activism into verified volunteer hours. Served as Frontend Engineer & UI/UX Designer: built custom design system, multi-theme engine (dark/light/mono), vertical Reels player with custom ReelActionBar, 24h Stories studio, and Dexie.js offline caching."
+      },
+      {
         name: "SoundWave - Music Streaming PWA",
         tech: "React, Firebase, Tailwind CSS, Howler.js",
         description: "Spotify-inspired Progressive Web App with iTunes API, Jamendo API, YouTube Data API v3 integration, equalizer controls, spatial audio, and recommendation engine"
-      },
-      {
-        name: "Supermarket Management System",
-        tech: "React, Firebase Authentication, Firestore",
-        description: "Full-stack e-commerce system with product browsing, cart functionality, admin dashboard, and order tracking with dark mode support"
       },
       {
         name: "AgroSmart 2.0 - Smart Agriculture Platform",
@@ -75,11 +75,11 @@ const ResumeDownload = () => {
       }
     ],
     skills: {
-      programming: ["JavaScript", "Java", "Python", "PHP", "C/C#"],
-      frontend: ["React.js", "HTML5", "CSS3", "Tailwind CSS", "Vite"],
-      backend: ["Firebase Authentication", "Firestore Database", "Firebase Storage", "REST APIs"],
-      databases: ["MySQL", "MongoDB", "Firebase Firestore"],
-      tools: ["Git", "GitHub", "VS Code", "IntelliJ IDEA", "Android Studio", "Netlify", "Figma"]
+      programming: ["TypeScript", "JavaScript", "Java", "Python", "PHP", "C#"],
+      frontend: ["Next.js 15", "React 19", "TypeScript", "Tailwind CSS", "Framer Motion", "GSAP", "Zustand", "HTML5/CSS3"],
+      backend: ["Node.js", "Firebase Authentication", "Firestore Database", "REST APIs", "Prisma"],
+      databases: ["PostgreSQL", "MySQL", "MongoDB", "Firebase Firestore", "Dexie.js (IndexedDB)"],
+      tools: ["Git", "GitHub", "VS Code", "Figma", "Vite", "Netlify", "Vercel"]
     },
     competencies: [
       "Frontend Web Development (React, Tailwind CSS)",

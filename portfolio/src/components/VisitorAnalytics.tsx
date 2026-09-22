@@ -193,7 +193,7 @@ const VisitorAnalytics = () => {
             </div>
 
             {/* Debug Info (only in development) */}
-            {process.env.NODE_ENV === 'development' && (
+            {import.meta.env.DEV && (
               <div className="pt-2 border-t border-white/10">
                 <button
                   onClick={() => {

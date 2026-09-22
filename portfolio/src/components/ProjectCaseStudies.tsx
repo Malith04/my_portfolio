@@ -96,92 +96,97 @@ const ProjectCaseStudies = () => {
       ],
       
       links: {
-        live: "https://soundwave-demo.vercel.app",
-        github: "https://github.com/malith/soundwave",
-        demo: "https://youtube.com/watch?v=demo"
+        live: "https://amazing-soundwave.netlify.app",
+        github: "https://github.com/Malith04/SoundWave.git",
+        demo: "https://amazing-soundwave.netlify.app"
       }
     },
     {
       id: 2,
-      title: "Supermarket Management System",
-      subtitle: "Complete Inventory & Sales Platform",
-      category: "Business Application",
-      image: "/images/supermarket-system.png",
-      technologies: ["React", "Firebase", "Tailwind CSS", "Chart.js", "React Router"],
-      duration: "4 months",
-      team: "Team of 3",
-      status: "Production",
+      title: "ImpactEcho — Verified Volunteerism & Cause Network",
+      subtitle: "Next-Gen Social Ecosystem for Real-World Action",
+      category: "Social Platform & Web App",
+      image: "/images/impactecho-app.png",
+      technologies: ["Next.js 15", "React 19", "TypeScript", "Tailwind CSS", "Framer Motion 12", "GSAP", "Zustand", "Dexie.js", "TanStack Query"],
+      duration: "Active Development",
+      team: "Innovior Interns Group One | Malith: Frontend Engineer & UI/UX Designer",
+      status: "In Development",
       
-      overview: "A comprehensive supermarket management system handling inventory, sales, customer management, and analytics for retail businesses.",
+      overview: "A high-performance cause-centered social platform providing Feeds, Reels, 24h Stories, Communities, and organizer-verified check-ins that turn real volunteer hours into legitimate credentials. As Frontend Engineer & UI/UX Designer, I architected the design system, multi-theme engine, Reels player, 24h Stories creator, and client offline persistence.",
       
       problem: {
-        title: "Business Challenge",
-        description: "Local supermarkets needed a modern, efficient system to manage inventory, track sales, and analyze business performance in real-time.",
+        title: "The Core Problem",
+        description: "Traditional social platforms reward superficial vanity metrics and performative activism. Grassroots organizers struggle to recruit dependable volunteers, while passionate volunteers lack a unified, verified record of their real-world contributions.",
         points: [
-          "Manual inventory tracking causing errors",
-          "No real-time sales analytics",
-          "Poor customer data management",
-          "Inefficient staff workflow processes"
+          "Vanity metrics prioritized over verified community impact",
+          "Grassroots organizers lack tamper-proof volunteer attendance check-ins",
+          "Volunteers have no unified, auditable credential of volunteer hours",
+          "Complex feed algorithms reward clickbait rather than authentic local causes"
         ]
       },
       
       solution: {
-        title: "Digital Transformation",
-        description: "Developed a complete business management platform with real-time data synchronization and comprehensive analytics.",
+        title: "Frontend Architecture & UI/UX Engineering",
+        description: "Crafted a modern, responsive frontend using Next.js 15 App Router, React 19, and TailwindCSS with fluid Framer Motion & GSAP animations, Dexie.js offline caching, and a multi-theme engine.",
         approach: [
           {
-            title: "System Architecture",
-            description: "Built scalable architecture using Firebase for real-time data management",
-            details: "Implemented Firestore for data storage, Firebase Auth for security, and Cloud Functions for business logic"
+            title: "Custom Design System & Multi-Theme Engine",
+            description: "Architected a comprehensive CSS variable design system in globals.css supporting Dark, Light, and Monochrome themes.",
+            details: "Engineered glassmorphic surfaces, semantic design tokens, and fluid responsive layouts paired with Lucide React and Phosphor Icons."
           },
           {
-            title: "User Interface Design",
-            description: "Created intuitive dashboard for different user roles (admin, cashier, manager)",
-            details: "Designed role-based access control with customizable dashboards and reporting tools"
+            title: "Immersive Reels Player & ReelActionBar",
+            description: "Built mobile-first short-form vertical video experience with snap navigation and gesture physics using @use-gesture/react.",
+            details: "Created the custom overlay ReelActionBar with optimistic like feedback, comment tray modal portals, and Echo reposting lineage."
           },
           {
-            title: "Data Analytics",
-            description: "Implemented comprehensive reporting and analytics system",
-            details: "Built real-time charts, sales forecasting, and inventory optimization recommendations"
+            title: "24-Hour Ephemeral Stories & Canvas Studio",
+            description: "Engineered Instagram-style 24-hour expiring stories creation pipeline (/stories/create).",
+            details: "Implemented interactive stickers, media upload, geolocation tags, user mentions, and HTML5 canvas drawing overlays."
+          },
+          {
+            title: "Client Offline Persistence & Optimistic Sync",
+            description: "Implemented client-side caching with Dexie.js (IndexedDB) and MiniSearch full-text search.",
+            details: "Utilized Zustand for reactive client state and TanStack Query v5 for optimistic server cache updates and seamless offline fallbacks."
           }
         ]
       },
       
       features: [
-        "Real-time inventory management",
-        "Point of sale (POS) system",
-        "Customer relationship management",
-        "Sales analytics and reporting",
-        "Staff management and roles",
-        "Barcode scanning integration"
+        "Mobile-first vertical Reels player with snap gestures (@use-gesture/react)",
+        "Custom ReelActionBar with optimistic likes, echoes & modal portals",
+        "24-Hour Stories creation studio with stickers & drawing tools",
+        "Theme engine with real-time Dark, Light, and Monochrome switching",
+        "Dexie.js (IndexedDB) offline database & MiniSearch client search",
+        "Cause Hubs & Communities discovery, creation flows & permissions"
       ],
       
       results: {
         metrics: [
-          { label: "Efficiency Gain", value: "40%", icon: TrendingUp },
-          { label: "Error Reduction", value: "85%", icon: CheckCircle },
-          { label: "User Satisfaction", value: "4.9/5", icon: Star },
-          { label: "Active Users", value: "50+", icon: Users }
+          { label: "Gesture FPS", value: "60 FPS", icon: TrendingUp },
+          { label: "Theme Switch", value: "<16ms", icon: CheckCircle },
+          { label: "Optimistic UI", value: "<50ms", icon: Star },
+          { label: "Core Modules", value: "8+", icon: Users }
         ],
         achievements: [
-          "Reduced inventory errors by 85%",
-          "Improved checkout speed by 40%",
-          "Automated reporting and analytics",
-          "Streamlined staff workflows"
+          "Architected complete frontend design system with multi-theme engine",
+          "Built high-performance vertical Reels player with gesture snap navigation",
+          "Implemented full 24h Stories creation pipeline with drawing canvas & stickers",
+          "Integrated Dexie.js IndexedDB client offline persistence and search"
         ]
       },
       
       learnings: [
-        "Gained experience in Firebase ecosystem and real-time databases",
-        "Learned business process analysis and optimization",
-        "Developed skills in data visualization and analytics",
-        "Understood the importance of user training and change management"
+        "Mastered Next.js 15 App Router and React 19 concurrent features",
+        "Deepened expertise in physics-based animations with Framer Motion 12 & GSAP",
+        "Implemented client-side offline storage with Dexie.js IndexedDB",
+        "Designed scalable component architectures with Zustand and TanStack Query"
       ],
       
       links: {
-        live: "https://supermarket-system.vercel.app",
-        github: "https://github.com/malith/supermarket-system",
-        demo: "https://youtube.com/watch?v=demo2"
+        live: "#",
+        github: "https://github.com/Malith04/ImpactEcho",
+        demo: "https://github.com/Malith04/ImpactEcho"
       }
     },
     {
@@ -190,7 +195,7 @@ const ProjectCaseStudies = () => {
       subtitle: "Smart Agriculture Management Platform",
       category: "IoT Application",
       image: "/images/agrosmart-system.webp",
-      technologies: ["React", "Three.js", "Node.js", "MongoDB", "IoT Sensors"],
+      technologies: ["React 19", "Three.js", "Node.js", "MongoDB", "IoT Sensors"],
       duration: "6 months",
       team: "Team of 4",
       status: "Beta",

@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Manrope:wght@300..800&family=Sora:wght@400..800&display=swap');
+@import url('https://fonts.cdnfonts.com/css/sf-pro-display');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300..800&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -12,28 +13,40 @@
   body {
     @apply bg-ink text-slate-100 font-body antialiased;
     background-image:
-      radial-gradient(1200px 600px at 10% -10%, rgba(77, 208, 225, 0.18), transparent 60%),
-      radial-gradient(900px 500px at 90% 10%, rgba(245, 200, 75, 0.16), transparent 55%),
-      radial-gradient(700px 700px at 50% 100%, rgba(255, 122, 89, 0.1), transparent 60%);
+      radial-gradient(1200px 700px at 15% -10%, rgba(0, 245, 212, 0.12), transparent 60%),
+      radial-gradient(1000px 600px at 85% 15%, rgba(121, 40, 202, 0.15), transparent 55%),
+      radial-gradient(800px 800px at 50% 100%, rgba(0, 255, 135, 0.08), transparent 60%);
     background-attachment: fixed;
     transition: all 0.3s ease;
+  }
+
+  /* Apple SF Pro Display Typography with refined "little bold" (semibold 600) */
+  h1, h2, h3, h4, h5, h6, .font-display, .section-title {
+    font-family: 'SF Pro Display', -apple-system, BlinkMacSystemFont, 'SF Pro', 'SF Pro Text', system-ui, sans-serif;
+    font-weight: 600; /* Apple-style refined semibold "little bold" */
+    letter-spacing: -0.025em;
+  }
+
+  /* Apple SF Pro Text / Inter for body typography */
+  body, p, span, a, button, input, textarea, .font-body {
+    font-family: 'SF Pro Text', -apple-system, BlinkMacSystemFont, 'Inter', system-ui, sans-serif;
   }
 
   /* Light Theme Styles */
   html.light body {
     @apply bg-slate-50 text-slate-900;
     background-image:
-      radial-gradient(1200px 600px at 10% -10%, rgba(77, 208, 225, 0.12), transparent 60%),
-      radial-gradient(900px 500px at 90% 10%, rgba(245, 200, 75, 0.10), transparent 55%),
-      radial-gradient(700px 700px at 50% 100%, rgba(255, 122, 89, 0.08), transparent 60%);
+      radial-gradient(1200px 600px at 10% -10%, rgba(0, 245, 212, 0.09), transparent 60%),
+      radial-gradient(900px 500px at 90% 10%, rgba(121, 40, 202, 0.08), transparent 55%),
+      radial-gradient(700px 700px at 50% 100%, rgba(0, 255, 135, 0.06), transparent 60%);
   }
 
-  /* Surface and Card Styles */
+  /* Surface and Card Styles in Light Mode */
   html.light .surface-card {
-    @apply bg-white/90 border-slate-300/60 backdrop-blur-xl shadow-xl;
+    @apply bg-white/95 border-slate-300/70 backdrop-blur-xl shadow-xl;
   }
 
-  /* Text Color Overrides */
+  /* Text Color Overrides in Light Mode */
   html.light .text-slate-100 {
     @apply text-slate-900;
   }
@@ -135,19 +148,24 @@
 
 @layer components {
   .surface-card {
-    @apply bg-white/5 border border-white/10 backdrop-blur-xl rounded-2xl;
+    @apply bg-surface/80 border border-white/10 backdrop-blur-xl rounded-2xl;
   }
 
   .section-title {
-    @apply text-4xl md:text-5xl font-display font-bold tracking-tight;
+    @apply text-4xl md:text-5xl font-display font-semibold tracking-tight;
   }
 
   .section-kicker {
-    @apply uppercase tracking-[0.2em] text-xs text-slate-400;
+    @apply uppercase tracking-[0.2em] text-xs font-display font-semibold text-primary/80;
   }
 
   .pill {
-    @apply inline-flex items-center gap-2 rounded-full border border-white/15 px-4 py-2 text-xs uppercase tracking-[0.2em] text-slate-200;
+    @apply inline-flex items-center gap-2 rounded-full border border-primary/25 bg-primary/5 px-4 py-2 text-xs uppercase tracking-[0.2em] font-display font-medium text-slate-200;
+  }
+
+  /* Cyber HUD Badge - SF Pro Display Semibold */
+  .hud-badge {
+    @apply inline-flex items-center gap-1.5 font-display font-semibold text-[11px] uppercase tracking-wider text-primary border border-primary/30 bg-primary/10 px-3 py-1 rounded-full;
   }
 
   /* Light Theme Component Overrides */
@@ -163,66 +181,55 @@
     color: #0f172a !important;
   }
 
-  /* Enhanced Color Scheme for Light Theme */
+  /* Futuristic Cyber Color Scheme for Light Theme */
   html.light .text-primary {
-    color: #d97706 !important;
+    color: #0d9488 !important; /* Rich Teal for Primary in light mode */
   }
 
   html.light .text-accent {
-    color: #0891b2 !important;
+    color: #059669 !important; /* Emerald for Accent in light mode */
   }
 
   html.light .text-secondary {
-    color: #dc2626 !important;
+    color: #7c3aed !important; /* Deep Violet for Secondary in light mode */
   }
 
-  /* Specific Hero Section Text Fixes */
+  /* Specific Hero Section Text in Light Mode */
   html.light .text-primary.text-lg {
-    color: #ea580c !important; /* Bright orange for "Hello, I'm" */
+    color: #0d9488 !important;
     font-weight: 600 !important;
   }
 
-  /* Gradient Text in Light Theme - More Attractive */
+  /* Gradient Text in Light Theme */
   html.light .text-gradient {
-    background: linear-gradient(135deg, #dc2626, #7c3aed, #059669, #d97706) !important;
+    background: linear-gradient(135deg, #0d9488 0%, #2563eb 40%, #7c3aed 100%) !important;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
-    font-weight: 800 !important;
-  }
-
-  /* Name "Rajamanthri" - Make it more attractive */
-  html.light h1 {
-    color: #1e293b !important;
-    font-weight: 800 !important;
-  }
-
-  /* Typing animation text */
-  html.light .text-slate-200 {
-    color: #475569 !important;
-    font-weight: 600 !important;
-  }
-
-  /* Description text */
-  html.light .text-slate-300 {
-    color: #334155 !important;
-  }
-
-  /* Additional Hero Section Enhancements */
-  html.light section#home p.text-primary {
-    color: #ea580c !important; /* Bright orange-600 for "Hello, I'm" */
-    text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1) !important;
     font-weight: 700 !important;
   }
 
-  /* Make sure all primary text in hero is visible */
-  html.light section#home .text-primary {
-    color: #ea580c !important;
+  html.light h1 {
+    color: #0f172a !important;
+    font-weight: 600 !important;
   }
 
-  /* Enhanced gradient for "Malith" - More vibrant */
+  html.light .text-slate-200 {
+    color: #334155 !important;
+    font-weight: 500 !important;
+  }
+
+  html.light .text-slate-300 {
+    color: #475569 !important;
+  }
+
+  html.light #home .text-primary {
+    color: #0d9488 !important;
+    font-weight: 600 !important;
+  }
+
   html.light section#home .text-gradient {
-    background: linear-gradient(135deg, #dc2626 0%, #7c3aed 25%, #059669 50%, #ea580c 75%, #0891b2 100%) !important;
+    background: linear-gradient(135deg, #0d9488 0%, #2563eb 40%, #7c3aed 80%, #059669 100%) !important;
     -webkit-background-clip: text !important;
     -webkit-text-fill-color: transparent !important;
     background-clip: text !important;
@@ -237,87 +244,96 @@
 
   /* Hover Effects for Light Theme */
   html.light .hover\:bg-white\/10:hover {
-    background-color: rgba(148, 163, 184, 0.8) !important;
+    background-color: rgba(226, 232, 240, 0.8) !important;
   }
 
   html.light .hover\:bg-white\/20:hover {
-    background-color: rgba(148, 163, 184, 0.9) !important;
+    background-color: rgba(203, 213, 225, 0.9) !important;
   }
 
   html.light .hover\:text-primary:hover {
-    color: #d97706 !important;
+    color: #0d9488 !important;
   }
 
   html.light .hover\:text-slate-200:hover {
-    color: #475569 !important;
+    color: #334155 !important;
   }
 
   html.light .hover\:border-primary\/50:hover {
-    border-color: rgba(217, 119, 6, 0.7) !important;
+    border-color: rgba(13, 148, 136, 0.7) !important;
   }
 
   html.light .hover\:border-primary:hover {
-    border-color: #d97706 !important;
+    border-color: #0d9488 !important;
   }
 
   /* Card Hover Effects */
   html.light .surface-card:hover {
-    box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.25) !important;
-    border-color: rgba(148, 163, 184, 0.7) !important;
-    transform: translateY(-5px);
-    transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-  }
-
-  /* Enhanced Button Hover Effects */
-  html.light .hover\:shadow-lg:hover {
-    box-shadow: 0 10px 25px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05) !important;
-  }
-
-  html.light .hover\:shadow-xl:hover {
-    box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04) !important;
+    box-shadow: 0 20px 40px -12px rgba(13, 148, 136, 0.2) !important;
+    border-color: rgba(13, 148, 136, 0.5) !important;
+    transform: translateY(-4px);
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   /* Pill/Badge Hover Effects */
   html.light .pill:hover {
-    background-color: rgba(226, 232, 240, 0.9) !important;
-    border-color: rgba(148, 163, 184, 0.8) !important;
-    color: #1e293b !important;
-    transform: scale(1.05);
-    transition: all 0.3s ease;
+    background-color: rgba(241, 245, 249, 0.95) !important;
+    border-color: rgba(13, 148, 136, 0.6) !important;
+    color: #0f172a !important;
+    transform: scale(1.03);
+    transition: all 0.25s ease;
   }
 
   /* Navigation Hover Effects */
   html.light nav .hover\:text-primary:hover {
-    color: #d97706 !important;
+    color: #0d9488 !important;
   }
 
   html.light nav .hover\:bg-white\/5:hover {
-    background-color: rgba(226, 232, 240, 0.6) !important;
+    background-color: rgba(241, 245, 249, 0.7) !important;
   }
 
   /* Contact Card Hover Effects */
   html.light .hover\:bg-primary:hover {
-    background-color: #d97706 !important;
+    background-color: #0d9488 !important;
     color: white !important;
   }
 
   html.light .hover\:bg-accent:hover {
-    background-color: #0891b2 !important;
+    background-color: #059669 !important;
     color: white !important;
   }
 }
 
 @layer utilities {
   .text-gradient {
-    @apply bg-gradient-to-r from-primary via-accent to-secondary bg-clip-text text-transparent;
+    @apply bg-gradient-to-r from-primary via-cyan-400 to-secondary bg-clip-text text-transparent;
+  }
+
+  .text-gradient-purple {
+    @apply bg-gradient-to-r from-secondary via-purple-400 to-primary bg-clip-text text-transparent;
   }
   
   .glow-primary {
-    box-shadow: 0 0 20px rgba(245, 200, 75, 0.35);
+    box-shadow: 0 0 20px rgba(0, 245, 212, 0.35);
   }
   
   .glow-primary-hover:hover {
-    box-shadow: 0 0 30px rgba(245, 200, 75, 0.55);
+    box-shadow: 0 0 30px rgba(0, 245, 212, 0.65);
+  }
+
+  .glow-secondary {
+    box-shadow: 0 0 20px rgba(121, 40, 202, 0.35);
+  }
+
+  /* Holographic glass card with cyber border */
+  .cyber-card {
+    @apply relative bg-surface/80 border border-white/10 backdrop-blur-xl rounded-2xl transition-all duration-300;
+  }
+
+  .cyber-card:hover {
+    border-color: rgba(0, 245, 212, 0.4);
+    box-shadow: 0 10px 30px -10px rgba(0, 245, 212, 0.25), 0 0 20px rgba(121, 40, 202, 0.15);
   }
 
   /* 3D Flip Card Styles */
@@ -332,5 +348,36 @@
 
   .preserve-3d {
     transform-style: preserve-3d;
+  }
+
+  /* Electric & Lightning Visual Utilities */
+  .electric-border-glow {
+    filter: drop-shadow(0 0 8px rgba(0, 245, 212, 0.8)) drop-shadow(0 0 20px rgba(121, 40, 202, 0.6));
+  }
+
+  @keyframes thunder-flicker {
+    0%, 100% { opacity: 0.95; }
+    15% { opacity: 0.4; }
+    22% { opacity: 1; }
+    38% { opacity: 0.2; }
+    45% { opacity: 0.9; }
+    60% { opacity: 0.3; }
+    68% { opacity: 1; }
+    85% { opacity: 0.6; }
+  }
+
+  .animate-thunder-flicker {
+    animation: thunder-flicker 0.4s infinite;
+  }
+
+  @keyframes electric-conduit {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+  }
+
+  .conduit-flow {
+    background-size: 200% 200%;
+    animation: electric-conduit 3s ease infinite;
   }
 }

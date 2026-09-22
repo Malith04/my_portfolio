@@ -22,9 +22,9 @@ const ActionButton = ({ theme, onToggleTheme }: ActionButtonProps) => {
       "Malith excels in full-stack development with expertise in both frontend (React, CSS3, HTML5) and backend (Node.js, Python) technologies."
     ],
     projects: [
-      "Malith has built amazing projects including: Supermarket System (React 19 + Firebase), SoundWave Music App (Spotify-inspired), and AgroSmart 2.0 (3D visualization)!",
+      "Malith has engineered cutting-edge projects including: ImpactEcho (Next.js 15, React 19, Framer Motion 12, GSAP, Reels & Stories), SoundWave Music App (Spotify-inspired PWA), and AgroSmart 2.0 (3D visualization)!",
       "His portfolio showcases modern web applications with features like real-time data, 3D visualizations, and responsive design. Check out his Projects section!",
-      "Recent projects include this portfolio (React + TypeScript), music streaming app with live demo, and agricultural management system with 3D models."
+      "Recent projects include ImpactEcho (Frontend Lead & UI/UX), this portfolio (React + TypeScript), and SoundWave music streaming app."
     ],
     education: [
       "Malith is an undergraduate Software Engineering student at NIBM, passionate about learning cutting-edge technologies and building innovative solutions!",
