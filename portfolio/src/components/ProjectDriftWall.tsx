@@ -4,18 +4,16 @@ import { Layers, ArrowRight, Sparkles } from 'lucide-react'
 import DriftWall, { DriftWallItem } from './DriftWall'
 
 const driftProjectItems: DriftWallItem[] = [
-  { image: '/images/mockup-phone.jpg', title: 'ImpactEcho Cause Network', href: '#projects' },
-  { image: '/images/mockup-laptop.jpg', title: 'Digital Platform Architecture', href: '#projects' },
-  { image: '/images/soundwave-app.avif', title: 'SoundWave Music Ecosystem', href: '#projects' },
-  { image: '/images/mockup-mobile.jpg', title: 'Studio Interactive System', href: '#projects' },
-  { image: '/images/car-rental-service.jpg', title: 'DriveLanka Smart Fleet', href: '#projects' },
-  { image: '/images/agrosmart-system.webp', title: 'AgroSmart IoT Telemetry', href: '#projects' },
-  { image: '/images/impactecho-app.png', title: 'ImpactEcho Web Platform', href: '#projects' },
-  { image: '/images/supermarket-system.png', title: 'Supermarket POS System', href: '#projects' },
-  { image: '/images/impactecho-preview.png', title: 'ImpactEcho Stories Feature', href: '#projects' },
-  { image: '/images/portfolio.jpg', title: 'Design System & UI/UX', href: '#projects' },
-  { image: '/images/about-profile.jpg', title: 'Full-Stack Engineering', href: '#projects' },
-  { image: '/images/hero-profile.jpg', title: 'Next.js 15 & React 19 Architecture', href: '#projects' }
+  { image: '/images/impactecho-app.png', title: 'ImpactEcho — Cause Network Platform', href: '#projects' },
+  { image: '/images/soundwave-ui.jpg', title: 'SoundWave — Music Streaming Ecosystem', href: '#projects' },
+  { image: '/images/agrosmart-ui.jpg', title: 'AgroSmart 2.0 — 3D IoT Farm System', href: '#projects' },
+  { image: '/images/drivelanka-ui.jpg', title: 'DriveLanka — Smart Fleet Management', href: '#projects' },
+  { image: '/images/impactecho-preview.png', title: 'ImpactEcho — 24h Stories & Reels', href: '#projects' },
+  { image: '/images/mockup-phone.jpg', title: 'ImpactEcho — Mobile Experience', href: '#projects' },
+  { image: '/images/mockup-laptop.jpg', title: 'Innovior — Enterprise Cloud Platform', href: '#projects' },
+  { image: '/images/mockup-mobile.jpg', title: 'Studio Interactive — UI/UX Design System', href: '#projects' },
+  { image: '/images/portfolio-ui.jpg', title: 'Next.js 15 & React 19 Architecture', href: '#projects' },
+  { image: '/images/impactecho-app.png', title: 'ImpactEcho — Verified Volunteering Engine', href: '#projects' }
 ]
 
 const ProjectDriftWall: React.FC = () => {
@@ -50,35 +48,35 @@ const ProjectDriftWall: React.FC = () => {
         </motion.div>
       </div>
 
-      {/* 3D DriftWall Interactive Canvas */}
-      <div className="relative w-full h-[620px] sm:h-[680px] lg:h-[720px] overflow-hidden">
+      {/* 3D DriftWall Interactive Canvas (Edge-to-Edge Full Screen Width) */}
+      <div className="relative w-full h-[640px] sm:h-[700px] lg:h-[760px] overflow-hidden">
         {/* Top & Bottom Ambient Edge Fade */}
-        <div className="absolute top-0 inset-x-0 h-24 bg-gradient-to-b from-ink via-ink/80 to-transparent z-10 pointer-events-none" />
-        <div className="absolute bottom-0 inset-x-0 h-24 bg-gradient-to-t from-ink via-ink/80 to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 inset-x-0 h-28 bg-gradient-to-b from-ink via-ink/75 to-transparent z-10 pointer-events-none" />
+        <div className="absolute bottom-0 inset-x-0 h-28 bg-gradient-to-t from-ink via-ink/75 to-transparent z-10 pointer-events-none" />
 
         {/* Ambient Center Glow */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[400px] bg-gradient-to-tr from-primary/10 via-secondary/10 to-transparent blur-[120px] rounded-full pointer-events-none z-0" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-gradient-to-tr from-primary/10 via-secondary/10 to-transparent blur-[130px] rounded-full pointer-events-none z-0" />
 
         {/* React Bits DriftWall Component */}
         <DriftWall
           items={driftProjectItems}
-          columns={5}
+          columns={8}
           tileWidth={230}
-          tileHeight={150}
-          gap={20}
+          tileHeight={148}
+          gap={18}
           radius={16}
-          tilt={14}
-          turn={-12}
+          tilt={10}
+          turn={-6}
           roll={0}
-          perspective={1200}
-          depth={120}
-          speed={42}
+          perspective={1400}
+          depth={80}
+          speed={36}
           direction="up"
-          variance={0.45}
-          parallax={0.65}
+          variance={0.4}
+          parallax={0.5}
           lift={68}
-          fade={0.65}
-          dim={0.6}
+          fade={0.15}
+          dim={0.65}
           overlayColor="#070914"
         />
       </div>

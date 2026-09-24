@@ -14,14 +14,20 @@
   --dw-gray: 0;
   --dw-overlay: #060010;
   --dw-edge: 40%;
-  -webkit-mask-image:
-    radial-gradient(ellipse 78% 82% at 50% 46%, #000 var(--dw-edge), transparent 100%),
-    linear-gradient(to top, #000 var(--dw-edge), transparent 100%);
-  -webkit-mask-composite: source-in;
-  mask-image:
-    radial-gradient(ellipse 78% 82% at 50% 46%, #000 var(--dw-edge), transparent 100%),
-    linear-gradient(to top, #000 var(--dw-edge), transparent 100%);
-  mask-composite: intersect;
+  -webkit-mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 10%,
+    #000 90%,
+    transparent 100%
+  );
+  mask-image: linear-gradient(
+    to bottom,
+    transparent 0%,
+    #000 10%,
+    #000 90%,
+    transparent 100%
+  );
 }
 
 .drift-wall__plane {
@@ -69,10 +75,12 @@
   opacity: var(--dw-dim);
   transform: translateZ(0);
   pointer-events: none;
+  border: 1px solid rgba(255, 255, 255, 0.08);
   transition:
     transform 0.42s cubic-bezier(0.22, 1, 0.36, 1),
     opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1),
-    box-shadow 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+    box-shadow 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+    border-color 0.42s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 .drift-wall__tile img {
@@ -81,7 +89,9 @@
   object-fit: cover;
   display: block;
   filter: grayscale(var(--dw-gray)) saturate(0.92);
-  transition: filter 0.42s cubic-bezier(0.22, 1, 0.36, 1);
+  transition:
+    filter 0.42s cubic-bezier(0.22, 1, 0.36, 1),
+    transform 0.42s cubic-bezier(0.22, 1, 0.36, 1);
   user-select: none;
   -webkit-user-drag: none;
 }
@@ -95,27 +105,125 @@
   transition: opacity 0.42s cubic-bezier(0.22, 1, 0.36, 1);
 }
 
+/* Hover, Active, and Focus States */
+.drift-wall__tile:hover .drift-wall__inner,
 .drift-wall__tile.is-active .drift-wall__inner,
 .drift-wall__tile:focus-visible .drift-wall__inner {
   opacity: 1;
   transform: translateZ(var(--dw-lift));
-  box-shadow: 0 24px 60px -18px rgba(0, 0, 0, 0.7);
+  box-shadow:
+    0 24px 60px -15px rgba(0, 0, 0, 0.85),
+    0 0 0 1.5px rgba(56, 189, 248, 0.6),
+    0 0 25px rgba(56, 189, 248, 0.3);
+  border-color: rgba(56, 189, 248, 0.65);
 }
 
+.drift-wall__tile:hover img,
 .drift-wall__tile.is-active img,
 .drift-wall__tile:focus-visible img {
-  filter: grayscale(0) saturate(1.05);
+  filter: grayscale(0) saturate(1.12);
+  transform: scale(1.05);
 }
 
+.drift-wall__tile:hover .drift-wall__overlay,
 .drift-wall__tile.is-active .drift-wall__overlay,
 .drift-wall__tile:focus-visible .drift-wall__overlay {
-  opacity: 0;
+  opacity: 0.15;
 }
 
 .drift-wall__tile:focus-visible .drift-wall__inner {
   box-shadow:
-    0 24px 60px -18px rgba(0, 0, 0, 0.7),
-    0 0 0 2px rgba(255, 255, 255, 0.9);
+    0 24px 60px -18px rgba(0, 0, 0, 0.85),
+    0 0 0 2px rgba(56, 189, 248, 0.9),
+    0 0 25px rgba(56, 189, 248, 0.4);
+}
+
+/* Project Name Floating Hover Scrim & Badge */
+.drift-wall__title {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding: 28px 14px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 4px;
+  background: linear-gradient(
+    to top,
+    rgba(6, 9, 20, 0.96) 0%,
+    rgba(6, 9, 20, 0.85) 55%,
+    rgba(6, 9, 20, 0.35) 85%,
+    transparent 100%
+  );
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+  opacity: 0;
+  transform: translateY(12px);
+  pointer-events: none;
+  z-index: 5;
+  transition:
+    opacity 0.32s cubic-bezier(0.16, 1, 0.3, 1),
+    transform 0.32s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.drift-wall__badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 2px 7px;
+  border-radius: 9999px;
+  background: rgba(56, 189, 248, 0.15);
+  border: 1px solid rgba(56, 189, 248, 0.4);
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.2);
+}
+
+.drift-wall__dot {
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background-color: #00f5d4;
+  box-shadow: 0 0 6px #00f5d4;
+  display: inline-block;
+  animation: dw-pulse 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+}
+
+@keyframes dw-pulse {
+  0%, 100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(0.85);
+  }
+}
+
+.drift-wall__title-text {
+  font-family: inherit;
+  font-size: 13px;
+  font-weight: 700;
+  line-height: 1.28;
+  color: #ffffff;
+  letter-spacing: 0.01em;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.drift-wall__tile:hover .drift-wall__title,
+.drift-wall__tile.is-active .drift-wall__title,
+.drift-wall__tile:focus-visible .drift-wall__title {
+  opacity: 1;
+  transform: translateY(0);
 }
 
 @media (prefers-reduced-motion: reduce) {

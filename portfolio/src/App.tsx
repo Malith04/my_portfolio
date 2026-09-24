@@ -61,16 +61,16 @@ function App() {
         <div className="relative min-h-screen overflow-x-hidden">
           <SmoothScroll />
           
-          {/* Ambient Silk Fluid WebGL Background (Replaced Galaxy StarField) */}
+          {/* Ambient Silk Fluid WebGL Background (Portfolio Signature Cyber Sky Blue) */}
           <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
             <Silk
               speed={3.5}
               scale={1}
-              color="#7B7481"
+              color="#38bdf8"
               noiseIntensity={1.4}
               rotation={0.1}
             />
-            <div className="absolute inset-0 bg-ink/75" />
+            <div className="absolute inset-0 bg-ink/70" />
           </div>
 
           <MicroInteractions />

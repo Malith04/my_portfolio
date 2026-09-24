@@ -8,15 +8,15 @@ export interface DriftWallItem {
 }
 
 const DEFAULT_ITEMS: DriftWallItem[] = [
-  { image: '/images/mockup-phone.jpg', title: 'ImpactEcho Mobile' },
-  { image: '/images/mockup-laptop.jpg', title: 'Digital Architecture' },
-  { image: '/images/soundwave-app.avif', title: 'SoundWave Music Ecosystem' },
-  { image: '/images/mockup-mobile.jpg', title: 'Studio Interactive System' },
-  { image: '/images/car-rental-service.jpg', title: 'DriveLanka Smart Fleet' },
-  { image: '/images/agrosmart-system.webp', title: 'AgroSmart Telemetry' },
-  { image: '/images/supermarket-system.png', title: 'Supermarket POS' },
-  { image: '/images/impactecho-app.png', title: 'ImpactEcho Cause Network' },
-  { image: '/images/portfolio.jpg', title: 'Design Portfolio' }
+  { image: '/images/impactecho-app.png', title: 'ImpactEcho — Cause Network' },
+  { image: '/images/soundwave-ui.jpg', title: 'SoundWave — Music Streaming' },
+  { image: '/images/agrosmart-ui.jpg', title: 'AgroSmart 2.0 — IoT Telemetry' },
+  { image: '/images/drivelanka-ui.jpg', title: 'DriveLanka — Smart Fleet' },
+  { image: '/images/portfolio-ui.jpg', title: 'Next.js 15 & React 19 Architecture' },
+  { image: '/images/mockup-laptop.jpg', title: 'Elysia — Digital Architecture' },
+  { image: '/images/mockup-phone.jpg', title: 'ImpactEcho — Mobile Experience' },
+  { image: '/images/mockup-mobile.jpg', title: 'Studio Interactive — UI/UX' },
+  { image: '/images/impactecho-preview.png', title: 'ImpactEcho — Stories & Reels' }
 ];
 
 const prefersReducedMotion = () =>
@@ -55,7 +55,7 @@ export interface DriftWallProps {
 
 export const DriftWall: React.FC<DriftWallProps> = ({
   items = DEFAULT_ITEMS,
-  columns = 5,
+  columns = 6,
   tileWidth = 200,
   tileHeight = 132,
   gap = 18,
@@ -92,6 +92,9 @@ export const DriftWall: React.FC<DriftWallProps> = ({
   const lastTsRef = useRef<number | null>(null);
 
   const [containerHeight, setContainerHeight] = useState(600);
+  const [containerWidth, setContainerWidth] = useState(
+    typeof window !== 'undefined' ? window.innerWidth : 1440
+  );
   const [activeId, setActiveId] = useState<string | null>(null);
   const activeIdRef = useRef<string | null>(null);
   const [reduced, setReduced] = useState(false);
@@ -104,11 +107,18 @@ export const DriftWall: React.FC<DriftWallProps> = ({
     return () => mq.removeEventListener('change', onChange);
   }, []);
 
+  // Compute effective columns dynamically so that the 3D plane fully covers full screen width with bleed
+  const effectiveColumns = useMemo(() => {
+    const colUnit = tileWidth + gap;
+    const needed = Math.ceil(((containerWidth || 1440) * 1.35) / colUnit);
+    return Math.max(columns ?? 6, needed, 7);
+  }, [containerWidth, tileWidth, gap, columns]);
+
   const columnItems = useMemo(() => {
-    const cols: DriftWallItem[][] = Array.from({ length: columns }, () => []);
-    items.forEach((item, i) => cols[i % columns].push(item));
+    const cols: DriftWallItem[][] = Array.from({ length: effectiveColumns }, () => []);
+    items.forEach((item, i) => cols[i % effectiveColumns].push(item));
     return cols.map(col => (col.length ? col : items.slice(0, 1)));
-  }, [items, columns]);
+  }, [items, effectiveColumns]);
 
   const columnMeta = useMemo(() => {
     const unit = tileHeight + gap;
@@ -123,6 +133,7 @@ export const DriftWall: React.FC<DriftWallProps> = ({
     if (!containerRef.current) return;
     const ro = new ResizeObserver(([entry]) => {
       setContainerHeight(entry.contentRect.height || 600);
+      setContainerWidth(entry.contentRect.width || (typeof window !== 'undefined' ? window.innerWidth : 1440));
     });
     ro.observe(containerRef.current);
     return () => ro.disconnect();
@@ -146,7 +157,7 @@ export const DriftWall: React.FC<DriftWallProps> = ({
       const plane = planeRef.current;
       if (!plane) return;
       plane.style.transform =
-        `translate(-50%, -50%) scale(1.18) ` +
+        `translate(-50%, -50%) scale(1.22) ` +
         `rotateX(${tilt + py}deg) rotateY(${turn + px}deg) rotateZ(${roll}deg) ` +
         `translateZ(${-depth}px)`;
     },
@@ -265,18 +276,32 @@ export const DriftWall: React.FC<DriftWallProps> = ({
       <span className="drift-wall__inner">
         <img src={item.image} alt={item.title ?? ''} loading="lazy" decoding="async" draggable={false} />
         <span className="drift-wall__overlay" aria-hidden="true" />
+        {item.title && (
+          <span className="drift-wall__title" aria-hidden="true">
+            <span className="drift-wall__badge">
+              <span className="drift-wall__dot" />
+              <span>Project</span>
+            </span>
+            <span className="drift-wall__title-text">{item.title}</span>
+          </span>
+        )}
       </span>
     );
     const commonProps = {
       className: `drift-wall__tile${activeId === id ? ' is-active' : ''}`,
       'data-tile-id': id,
       'data-col': colIndex,
+      title: item.title,
+      onPointerEnter: () => activate(id, colIndex),
+      onPointerLeave: () => {
+        if (activeIdRef.current === id) release();
+      },
       onFocus: () => activate(id, colIndex),
       onBlur: release
     };
     if (item.href) {
       return (
-        <a key={id} href={item.href} target="_blank" rel="noreferrer noopener" {...commonProps}>
+        <a key={id} href={item.href} {...commonProps}>
           {inner}
         </a>
       );

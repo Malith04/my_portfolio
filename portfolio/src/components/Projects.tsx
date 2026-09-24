@@ -79,13 +79,13 @@ export const ReelActionBar = ({ reelId, initialLiked, echoesCount }: ReelProps) 
     {
       title: 'SoundWave Music App',
       description: 'A full-stack Spotify-inspired music streaming web app with PWA support. Features 10-band equalizer, AI recommendations, lyrics sync, and comprehensive admin dashboard.',
-      image: '/images/soundwave-app.avif',
+      image: '/images/soundwave-ui.jpg',
       screenshots: [
-        '/images/soundwave-app.avif',
-        '/images/web-development.svg',
-        '/images/portfolio.jpg'
+        '/images/soundwave-ui.jpg',
+        '/images/mockup-phone.jpg',
+        '/images/portfolio-ui.jpg'
       ],
-      demoGif: '/images/soundwave-app.avif',
+      demoGif: '/images/soundwave-ui.jpg',
       tech: ['React 18', 'Tailwind CSS', 'Firebase', 'Howler.js', 'Web Audio API', 'YouTube API'],
       github: 'https://github.com/Malith04/SoundWave.git',
       live: 'https://amazing-soundwave.netlify.app',
@@ -126,13 +126,13 @@ const createEqualizer = (audioContext, source) => {
     {
       title: 'AgroSmart 2.0',
       description: 'Enhanced agricultural monitoring system with 3D digital twin visualization using React Three Fiber. Real-time IoT sensor integration with AI-based crop recommendations.',
-      image: '/images/agrosmart-system.webp',
+      image: '/images/agrosmart-ui.jpg',
       screenshots: [
-        '/images/agrosmart-system.webp',
-        '/images/web-development.svg',
-        '/images/portfolio.jpg'
+        '/images/agrosmart-ui.jpg',
+        '/images/mockup-laptop.jpg',
+        '/images/portfolio-ui.jpg'
       ],
-      demoGif: '/images/agrosmart-system.webp',
+      demoGif: '/images/agrosmart-ui.jpg',
       tech: ['React', 'Three.js', 'React Three Fiber', 'IoT Integration', 'AI Analytics', 'Real-time Data'],
       github: 'https://github.com/JayamalNarampanawa/AgroSmart.git',
       live: '#',
