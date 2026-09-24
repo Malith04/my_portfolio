@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { AnimatePresence } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
+import ProjectDriftWall from './components/ProjectDriftWall'
 import About from './components/About'
 import Skills from './components/Skills'
 import Projects from './components/Projects'
@@ -9,7 +10,7 @@ import ProjectCaseStudies from './components/ProjectCaseStudies'
 import Experience from './components/Experience'
 import Contact from './components/Contact'
 import Blog from './components/Blog'
-import StarField from './components/StarField'
+import Silk from './components/Silk'
 import ActionButton from './components/ActionButton'
 import LoadingScreen from './components/LoadingScreen'
 import SEO from './components/SEO'
@@ -18,6 +19,10 @@ import AchievementTimeline from './components/AchievementTimeline'
 import TechStackComparison from './components/TechStackComparison'
 import VisitorAnalytics from './components/VisitorAnalytics'
 import MicroInteractions from './components/MicroInteractions'
+import MetricsSection from './components/MetricsSection'
+import ServicesAccordion from './components/ServicesAccordion'
+import FooterCTA from './components/FooterCTA'
+import SmoothScroll from './components/SmoothScroll'
 import { analyticsService } from './services/analytics'
 
 function App() {
@@ -54,18 +59,34 @@ function App() {
 
       {!isLoading && (
         <div className="relative min-h-screen overflow-x-hidden">
-          <StarField />
+          <SmoothScroll />
+          
+          {/* Ambient Silk Fluid WebGL Background (Replaced Galaxy StarField) */}
+          <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+            <Silk
+              speed={3.5}
+              scale={1}
+              color="#7B7481"
+              noiseIntensity={1.4}
+              rotation={0.1}
+            />
+            <div className="absolute inset-0 bg-ink/75" />
+          </div>
+
           <MicroInteractions />
           <Navbar />
           <ActionButton theme={theme} onToggleTheme={toggleTheme} />
           <VisitorAnalytics />
 
-          <main className="pt-6">
+          <main>
             <Hero />
+            <ProjectDriftWall />
+            <MetricsSection />
             <About />
             <Skills />
             <GitHubStats />
             <Projects />
+            <ServicesAccordion />
             <ProjectCaseStudies />
             <TechStackComparison />
             <Experience />
@@ -74,11 +95,7 @@ function App() {
             <Contact />
           </main>
 
-          <footer className="mt-16 border-t border-white/10 bg-black/40 backdrop-blur-md py-10 text-center">
-            <p className="text-slate-400">
-              © {new Date().getFullYear()} Malith Rajamanthri. Built with React, TypeScript and Tailwind CSS.
-            </p>
-          </footer>
+          <FooterCTA />
         </div>
       )}
     </>

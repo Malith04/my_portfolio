@@ -18,18 +18,7 @@ const VisitorAnalytics = () => {
 
   const [isVisible, setIsVisible] = useState(false)
   const [isLoading, setIsLoading] = useState(true)
-
-  useEffect(() => {
-    // Initial load
-    loadAnalytics()
-    
-    // Update analytics every 30 seconds
-    const interval = setInterval(() => {
-      loadAnalytics()
-    }, 30000)
-
-    return () => clearInterval(interval)
-  }, [])
+  const [scrolledPastHero, setScrolledPastHero] = useState(false)
 
   const loadAnalytics = () => {
     try {
@@ -42,37 +31,71 @@ const VisitorAnalytics = () => {
     }
   }
 
+  useEffect(() => {
+    // Initial load
+    loadAnalytics()
+    
+    // Update analytics every 30 seconds
+    const interval = setInterval(() => {
+      loadAnalytics()
+    }, 30000)
+
+    const handleScroll = () => {
+      setScrolledPastHero(window.scrollY > 400)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+
+    return () => {
+      clearInterval(interval)
+      window.removeEventListener('scroll', handleScroll)
+    }
+  }, [])
+
+  if (!scrolledPastHero) return null
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       whileInView={{ opacity: 1, y: 0 }}
       viewport={{ once: true }}
-      onViewportEnter={() => setIsVisible(true)}
       className="fixed bottom-4 left-4 z-40"
     >
-      <motion.div
-        whileHover={{ scale: 1.05 }}
-        className="surface-card p-4 max-w-sm cursor-pointer"
-        onClick={() => setIsVisible(!isVisible)}
-      >
-        <div className="flex items-center gap-3 mb-3">
-          <div className="w-8 h-8 bg-green-500/20 rounded-lg flex items-center justify-center">
-            <Eye className="text-green-400" size={16} />
+      {!isVisible ? (
+        <motion.button
+          whileHover={{ scale: 1.05 }}
+          whileTap={{ scale: 0.95 }}
+          className="flex items-center gap-2 px-3.5 py-1.5 rounded-full border border-white/15 bg-black/75 backdrop-blur-xl shadow-xl hover:border-primary/50 text-slate-300 hover:text-white transition-all cursor-pointer"
+          onClick={() => setIsVisible(true)}
+        >
+          <span className="w-1.5 h-1.5 rounded-full bg-accent animate-pulse" />
+          <Eye className="text-primary" size={13} />
+          <span className="text-[11px] font-display font-medium">Portfolio Analytics</span>
+        </motion.button>
+      ) : (
+        <motion.div
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          className="surface-card p-4 max-w-sm shadow-2xl border border-white/20 bg-black/95 backdrop-blur-2xl"
+        >
+          <div className="flex items-center justify-between mb-3">
+            <div className="flex items-center gap-2.5">
+              <div className="w-7 h-7 bg-primary/20 rounded-lg flex items-center justify-center">
+                <Eye className="text-primary" size={15} />
+              </div>
+              <div>
+                <h4 className="font-display font-semibold text-white text-xs">Portfolio Analytics</h4>
+                <p className="text-slate-400 text-[10px]">{isLoading ? 'Loading...' : 'Real visitor telemetry'}</p>
+              </div>
+            </div>
+            <button
+              onClick={() => setIsVisible(false)}
+              className="text-slate-400 hover:text-white text-xs px-2 py-1 rounded hover:bg-white/10 cursor-pointer"
+            >
+              ✕
+            </button>
           </div>
-          <div>
-            <h4 className="font-semibold text-white text-sm">Portfolio Analytics</h4>
-            <p className="text-slate-400 text-xs">
-              {isLoading ? 'Loading...' : 'Real visitor data'}
-            </p>
-          </div>
-        </div>
 
-        {isVisible && (
-          <motion.div
-            initial={{ opacity: 0, height: 0 }}
-            animate={{ opacity: 1, height: 'auto' }}
-            className="space-y-3"
-          >
+          <div className="space-y-3">
             {/* Key Metrics */}
             <div className="grid grid-cols-2 gap-3">
               <div className="bg-white/5 rounded-lg p-3">
@@ -200,15 +223,15 @@ const VisitorAnalytics = () => {
                     analyticsService.clearAnalytics()
                     loadAnalytics()
                   }}
-                  className="text-xs text-red-400 hover:text-red-300"
+                  className="text-xs text-red-400 hover:text-red-300 cursor-pointer"
                 >
                   Clear Analytics (Dev)
                 </button>
               </div>
             )}
-          </motion.div>
-        )}
-      </motion.div>
+          </div>
+        </motion.div>
+      )}
     </motion.div>
   )
 }

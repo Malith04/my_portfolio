@@ -1,15 +1,13 @@
 import React, { useState, useRef, MouseEvent } from 'react'
 import { motion, useMotionValue, useSpring, useTransform } from 'framer-motion'
-import { Mail, Phone, MapPin, Award, ExternalLink } from 'lucide-react'
+import { Mail, Phone, MapPin, Award, Briefcase, ExternalLink } from 'lucide-react'
 
 interface ElectricProfileCardProps {
   className?: string
-  onSwapTrigger?: (rect: DOMRect) => void
 }
 
 const ElectricProfileCard: React.FC<ElectricProfileCardProps> = ({
-  className = '',
-  onSwapTrigger
+  className = ''
 }) => {
   const [isFlipped, setIsFlipped] = useState(false)
   const cardRef = useRef<HTMLDivElement | null>(null)
@@ -41,10 +39,6 @@ const ElectricProfileCard: React.FC<ElectricProfileCardProps> = ({
 
   const handleMouseEnter = () => {
     setIsFlipped(true)
-    if (cardRef.current && onSwapTrigger) {
-      const rect = cardRef.current.getBoundingClientRect()
-      onSwapTrigger(rect)
-    }
   }
 
   const handleMouseLeave = () => {
@@ -54,12 +48,7 @@ const ElectricProfileCard: React.FC<ElectricProfileCardProps> = ({
   }
 
   const handleCardClick = () => {
-    const nextState = !isFlipped
-    setIsFlipped(nextState)
-    if (nextState && cardRef.current && onSwapTrigger) {
-      const rect = cardRef.current.getBoundingClientRect()
-      onSwapTrigger(rect)
-    }
+    setIsFlipped((prev) => !prev)
   }
 
   return (
@@ -111,7 +100,7 @@ const ElectricProfileCard: React.FC<ElectricProfileCardProps> = ({
                 transformStyle: 'preserve-3d'
               }}
             >
-              {/* Clean Glowing Cyan Border (exact match to user screenshot) */}
+              {/* Clean Glowing Cyan Border */}
               <div
                 className={`absolute inset-0 rounded-[2.5rem] border-2 transition-all duration-300 z-20 pointer-events-none ${
                   isFlipped
@@ -145,7 +134,7 @@ const ElectricProfileCard: React.FC<ElectricProfileCardProps> = ({
               >
                 <div className="bg-[#050814]/95 backdrop-blur-xl border border-primary/50 rounded-2xl p-4 shadow-[0_10px_30px_rgba(0,0,0,0.6),0_0_20px_rgba(0,245,212,0.25)]">
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="w-2 h-2 rounded-full bg-primary inline-block" />
+                    <span className="w-2 h-2 rounded-full bg-primary inline-block animate-ping" />
                     <p className="text-[11px] uppercase tracking-[0.18em] text-primary font-display font-semibold">
                       // CURRENTLY FOCUSED
                     </p>
@@ -214,16 +203,36 @@ const ElectricProfileCard: React.FC<ElectricProfileCardProps> = ({
                     Malith Rajamanthri
                   </h3>
                   <p className="text-primary text-xs font-display font-semibold tracking-wide uppercase mt-0.5">
-                    Frontend Engineer &amp; UI/UX Designer
+                    Software Engineer Intern @ Innovior
                   </p>
                   <div className="inline-flex items-center gap-1.5 px-3 py-0.5 rounded-full bg-primary/10 border border-primary/30 mt-2 text-[10px] font-display font-semibold text-primary">
                     <span className="w-1.5 h-1.5 rounded-full bg-accent animate-ping" />
-                    SYSTEM ONLINE • AVAILABLE
+                    SYSTEM ONLINE • AVAILABLE FOR ROLES
                   </div>
                 </div>
 
                 {/* Details List */}
                 <div className="space-y-2 my-auto">
+                  <div className="flex items-center gap-3 p-2.5 rounded-xl bg-white/5 border border-primary/30 bg-primary/5">
+                    <div className="w-8 h-8 rounded-lg bg-primary/20 flex items-center justify-center text-primary">
+                      <Briefcase size={15} />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[10px] text-gray-400 font-display">Current Role</p>
+                      <p className="text-xs text-white font-display font-semibold">Software Engineer Intern @ Innovior</p>
+                    </div>
+                  </div>
+
+                  <div className="flex items-center gap-3 p-2.5 rounded-xl bg-white/5 border border-white/10">
+                    <div className="w-8 h-8 rounded-lg bg-secondary/20 flex items-center justify-center text-secondary">
+                      <Award size={15} />
+                    </div>
+                    <div className="min-w-0">
+                      <p className="text-[10px] text-gray-400 font-display">Education</p>
+                      <p className="text-xs text-white font-display font-medium">NIBM (BSc SE) • Dharmaraja College (2013-2024)</p>
+                    </div>
+                  </div>
+
                   <a
                     href="mailto:malithrajamanthri@gmail.com"
                     onClick={(e) => e.stopPropagation()}
@@ -264,16 +273,6 @@ const ElectricProfileCard: React.FC<ElectricProfileCardProps> = ({
                     <div className="min-w-0">
                       <p className="text-[10px] text-gray-400 font-display">Location Base</p>
                       <p className="text-xs text-white font-display font-medium">Sri Lanka • Remote Worldwide</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-center gap-3 p-2.5 rounded-xl bg-white/5 border border-white/10">
-                    <div className="w-8 h-8 rounded-lg bg-purple-500/20 flex items-center justify-center text-purple-400">
-                      <Award size={15} />
-                    </div>
-                    <div className="min-w-0">
-                      <p className="text-[10px] text-gray-400 font-display">Academic Background</p>
-                      <p className="text-xs text-white font-display font-medium">NIBM Undergraduate</p>
                     </div>
                   </div>
                 </div>

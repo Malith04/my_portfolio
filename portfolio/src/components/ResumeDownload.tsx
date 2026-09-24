@@ -2,13 +2,17 @@ import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { Download, FileText, Eye, Share2, MapPin, Mail, Phone } from 'lucide-react'
 
-const ResumeDownload = () => {
+interface ResumeDownloadProps {
+  variant?: 'compact' | 'full'
+}
+
+const ResumeDownload = ({ variant = 'compact' }: ResumeDownloadProps) => {
   const [isPreviewOpen, setIsPreviewOpen] = useState(false)
 
   const resumeData = {
     personalInfo: {
       name: "Malith Rajamanthri",
-      title: "Software Engineering Undergraduate",
+      title: "Software Engineer Intern @ Innovior | Frontend & UI/UX Engineer",
       email: "malithrajamanthri@gmail.com",
       phone: "+94 76 742 1844",
       location: "Kandy, Sri Lanka",
@@ -16,45 +20,45 @@ const ResumeDownload = () => {
       linkedin: "https://www.linkedin.com/in/hashintha-malith-794823361",
       github: "https://github.com/Malith04"
     },
-    summary: "Software Engineering undergraduate with hands-on experience in frontend and full-stack web application development using React, Firebase, JavaScript, and REST API integration. Experienced in building scalable Progressive Web Applications (PWAs), cloud-connected dashboards, machine learning and IoT-integrated smart monitoring systems.",
+    summary: "Software Engineer Intern at Innovior and Software Engineering undergraduate with hands-on experience in production frontend systems, Next.js 15, React 19, TypeScript, Tailwind CSS, and REST API integration. Experienced in architecting scalable Progressive Web Applications (PWAs), UI/UX design systems, and cloud-connected platforms.",
     experience: [
+      {
+        title: "Software Engineer Intern",
+        company: "Innovior",
+        period: "2024 - Present",
+        description: "Engineering production frontend systems, scalable React 19 / Next.js 15 web applications, and intuitive UI/UX workflows. Developing core features for ImpactEcho and enterprise client platforms."
+      },
       {
         title: "Software Engineering Student",
         company: "National Institute of Business Management (NIBM)",
         period: "2024 - Present",
-        description: "Pursuing Higher National Diploma in Software Engineering with focus on modern web technologies, full-stack development, and software engineering practices."
+        description: "Pursuing BSc (Hons) in Software Engineering with focus on modern web technologies, full-stack development, algorithms, and software engineering practices."
       },
       {
         title: "Full-Stack Developer",
-        company: "Personal Projects",
+        company: "Independent Projects",
         period: "2023 - Present",
-        description: "Developed multiple web applications including music streaming platforms, e-commerce systems, and IoT monitoring solutions using React, Firebase, and modern web technologies."
+        description: "Developed multiple web applications including social-impact platforms, music streaming PWAs, and cloud monitoring solutions using React, Next.js, and TypeScript."
       }
     ],
     education: [
       {
-        degree: "BSc (Hons) Computer Science (Reading)",
-        institution: "University Partnership Program",
-        period: "2025-2026",
-        status: "Upcoming"
+        degree: "BSc (Hons) Software Engineering (Reading)",
+        institution: "National Institute of Business Management (NIBM)",
+        period: "2024 - Present",
+        status: "Current"
       },
       {
         degree: "Higher National Diploma in Software Engineering",
         institution: "National Institute of Business Management, Kandy",
-        period: "2025-2026",
-        status: "Current"
-      },
-      {
-        degree: "Diploma in Software Engineering",
-        institution: "National Institute of Business Management, Kandy",
-        period: "2024-2025",
+        period: "2024 - 2025",
         status: "Completed"
       },
       {
-        degree: "GCE Advanced Level - Physical Science Stream",
+        degree: "Collegiate Education (Primary & Secondary)",
         institution: "Dharmaraja College, Kandy",
-        period: "2023/2024",
-        status: "Completed"
+        period: "2013 - 2024",
+        status: "Alumnus (11 Years)"
       }
     ],
     projects: [
@@ -271,49 +275,74 @@ const ResumeDownload = () => {
   }
 
   return (
-    <div className="space-y-6">
-      {/* Download Buttons */}
-      <div className="flex flex-wrap gap-4 justify-center">
-        <motion.button
-          onClick={() => downloadResume('pdf')}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-primary to-accent rounded-xl font-semibold text-ink shadow-lg hover:shadow-xl transition-all"
-        >
-          <Download size={20} />
-          <span>Download PDF</span>
-        </motion.button>
+    <div className="space-y-4">
+      {variant === 'compact' ? (
+        <div className="flex flex-wrap items-center gap-2.5">
+          <motion.button
+            onClick={() => setIsPreviewOpen(true)}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-white/20 bg-white/5 hover:bg-white/10 hover:border-primary/50 text-xs font-display font-medium text-slate-300 hover:text-white transition-all shadow-md cursor-pointer"
+          >
+            <Eye size={13} className="text-primary" />
+            <span>View CV &amp; Resume</span>
+          </motion.button>
 
-        <motion.button
-          onClick={() => downloadResume('docx')}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="flex items-center gap-3 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl font-semibold text-white transition-all"
-        >
-          <FileText size={20} />
-          <span>Download DOCX</span>
-        </motion.button>
+          <motion.button
+            onClick={() => downloadResume('pdf')}
+            whileHover={{ scale: 1.03 }}
+            whileTap={{ scale: 0.97 }}
+            className="inline-flex items-center gap-1.5 px-3 py-2 rounded-full border border-primary/30 bg-primary/10 hover:bg-primary/20 text-xs font-display font-semibold text-primary transition-all cursor-pointer"
+            title="Download PDF"
+          >
+            <Download size={13} />
+            <span>PDF</span>
+          </motion.button>
+        </div>
+      ) : (
+        /* Download Buttons */
+        <div className="flex flex-wrap gap-4 justify-center">
+          <motion.button
+            onClick={() => downloadResume('pdf')}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center gap-3 px-6 py-3 bg-gradient-to-r from-primary to-accent rounded-xl font-semibold text-ink shadow-lg hover:shadow-xl transition-all"
+          >
+            <Download size={20} />
+            <span>Download PDF</span>
+          </motion.button>
 
-        <motion.button
-          onClick={() => setIsPreviewOpen(true)}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="flex items-center gap-3 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl font-semibold text-white transition-all"
-        >
-          <Eye size={20} />
-          <span>Preview</span>
-        </motion.button>
+          <motion.button
+            onClick={() => downloadResume('docx')}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center gap-3 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl font-semibold text-white transition-all"
+          >
+            <FileText size={20} />
+            <span>Download DOCX</span>
+          </motion.button>
 
-        <motion.button
-          onClick={shareResume}
-          whileHover={{ scale: 1.05 }}
-          whileTap={{ scale: 0.95 }}
-          className="flex items-center gap-3 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl font-semibold text-white transition-all"
-        >
-          <Share2 size={20} />
-          <span>Share</span>
-        </motion.button>
-      </div>
+          <motion.button
+            onClick={() => setIsPreviewOpen(true)}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center gap-3 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl font-semibold text-white transition-all"
+          >
+            <Eye size={20} />
+            <span>Preview</span>
+          </motion.button>
+
+          <motion.button
+            onClick={shareResume}
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            className="flex items-center gap-3 px-6 py-3 bg-white/10 hover:bg-white/20 border border-white/20 rounded-xl font-semibold text-white transition-all"
+          >
+            <Share2 size={20} />
+            <span>Share</span>
+          </motion.button>
+        </div>
+      )}
 
       {/* Resume Preview Modal */}
       {isPreviewOpen && (

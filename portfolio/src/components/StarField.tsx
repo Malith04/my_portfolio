@@ -10,7 +10,6 @@ interface QuantumNode {
   vy: number
   color: string
   opacity: number
-  baseOpacity: number
   pulseSpeed: number
 }
 
@@ -25,7 +24,7 @@ const StarField = () => {
     if (!ctx) return
 
     let animationFrameId: number
-    const mouse = { x: -1000, y: -1000, radius: 150 }
+    const mouse = { x: -1000, y: -1000, radius: 180 }
 
     const resize = () => {
       canvas.width = window.innerWidth
@@ -36,24 +35,22 @@ const StarField = () => {
     const colors = ['#00f5d4', '#7928ca', '#38bdf8', '#00ff87']
     const nodes: QuantumNode[] = []
     
-    // Balanced node density for peak 60fps performance
+    // Balanced node density for peak 60-120fps performance
     const count = Math.min(85, Math.floor((canvas.width * canvas.height) / 16000))
 
     for (let i = 0; i < count; i++) {
       const x = Math.random() * canvas.width
       const y = Math.random() * canvas.height
-      const baseOpacity = Math.random() * 0.5 + 0.3
       nodes.push({
         x,
         y,
         originX: x,
         originY: y,
         size: Math.random() * 2.2 + 0.8,
-        vx: (Math.random() - 0.5) * 0.45,
-        vy: (Math.random() - 0.5) * 0.45,
+        vx: (Math.random() - 0.5) * 0.4,
+        vy: (Math.random() - 0.5) * 0.4,
         color: colors[Math.floor(Math.random() * colors.length)],
-        opacity: baseOpacity,
-        baseOpacity,
+        opacity: Math.random() * 0.5 + 0.3,
         pulseSpeed: Math.random() * 0.02 + 0.01,
       })
     }
@@ -73,11 +70,32 @@ const StarField = () => {
     window.addEventListener('resize', resize)
 
     let frame = 0
+
     const animate = () => {
       frame++
       ctx.clearRect(0, 0, canvas.width, canvas.height)
 
-      // 1. Update and draw nodes
+      // 1. Atmospheric Ambient Aurora Nebula Gradients
+      const t = frame * 0.003
+      const auroraX1 = canvas.width * 0.25 + Math.cos(t * 0.7) * 120
+      const auroraY1 = canvas.height * 0.2 + Math.sin(t * 0.5) * 80
+      const grad1 = ctx.createRadialGradient(auroraX1, auroraY1, 20, auroraX1, auroraY1, 450)
+      grad1.addColorStop(0, 'rgba(0, 245, 212, 0.06)')
+      grad1.addColorStop(0.5, 'rgba(121, 40, 202, 0.04)')
+      grad1.addColorStop(1, 'rgba(0, 0, 0, 0)')
+      ctx.fillStyle = grad1
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+      const auroraX2 = canvas.width * 0.8 + Math.sin(t * 0.6) * 100
+      const auroraY2 = canvas.height * 0.65 + Math.cos(t * 0.8) * 90
+      const grad2 = ctx.createRadialGradient(auroraX2, auroraY2, 20, auroraX2, auroraY2, 500)
+      grad2.addColorStop(0, 'rgba(121, 40, 202, 0.07)')
+      grad2.addColorStop(0.5, 'rgba(0, 255, 135, 0.03)')
+      grad2.addColorStop(1, 'rgba(0, 0, 0, 0)')
+      ctx.fillStyle = grad2
+      ctx.fillRect(0, 0, canvas.width, canvas.height)
+
+      // 2. Update and draw nodes
       for (let i = 0; i < nodes.length; i++) {
         const node = nodes[i]
 
@@ -93,62 +111,29 @@ const StarField = () => {
         // Gentle mouse interaction (gravitational deflection)
         const dx = mouse.x - node.x
         const dy = mouse.y - node.y
-        const distToMouse = Math.sqrt(dx * dx + dy * dy)
+        const distToMouse = Math.hypot(dx, dy)
         if (distToMouse < mouse.radius) {
           const force = (mouse.radius - distToMouse) / mouse.radius
-          node.x -= (dx / distToMouse) * force * 1.5
-          node.y -= (dy / distToMouse) * force * 1.5
+          node.x -= (dx / distToMouse) * force * 2.2
+          node.y -= (dy / distToMouse) * force * 2.2
         }
 
-        // Pulse opacity
-        node.opacity = node.baseOpacity + Math.sin(frame * node.pulseSpeed) * 0.2
-
-        ctx.save()
-        ctx.globalAlpha = Math.max(0.1, Math.min(1, node.opacity))
-        ctx.fillStyle = node.color
-        ctx.shadowBlur = 8
-        ctx.shadowColor = node.color
+        // Draw node
         ctx.beginPath()
         ctx.arc(node.x, node.y, node.size, 0, Math.PI * 2)
+        ctx.fillStyle = node.color
+        ctx.shadowColor = node.color
+        ctx.shadowBlur = 8
+        ctx.globalAlpha = node.opacity * (0.8 + 0.2 * Math.sin(frame * node.pulseSpeed))
         ctx.fill()
-        ctx.restore()
-
-        // 2. Connect nearby nodes with neural filaments
-        for (let j = i + 1; j < nodes.length; j++) {
-          const nodeB = nodes[j]
-          const ndx = node.x - nodeB.x
-          const ndy = node.y - nodeB.y
-          const nodeDist = Math.sqrt(ndx * ndx + ndy * ndy)
-
-          if (nodeDist < 110) {
-            const alpha = (1 - nodeDist / 110) * 0.22
-            ctx.save()
-            ctx.globalAlpha = alpha
-            ctx.strokeStyle = node.color
-            ctx.lineWidth = 0.75
-            ctx.beginPath()
-            ctx.moveTo(node.x, node.y)
-            ctx.lineTo(nodeB.x, nodeB.y)
-            ctx.stroke()
-            ctx.restore()
-          }
-        }
-
-        // 3. Connect to mouse cursor if nearby
-        if (distToMouse < mouse.radius) {
-          const mouseAlpha = (1 - distToMouse / mouse.radius) * 0.4
-          ctx.save()
-          ctx.globalAlpha = mouseAlpha
-          ctx.strokeStyle = '#00f5d4'
-          ctx.lineWidth = 1
-          ctx.beginPath()
-          ctx.moveTo(node.x, node.y)
-          ctx.lineTo(mouse.x, mouse.y)
-          ctx.stroke()
-          ctx.restore()
-        }
       }
 
+      // Soft ambient particles only - clean and elegant matching Lesmana
+      ctx.globalAlpha = 1
+      ctx.shadowBlur = 0
+
+      ctx.globalAlpha = 1
+      ctx.shadowBlur = 0
       animationFrameId = requestAnimationFrame(animate)
     }
 
@@ -165,7 +150,8 @@ const StarField = () => {
   return (
     <canvas
       ref={canvasRef}
-      className="fixed inset-0 pointer-events-none z-0 opacity-60"
+      className="fixed inset-0 pointer-events-none z-0"
+      style={{ opacity: 0.95 }}
     />
   )
 }

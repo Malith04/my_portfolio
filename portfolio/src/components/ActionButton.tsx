@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { Settings, Sun, Moon, MessageCircle, X, Send } from 'lucide-react'
 
@@ -10,6 +10,16 @@ interface ActionButtonProps {
 const ActionButton = ({ theme, onToggleTheme }: ActionButtonProps) => {
   const [isMenuOpen, setIsMenuOpen] = useState(false)
   const [isChatOpen, setIsChatOpen] = useState(false)
+  const [scrolledPastHero, setScrolledPastHero] = useState(false)
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolledPastHero(window.scrollY > 350)
+    }
+    window.addEventListener('scroll', handleScroll, { passive: true })
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
   const [messages, setMessages] = useState([
     { text: "Hi there! 👋 I'm Malith's AI assistant. I can tell you about his skills in React & TypeScript, his latest projects like SoundWave Music App, or how to connect with him. What interests you most? 🚀", isBot: true }
   ])
@@ -88,6 +98,8 @@ const ActionButton = ({ theme, onToggleTheme }: ActionButtonProps) => {
       setMessages(prev => [...prev, { text: botResponse, isBot: true }])
     }, 1000)
   }
+
+  if (!scrolledPastHero) return null
 
   return (
     <>

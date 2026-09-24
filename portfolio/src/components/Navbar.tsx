@@ -1,112 +1,121 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
-import { Menu, X } from 'lucide-react'
+import { Menu, X, ArrowUpRight } from 'lucide-react'
 
 const Navbar = () => {
   const [isOpen, setIsOpen] = useState(false)
   const [scrolled, setScrolled] = useState(false)
-  const [activeSection, setActiveSection] = useState('home')
 
   useEffect(() => {
     const handleScroll = () => {
-      setScrolled(window.scrollY > 30)
-      
-      // Update active section based on scroll position
-      const sections = ['home', 'about', 'skills', 'projects', 'experience', 'blog', 'contact']
-      const scrollPosition = window.scrollY + 100
-
-      for (const section of sections) {
-        const element = document.getElementById(section)
-        if (element) {
-          const offsetTop = element.offsetTop
-          const offsetHeight = element.offsetHeight
-          
-          if (scrollPosition >= offsetTop && scrollPosition < offsetTop + offsetHeight) {
-            setActiveSection(section)
-            break
-          }
-        }
-      }
+      setScrolled(window.scrollY > 40)
     }
-    
-    window.addEventListener('scroll', handleScroll)
+    window.addEventListener('scroll', handleScroll, { passive: true })
     return () => window.removeEventListener('scroll', handleScroll)
   }, [])
 
   const navLinks = [
-    { name: 'Home', href: '#home' },
     { name: 'About', href: '#about' },
-    { name: 'Skills', href: '#skills' },
-    { name: 'Projects', href: '#projects' },
+    { name: 'Works', href: '#projects' },
     { name: 'Experience', href: '#experience' },
-    { name: 'Blog', href: '#blog' },
     { name: 'Contact', href: '#contact' },
   ]
 
   const scrollToSection = (href: string) => {
     const targetId = href.substring(1)
     const targetElement = document.getElementById(targetId)
-    
     if (targetElement) {
-      const offsetTop = targetElement.offsetTop - 80 // Account for navbar height
+      const offsetTop = targetElement.offsetTop - 80
       window.scrollTo({
         top: offsetTop,
         behavior: 'smooth'
       })
-      
-      // Track section navigation
-      if (typeof window !== 'undefined' && (window as any).analyticsService) {
-        ;(window as any).analyticsService.trackPageView(href)
-      }
     }
-    
     setIsOpen(false)
   }
 
   return (
     <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
+      initial={{ opacity: 0, y: -20 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
       className={`fixed top-0 z-50 w-full transition-all duration-300 ${
-        scrolled ? 'bg-ink/90 backdrop-blur-xl border-b border-white/10' : 'bg-transparent'
+        scrolled ? 'bg-[#090808]/90 backdrop-blur-xl border-b border-white/5' : 'bg-transparent'
       }`}
     >
-      <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-4 sm:px-6 lg:px-8">
+      <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6 sm:px-10 lg:px-12">
+        {/* Exact Lesmana Wordmark */}
         <motion.button
           onClick={() => scrollToSection('#home')}
-          className="font-display text-lg font-semibold tracking-tight text-white cursor-pointer flex items-center gap-2.5"
+          className="font-display text-2xl sm:text-3xl font-semibold tracking-tight text-white cursor-pointer flex items-center gap-1 group"
           whileHover={{ scale: 1.02 }}
         >
-          <span className="w-2.5 h-2.5 rounded-full bg-primary shadow-[0_0_8px_#00f5d4] animate-pulse" />
-          <span>Malith <span className="text-primary font-mono text-sm tracking-normal font-normal">// UI/UX</span></span>
+          <span>Malith</span>
+          <span className="text-[#C5A880] text-3xl leading-none">.</span>
         </motion.button>
 
-        <div className="hidden md:flex items-center gap-8">
+        {/* Center Lesmana Signature Columns (Desktop) */}
+        <div className="hidden lg:flex items-center gap-12 xl:gap-16">
+          {/* Column 1: Availability */}
+          <div className="flex flex-col text-left">
+            <span className="text-[11px] text-slate-400 font-display">Available for roles</span>
+            <span className="text-xs text-white font-display font-medium flex items-center gap-1.5">
+              <span className="w-1.5 h-1.5 rounded-full bg-accent animate-ping inline-block" />
+              2 Slots
+            </span>
+          </div>
+
+          {/* Column 2: Location */}
+          <div className="flex flex-col text-left">
+            <span className="text-[11px] text-slate-400 font-display">Based in</span>
+            <span className="text-xs text-white font-display font-medium">
+              Sri Lanka (Open Globally)
+            </span>
+          </div>
+
+          {/* Column 3: Editorial Nav Links */}
+          <div className="flex flex-col text-left gap-1">
+            {navLinks.map((link) => (
+              <button
+                key={link.name}
+                onClick={() => scrollToSection(link.href)}
+                className="text-xs text-slate-300 hover:text-white font-display transition-colors text-left cursor-pointer"
+              >
+                {link.name}
+              </button>
+            ))}
+          </div>
+        </div>
+
+        {/* Medium Screen Nav Links (Tablets) */}
+        <div className="hidden md:flex lg:hidden items-center gap-6">
           {navLinks.map((link) => (
-            <motion.button
+            <button
               key={link.name}
               onClick={() => scrollToSection(link.href)}
-              className={`text-sm uppercase tracking-[0.2em] transition-all cursor-pointer hover:scale-105 ${
-                activeSection === link.href.substring(1)
-                  ? 'text-primary font-semibold'
-                  : 'text-slate-300 hover:text-primary dark:text-slate-300 dark:hover:text-primary light:text-slate-700 light:hover:text-teal-600'
-              }`}
-              whileHover={{ y: -2 }}
+              className="text-xs uppercase tracking-[0.18em] text-slate-300 hover:text-white font-display transition-colors cursor-pointer"
             >
               {link.name}
-            </motion.button>
+            </button>
           ))}
         </div>
 
-        <div className="hidden md:flex items-center gap-4">
-          <span className="hud-badge">
-            <span className="w-1.5 h-1.5 rounded-full bg-accent animate-ping" />
-            AVAILABLE
-          </span>
+        {/* Right CTA Button: Exact Lesmana "Start a project" pill button */}
+        <div className="hidden sm:flex items-center gap-4">
+          <a
+            href="#contact"
+            className="group inline-flex items-center gap-2.5 rounded-full bg-white hover:bg-[#C5A880] text-black pl-5 pr-2 py-2 text-xs font-display font-semibold transition-all shadow-md cursor-pointer"
+          >
+            <span>Start a project</span>
+            <span className="w-6 h-6 rounded-full bg-black text-white flex items-center justify-center text-xs group-hover:translate-x-0.5 transition-transform">
+              <ArrowUpRight size={13} />
+            </span>
+          </a>
         </div>
 
+        {/* Mobile Menu Toggle */}
         <button
-          className="md:hidden text-white"
+          className="md:hidden text-white p-2"
           onClick={() => setIsOpen(!isOpen)}
           aria-label="Toggle menu"
         >
@@ -114,26 +123,33 @@ const Navbar = () => {
         </button>
       </div>
 
+      {/* Mobile Drawer */}
       {isOpen && (
         <motion.div
-          initial={{ opacity: 0, y: -12 }}
+          initial={{ opacity: 0, y: -10 }}
           animate={{ opacity: 1, y: 0 }}
-          className="md:hidden border-t border-white/10 bg-ink/95 backdrop-blur-xl"
+          className="md:hidden border-t border-white/10 bg-[#0A0909]/98 backdrop-blur-2xl px-6 py-6 space-y-4"
         >
-          <div className="px-4 py-4 space-y-2">
+          <div className="space-y-3">
             {navLinks.map((link) => (
               <button
                 key={link.name}
                 onClick={() => scrollToSection(link.href)}
-                className={`block w-full text-left rounded-xl px-4 py-3 text-sm uppercase tracking-[0.2em] transition-all hover:scale-105 ${
-                  activeSection === link.href.substring(1)
-                    ? 'text-primary bg-white/5 dark:text-primary dark:bg-white/5 light:text-yellow-600 light:bg-slate-200/80'
-                    : 'text-slate-300 hover:text-primary hover:bg-white/5 dark:text-slate-300 dark:hover:text-primary dark:hover:bg-white/5 light:text-slate-700 light:hover:text-yellow-600 light:hover:bg-slate-200/60'
-                }`}
+                className="block w-full text-left text-base font-display font-medium text-slate-200 hover:text-white transition-colors"
               >
                 {link.name}
               </button>
             ))}
+          </div>
+
+          <div className="pt-4 border-t border-white/10">
+            <a
+              href="#contact"
+              onClick={() => setIsOpen(false)}
+              className="inline-flex items-center justify-center w-full gap-2 rounded-full bg-white text-black py-3 text-xs font-display font-semibold uppercase tracking-wider"
+            >
+              Start a project &rarr;
+            </a>
           </div>
         </motion.div>
       )}
