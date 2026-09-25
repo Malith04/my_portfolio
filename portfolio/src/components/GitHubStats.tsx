@@ -26,32 +26,28 @@ const GitHubStats = () => {
 
   const statCards = [
     {
-      icon: <Github size={24} />,
+      icon: <Github size={26} className="text-cyan-400" />,
       label: 'Public Repos',
       value: stats.totalRepos,
-      color: 'from-blue-500 to-cyan-500',
-      bgColor: 'bg-blue-500/20'
+      bgColor: 'bg-cyan-500/15 border border-cyan-500/30 text-cyan-400'
     },
     {
-      icon: <GitBranch size={24} />,
+      icon: <GitBranch size={26} className="text-emerald-400" />,
       label: 'Total Commits',
       value: stats.totalCommits,
-      color: 'from-green-500 to-emerald-500',
-      bgColor: 'bg-green-500/20'
+      bgColor: 'bg-emerald-500/15 border border-emerald-500/30 text-emerald-400'
     },
     {
-      icon: <Star size={24} />,
+      icon: <Star size={26} className="text-amber-400" />,
       label: 'Stars Earned',
       value: stats.totalStars,
-      color: 'from-yellow-500 to-orange-500',
-      bgColor: 'bg-yellow-500/20'
+      bgColor: 'bg-amber-500/15 border border-amber-500/30 text-amber-400'
     },
     {
-      icon: <Users size={24} />,
+      icon: <Users size={26} className="text-purple-400" />,
       label: 'Forks',
       value: stats.totalForks,
-      color: 'from-purple-500 to-pink-500',
-      bgColor: 'bg-purple-500/20'
+      bgColor: 'bg-purple-500/15 border border-purple-500/30 text-purple-400'
     }
   ]
 
@@ -75,22 +71,19 @@ const GitHubStats = () => {
   ]
 
   return (
-    <section className="py-16 px-4">
+    <section id="github" className="py-20 px-4 relative z-10">
       <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-12"
-        >
-          <p className="section-kicker mb-3">Development Activity</p>
-          <h2 className="section-title">
+        <div className="text-center mb-14 relative z-10">
+          <p className="section-kicker mb-3 font-display font-semibold tracking-[0.22em] text-[#00f5d4]">
+            Development Activity
+          </p>
+          <h2 className="section-title text-white text-3xl sm:text-4xl md:text-5xl font-display font-semibold tracking-tight">
             GitHub <span className="text-gradient">Statistics</span>
           </h2>
-          <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
+          <p className="text-slate-300 mt-4 max-w-2xl mx-auto font-display text-sm sm:text-base leading-relaxed">
             Real-time insights into my coding journey and contribution patterns
           </p>
-        </motion.div>
+        </div>
 
         {/* Stats Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
@@ -102,12 +95,10 @@ const GitHubStats = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               whileHover={{ y: -5, scale: 1.02 }}
-              className="surface-card p-6 text-center hover:shadow-xl transition-all"
+              className="surface-card p-6 text-center hover:shadow-xl transition-all group"
             >
-              <div className={`w-16 h-16 mx-auto mb-4 rounded-2xl ${stat.bgColor} flex items-center justify-center`}>
-                <div className={`bg-gradient-to-r ${stat.color} bg-clip-text text-transparent`}>
-                  {stat.icon}
-                </div>
+              <div className={`w-14 h-14 mx-auto mb-4 rounded-2xl ${stat.bgColor} flex items-center justify-center shadow-lg transition-transform group-hover:scale-110`}>
+                {stat.icon}
               </div>
               <div className="text-3xl font-display font-bold text-white mb-2">
                 {isLoading ? (
@@ -233,25 +224,18 @@ const GitHubStats = () => {
         </div>
 
         {/* GitHub Profile Link */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mt-12"
-        >
-          <motion.a
+        <div className="text-center mt-12 relative z-20">
+          <a
             href="https://github.com/Malith04"
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-slate-800 to-slate-700 hover:from-slate-700 hover:to-slate-600 rounded-full font-semibold text-white border border-slate-600 hover:border-slate-500 transition-all shadow-lg hover:shadow-xl"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-slate-900 via-slate-800 to-slate-900 hover:from-slate-800 hover:to-slate-700 rounded-full font-display font-semibold text-white border border-slate-600/80 hover:border-primary/60 transition-all duration-300 hover:scale-105 active:scale-95 shadow-xl hover:shadow-[0_0_30px_rgba(0,245,212,0.25)]"
           >
-            <Github size={20} />
+            <Github size={20} className="text-primary" />
             <span>View Full GitHub Profile</span>
-            <TrendingUp size={16} />
-          </motion.a>
-        </motion.div>
+            <TrendingUp size={16} className="text-[#00FF87]" />
+          </a>
+        </div>
       </div>
     </section>
   )

@@ -277,15 +277,20 @@ const ProjectCaseStudies = () => {
   const selectedCase = selectedProject ? caseStudies.find(cs => cs.id === selectedProject) : null
 
   return (
-    <section className="py-24 px-4">
-      <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <p className="section-kicker mb-3">Deep Dive</p>
-          <h2 className="section-title">
+    <section id="case-studies" className="py-24 px-4 relative overflow-hidden">
+      <div className="max-w-7xl mx-auto">
+        <div className="text-center mb-16 space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-accent/10 border border-accent/30 mb-2 shadow-[0_0_15px_rgba(121,40,202,0.15)]">
+            <span className="w-2 h-2 rounded-full bg-[#00F5D4] animate-pulse" />
+            <span className="text-xs uppercase tracking-[0.22em] font-display font-semibold text-accent">
+              Architectural Deep Dives
+            </span>
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-semibold tracking-tight text-white leading-tight">
             Project <span className="text-gradient">Case Studies</span>
           </h2>
-          <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
-            Detailed analysis of my key projects, from problem identification to solution implementation and results.
+          <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto font-display leading-relaxed">
+            Detailed engineering breakdowns from technical challenges and audio engines to 3D IoT telemetry and production architecture.
           </p>
         </div>
 

@@ -1,0 +1,26 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="240" height="240" viewBox="0 0 240 240">
+  <defs>
+    <!-- Single Refined React Atom Definition -->
+    <g id="react-atom">
+      <ellipse cx="0" cy="0" rx="32" ry="11.5" fill="none" stroke="#ffffff" stroke-width="1.8" opacity="0.85" />
+      <ellipse cx="0" cy="0" rx="32" ry="11.5" fill="none" stroke="#ffffff" stroke-width="1.8" opacity="0.85" transform="rotate(60)" />
+      <ellipse cx="0" cy="0" rx="32" ry="11.5" fill="none" stroke="#ffffff" stroke-width="1.8" opacity="0.85" transform="rotate(120)" />
+      <circle cx="0" cy="0" r="5" fill="#ffffff" opacity="0.9" />
+    </g>
+
+    <!-- Subtle Grid Node -->
+    <circle id="grid-node" cx="0" cy="0" r="1.5" fill="#ffffff" opacity="0.2" />
+  </defs>
+
+  <!-- Transparent background with generous negative space -->
+  <rect width="240" height="240" fill="none" />
+
+  <!-- Single Centered React Atom per 240x240 tile -->
+  <use href="#react-atom" x="120" y="120" />
+
+  <!-- Subtle corner alignment nodes -->
+  <use href="#grid-node" x="0" y="0" />
+  <use href="#grid-node" x="240" y="0" />
+  <use href="#grid-node" x="0" y="240" />
+  <use href="#grid-node" x="240" y="240" />
+</svg>

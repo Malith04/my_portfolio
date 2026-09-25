@@ -51,8 +51,8 @@ const ResumeDownload = ({ variant = 'compact' }: ResumeDownloadProps) => {
       {
         degree: "Higher National Diploma in Software Engineering",
         institution: "National Institute of Business Management, Kandy",
-        period: "2024 - 2025",
-        status: "Completed"
+        period: "2024 - 2026",
+        status: "Enrolled / In Progress"
       },
       {
         degree: "Collegiate Education (Primary & Secondary)",
@@ -104,21 +104,19 @@ const ResumeDownload = ({ variant = 'compact' }: ResumeDownloadProps) => {
   }
 
   const downloadResume = (format: 'pdf' | 'docx') => {
+    if (format === 'pdf') {
+      const link = document.createElement('a')
+      link.href = '/Malith_Rajamanthri_CV.pdf'
+      link.download = 'Malith_Rajamanthri_CV.pdf'
+      link.target = '_blank'
+      document.body.appendChild(link)
+      link.click()
+      document.body.removeChild(link)
+      return
+    }
+
     // Create a downloadable resume content
     const resumeContent = generateResumeContent()
-    
-    if (format === 'pdf') {
-      // For PDF, we'll create a simple HTML version and let the browser handle it
-      const printWindow = window.open('', '_blank')
-      if (printWindow) {
-        printWindow.document.write(resumeContent)
-        printWindow.document.close()
-        printWindow.focus()
-        setTimeout(() => {
-          printWindow.print()
-        }, 250)
-      }
-    } else {
       // For DOCX, create a downloadable HTML file that can be opened in Word
       const blob = new Blob([resumeContent], { type: 'application/msword' })
       const url = URL.createObjectURL(blob)
@@ -130,7 +128,6 @@ const ResumeDownload = ({ variant = 'compact' }: ResumeDownloadProps) => {
       document.body.removeChild(link)
       URL.revokeObjectURL(url)
     }
-  }
 
   const generateResumeContent = () => {
     return `

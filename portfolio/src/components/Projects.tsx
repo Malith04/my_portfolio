@@ -181,14 +181,12 @@ const FarmModel = ({ sensorData }) => {
   return (
     <section id="projects" className="py-20 px-4">
       <div className="max-w-7xl mx-auto">
-        <motion.h2
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="section-title text-center mb-16"
-        >
-          Featured <span className="text-gradient">Projects</span>
-        </motion.h2>
+        <div className="text-center mb-16">
+          <p className="section-kicker mb-3">Core Portfolio</p>
+          <h2 className="section-title text-white">
+            Featured <span className="text-gradient">Projects</span>
+          </h2>
+        </div>
 
         <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
           {projects.map((project, i) => (
@@ -395,25 +393,21 @@ const FarmModel = ({ sensorData }) => {
         </div>
 
         {/* View on GitHub CTA */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mt-16"
-        >
-          <p className="text-slate-400 mb-6 font-mono text-sm tracking-wider">// WANT TO EXPLORE MORE CODE REPOSITORIES?</p>
-          <motion.a
+        <div className="text-center mt-16 relative z-20">
+          <p className="text-slate-400 mb-4 font-mono text-xs sm:text-sm tracking-wider uppercase">
+            // WANT TO EXPLORE MORE PRODUCTION REPOSITORIES &amp; SOURCE CODE?
+          </p>
+          <a
             href="https://github.com/Malith04"
             target="_blank"
             rel="noopener noreferrer"
-            whileHover={{ scale: 1.05, y: -2 }}
-            whileTap={{ scale: 0.95 }}
-            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-accent rounded-full font-semibold text-ink hover:shadow-lg hover:shadow-primary/50 transition-all hover:scale-105"
+            className="inline-flex items-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-accent rounded-full font-display font-semibold text-black hover:shadow-[0_0_35px_rgba(0,245,212,0.4)] transition-all duration-300 hover:scale-105 active:scale-95 shadow-xl"
           >
-            <Github size={20} />
+            <Github size={20} className="text-black" />
             <span>View All Repositories on GitHub</span>
-          </motion.a>
-        </motion.div>
+            <ExternalLink size={16} className="text-black/80" />
+          </a>
+        </div>
 
         {/* Project Detail Modal */}
         <AnimatePresence>

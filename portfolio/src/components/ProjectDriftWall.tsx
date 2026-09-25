@@ -1,6 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
-import { Layers, ArrowRight, Sparkles } from 'lucide-react'
+import { Layers, ArrowRight } from 'lucide-react'
 import DriftWall, { DriftWallItem } from './DriftWall'
 
 const driftProjectItems: DriftWallItem[] = [
@@ -13,7 +13,7 @@ const driftProjectItems: DriftWallItem[] = [
   { image: '/images/mockup-laptop.jpg', title: 'Innovior — Enterprise Cloud Platform', href: '#projects' },
   { image: '/images/mockup-mobile.jpg', title: 'Studio Interactive — UI/UX Design System', href: '#projects' },
   { image: '/images/portfolio-ui.jpg', title: 'Next.js 15 & React 19 Architecture', href: '#projects' },
-  { image: '/images/impactecho-app.png', title: 'ImpactEcho — Verified Volunteering Engine', href: '#projects' }
+  { image: '/images/pos-system-ui.jpg', title: 'Smart POS & Retail Analytics Engine', href: '#projects' }
 ]
 
 const ProjectDriftWall: React.FC = () => {
@@ -21,20 +21,13 @@ const ProjectDriftWall: React.FC = () => {
     <section id="drift-showcase" className="relative w-full py-20 overflow-hidden bg-transparent">
       {/* Header Container */}
       <div className="max-w-7xl mx-auto px-6 sm:px-10 lg:px-12 mb-10 text-center relative z-20">
-        <motion.div
-          initial={{ opacity: 0, y: 25 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.8, ease: [0.16, 1, 0.3, 1] }}
-          className="flex flex-col items-center"
-        >
+        <div className="flex flex-col items-center">
           {/* Section Kicker Badge */}
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-[#C5A880]/15 border border-[#C5A880]/35 shadow-[0_0_20px_rgba(197,168,128,0.2)] mb-4">
             <span className="w-2 h-2 rounded-full bg-[#00F5D4] shadow-[0_0_8px_#00F5D4] animate-pulse" />
             <span className="text-[#E7CEAB] font-display font-semibold text-xs tracking-[0.25em] uppercase">
               3D Interactive Spatial Drift
             </span>
-            <Sparkles size={12} className="text-[#C5A880]" />
           </div>
 
           {/* Section Headline */}
@@ -42,10 +35,10 @@ const ProjectDriftWall: React.FC = () => {
             Featured <span className="text-gradient">Projects &amp; Architectures</span>
           </h2>
 
-          <p className="mt-3 text-slate-300/90 text-sm sm:text-base max-w-2xl font-display leading-relaxed">
+          <p className="mt-3 text-slate-300 text-sm sm:text-base max-w-2xl font-display leading-relaxed">
             A dynamic, perspective-tilted spatial wall displaying real-world web applications, IoT telemetries, and design systems. Hover any tile to lift and illuminate; click to explore in depth.
           </p>
-        </motion.div>
+        </div>
       </div>
 
       {/* 3D DriftWall Interactive Canvas (Edge-to-Edge Full Screen Width) */}

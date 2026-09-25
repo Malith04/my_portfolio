@@ -77,13 +77,21 @@ const Skills = () => {
   }
 
   return (
-    <section id="skills" className="py-24 px-4">
+    <section id="skills" className="py-24 px-4 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <p className="section-kicker mb-3">Expertise</p>
-          <h2 className="section-title">
-            My <span className="text-gradient">Skills</span>
+        <div className="text-center mb-16 space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/30 mb-2 shadow-[0_0_15px_rgba(0,245,212,0.15)]">
+            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+            <span className="text-xs uppercase tracking-[0.22em] font-display font-semibold text-primary">
+              Core Technical Competencies
+            </span>
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-semibold tracking-tight text-white leading-tight">
+            Skills &amp; <span className="text-gradient">Tech Stack</span>
           </h2>
+          <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto font-display leading-relaxed">
+            A comprehensive inventory of modern languages, frontend frameworks, backend runtimes, cloud platforms, and engineering toolsets.
+          </p>
         </div>
 
         <div className="grid md:grid-cols-2 gap-8">

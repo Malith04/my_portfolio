@@ -3,6 +3,7 @@ import { AnimatePresence } from 'framer-motion'
 import Navbar from './components/Navbar'
 import Hero from './components/Hero'
 import ProjectDriftWall from './components/ProjectDriftWall'
+import PhilosophyStatement from './components/PhilosophyStatement'
 import About from './components/About'
 import Skills from './components/Skills'
 import Projects from './components/Projects'
@@ -81,6 +82,7 @@ function App() {
           <main>
             <Hero />
             <ProjectDriftWall />
+            <PhilosophyStatement />
             <MetricsSection />
             <About />
             <Skills />

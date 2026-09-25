@@ -1,5 +1,4 @@
 import React, { useState } from 'react'
-import { motion } from 'framer-motion'
 import { ArrowUpRight, Copy, Check, Github, Linkedin, Instagram } from 'lucide-react'
 
 export const FooterCTA: React.FC = () => {
@@ -32,15 +31,9 @@ export const FooterCTA: React.FC = () => {
 
         {/* Signature Giant Editorial Title: "Let's Collab" */}
         <div className="space-y-4">
-          <motion.h2
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
-            className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-semibold tracking-tight text-white leading-[0.95] select-none"
-          >
+          <h2 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-semibold tracking-tight text-white leading-[0.95] select-none">
             Let's <span className="text-gradient">Collab.</span>
-          </motion.h2>
+          </h2>
           <p className="text-slate-300 font-display text-base sm:text-lg max-w-xl">
             Have a product idea, an open software engineering role, or a complex interaction system to build? Let's bring it to life.
           </p>

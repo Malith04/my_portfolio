@@ -5,25 +5,27 @@ const About = () => {
   const cards = [
     {
       icon: <Briefcase size={26} />,
-      title: 'Software Engineer Intern @ Innovior',
-      description: 'Actively contributing to production web apps at Innovior. Engineering scalable frontend systems with Next.js 15, React 19, TypeScript, and high-performance UI/UX architectures.'
+      title: 'Full Stack Developer Intern @ Innovior',
+      description: 'Contributing to full-stack software development projects and working on real-world applications at Innovior (Pvt) Ltd. Engineering with Next.js, Nest.JS, MongoDB, AWS S3, and Figma.'
     },
     {
+      badgeImage: '/images/nibm-logo.png',
       icon: <GraduationCap size={26} />,
-      title: 'Software Engineering (NIBM)',
-      description: 'Undergraduate student pursuing BSc (Hons) in Software Engineering at NIBM with English certifications. Strong foundation in software architecture, cloud platforms, and full-stack engineering.'
+      title: 'BSc Computer Science (Reading) & HNDSE (NIBM)',
+      description: 'Higher National Diploma in Software Engineering (2025–2026) and actively reading for BSc (Hons) in Computer Science at NIBM Kandy. Committee Member of the NIBM IT Society and member of NIBM Cricket Team.'
     },
     {
+      badgeImage: '/images/dharmaraja-badge.jpg',
       icon: <Trophy size={26} />,
-      title: 'Dharmaraja College, Kandy (2013 - 2024)',
-      description: 'Proud 11-year alumnus of Dharmaraja College, Kandy. Cultivated academic discipline, tech club participation, and competitive sports leadership in Cricket and Baseball.'
+      title: 'Dharmaraja College, Kandy (2013 – 2024)',
+      description: 'Proud 11-year alumnus of Dharmaraja College, Kandy. Completed G.C.E. Advanced Level in Physical Science Stream (2023/2024) and G.C.E. Ordinary Level (2020), while representing the college in U15 Cricket & U19 Baseball.'
     }
   ]
 
   const stats = [
-    { icon: <Briefcase size={22} />, number: 'Innovior', label: 'Current Internship', isText: true },
+    { icon: <Briefcase size={22} />, number: 'Innovior', label: 'Full Stack Intern', isText: true },
     { icon: <Code size={22} />, number: '15+', label: 'Projects Delivered', isText: true },
-    { icon: <GraduationCap size={22} />, number: 'NIBM', label: 'BSc Software Eng (UG)', isText: true },
+    { icon: <GraduationCap size={22} />, number: 'NIBM', label: 'BSc & HNDSE (UG)', isText: true },
     { icon: <Sparkles size={22} />, number: '11 Yrs', label: 'Dharmaraja College', isText: true }
   ]
 
@@ -47,7 +49,7 @@ const About = () => {
             <div className="space-y-4">
               <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/40 bg-primary/10 text-primary text-xs font-display font-semibold uppercase tracking-wider">
                 <span className="w-2 h-2 rounded-full bg-accent animate-ping" />
-                Software Engineer Intern @ Innovior
+                Full Stack Developer Intern @ Innovior
               </div>
 
               <h3 className="text-3xl sm:text-4xl font-display font-semibold text-white tracking-tight leading-tight">
@@ -55,11 +57,11 @@ const About = () => {
               </h3>
               
               <p className="text-slate-300 leading-relaxed font-display text-base">
-                I am a Software Engineer Intern at <strong className="text-white">Innovior</strong> and a Software Engineering undergraduate at <strong className="text-white">NIBM</strong>, following an enriching 11-year collegiate foundation at <strong className="text-white">Dharmaraja College, Kandy (2013–2024)</strong>.
+                I am a Full Stack Developer Intern at <strong className="text-white">Innovior</strong> and a Computer Science undergraduate at <strong className="text-white">NIBM</strong>, following an enriching 11-year collegiate foundation at <strong className="text-white">Dharmaraja College, Kandy (2013–2024)</strong>.
               </p>
 
               <p className="text-slate-400 leading-relaxed font-display text-sm">
-                My engineering focus bridges responsive, user-centered interface design with clean, scalable code. From building social-impact platforms like ImpactEcho to architecting enterprise web systems, I specialize in Next.js 15, React 19, TypeScript, and fluid Framer Motion animations.
+                My engineering focus bridges modern, user-centered interface design with clean, scalable code. From building full-stack platforms with Next.js and Nest.JS to cloud-connected IoT monitoring systems like AgroSmart and Progressive Web Apps like SoundWave, I deliver robust, type-safe solutions.
               </p>
             </div>
 
@@ -106,10 +108,20 @@ const About = () => {
                 transition={{ delay: i * 0.15 }}
                 className="surface-card p-6 border border-white/10 hover:border-primary/50 transition-all duration-300 group"
               >
-                <div className="flex gap-4">
-                  <div className="text-primary flex-shrink-0 group-hover:scale-110 transition-transform">
-                    {card.icon}
-                  </div>
+                <div className="flex gap-4 items-start">
+                  {card.badgeImage ? (
+                    <div className="w-12 h-12 rounded-xl bg-white p-1 border border-white/40 flex items-center justify-center flex-shrink-0 shadow-md group-hover:scale-110 transition-transform">
+                      <img
+                        src={card.badgeImage}
+                        alt={card.title}
+                        className="w-full h-full object-contain rounded-lg"
+                      />
+                    </div>
+                  ) : (
+                    <div className="text-primary flex-shrink-0 group-hover:scale-110 transition-transform">
+                      {card.icon}
+                    </div>
+                  )}
                   <div>
                     <h4 className="text-lg font-display font-semibold text-white mb-1.5 group-hover:text-primary transition-colors">
                       {card.title}

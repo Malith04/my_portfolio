@@ -87,15 +87,20 @@ const Contact = () => {
   const currentContact = contactMethods[activeContact]
 
   return (
-    <section id="contact" className="py-24 px-4">
+    <section id="contact" className="py-24 px-4 relative overflow-hidden">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16">
-          <p className="section-kicker mb-3">Connect</p>
-          <h2 className="section-title">
+        <div className="text-center mb-16 space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/30 mb-2 shadow-[0_0_15px_rgba(0,245,212,0.15)]">
+            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
+            <span className="text-xs uppercase tracking-[0.22em] font-display font-semibold text-primary">
+              Initiate Contact &amp; Collaboration
+            </span>
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-semibold tracking-tight text-white leading-tight">
             Get In <span className="text-gradient">Touch</span>
           </h2>
-          <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
-            Ready to collaborate or have a question? Choose your preferred way to connect with me.
+          <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto font-display leading-relaxed">
+            Ready to collaborate on new engineering projects, discuss architecture, or explore full-stack development opportunities.
           </p>
         </div>
 

@@ -179,22 +179,22 @@ const TechStackComparison = () => {
   const current = comparisons[activeComparison]
 
   return (
-    <section className="py-24 px-4">
+    <section id="tech-comparison" className="py-24 px-4 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="text-center mb-16"
-        >
-          <p className="section-kicker mb-3">Technical Decisions</p>
-          <h2 className="section-title">
-            Tech Stack <span className="text-gradient">Comparisons</span>
+        <div className="text-center mb-16 space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/30 mb-2 shadow-[0_0_15px_rgba(0,245,212,0.15)]">
+            <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
+            <span className="text-xs uppercase tracking-[0.22em] font-display font-semibold text-primary">
+              Framework &amp; Architecture Trade-Offs
+            </span>
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-semibold tracking-tight text-white leading-tight">
+            Comparing <span className="text-gradient">Frameworks &amp; Stacks</span>
           </h2>
-          <p className="text-slate-400 mt-4 max-w-2xl mx-auto">
-            Why I chose specific technologies and how they impact my development process
+          <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto font-display leading-relaxed">
+            Direct side-by-side evaluations: Why I chose React 19 over Angular, TypeScript over JavaScript, and Tailwind CSS over Bootstrap for high-performance production applications.
           </p>
-        </motion.div>
+        </div>
 
         {/* Comparison Tabs */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">
@@ -206,7 +206,7 @@ const TechStackComparison = () => {
               whileTap={{ scale: 0.95 }}
               className={`flex items-center gap-2 px-6 py-3 rounded-xl font-medium transition-all ${
                 activeComparison === tab.key
-                  ? 'bg-gradient-to-r from-primary to-accent text-black'
+                  ? 'bg-gradient-to-r from-primary to-accent text-black font-semibold shadow-lg shadow-primary/20'
                   : 'bg-white/10 text-slate-300 hover:bg-white/20'
               }`}
             >
@@ -225,11 +225,15 @@ const TechStackComparison = () => {
             transition={{ duration: 0.3 }}
           >
             {/* Comparison Header */}
-            <div className="text-center mb-12">
-              <h3 className="text-3xl font-display font-bold text-white mb-2">
+            <div className="text-center mb-10">
+              <span className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/5 border border-white/15 text-primary text-xs font-display font-semibold uppercase tracking-[0.2em] mb-3">
+                <Code size={14} className="text-primary" />
+                Active Evaluation: {current.title}
+              </span>
+              <h3 className="text-3xl sm:text-4xl font-display font-bold text-white mb-2 tracking-tight">
                 {current.title}
               </h3>
-              <p className="text-slate-400">{current.subtitle}</p>
+              <p className="text-slate-300 font-display text-sm sm:text-base max-w-xl mx-auto">{current.subtitle}</p>
             </div>
 
             {/* Comparison Grid */}

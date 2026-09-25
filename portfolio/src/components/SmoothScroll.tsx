@@ -1,83 +1,39 @@
 import React, { useEffect } from 'react'
 
 /**
- * SmoothScroll component providing luxury 60fps/120fps inertial momentum scrolling
- * matching the Lesmana Framer template experience.
- * Smoothly interpolates mousewheel deltas with lerp physics, while preserving native
- * touch scrolling on mobile and anchor link navigation.
+ * SmoothScroll ensures silky-smooth, hardware-accelerated 60/120/144fps scrolling across all devices.
+ * Uses native browser GPU composited scrolling and frictionless anchor transitions.
+ * Eliminates main-thread blocking wheel hijacking, preventing input lag, frame drops, and browser stutter.
  */
 export const SmoothScroll: React.FC = () => {
   useEffect(() => {
-    // Only apply on non-touch desktop devices and when user has not requested reduced motion
-    const isTouch = 'ontouchstart' in window || navigator.maxTouchPoints > 0
-    const prefersReducedMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches
-    if (isTouch || prefersReducedMotion) return
+    // Ensure native smooth scrolling behavior
+    document.documentElement.style.scrollBehavior = 'smooth'
 
-    let currentY = window.scrollY
-    let targetY = window.scrollY
-    let isRunning = false
-    let animationFrameId: number | null = null
+    // Smooth anchor link click handler with proper offset calculation
+    const handleAnchorClick = (e: MouseEvent) => {
+      const target = e.target as HTMLElement | null
+      const anchor = target?.closest('a')
+      if (!anchor) return
 
-    const lerp = (start: number, end: number, factor: number) => {
-      return start + (end - start) * factor
-    }
+      const href = anchor.getAttribute('href')
+      if (!href || !href.startsWith('#') || href === '#') return
 
-    const onWheel = (e: WheelEvent) => {
-      // Don't intercept if wheel event is inside a scrollable container with overflow
-      let target = e.target as HTMLElement | null
-      while (target && target !== document.body) {
-        if (target.scrollHeight > target.clientHeight) {
-          const overflowY = window.getComputedStyle(target).overflowY
-          if (overflowY === 'auto' || overflowY === 'scroll') {
-            return
-          }
-        }
-        target = target.parentElement
-      }
-
-      e.preventDefault()
-
-      const maxScroll = Math.max(0, document.documentElement.scrollHeight - window.innerHeight)
-      // Dampened delta for silky smooth velocity
-      const delta = e.deltaY
-      targetY = Math.max(0, Math.min(maxScroll, targetY + delta * 1.15))
-
-      if (!isRunning) {
-        isRunning = true
-        animationFrameId = requestAnimationFrame(updateScroll)
+      const targetElement = document.querySelector(href)
+      if (targetElement) {
+        e.preventDefault()
+        targetElement.scrollIntoView({
+          behavior: 'smooth',
+          block: 'start'
+        })
+        window.history.pushState(null, '', href)
       }
     }
 
-    const updateScroll = () => {
-      // 0.085 interpolation factor produces the signature Framer inertia feel
-      currentY = lerp(currentY, targetY, 0.085)
-
-      window.scrollTo(0, currentY)
-
-      if (Math.abs(targetY - currentY) > 0.6) {
-        animationFrameId = requestAnimationFrame(updateScroll)
-      } else {
-        window.scrollTo(0, targetY)
-        currentY = targetY
-        isRunning = false
-      }
-    }
-
-    // Keep targetY synchronized when user uses keyboard (PgUp/PgDn/Space), drags scrollbar, or clicks anchor link
-    const onScroll = () => {
-      if (!isRunning) {
-        currentY = window.scrollY
-        targetY = window.scrollY
-      }
-    }
-
-    window.addEventListener('wheel', onWheel, { passive: false })
-    window.addEventListener('scroll', onScroll, { passive: true })
+    document.addEventListener('click', handleAnchorClick)
 
     return () => {
-      window.removeEventListener('wheel', onWheel)
-      window.removeEventListener('scroll', onScroll)
-      if (animationFrameId) cancelAnimationFrame(animationFrameId)
+      document.removeEventListener('click', handleAnchorClick)
     }
   }, [])
 

@@ -8,6 +8,7 @@ interface MetricCardProps {
   label: string
   description: string
   icon: React.ReactNode
+  image?: string
   accentColor: string
 }
 
@@ -15,8 +16,8 @@ const metrics: MetricCardProps[] = [
   {
     kicker: 'CURRENT ROLE',
     stat: 'Innovior',
-    label: 'Software Engineer Intern',
-    description: 'Engineering Next.js 15, React 19, and TypeScript systems, leading frontend architecture for ImpactEcho.',
+    label: 'Full Stack Developer Intern',
+    description: 'Engineering full-stack web applications with Next.js, Nest.JS, MongoDB database solutions, and AWS S3 cloud storage.',
     icon: <Briefcase size={22} />,
     accentColor: '#00F5D4' // Cyan
   },
@@ -32,8 +33,9 @@ const metrics: MetricCardProps[] = [
     kicker: 'ALMA MATER FOUNDATION',
     stat: '11 Yrs',
     label: 'Dharmaraja College Kandy',
-    description: '11-year foundation (2013–2024), ICT societies, leadership in athletics, cricket & baseball teams.',
+    description: '11-year foundation (2013–2024), G.C.E. A/L Physical Science, U15 Cricket & U19 Baseball teams.',
     icon: <GraduationCap size={22} />,
+    image: '/images/dharmaraja-badge.jpg',
     accentColor: '#7928CA' // Violet
   },
   {
@@ -89,12 +91,18 @@ export const MetricsSection: React.FC = () => {
                 <span className="text-[10px] font-display font-semibold uppercase tracking-[0.2em] text-slate-400 group-hover:text-primary transition-colors">
                   {m.kicker}
                 </span>
-                <div
-                  className="w-10 h-10 rounded-2xl flex items-center justify-center border border-white/10 group-hover:border-primary/40 bg-white/5 transition-all"
-                  style={{ color: m.accentColor }}
-                >
-                  {m.icon}
-                </div>
+                {m.image ? (
+                  <div className="w-10 h-10 rounded-2xl flex items-center justify-center border border-white/20 bg-white/10 p-1 transition-all overflow-hidden group-hover:scale-105">
+                    <img src={m.image} alt={m.label} className="w-full h-full object-contain rounded-xl" />
+                  </div>
+                ) : (
+                  <div
+                    className="w-10 h-10 rounded-2xl flex items-center justify-center border border-white/10 group-hover:border-primary/40 bg-white/5 transition-all"
+                    style={{ color: m.accentColor }}
+                  >
+                    {m.icon}
+                  </div>
+                )}
               </div>
 
               {/* Big Display Stat */}

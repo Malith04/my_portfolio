@@ -169,7 +169,16 @@ export const Silk: React.FC<SilkProps> = ({
 
   return (
     <div className={`w-full h-full ${className}`} style={style}>
-      <Canvas dpr={[1, 2]} frameloop="always">
+      <Canvas
+        dpr={[1, 1.25]}
+        gl={{
+          antialias: false,
+          depth: false,
+          stencil: false,
+          powerPreference: 'high-performance'
+        }}
+        frameloop="always"
+      >
         <SilkPlane ref={meshRef} uniforms={uniforms} />
       </Canvas>
     </div>

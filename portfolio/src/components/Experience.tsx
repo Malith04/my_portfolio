@@ -1,70 +1,75 @@
 import { motion } from 'framer-motion'
-import { Calendar, MapPin, Award, Briefcase, GraduationCap, Sparkles } from 'lucide-react'
+import { Calendar, MapPin, Award, Briefcase, GraduationCap } from 'lucide-react'
+import ScrollStack, { ScrollStackItem } from './ScrollStack'
 
 const Experience = () => {
   const timeline = [
     {
       type: 'work',
-      title: 'Software Engineer Intern',
-      organization: 'Innovior',
-      period: '2024 - Present',
-      location: 'Colombo, Sri Lanka',
-      badge: 'Current Position',
-      description: 'Engineering scalable frontend and full-stack solutions, designing responsive UI/UX systems, and building production web applications for client and enterprise projects.',
+      title: 'Full Stack Developer Intern',
+      organization: 'Innovior (Pvt) Ltd',
+      period: 'May 2026 – Present',
+      location: 'Sri Lanka',
+      badge: 'Current Role',
+      description: 'Contributing to full-stack software development projects and engineering real-world production applications at Innovior.',
       achievements: [
-        'Developing production-grade web applications with React 19, Next.js 15, TypeScript, and Tailwind CSS',
-        'Engineering core features for ImpactEcho (social activism & verified volunteering platform)',
-        'Designing intuitive, high-performance UI/UX interfaces with Framer Motion animations',
-        'Collaborating on REST API integrations, robust state management, and production QA troubleshooting'
+        'Developing frontend applications using Next.js and backend services using Nest.JS',
+        'Working with MongoDB for database operations and AWS S3 for cloud storage solutions',
+        'Developing and integrating RESTful APIs for application functionality',
+        'Creating UI/UX designs and high-fidelity interactive prototypes using Figma'
       ],
       color: 'from-primary via-cyan-400 to-accent',
       current: true
     },
     {
       type: 'education',
-      title: 'Software Engineering Undergraduate',
+      title: 'BSc (Hons) Computer Science & HNDSE',
       organization: 'National Institute of Business Management (NIBM)',
-      period: '2024 - Present',
-      location: 'NIBM, Sri Lanka',
-      badge: 'Higher Education',
-      description: 'Pursuing BSc (Hons) degree in Software Engineering with an intensive focus on modern software architecture, algorithms, cloud systems, and full-stack development.',
+      logo: '/images/nibm-logo.png',
+      period: '2025 – 2026 / Present',
+      location: 'Kandy, Sri Lanka',
+      badge: 'Degree & HND (Reading)',
+      description: 'Higher National Diploma in Software Engineering (2025–2026) and actively reading for BSc (Hons) in Computer Science at NIBM Kandy. Committee member of the NIBM IT Society and member of the NIBM Cricket Team.',
       achievements: [
-        'Completed Higher Diploma in Software Engineering with academic excellence',
-        'Built full-stack web and desktop applications using Java, React, and MySQL',
-        'Active collaborator in technology workshops and hackathon initiatives'
+        'Reading for BSc (Hons) Computer Science degree',
+        'Higher National Diploma in Software Engineering (2025–2026)',
+        'Committee Member – IT Society, NIBM',
+        'Member of Cricket Team – NIBM & organizer for CYBOTS robotics competitions'
       ],
       color: 'from-blue-500 via-indigo-500 to-purple-600',
-      current: false
+      current: true
     },
     {
       type: 'education',
       title: 'Primary & Secondary Collegiate Education',
       organization: 'Dharmaraja College, Kandy',
-      period: '2013 - 2024',
+      logo: '/images/dharmaraja-badge.jpg',
+      period: '2013 – 2024',
       location: 'Kandy, Sri Lanka',
       badge: 'Alumnus (11 Years)',
-      description: 'Completed primary and secondary schooling (2013–2024) at the historic Dharmaraja College, Kandy. Cultivated academic discipline, technology passion, and sports leadership.',
+      description: 'Completed 11 years of primary and secondary schooling (2013–2024) at the historic Dharmaraja College, Kandy. Fostered strong physical science discipline, analytical rigor, and competitive sports leadership.',
       achievements: [
-        '11-year dedicated academic journey fostering computational and analytical thinking',
-        'Active member of the College ICT and Technology Societies',
-        'Represented the college in Cricket and Baseball with strategic team leadership awards',
-        'Developed lifelong values of teamwork, resilience, and ethical leadership'
+        'G.C.E. Advanced Level in Physical Science Stream (2023/2024)',
+        'G.C.E. Ordinary Level (2020)',
+        'Represented Dharmaraja College in U15 Cricket & U19 Baseball',
+        '11-year dedicated academic, ethical, and athletic collegiate foundation'
       ],
       color: 'from-emerald-500 via-teal-500 to-primary',
       current: false
     },
     {
-      type: 'certification',
-      title: 'English Certificate Course',
+      type: 'education',
+      title: 'Diploma in Software Engineering (DSE)',
       organization: 'National Institute of Business Management (NIBM)',
-      period: '2024',
-      location: 'NIBM, Sri Lanka',
-      badge: 'Professional Certification',
-      description: 'Enhanced communication skills, technical documentation, and professional English proficiency for global engineering collaboration.',
+      logo: '/images/nibm-logo.png',
+      period: '2024 – 2025',
+      location: 'Kandy, Sri Lanka',
+      badge: 'Diploma Studies (Enrolled)',
+      description: 'Pursuing foundational software engineering curriculum focusing on object-oriented programming in Java, web engineering with JavaScript & modern frontend tooling, and relational databases with MySQL.',
       achievements: [
-        'Mastered professional technical writing and presentation delivery',
-        'Effective global cross-functional team communication',
-        'Business and workplace English proficiency'
+        'Diploma in Software Engineering (DSE) coursework & software fundamentals',
+        'Built full-stack software and database architectures with Java, React, and MySQL',
+        'Active participant in collegiate robotics events and gaming tournaments'
       ],
       color: 'from-purple-500 via-pink-500 to-secondary',
       current: false
@@ -84,19 +89,22 @@ const Experience = () => {
           </p>
         </div>
 
-        <div className="space-y-8">
+        <ScrollStack
+          useWindowScroll={true}
+          itemDistance={40}
+          itemStackDistance={36}
+          stackPosition="14%"
+          scaleEndPosition="8%"
+          baseScale={0.88}
+          itemScale={0.035}
+          rotationAmount={0}
+          blurAmount={0}
+        >
           {timeline.map((item, i) => (
-            <motion.div
-              key={i}
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.15, duration: 0.6 }}
-              className="group"
-            >
-              <div className="relative">
+            <ScrollStackItem key={i}>
+              <div className="relative group">
                 {/* Main Card */}
-                <div className="surface-card overflow-hidden border border-white/10 hover:border-primary/50 transition-all duration-500 group-hover:shadow-[0_15px_40px_-10px_rgba(0,245,212,0.2)]">
+                <div className="surface-card overflow-hidden border border-white/10 hover:border-primary/50 transition-all duration-500 shadow-[0_20px_60px_rgba(0,0,0,0.7)] group-hover:shadow-[0_20px_50px_-10px_rgba(0,245,212,0.25)]">
                   {/* Header with Gradient */}
                   <div className={`relative p-6 sm:p-8 bg-gradient-to-r ${item.color} overflow-hidden`}>
                     {/* Background Pattern */}
@@ -107,24 +115,34 @@ const Experience = () => {
                     
                     <div className="relative z-10">
                       <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-3">
-                        <div>
-                          <div className="flex flex-wrap items-center gap-2 mb-2">
-                            <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-black/40 backdrop-blur-md rounded-full text-white text-xs font-display font-semibold uppercase tracking-wider">
-                              <Calendar size={12} />
-                              {item.period}
-                            </span>
-                            <span className="inline-flex items-center gap-1 px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-white text-xs font-display font-semibold uppercase tracking-wider">
-                              <Sparkles size={11} />
-                              {item.badge}
-                            </span>
+                        <div className="flex items-start gap-4">
+                          {item.logo && (
+                            <div className="w-14 h-14 rounded-2xl bg-white p-1.5 border border-white/40 flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-105 transition-transform">
+                              <img
+                                src={item.logo}
+                                alt={item.organization}
+                                className="w-full h-full object-contain rounded-xl"
+                              />
+                            </div>
+                          )}
+                          <div>
+                            <div className="flex flex-wrap items-center gap-2 mb-2">
+                              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-black/40 backdrop-blur-md rounded-full text-white text-xs font-display font-semibold uppercase tracking-wider">
+                                <Calendar size={12} />
+                                {item.period}
+                              </span>
+                              <span className="inline-flex items-center px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-white text-xs font-display font-semibold uppercase tracking-wider">
+                                {item.badge}
+                              </span>
+                            </div>
+                            <h3 className="text-2xl sm:text-3xl font-display font-semibold text-white tracking-tight mb-1">
+                              {item.title}
+                            </h3>
+                            <p className="text-white/95 font-display font-medium text-base sm:text-lg flex items-center gap-2">
+                              {item.type === 'work' ? <Briefcase size={16} /> : <GraduationCap size={16} />}
+                              {item.organization}
+                            </p>
                           </div>
-                          <h3 className="text-2xl sm:text-3xl font-display font-semibold text-white tracking-tight mb-1">
-                            {item.title}
-                          </h3>
-                          <p className="text-white/95 font-display font-medium text-base sm:text-lg flex items-center gap-2">
-                            {item.type === 'work' ? <Briefcase size={16} /> : <GraduationCap size={16} />}
-                            {item.organization}
-                          </p>
                         </div>
                         <div className="text-left sm:text-right">
                           <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/30 backdrop-blur-md text-white/90 text-xs font-display font-medium">
@@ -170,17 +188,10 @@ const Experience = () => {
                   {/* Bottom Accent */}
                   <div className={`h-1 bg-gradient-to-r ${item.color}`} />
                 </div>
-
-                {/* Connection Line */}
-                {i < timeline.length - 1 && (
-                  <div className="flex justify-center py-4">
-                    <div className="w-px h-6 bg-gradient-to-b from-primary/50 to-transparent" />
-                  </div>
-                )}
               </div>
-            </motion.div>
+            </ScrollStackItem>
           ))}
-        </div>
+        </ScrollStack>
 
         {/* Summary Stats */}
         <motion.div

@@ -394,13 +394,21 @@ Happy coding! 🚀
   const [selectedPost, setSelectedPost] = useState<typeof blogPosts[0] | null>(null)
 
   return (
-    <section id="blog" className="py-24 px-4">
+    <section id="blog" className="py-24 px-4 relative overflow-hidden">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16">
-          <p className="section-kicker mb-3">Sharing my learning journey</p>
-          <h2 className="section-title">
-            Blog <span className="text-gradient">& Insights</span>
+        <div className="text-center mb-16 space-y-3">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/30 mb-2 shadow-[0_0_15px_rgba(0,245,212,0.15)]">
+            <span className="w-2 h-2 rounded-full bg-[#00F5D4] animate-pulse" />
+            <span className="text-xs uppercase tracking-[0.22em] font-display font-semibold text-primary">
+              Engineering Notes &amp; Insights
+            </span>
+          </div>
+          <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-semibold tracking-tight text-white leading-tight">
+            Articles &amp; <span className="text-gradient">Technical Writing</span>
           </h2>
+          <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto font-display leading-relaxed">
+            Documenting architectural decisions, engineering workflows, and practical lessons learned building real-world web systems.
+          </p>
         </div>
 
         {/* Filters and Search */}

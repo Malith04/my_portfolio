@@ -16,7 +16,8 @@ const DEFAULT_ITEMS: DriftWallItem[] = [
   { image: '/images/mockup-laptop.jpg', title: 'Elysia — Digital Architecture' },
   { image: '/images/mockup-phone.jpg', title: 'ImpactEcho — Mobile Experience' },
   { image: '/images/mockup-mobile.jpg', title: 'Studio Interactive — UI/UX' },
-  { image: '/images/impactecho-preview.png', title: 'ImpactEcho — Stories & Reels' }
+  { image: '/images/impactecho-preview.png', title: 'ImpactEcho — Stories & Reels' },
+  { image: '/images/pos-system-ui.jpg', title: 'Smart POS & Retail Analytics Engine' }
 ];
 
 const prefersReducedMotion = () =>
@@ -115,9 +116,20 @@ export const DriftWall: React.FC<DriftWallProps> = ({
   }, [containerWidth, tileWidth, gap, columns]);
 
   const columnItems = useMemo(() => {
-    const cols: DriftWallItem[][] = Array.from({ length: effectiveColumns }, () => []);
-    items.forEach((item, i) => cols[i % effectiveColumns].push(item));
-    return cols.map(col => (col.length ? col : items.slice(0, 1)));
+    if (!items.length) return [];
+    const L = items.length;
+    // Stride offset ensures adjacent columns never start or align with the same project
+    const stride = L > 3 ? (L % 3 === 0 ? 5 : 3) : 1;
+
+    return Array.from({ length: effectiveColumns }, (_, c) => {
+      // Each column receives all distinct items, staggered by (c * stride)
+      const offset = (c * stride) % L;
+      const colList: DriftWallItem[] = [];
+      for (let i = 0; i < L; i++) {
+        colList.push(items[(offset + i) % L]);
+      }
+      return colList;
+    });
   }, [items, effectiveColumns]);
 
   const columnMeta = useMemo(() => {
@@ -165,7 +177,14 @@ export const DriftWall: React.FC<DriftWallProps> = ({
   );
 
   useEffect(() => {
+    let isVisible = true;
+
     const animate = (ts: number) => {
+      if (!isVisible) {
+        rafRef.current = null;
+        return;
+      }
+
       if (lastTsRef.current === null) lastTsRef.current = ts;
       const dt = Math.min(0.05, Math.max(0, ts - lastTsRef.current) / 1000);
       lastTsRef.current = ts;
@@ -206,8 +225,27 @@ export const DriftWall: React.FC<DriftWallProps> = ({
       rafRef.current = requestAnimationFrame(animate);
     };
 
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        const wasVisible = isVisible;
+        isVisible = entry.isIntersecting;
+        if (isVisible && !wasVisible) {
+          lastTsRef.current = null;
+          if (!rafRef.current) {
+            rafRef.current = requestAnimationFrame(animate);
+          }
+        }
+      },
+      { rootMargin: '150px 0px' }
+    );
+
+    if (containerRef.current) {
+      observer.observe(containerRef.current);
+    }
+
     rafRef.current = requestAnimationFrame(animate);
     return () => {
+      observer.disconnect();
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       rafRef.current = null;
       lastTsRef.current = null;
