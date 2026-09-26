@@ -22,9 +22,11 @@ export const SmoothScroll: React.FC = () => {
       const targetElement = document.querySelector(href)
       if (targetElement) {
         e.preventDefault()
-        targetElement.scrollIntoView({
-          behavior: 'smooth',
-          block: 'start'
+        const navHeight = 84
+        const targetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight
+        window.scrollTo({
+          top: targetTop,
+          behavior: 'smooth'
         })
         window.history.pushState(null, '', href)
       }

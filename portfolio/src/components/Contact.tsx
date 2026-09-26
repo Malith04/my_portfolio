@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import AnimatedSectionHeader from './AnimatedSectionHeader'
 import { Phone, Mail, Linkedin, Instagram, Facebook, Copy, ExternalLink, MessageCircle, Send } from 'lucide-react'
 
 const Contact = () => {
@@ -89,7 +90,7 @@ const Contact = () => {
   return (
     <section id="contact" className="py-24 px-4 relative overflow-hidden">
       <div className="max-w-4xl mx-auto">
-        <div className="text-center mb-16 space-y-3">
+        <AnimatedSectionHeader className="text-center mb-16 space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/30 mb-2 shadow-[0_0_15px_rgba(0,245,212,0.15)]">
             <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
             <span className="text-xs uppercase tracking-[0.22em] font-display font-semibold text-primary">
@@ -102,7 +103,7 @@ const Contact = () => {
           <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto font-display leading-relaxed">
             Ready to collaborate on new engineering projects, discuss architecture, or explore full-stack development opportunities.
           </p>
-        </div>
+        </AnimatedSectionHeader>
 
         {/* Contact Method Switcher */}
         <div className="mb-12">

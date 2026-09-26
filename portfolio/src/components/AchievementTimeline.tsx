@@ -1,5 +1,6 @@
 import React from 'react'
 import { motion } from 'framer-motion'
+import AnimatedSectionHeader from './AnimatedSectionHeader'
 import {
   Award,
   Calendar,
@@ -126,7 +127,7 @@ const AchievementTimeline: React.FC = () => {
     <section id="achievements" className="py-24 px-4 relative">
       <div className="max-w-6xl mx-auto">
         {/* Section Header */}
-        <div className="text-center mb-16">
+        <AnimatedSectionHeader className="text-center mb-16">
           <p className="section-kicker mb-3">Authentic Milestones &amp; Journey</p>
           <h2 className="section-title text-white">
             Achievement <span className="text-gradient">Timeline</span>
@@ -134,7 +135,7 @@ const AchievementTimeline: React.FC = () => {
           <p className="text-slate-300 mt-4 max-w-2xl mx-auto font-display text-sm sm:text-base leading-relaxed">
             Key professional, academic, leadership, and athletic milestones verified from my engineering journey.
           </p>
-        </div>
+        </AnimatedSectionHeader>
 
         {/* Vertical Timeline */}
         <div className="relative">

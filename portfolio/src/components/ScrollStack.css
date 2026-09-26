@@ -44,7 +44,8 @@
   transform: translateZ(0);
   position: relative;
   border-radius: 28px;
-  box-shadow: 0 15px 35px -5px rgba(0, 0, 0, 0.7);
+  background: #070913;
+  box-shadow: 0 20px 45px -5px rgba(0, 0, 0, 0.85);
   transition: box-shadow 0.3s ease;
 }
 

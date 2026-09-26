@@ -1,5 +1,6 @@
 import React, { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import AnimatedSectionHeader from './AnimatedSectionHeader'
 import { Plus, Minus, Code2, Palette, Gauge, Network, CheckCircle2, ArrowRight } from 'lucide-react'
 
 interface ServiceItem {
@@ -93,7 +94,7 @@ export const ServicesAccordion: React.FC = () => {
     <section id="services" className="py-24 px-4 relative overflow-hidden">
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-white/10">
+        <AnimatedSectionHeader className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-white/10">
           <div className="space-y-3 max-w-xl">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
@@ -109,7 +110,7 @@ export const ServicesAccordion: React.FC = () => {
           <p className="text-slate-300 font-display text-sm md:text-base max-w-md leading-relaxed">
             Delivering end-to-end engineering excellence from initial design system architecture to cloud-native production deployments.
           </p>
-        </div>
+        </AnimatedSectionHeader>
 
         {/* 2-Column Layout: Left Accordion Drawer, Right Interactive Visual Preview */}
         <div className="grid lg:grid-cols-[1.15fr_0.85fr] gap-8 lg:gap-12 items-start">

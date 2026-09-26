@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import AnimatedSectionHeader from './AnimatedSectionHeader'
 import { Code, Zap, Shield, TrendingUp, CheckCircle, XCircle } from 'lucide-react'
 
 const TechStackComparison = () => {
@@ -181,7 +182,7 @@ const TechStackComparison = () => {
   return (
     <section id="tech-comparison" className="py-24 px-4 relative overflow-hidden">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16 space-y-3">
+        <AnimatedSectionHeader className="text-center mb-16 space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/30 mb-2 shadow-[0_0_15px_rgba(0,245,212,0.15)]">
             <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
             <span className="text-xs uppercase tracking-[0.22em] font-display font-semibold text-primary">
@@ -194,7 +195,7 @@ const TechStackComparison = () => {
           <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto font-display leading-relaxed">
             Direct side-by-side evaluations: Why I chose React 19 over Angular, TypeScript over JavaScript, and Tailwind CSS over Bootstrap for high-performance production applications.
           </p>
-        </div>
+        </AnimatedSectionHeader>
 
         {/* Comparison Tabs */}
         <div className="flex flex-wrap justify-center gap-4 mb-12">

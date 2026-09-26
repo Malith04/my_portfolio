@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import AnimatedSectionHeader from './AnimatedSectionHeader'
 import { Calendar, MapPin, Award, Briefcase, GraduationCap } from 'lucide-react'
 import ScrollStack, { ScrollStackItem } from './ScrollStack'
 
@@ -79,7 +80,7 @@ const Experience = () => {
   return (
     <section id="experience" className="py-24 px-4 relative">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16 space-y-3">
+        <AnimatedSectionHeader className="text-center mb-16 space-y-3">
           <p className="section-kicker">// Professional &amp; Academic Journey</p>
           <h2 className="section-title text-white">
             Experience &amp; <span className="text-gradient">Education</span>
@@ -87,7 +88,7 @@ const Experience = () => {
           <p className="text-slate-400 text-sm sm:text-base max-w-2xl mx-auto font-display">
             From foundation years at Dharmaraja College, Kandy to engineering production web applications at Innovior and advanced degree studies at NIBM.
           </p>
-        </div>
+        </AnimatedSectionHeader>
 
         <ScrollStack
           useWindowScroll={true}
@@ -104,7 +105,7 @@ const Experience = () => {
             <ScrollStackItem key={i}>
               <div className="relative group">
                 {/* Main Card */}
-                <div className="surface-card overflow-hidden border border-white/10 hover:border-primary/50 transition-all duration-500 shadow-[0_20px_60px_rgba(0,0,0,0.7)] group-hover:shadow-[0_20px_50px_-10px_rgba(0,245,212,0.25)]">
+                <div className="overflow-hidden rounded-2xl sm:rounded-3xl border border-white/15 bg-[#070913] hover:border-primary/50 transition-all duration-500 shadow-[0_25px_70px_rgba(0,0,0,0.9)] group-hover:shadow-[0_20px_50px_-10px_rgba(0,245,212,0.25)]">
                   {/* Header with Gradient */}
                   <div className={`relative p-6 sm:p-8 bg-gradient-to-r ${item.color} overflow-hidden`}>
                     {/* Background Pattern */}
@@ -154,8 +155,8 @@ const Experience = () => {
                     </div>
                   </div>
 
-                  {/* Content */}
-                  <div className="p-6 sm:p-8 space-y-6">
+                  {/* Content with solid opaque dark background */}
+                  <div className="p-6 sm:p-8 space-y-6 bg-[#070913]">
                     <p className="text-slate-300 leading-relaxed font-display text-sm sm:text-base">
                       {item.description}
                     </p>

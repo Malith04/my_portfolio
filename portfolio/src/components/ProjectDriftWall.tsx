@@ -67,7 +67,7 @@ const ProjectDriftWall: React.FC = () => {
           direction="up"
           variance={0.4}
           parallax={0.5}
-          lift={68}
+          lift={28}
           fade={0.15}
           dim={0.65}
           overlayColor="#070914"

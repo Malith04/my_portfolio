@@ -71,7 +71,7 @@ export const DriftWall: React.FC<DriftWallProps> = ({
   variance = 0.45,
   parallax = 0.6,
   pauseOnHover = false,
-  lift = 64,
+  lift = 28,
   fade = 0.6,
   dim = 0.55,
   grayscale = false,
@@ -86,7 +86,11 @@ export const DriftWall: React.FC<DriftWallProps> = ({
 
   const offsetsRef = useRef<number[]>([]);
   const velocitiesRef = useRef<number[]>([]);
+  const activeTileElRef = useRef<HTMLElement | null>(null);
+  const activeColElRef = useRef<HTMLElement | null>(null);
   const hoveredColRef = useRef(-1);
+  const hoveredTileIdRef = useRef<string | null>(null);
+  const releaseTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null);
   const wallHoveredRef = useRef(false);
   const pointerRef = useRef({ x: 0, y: 0 });
   const pointerDampedRef = useRef({ x: 0, y: 0 });
@@ -96,8 +100,6 @@ export const DriftWall: React.FC<DriftWallProps> = ({
   const [containerWidth, setContainerWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 1440
   );
-  const [activeId, setActiveId] = useState<string | null>(null);
-  const activeIdRef = useRef<string | null>(null);
   const [reduced, setReduced] = useState(false);
 
   useEffect(() => {
@@ -190,29 +192,39 @@ export const DriftWall: React.FC<DriftWallProps> = ({
       lastTsRef.current = ts;
 
       const maxTilt = parallax * 8;
-      const targetX = pointerRef.current.x * maxTilt;
-      const targetY = -pointerRef.current.y * maxTilt;
-      const damp = 1 - Math.exp(-dt / 0.12);
+      const isAnyColHovered = hoveredColRef.current !== -1;
+      // When a tile is hovered, lock plane tilt to prevent camera sway shifting tiles under cursor
+      const targetX = isAnyColHovered ? pointerDampedRef.current.x : pointerRef.current.x * maxTilt;
+      const targetY = isAnyColHovered ? pointerDampedRef.current.y : -pointerRef.current.y * maxTilt;
+      const damp = 1 - Math.exp(-dt / (isAnyColHovered ? 0.35 : 0.12));
       pointerDampedRef.current.x += (targetX - pointerDampedRef.current.x) * damp;
       pointerDampedRef.current.y += (targetY - pointerDampedRef.current.y) * damp;
       applyPlaneTransform(pointerDampedRef.current.x, pointerDampedRef.current.y);
 
       if (!reduced) {
+        const isWallPaused = pauseOnHover && wallHoveredRef.current;
         for (let c = 0; c < trackRefs.current.length; c++) {
           const meta = columnMeta[c];
           if (!meta) continue;
-          const paused = wallHoveredRef.current && pauseOnHover;
-          const factor = paused || hoveredColRef.current === c ? 0 : 1;
-          const target = baseVelocities[c] * factor;
 
-          const ease = 1 - Math.exp(-dt / (target === 0 ? 0.16 : 0.28));
-          velocitiesRef.current[c] += (target - velocitiesRef.current[c]) * ease;
-          let next = (offsetsRef.current[c] ?? 0) + velocitiesRef.current[c] * dt;
-          next = ((next % meta.copyHeight) + meta.copyHeight) % meta.copyHeight;
-          offsetsRef.current[c] = next;
+          // Freeze only the column currently hovered by the user (or entire wall if pauseOnHover=true)
+          const isThisColHovered = hoveredColRef.current === c;
+          const shouldStop = isWallPaused || isThisColHovered;
 
-          const el = trackRefs.current[c];
-          if (el) el.style.transform = `translate3d(0, ${-next}px, 0)`;
+          if (shouldStop) {
+            velocitiesRef.current[c] = 0;
+          } else {
+            const target = baseVelocities[c];
+            // Smooth exponential ease back to normal drift velocity
+            const ease = 1 - Math.exp(-dt / 0.32);
+            velocitiesRef.current[c] += (target - velocitiesRef.current[c]) * ease;
+            let next = (offsetsRef.current[c] ?? 0) + velocitiesRef.current[c] * dt;
+            next = ((next % meta.copyHeight) + meta.copyHeight) % meta.copyHeight;
+            offsetsRef.current[c] = next;
+
+            const el = trackRefs.current[c];
+            if (el) el.style.transform = `translate3d(0, ${-next}px, 0)`;
+          }
         }
       } else {
         for (let c = 0; c < trackRefs.current.length; c++) {
@@ -249,19 +261,80 @@ export const DriftWall: React.FC<DriftWallProps> = ({
       if (rafRef.current) cancelAnimationFrame(rafRef.current);
       rafRef.current = null;
       lastTsRef.current = null;
+      if (releaseTimerRef.current) {
+        clearTimeout(releaseTimerRef.current);
+        releaseTimerRef.current = null;
+      }
+      if (activeTileElRef.current) {
+        activeTileElRef.current.classList.remove('is-hovered');
+        activeTileElRef.current = null;
+      }
+      if (activeColElRef.current) {
+        activeColElRef.current.style.zIndex = '';
+        activeColElRef.current = null;
+      }
     };
   }, [baseVelocities, columnMeta, pauseOnHover, parallax, reduced, applyPlaneTransform]);
 
-  const activate = useCallback((id: string, index: number) => {
-    activeIdRef.current = id;
-    hoveredColRef.current = index;
-    setActiveId(id);
-  }, []);
+  const activateTile = useCallback(
+    (e: React.PointerEvent<HTMLElement> | React.FocusEvent<HTMLElement>, id: string, colIndex: number) => {
+      if (releaseTimerRef.current) {
+        clearTimeout(releaseTimerRef.current);
+        releaseTimerRef.current = null;
+      }
 
-  const release = useCallback(() => {
-    activeIdRef.current = null;
-    hoveredColRef.current = -1;
-    setActiveId(null);
+      const currentTileEl = e.currentTarget;
+
+      if (activeTileElRef.current && activeTileElRef.current !== currentTileEl) {
+        activeTileElRef.current.classList.remove('is-hovered');
+      }
+
+      if (activeColElRef.current && hoveredColRef.current !== colIndex) {
+        activeColElRef.current.style.zIndex = '';
+      }
+
+      activeTileElRef.current = currentTileEl;
+      currentTileEl.classList.add('is-hovered');
+
+      const colEl = currentTileEl.closest('.drift-wall__col') as HTMLElement | null;
+      if (colEl) {
+        activeColElRef.current = colEl;
+        colEl.style.zIndex = '10';
+      }
+
+      hoveredColRef.current = colIndex;
+      hoveredTileIdRef.current = id;
+
+      // Snap velocity to 0 immediately so tile never moves from under cursor
+      if (velocitiesRef.current[colIndex] !== undefined) {
+        velocitiesRef.current[colIndex] = 0;
+      }
+    },
+    []
+  );
+
+  const releaseTile = useCallback((id: string) => {
+    if (hoveredTileIdRef.current === id) {
+      if (releaseTimerRef.current) {
+        clearTimeout(releaseTimerRef.current);
+      }
+      // 60ms hysteresis window prevents jitter when moving across adjacent tiles in same column
+      releaseTimerRef.current = setTimeout(() => {
+        if (hoveredTileIdRef.current === id) {
+          if (activeTileElRef.current) {
+            activeTileElRef.current.classList.remove('is-hovered');
+            activeTileElRef.current = null;
+          }
+          if (activeColElRef.current) {
+            activeColElRef.current.style.zIndex = '';
+            activeColElRef.current = null;
+          }
+          hoveredColRef.current = -1;
+          hoveredTileIdRef.current = null;
+        }
+        releaseTimerRef.current = null;
+      }, 60);
+    }
   }, []);
 
   const handlePointerMove = useCallback(
@@ -274,23 +347,28 @@ export const DriftWall: React.FC<DriftWallProps> = ({
           y: (e.clientY - rect.top) / rect.height - 0.5
         };
       }
-      const hit = document.elementFromPoint(e.clientX, e.clientY) as HTMLElement | null;
-      const tile = hit && hit.closest ? (hit.closest('[data-tile-id]') as HTMLElement | null) : null;
-      if (!tile) return;
-      const id = tile.dataset.tileId;
-      if (!id || id === activeIdRef.current) return;
-      activeIdRef.current = id;
-      hoveredColRef.current = Number(tile.dataset.col);
-      setActiveId(id);
     },
     [parallax, reduced]
   );
 
   const handlePointerLeaveWall = useCallback(() => {
+    if (releaseTimerRef.current) {
+      clearTimeout(releaseTimerRef.current);
+      releaseTimerRef.current = null;
+    }
+    if (activeTileElRef.current) {
+      activeTileElRef.current.classList.remove('is-hovered');
+      activeTileElRef.current = null;
+    }
+    if (activeColElRef.current) {
+      activeColElRef.current.style.zIndex = '';
+      activeColElRef.current = null;
+    }
     wallHoveredRef.current = false;
+    hoveredColRef.current = -1;
+    hoveredTileIdRef.current = null;
     pointerRef.current = { x: 0, y: 0 };
-    release();
-  }, [release]);
+  }, []);
 
   const cssVars = useMemo(
     () => ({
@@ -326,16 +404,14 @@ export const DriftWall: React.FC<DriftWallProps> = ({
       </span>
     );
     const commonProps = {
-      className: `drift-wall__tile${activeId === id ? ' is-active' : ''}`,
+      className: 'drift-wall__tile',
       'data-tile-id': id,
       'data-col': colIndex,
-      title: item.title,
-      onPointerEnter: () => activate(id, colIndex),
-      onPointerLeave: () => {
-        if (activeIdRef.current === id) release();
-      },
-      onFocus: () => activate(id, colIndex),
-      onBlur: release
+      'aria-label': item.title ?? 'Project tile',
+      onPointerEnter: (e: React.PointerEvent<HTMLElement>) => activateTile(e, id, colIndex),
+      onPointerLeave: () => releaseTile(id),
+      onFocus: (e: React.FocusEvent<HTMLElement>) => activateTile(e, id, colIndex),
+      onBlur: () => releaseTile(id)
     };
     if (item.href) {
       return (
@@ -345,7 +421,7 @@ export const DriftWall: React.FC<DriftWallProps> = ({
       );
     }
     return (
-      <div key={id} tabIndex={0} role="button" aria-label={item.title ?? 'tile'} {...commonProps}>
+      <div key={id} tabIndex={0} role="button" {...commonProps}>
         {inner}
       </div>
     );

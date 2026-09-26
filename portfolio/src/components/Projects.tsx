@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import AnimatedSectionHeader from './AnimatedSectionHeader'
 import { ExternalLink, Github, Radio, Music, Sprout, Code, Image, Play, ChevronLeft, ChevronRight } from 'lucide-react'
 
 const Projects = () => {
@@ -179,14 +180,22 @@ const FarmModel = ({ sensorData }) => {
   ]
 
   return (
-    <section id="projects" className="py-20 px-4">
+    <section id="projects" className="py-24 px-4 sm:px-6 lg:px-8 relative overflow-hidden scroll-mt-24">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16">
-          <p className="section-kicker mb-3">Core Portfolio</p>
-          <h2 className="section-title text-white">
-            Featured <span className="text-gradient">Projects</span>
+        <AnimatedSectionHeader className="text-center mb-16 space-y-4">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-primary/10 border border-primary/30 shadow-[0_0_20px_rgba(0,245,212,0.18)]">
+            <span className="w-2 h-2 rounded-full bg-[#00F5D4] shadow-[0_0_8px_#00F5D4] animate-pulse" />
+            <span className="text-xs uppercase tracking-[0.25em] font-display font-semibold text-[#00F5D4]">
+              Core Portfolio Works
+            </span>
+          </div>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight text-white leading-tight">
+            Featured <span className="text-gradient">Projects &amp; Architectures</span>
           </h2>
-        </div>
+          <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto font-display leading-relaxed">
+            Full-stack production applications, real-time IoT architectures, and interactive design systems built with cutting-edge engineering and modern UI/UX workflows.
+          </p>
+        </AnimatedSectionHeader>
 
         <div className="grid lg:grid-cols-2 xl:grid-cols-3 gap-8">
           {projects.map((project, i) => (
@@ -196,11 +205,11 @@ const FarmModel = ({ sensorData }) => {
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
               transition={{ delay: i * 0.2 }}
-              whileHover={{ y: -10, scale: 1.02 }}
-              className="surface-card overflow-hidden hover:border-primary/50 dark:hover:border-primary/50 light:hover:border-slate-400/70 transition-all group h-full flex flex-col hover:shadow-2xl cursor-pointer"
+              whileHover={{ y: -8, scale: 1.015 }}
+              className="surface-card overflow-hidden hover:border-primary/50 dark:hover:border-primary/50 light:hover:border-slate-400/70 transition-all group h-full flex flex-col hover:shadow-2xl cursor-pointer border border-white/10 rounded-2xl bg-black/40 backdrop-blur-xl"
               onClick={() => setSelectedProject(project)}
             >
-              <div className="relative h-48 overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20">
+              <div className="relative h-52 overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20">
                 <img
                   src={project.image}
                   alt={`${project.title} preview`}
@@ -227,79 +236,85 @@ const FarmModel = ({ sensorData }) => {
                   </div>
                 )}
                 
-                <div className="absolute inset-0 bg-gradient-to-t from-black/80 to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-black/85 via-black/30 to-transparent" />
                 
                 <div className="absolute top-4 left-4">
                   <span className={`pill text-xs ${
                     project.category === 'featured'
-                      ? 'border-primary/60 text-primary bg-primary/10 font-semibold'
+                      ? 'border-primary/60 text-primary bg-primary/10 font-semibold shadow-[0_0_12px_rgba(0,245,212,0.2)]'
                       : project.category === 'personal' 
-                        ? 'border-primary/40 text-primary' 
-                        : 'border-accent/40 text-accent'
+                        ? 'border-primary/40 text-primary bg-black/40' 
+                        : 'border-accent/40 text-accent bg-black/40'
                   }`}>
                     {project.category === 'featured' ? '★ Featured UI/UX Lead' : project.category === 'personal' ? 'Personal' : 'Group'} Project
                   </span>
                 </div>
 
-                <div className="absolute top-4 right-4 w-12 h-12 bg-black/50 backdrop-blur-sm rounded-full flex items-center justify-center text-white">
+                <div className="absolute top-4 right-4 w-11 h-11 bg-black/60 backdrop-blur-md rounded-full flex items-center justify-center text-white border border-white/10 shadow-lg">
                   {project.icon}
                 </div>
 
-                {/* View Details Button */}
-                <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="flex items-center gap-2 px-3 py-2 bg-white/20 backdrop-blur-sm rounded-lg text-white text-sm">
-                    <Image size={16} />
-                    <span>View Details</span>
+                {/* View Details Hint */}
+                <div className="absolute bottom-3 right-3 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
+                  <div className="flex items-center gap-1.5 px-3 py-1.5 bg-black/75 backdrop-blur-md rounded-lg text-white text-xs border border-white/15">
+                    <Image size={14} className="text-primary" />
+                    <span>View Case Study</span>
                   </div>
                 </div>
               </div>
 
-              <div className="p-6 flex-1 flex flex-col">
-                <h3 className="text-xl font-display font-bold mb-3 flex items-center gap-2 text-white">
-                  {project.title}
-                </h3>
-                <p className="text-slate-400 mb-4 leading-relaxed text-sm flex-1">
-                  {project.description}
-                </p>
-                
-                <div className="mb-4">
-                  <h4 className="text-sm font-semibold text-primary mb-2">Key Features:</h4>
-                  <ul className="text-xs text-slate-400 space-y-1">
-                    {project.features.slice(0, 3).map((feature, j) => (
-                      <li key={j} className="flex items-start gap-2">
-                        <span className="text-primary mt-0.5">▹</span>
-                        <span>{feature}</span>
-                      </li>
+              <div className="p-6 flex-1 flex flex-col justify-between">
+                <div>
+                  <h3 className="text-xl font-display font-bold mb-3 flex items-center gap-2 text-white group-hover:text-primary transition-colors">
+                    {project.title}
+                  </h3>
+                  <p className="text-slate-300/90 mb-4 leading-relaxed text-sm">
+                    {project.description}
+                  </p>
+                  
+                  <div className="mb-4">
+                    <h4 className="text-xs uppercase font-mono tracking-wider text-primary mb-2 flex items-center gap-1.5">
+                      <span className="w-1.5 h-1.5 rounded-full bg-primary" />
+                      Key Capabilities:
+                    </h4>
+                    <ul className="text-xs text-slate-400 space-y-1.5">
+                      {project.features.slice(0, 3).map((feature, j) => (
+                        <li key={j} className="flex items-start gap-2">
+                          <span className="text-primary mt-0.5">▹</span>
+                          <span className="leading-snug">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                  
+                  <div className="flex flex-wrap gap-1.5 mb-6">
+                    {project.tech.slice(0, 5).map((tech, j) => (
+                      <span
+                        key={j}
+                        className="px-2.5 py-1 bg-white/5 border border-primary/25 rounded-md text-xs text-primary font-medium"
+                      >
+                        {tech}
+                      </span>
                     ))}
-                  </ul>
-                </div>
-                
-                <div className="flex flex-wrap gap-1.5 mb-6">
-                  {project.tech.slice(0, 4).map((tech, j) => (
-                    <span
-                      key={j}
-                      className="px-2 py-1 bg-white/10 border border-primary/30 rounded-md text-xs text-primary font-medium"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                  {project.tech.length > 4 && (
-                    <span className="px-2 py-1 bg-white/5 border border-white/20 rounded-md text-xs text-slate-400">
-                      +{project.tech.length - 4} more
-                    </span>
-                  )}
+                    {project.tech.length > 5 && (
+                      <span className="px-2 py-1 bg-white/5 border border-white/10 rounded-md text-xs text-slate-400">
+                        +{project.tech.length - 5}
+                      </span>
+                    )}
+                  </div>
                 </div>
 
-                <div className="flex gap-3 mt-auto">
+                <div className="flex gap-3 pt-4 border-t border-white/10 mt-auto">
                   <motion.a
                     href={project.github}
                     target="_blank"
                     rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-slate-200 hover:text-slate-900 dark:hover:bg-primary dark:hover:text-black rounded-lg transition-all font-medium text-sm flex-1 justify-center border border-transparent hover:border-slate-400 dark:hover:border-primary"
+                    onClick={(e) => e.stopPropagation()}
+                    whileHover={{ scale: 1.03 }}
+                    whileTap={{ scale: 0.97 }}
+                    className="flex items-center gap-2 px-4 py-2.5 bg-white/10 hover:bg-primary hover:text-black rounded-lg transition-all font-medium text-xs sm:text-sm flex-1 justify-center border border-white/10 hover:border-primary text-white"
                   >
-                    <Github size={16} />
+                    <Github size={15} />
                     <span>Code</span>
                   </motion.a>
                   {project.live !== '#' && (
@@ -307,85 +322,27 @@ const FarmModel = ({ sensorData }) => {
                       href={project.live}
                       target="_blank"
                       rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="flex items-center gap-2 px-4 py-2 bg-primary text-black hover:bg-yellow-600 dark:hover:bg-accent rounded-lg transition-all font-medium text-sm flex-1 justify-center shadow-lg hover:shadow-xl"
+                      onClick={(e) => e.stopPropagation()}
+                      whileHover={{ scale: 1.03 }}
+                      whileTap={{ scale: 0.97 }}
+                      className="flex items-center gap-2 px-4 py-2.5 bg-primary text-black hover:bg-accent rounded-lg transition-all font-semibold text-xs sm:text-sm flex-1 justify-center shadow-lg shadow-primary/20 hover:shadow-primary/40"
                     >
-                      <ExternalLink size={16} />
+                      <ExternalLink size={15} />
                       <span>Live</span>
                     </motion.a>
                   )}
-                </div>
-                {/* View Details Button */}
-                <div className="absolute bottom-4 right-4 opacity-0 group-hover:opacity-100 transition-opacity">
-                  <div className="flex items-center gap-2 px-3 py-2 bg-white/20 backdrop-blur-sm rounded-lg text-white text-sm">
-                    <Image size={16} />
-                    <span>View Details</span>
-                  </div>
-                </div>
-              </div>
-
-              <div className="p-6 flex-1 flex flex-col">
-                <h3 className="text-xl font-display font-bold mb-3 flex items-center gap-2 text-white">
-                  {project.title}
-                </h3>
-                <p className="text-slate-400 mb-4 leading-relaxed text-sm flex-1">
-                  {project.description}
-                </p>
-                
-                <div className="mb-4">
-                  <h4 className="text-sm font-semibold text-primary mb-2">Key Features:</h4>
-                  <ul className="text-xs text-slate-400 space-y-1">
-                    {project.features.slice(0, 3).map((feature, j) => (
-                      <li key={j} className="flex items-start gap-2">
-                        <span className="text-primary mt-0.5">▹</span>
-                        <span>{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-                
-                <div className="flex flex-wrap gap-1.5 mb-6">
-                  {project.tech.slice(0, 4).map((tech, j) => (
-                    <span
-                      key={j}
-                      className="px-2 py-1 bg-white/10 border border-primary/30 rounded-md text-xs text-primary font-medium"
-                    >
-                      {tech}
-                    </span>
-                  ))}
-                  {project.tech.length > 4 && (
-                    <span className="px-2 py-1 bg-white/5 border border-white/20 rounded-md text-xs text-slate-400">
-                      +{project.tech.length - 4} more
-                    </span>
-                  )}
-                </div>
-
-                <div className="flex gap-3 mt-auto">
-                  <motion.a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="flex items-center gap-2 px-4 py-2 bg-white/10 hover:bg-slate-200 hover:text-slate-900 dark:hover:bg-primary dark:hover:text-black rounded-lg transition-all font-medium text-sm flex-1 justify-center border border-transparent hover:border-slate-400 dark:hover:border-primary"
+                  <button
+                    type="button"
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      setSelectedProject(project)
+                    }}
+                    className="flex items-center gap-1.5 px-3 py-2.5 bg-white/5 hover:bg-white/15 text-slate-300 hover:text-white rounded-lg transition-all text-xs border border-white/10"
+                    title="View case study details"
                   >
-                    <Github size={16} />
-                    <span>Code</span>
-                  </motion.a>
-                  {project.live !== '#' && (
-                    <motion.a
-                      href={project.live}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
-                      className="flex items-center gap-2 px-4 py-2 bg-primary text-black hover:bg-yellow-600 dark:hover:bg-accent rounded-lg transition-all font-medium text-sm flex-1 justify-center shadow-lg hover:shadow-xl"
-                    >
-                      <ExternalLink size={16} />
-                      <span>Live</span>
-                    </motion.a>
-                  )}
+                    <Image size={14} />
+                    <span className="hidden sm:inline">Details</span>
+                  </button>
                 </div>
               </div>
             </motion.div>

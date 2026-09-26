@@ -1,5 +1,6 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
+import AnimatedSectionHeader from './AnimatedSectionHeader'
 import { Calendar, Clock, ArrowRight, Search } from 'lucide-react'
 
 const Blog = () => {
@@ -396,7 +397,7 @@ Happy coding! 🚀
   return (
     <section id="blog" className="py-24 px-4 relative overflow-hidden">
       <div className="max-w-6xl mx-auto">
-        <div className="text-center mb-16 space-y-3">
+        <AnimatedSectionHeader className="text-center mb-16 space-y-3">
           <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-primary/10 border border-primary/30 mb-2 shadow-[0_0_15px_rgba(0,245,212,0.15)]">
             <span className="w-2 h-2 rounded-full bg-[#00F5D4] animate-pulse" />
             <span className="text-xs uppercase tracking-[0.22em] font-display font-semibold text-primary">
@@ -409,7 +410,7 @@ Happy coding! 🚀
           <p className="text-slate-300 text-sm sm:text-base max-w-2xl mx-auto font-display leading-relaxed">
             Documenting architectural decisions, engineering workflows, and practical lessons learned building real-world web systems.
           </p>
-        </div>
+        </AnimatedSectionHeader>
 
         {/* Filters and Search */}
         <div className="mb-12 space-y-6">

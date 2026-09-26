@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import AnimatedSectionHeader from './AnimatedSectionHeader'
 import { GraduationCap, Code, Trophy, Briefcase, Sparkles } from 'lucide-react'
 
 const About = () => {
@@ -32,12 +33,12 @@ const About = () => {
   return (
     <section id="about" className="py-24 px-4 relative">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-16 space-y-3">
+        <AnimatedSectionHeader className="text-center mb-16 space-y-3">
           <p className="section-kicker">// About Malith Rajamanthri</p>
           <h2 className="section-title text-white">
             Engineering <span className="text-gradient">With Purpose</span>
           </h2>
-        </div>
+        </AnimatedSectionHeader>
 
         <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 mb-16 items-center">
           <motion.div

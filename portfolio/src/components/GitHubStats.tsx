@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
+import AnimatedSectionHeader from './AnimatedSectionHeader'
 import { Github, GitBranch, Star, Users, Calendar, TrendingUp, Code, Coffee } from 'lucide-react'
 
 const GitHubStats = () => {
@@ -73,7 +74,7 @@ const GitHubStats = () => {
   return (
     <section id="github" className="py-20 px-4 relative z-10">
       <div className="max-w-7xl mx-auto">
-        <div className="text-center mb-14 relative z-10">
+        <AnimatedSectionHeader className="text-center mb-14 relative z-10">
           <p className="section-kicker mb-3 font-display font-semibold tracking-[0.22em] text-[#00f5d4]">
             Development Activity
           </p>
@@ -83,7 +84,7 @@ const GitHubStats = () => {
           <p className="text-slate-300 mt-4 max-w-2xl mx-auto font-display text-sm sm:text-base leading-relaxed">
             Real-time insights into my coding journey and contribution patterns
           </p>
-        </div>
+        </AnimatedSectionHeader>
 
         {/* Stats Grid */}
         <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
