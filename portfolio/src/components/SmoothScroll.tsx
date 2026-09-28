@@ -1,16 +1,40 @@
 import React, { useEffect } from 'react'
+import Lenis from 'lenis'
+import 'lenis/dist/lenis.css'
 
 /**
- * SmoothScroll ensures silky-smooth, hardware-accelerated 60/120/144fps scrolling across all devices.
- * Uses native browser GPU composited scrolling and frictionless anchor transitions.
- * Eliminates main-thread blocking wheel hijacking, preventing input lag, frame drops, and browser stutter.
+ * SmoothScroll integrates Lenis smooth inertia scrolling across the website.
+ * Emulates the exact weightless, buttery 60/120fps scrolling feel of the Lesmana template.
+ * Eliminates browser native wheel stutter and hitching during scroll-linked animations.
  */
 export const SmoothScroll: React.FC = () => {
   useEffect(() => {
-    // Ensure native smooth scrolling behavior
-    document.documentElement.style.scrollBehavior = 'smooth'
+    // Disable native CSS smooth scroll to prevent conflicting with Lenis
+    document.documentElement.style.scrollBehavior = 'auto'
 
-    // Smooth anchor link click handler with proper offset calculation
+    const lenis = new Lenis({
+      duration: 1.15,
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Lesmana-style exponential ease
+      orientation: 'vertical',
+      gestureOrientation: 'vertical',
+      smoothWheel: true,
+      wheelMultiplier: 1,
+      touchMultiplier: 1.8,
+      infinite: false,
+    })
+
+    // Expose lenis instance globally for anchor navigation & interactive triggers
+    ;(window as any).lenis = lenis
+
+    let rafId: number
+    function raf(time: number) {
+      lenis.raf(time)
+      rafId = requestAnimationFrame(raf)
+    }
+
+    rafId = requestAnimationFrame(raf)
+
+    // Intercept anchor link clicks to use Lenis smooth navigation with navbar offset
     const handleAnchorClick = (e: MouseEvent) => {
       const target = e.target as HTMLElement | null
       const anchor = target?.closest('a')
@@ -22,11 +46,10 @@ export const SmoothScroll: React.FC = () => {
       const targetElement = document.querySelector(href)
       if (targetElement) {
         e.preventDefault()
-        const navHeight = 84
-        const targetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - navHeight
-        window.scrollTo({
-          top: targetTop,
-          behavior: 'smooth'
+        lenis.scrollTo(targetElement as HTMLElement, {
+          offset: -88,
+          duration: 1.2,
+          easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
         })
         window.history.pushState(null, '', href)
       }
@@ -35,7 +58,10 @@ export const SmoothScroll: React.FC = () => {
     document.addEventListener('click', handleAnchorClick)
 
     return () => {
+      cancelAnimationFrame(rafId)
       document.removeEventListener('click', handleAnchorClick)
+      lenis.destroy()
+      delete (window as any).lenis
     }
   }, [])
 

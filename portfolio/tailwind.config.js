@@ -27,6 +27,7 @@ export default {
         display: ['"SF Pro Display"', '-apple-system', 'BlinkMacSystemFont', '"SF Pro"', 'system-ui', 'sans-serif'],
         body: ['"SF Pro Text"', '-apple-system', 'BlinkMacSystemFont', '"Inter"', 'system-ui', 'sans-serif'],
         mono: ['"JetBrains Mono"', 'monospace'],
+        serif: ['"Playfair Display"', '"Instrument Serif"', 'Georgia', '"Times New Roman"', 'serif'],
       },
       animation: {
         'float': 'float 6s ease-in-out infinite',

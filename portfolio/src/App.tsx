@@ -59,7 +59,7 @@ function App() {
       </AnimatePresence>
 
       {!isLoading && (
-        <div className="relative min-h-screen overflow-x-hidden">
+        <div className="relative min-h-screen [overflow-x:clip]">
           <SmoothScroll />
           
           {/* Ambient Silk Fluid WebGL Background (Portfolio Signature Cyber Sky Blue) */}
