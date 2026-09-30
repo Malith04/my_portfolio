@@ -96,7 +96,6 @@ export const DriftWall: React.FC<DriftWallProps> = ({
   const pointerDampedRef = useRef({ x: 0, y: 0 });
   const lastTsRef = useRef<number | null>(null);
 
-  const [containerHeight, setContainerHeight] = useState(600);
   const [containerWidth, setContainerWidth] = useState(
     typeof window !== 'undefined' ? window.innerWidth : 1440
   );
@@ -115,24 +114,25 @@ export const DriftWall: React.FC<DriftWallProps> = ({
   const effectiveTileHeight = isMobile ? Math.min(tileHeight, 105) : tileHeight;
   const effectiveGap = isMobile ? Math.min(gap, 12) : gap;
 
-  // Compute effective columns dynamically so that the 3D plane fully covers full screen width with bleed
+  // Compute effective columns dynamically, capping at 7 on desktop and 4 on mobile to prevent offscreen rendering
   const effectiveColumns = useMemo(() => {
+    if (isMobile) return 4;
     const colUnit = effectiveTileWidth + effectiveGap;
-    const needed = Math.ceil(((containerWidth || 1440) * 1.35) / colUnit);
-    return Math.max(isMobile ? 4 : (columns ?? 6), needed);
+    const needed = Math.ceil((containerWidth || 1440) / colUnit) + 1;
+    return Math.min(Math.max(columns ?? 6, needed), 7);
   }, [containerWidth, effectiveTileWidth, effectiveGap, columns, isMobile]);
 
   const columnItems = useMemo(() => {
     if (!items.length) return [];
     const L = items.length;
-    // Stride offset ensures adjacent columns never start or align with the same project
+    // 6 unique items per column is plenty to fill viewport height seamlessly with 2 copies
+    const itemsPerCol = Math.min(6, L);
     const stride = L > 3 ? (L % 3 === 0 ? 5 : 3) : 1;
 
     return Array.from({ length: effectiveColumns }, (_, c) => {
-      // Each column receives all distinct items, staggered by (c * stride)
       const offset = (c * stride) % L;
       const colList: DriftWallItem[] = [];
-      for (let i = 0; i < L; i++) {
+      for (let i = 0; i < itemsPerCol; i++) {
         colList.push(items[(offset + i) % L]);
       }
       return colList;
@@ -143,15 +143,15 @@ export const DriftWall: React.FC<DriftWallProps> = ({
     const unit = effectiveTileHeight + effectiveGap;
     return columnItems.map(col => {
       const copyHeight = Math.max(unit, col.length * unit);
-      const copies = Math.max(2, Math.ceil((containerHeight * 1.6) / copyHeight) + 1);
+      // 2 copies are sufficient for 100% seamless looping
+      const copies = 2;
       return { copyHeight, copies };
     });
-  }, [columnItems, effectiveTileHeight, effectiveGap, containerHeight]);
+  }, [columnItems, effectiveTileHeight, effectiveGap]);
 
   useLayoutEffect(() => {
     if (!containerRef.current) return;
     const ro = new ResizeObserver(([entry]) => {
-      setContainerHeight(entry.contentRect.height || 600);
       setContainerWidth(entry.contentRect.width || (typeof window !== 'undefined' ? window.innerWidth : 1440));
     });
     ro.observe(containerRef.current);
@@ -184,6 +184,10 @@ export const DriftWall: React.FC<DriftWallProps> = ({
   );
 
   useEffect(() => {
+    applyPlaneTransform(0, 0);
+  }, [applyPlaneTransform]);
+
+  useEffect(() => {
     let isVisible = true;
 
     const animate = (ts: number) => {
@@ -202,9 +206,13 @@ export const DriftWall: React.FC<DriftWallProps> = ({
       const targetX = isAnyColHovered ? pointerDampedRef.current.x : pointerRef.current.x * maxTilt;
       const targetY = isAnyColHovered ? pointerDampedRef.current.y : -pointerRef.current.y * maxTilt;
       const damp = 1 - Math.exp(-dt / (isAnyColHovered ? 0.35 : 0.12));
-      pointerDampedRef.current.x += (targetX - pointerDampedRef.current.x) * damp;
-      pointerDampedRef.current.y += (targetY - pointerDampedRef.current.y) * damp;
-      applyPlaneTransform(pointerDampedRef.current.x, pointerDampedRef.current.y);
+      const diffX = targetX - pointerDampedRef.current.x;
+      const diffY = targetY - pointerDampedRef.current.y;
+      if (Math.abs(diffX) > 0.002 || Math.abs(diffY) > 0.002) {
+        pointerDampedRef.current.x += diffX * damp;
+        pointerDampedRef.current.y += diffY * damp;
+        applyPlaneTransform(pointerDampedRef.current.x, pointerDampedRef.current.y);
+      }
 
       if (!reduced) {
         const isWallPaused = pauseOnHover && wallHoveredRef.current;
@@ -342,9 +350,20 @@ export const DriftWall: React.FC<DriftWallProps> = ({
     }
   }, []);
 
+  const rectRef = useRef<DOMRect | null>(null);
+
+  const handlePointerEnter = useCallback(() => {
+    wallHoveredRef.current = true;
+    rectRef.current = containerRef.current?.getBoundingClientRect() ?? null;
+  }, []);
+
   const handlePointerMove = useCallback(
     (e: React.PointerEvent) => {
-      const rect = containerRef.current?.getBoundingClientRect();
+      let rect = rectRef.current;
+      if (!rect && containerRef.current) {
+        rect = containerRef.current.getBoundingClientRect();
+        rectRef.current = rect;
+      }
       if (!rect) return;
       if (parallax > 0 && !reduced) {
         pointerRef.current = {
@@ -370,6 +389,7 @@ export const DriftWall: React.FC<DriftWallProps> = ({
       activeColElRef.current = null;
     }
     wallHoveredRef.current = false;
+    rectRef.current = null;
     hoveredColRef.current = -1;
     hoveredTileIdRef.current = null;
     pointerRef.current = { x: 0, y: 0 };
@@ -440,9 +460,7 @@ export const DriftWall: React.FC<DriftWallProps> = ({
       className={rootClass}
       style={cssVars}
       onPointerMove={handlePointerMove}
-      onPointerEnter={() => {
-        wallHoveredRef.current = true;
-      }}
+      onPointerEnter={handlePointerEnter}
       onPointerLeave={handlePointerLeaveWall}
       role="group"
       aria-label="Drifting wall of tiles"
