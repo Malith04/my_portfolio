@@ -94,20 +94,20 @@ export const ServicesAccordion: React.FC = () => {
     <section id="services" className="py-24 px-4 relative overflow-hidden">
       <div className="max-w-7xl mx-auto space-y-12">
         {/* Section Header */}
-        <AnimatedSectionHeader className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-white/10">
+        <AnimatedSectionHeader className="flex flex-col md:flex-row md:items-end justify-between gap-6 pb-6 border-b border-white/10 [.light_&]:border-slate-300/80">
           <div className="space-y-3 max-w-xl">
             <div className="flex items-center gap-2">
               <span className="w-2 h-2 rounded-full bg-accent animate-pulse" />
-              <p className="text-xs font-display font-semibold uppercase tracking-[0.22em] text-accent">
+              <p className="text-xs font-display font-semibold uppercase tracking-[0.22em] text-accent [.light_&]:text-emerald-700">
                 • SPECIALIZED CAPABILITIES
               </p>
             </div>
-            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-semibold tracking-tight text-white leading-[1.1]">
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-display font-semibold tracking-tight text-white [.light_&]:text-slate-900 leading-[1.1]">
               Expertise to ship <br className="hidden sm:inline" />
               <span className="text-gradient">quality products</span>.
             </h2>
           </div>
-          <p className="text-slate-300 font-display text-sm md:text-base max-w-md leading-relaxed">
+          <p className="text-slate-300 [.light_&]:text-slate-600 font-display text-sm md:text-base max-w-md leading-relaxed">
             Delivering end-to-end engineering excellence from initial design system architecture to cloud-native production deployments.
           </p>
         </AnimatedSectionHeader>
@@ -124,8 +124,8 @@ export const ServicesAccordion: React.FC = () => {
                   key={service.id}
                   className={`rounded-2xl border transition-all duration-300 overflow-hidden ${
                     isOpen
-                      ? 'bg-[#0B0F1C]/95 border-primary/50 shadow-[0_10px_30px_rgba(0,0,0,0.5)]'
-                      : 'bg-[#080B14]/60 border-white/10 hover:border-white/20'
+                      ? 'bg-[#0B0F1C]/95 [.light_&]:bg-white border-primary/50 shadow-[0_10px_30px_rgba(0,0,0,0.5)] [.light_&]:shadow-xl'
+                      : 'bg-[#080B14]/60 [.light_&]:bg-slate-100/70 border-white/10 [.light_&]:border-slate-300/70 hover:border-white/20 [.light_&]:hover:border-slate-400'
                   }`}
                 >
                   {/* Accordion Toggle Header */}
@@ -135,15 +135,15 @@ export const ServicesAccordion: React.FC = () => {
                     aria-expanded={isOpen}
                   >
                     <div className="flex items-center gap-4">
-                      <div className="p-2.5 rounded-xl bg-white/5 border border-white/10 flex-shrink-0">
+                      <div className="p-2.5 rounded-xl bg-white/5 [.light_&]:bg-white border border-white/10 [.light_&]:border-slate-300/70 flex-shrink-0 shadow-sm">
                         {service.icon}
                       </div>
                       <div>
-                        <p className="text-[10px] font-display font-semibold uppercase tracking-[0.18em] text-slate-400 mb-0.5">
+                        <p className="text-[10px] font-display font-semibold uppercase tracking-[0.18em] text-slate-400 [.light_&]:text-slate-500 mb-0.5">
                           {service.category}
                         </p>
                         <h3 className={`text-lg sm:text-xl font-display font-semibold transition-colors ${
-                          isOpen ? 'text-white' : 'text-slate-200'
+                          isOpen ? 'text-white [.light_&]:text-slate-900' : 'text-slate-200 [.light_&]:text-slate-700'
                         }`}>
                           {service.title}
                         </h3>
@@ -154,7 +154,7 @@ export const ServicesAccordion: React.FC = () => {
                     <div className={`w-8 h-8 rounded-full border flex items-center justify-center flex-shrink-0 transition-all ${
                       isOpen
                         ? 'border-primary/50 bg-primary/20 text-primary rotate-180'
-                        : 'border-white/15 bg-white/5 text-slate-400'
+                        : 'border-white/15 [.light_&]:border-slate-300/70 bg-white/5 [.light_&]:bg-white text-slate-400 [.light_&]:text-slate-600'
                     }`}>
                       {isOpen ? <Minus size={16} /> : <Plus size={16} />}
                     </div>
@@ -198,18 +198,18 @@ export const ServicesAccordion: React.FC = () => {
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4 }}
-              className="rounded-3xl border border-white/15 bg-[#090C18]/90 backdrop-blur-2xl p-6 shadow-2xl space-y-5"
+              className="rounded-3xl border border-white/15 [.light_&]:border-slate-300/80 bg-[#090C18]/90 [.light_&]:bg-white/95 backdrop-blur-2xl p-6 shadow-2xl [.light_&]:shadow-xl space-y-5"
             >
               {/* Preview Image with Device Frame styling */}
-              <div className="relative h-60 rounded-2xl overflow-hidden border border-white/10 bg-black/60 shadow-inner">
+              <div className="relative h-60 rounded-2xl overflow-hidden border border-white/10 [.light_&]:border-slate-200 bg-black/60 [.light_&]:bg-slate-100 shadow-inner">
                 <img
                   src={activeService.previewImage}
                   alt={activeService.title}
                   className="w-full h-full object-cover object-center"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-[#090C18] via-transparent to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-[#090C18] [.light_&]:from-white via-transparent to-transparent" />
                 <div className="absolute top-3 left-3">
-                  <span className="px-3 py-1 rounded-full bg-black/80 backdrop-blur-md border border-white/15 text-[10px] font-display font-semibold uppercase tracking-wider text-primary">
+                  <span className="px-3 py-1 rounded-full bg-black/80 [.light_&]:bg-white/90 backdrop-blur-md border border-white/15 [.light_&]:border-slate-300 text-[10px] font-display font-semibold uppercase tracking-wider text-primary [.light_&]:text-teal-700 shadow-sm">
                     {activeService.previewBadge}
                   </span>
                 </div>
@@ -217,13 +217,13 @@ export const ServicesAccordion: React.FC = () => {
 
               {/* Summary Details */}
               <div className="space-y-2">
-                <p className="text-[10px] font-display font-semibold uppercase tracking-[0.2em] text-primary">
+                <p className="text-[10px] font-display font-semibold uppercase tracking-[0.2em] text-primary [.light_&]:text-teal-700">
                   {activeService.category}
                 </p>
-                <h4 className="text-xl font-display font-semibold text-white tracking-tight">
+                <h4 className="text-xl font-display font-semibold text-white [.light_&]:text-slate-900 tracking-tight">
                   {activeService.title}
                 </h4>
-                <p className="text-xs text-slate-300 font-display leading-relaxed">
+                <p className="text-xs text-slate-300 [.light_&]:text-slate-600 font-display leading-relaxed">
                   {activeService.previewDesc}
                 </p>
               </div>
@@ -231,7 +231,7 @@ export const ServicesAccordion: React.FC = () => {
               <div className="pt-2">
                 <a
                   href="#contact"
-                  className="inline-flex items-center gap-2 text-xs font-display font-semibold uppercase tracking-[0.18em] text-primary hover:text-white transition-colors"
+                  className="inline-flex items-center gap-2 text-xs font-display font-semibold uppercase tracking-[0.18em] text-primary [.light_&]:text-teal-700 hover:text-white [.light_&]:hover:text-teal-900 transition-colors"
                 >
                   Consult for your project
                   <ArrowRight size={14} />

@@ -170,7 +170,7 @@ export const Silk: React.FC<SilkProps> = ({
   return (
     <div className={`w-full h-full ${className}`} style={style}>
       <Canvas
-        dpr={[1, 1.25]}
+        dpr={1}
         gl={{
           antialias: false,
           depth: false,

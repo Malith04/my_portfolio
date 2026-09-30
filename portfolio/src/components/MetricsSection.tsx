@@ -50,22 +50,7 @@ export const MetricsSection: React.FC = () => {
   const sectionRef = useRef<HTMLElement>(null)
   const [isCounting, setIsCounting] = useState(false)
 
-  // Track dynamic window dimensions for responsive card bounds
-  const [dimensions, setDimensions] = useState({
-    width: typeof window !== 'undefined' ? window.innerWidth : 1440,
-    height: typeof window !== 'undefined' ? window.innerHeight : 900
-  })
 
-  useEffect(() => {
-    const handleResize = () => {
-      setDimensions({
-        width: window.innerWidth,
-        height: window.innerHeight
-      })
-    }
-    window.addEventListener('resize', handleResize)
-    return () => window.removeEventListener('resize', handleResize)
-  }, [])
 
   // Scroll tracking throughout the pinned section
   const { scrollYProgress } = useScroll({
@@ -116,12 +101,7 @@ export const MetricsSection: React.FC = () => {
     [0.97, 0.97, 1.0]
   )
 
-  // 3. Initial Teaser inside center card (fades out as side cards & signature appear)
-  const initialTeaserOpacity = useTransform(
-    smoothProgress,
-    [0.05, 0.18],
-    [1, 0]
-  )
+
 
   // 4. Center Card Bottom Content (Signature & Statement - fades in and STAYS visible)
   const bottomContentOpacity = useTransform(
@@ -167,17 +147,11 @@ export const MetricsSection: React.FC = () => {
       {/* Desktop Sticky Stage: Padded top (pt-20) to ensure zero navbar collision on all laptop heights */}
       <div className="hidden lg:flex sticky top-0 h-screen w-full items-center justify-center overflow-hidden z-20 pt-20 pb-8">
         
-        {/* Cinematic Pure Pitch-Black Architectural Canvas (Zero Blue Vignette/Bleed) */}
+        {/* Pure Solid Black Background Canvas (Grid squares completely removed - 100% clean solid black) */}
         <motion.div
           style={{ opacity: canvasOpacity }}
           className="absolute inset-0 bg-black [.light_&]:bg-[#F6F4EE] transition-colors pointer-events-none"
-        >
-          {/* Edge-to-edge crisp architectural grid lines */}
-          <div className="absolute inset-0 bg-[linear-gradient(to_right,rgba(255,255,255,0.045)_1px,transparent_1px),linear-gradient(to_bottom,rgba(255,255,255,0.045)_1px,transparent_1px)] [.light_&]:bg-[linear-gradient(to_right,rgba(0,0,0,0.05)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,0,0,0.05)_1px,transparent_1px)] bg-[size:72px_72px]" />
-          
-          {/* Subtle center spotlight for deep spatial contrast */}
-          <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[900px] h-[450px] bg-gradient-to-r from-primary/[0.04] via-accent/[0.02] to-transparent blur-[140px] pointer-events-none rounded-full" />
-        </motion.div>
+        />
 
         {/* 3-Column Stage: Balanced and comfortable spacing fitting every screen height */}
         <div className="relative z-10 w-full max-w-[1300px] mx-auto flex items-center justify-center gap-10 xl:gap-14 px-6">
@@ -221,87 +195,55 @@ export const MetricsSection: React.FC = () => {
 
           </div>
 
-          {/* CENTER HERO CARD: Perfectly proportioned with comfortable internal padding (Zero Text Clipping) */}
+          {/* CENTER HERO CARD: Compact, refined proportions with words centered in container */}
           <motion.div
             style={{
               scale: cardScale,
             }}
-            className="relative w-[420px] xl:w-[450px] h-[490px] xl:h-[510px] shrink-0 flex flex-col justify-between overflow-hidden rounded-[26px] z-30 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
+            className="relative w-[350px] xl:w-[380px] h-[380px] xl:h-[400px] shrink-0 flex flex-col items-center justify-between p-6 sm:p-7 overflow-hidden rounded-[24px] z-30 shadow-[0_20px_50px_rgba(0,0,0,0.5)]"
           >
             {/* Layer 1: Website Container Styling (Visible initially at start on website background) */}
             <div className="absolute inset-0 bg-[#090C16]/90 [.light_&]:bg-white/95 border border-white/10 [.light_&]:border-slate-300/70 backdrop-blur-2xl rounded-[inherit]" />
-            <div className="absolute top-0 right-0 w-64 h-64 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
+            <div className="absolute top-0 right-0 w-56 h-56 bg-primary/10 rounded-full blur-3xl pointer-events-none" />
 
             {/* Layer 2: Deep Black Card Overlay (Fades in when animation begins) */}
             <motion.div
               style={{ opacity: cardBlackOpacity }}
-              className="absolute inset-0 bg-[#030408] border border-white/[0.12] rounded-[inherit] shadow-[0_30px_100px_rgba(0,0,0,0.95)] pointer-events-none"
+              className="absolute inset-0 bg-[#030408] [.light_&]:bg-white border border-white/[0.12] [.light_&]:border-slate-300/80 rounded-[inherit] shadow-[0_30px_100px_rgba(0,0,0,0.95)] [.light_&]:shadow-[0_20px_50px_rgba(0,0,0,0.08)] pointer-events-none"
             >
               <div className="absolute inset-0 bg-gradient-to-b from-primary/[0.03] via-transparent to-accent/[0.02]" />
             </motion.div>
 
-            {/* TOP / HEADER AREA */}
-            <div className="relative z-10 w-full p-6 sm:p-7 xl:p-8 space-y-3 text-left">
+            {/* CENTERED HEADLINE & KICKER BLOCK: Positioned in the center of the container */}
+            <div className="relative z-10 w-full flex flex-col items-center justify-center text-center space-y-3.5 my-auto">
               {/* Kicker badge */}
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10 backdrop-blur-md">
-                <span className="w-2 h-2 rounded-full bg-primary animate-pulse shadow-[0_0_8px_#00F5D4]" />
-                <span className="text-[10px] xl:text-[11px] font-display font-semibold uppercase tracking-[0.22em] text-primary">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 [.light_&]:bg-teal-50 border border-white/10 [.light_&]:border-teal-200 backdrop-blur-md mx-auto">
+                <span className="w-2 h-2 rounded-full bg-primary [.light_&]:bg-teal-500 animate-pulse shadow-[0_0_8px_#00F5D4]" />
+                <span className="text-[10px] xl:text-[11px] font-display font-semibold uppercase tracking-[0.22em] text-primary [.light_&]:text-teal-700">
                   • • • IMPACT &amp; ENGINEERING METRICS
                 </span>
               </div>
 
-              {/* Large Editorial Headline */}
-              <div className="space-y-1 pt-0.5">
-                <div className="text-2xl sm:text-3xl xl:text-[35px] font-display font-semibold tracking-tight text-white leading-tight">
+              {/* Editorial Headline: Exact Center, Zero Descender Clipping */}
+              <div className="space-y-0.5 flex flex-col items-center text-center w-full">
+                <div className="text-2xl sm:text-[28px] xl:text-[32px] font-display font-semibold tracking-tight text-white [.light_&]:text-slate-900 leading-snug">
                   Engineering that
                 </div>
-                <div className="text-2xl sm:text-3xl xl:text-[35px] font-display font-semibold tracking-tight text-gradient leading-tight">
+                <div className="text-2xl sm:text-[28px] xl:text-[32px] font-display font-semibold tracking-tight text-gradient leading-[1.32] pb-2 px-1 overflow-visible">
                   drives real impact.
                 </div>
               </div>
             </div>
 
-            {/* MIDDLE: Initial teaser at start -> Breathing room when animation begins */}
-            <div className="relative z-10 px-6 sm:p-7 xl:p-8 my-auto">
-              <motion.p
-                style={{ opacity: initialTeaserOpacity }}
-                className="text-xs sm:text-[13px] text-slate-300 font-display leading-relaxed border-l-2 border-primary/50 pl-3 max-w-[320px]"
-              >
-                Disciplined engineering principles, full-stack cloud architectures, and seamless 60fps interactive execution.
-              </motion.p>
-            </div>
-
-            {/* BOTTOM / SIGNATURE & EDITORIAL STATEMENT (Clean, safe padding: Zero Text Cutoff) */}
+            {/* BOTTOM / EDITORIAL STATEMENT */}
             <motion.div
               style={{
                 opacity: bottomContentOpacity,
                 y: bottomContentY,
               }}
-              className="relative z-10 p-6 sm:p-7 xl:p-8 pt-0 pb-6 flex items-end justify-between gap-4"
+              className="relative z-10 w-full pt-2 pb-1 flex justify-center text-center"
             >
-              {/* Handwritten signature in SVG */}
-              <div className="shrink-0 space-y-1">
-                <svg
-                  className="w-28 xl:w-32 h-8 text-primary/90"
-                  viewBox="0 0 170 46"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-                >
-                  <path
-                    d="M8 36C14 20 22 8 30 12C36 16 32 36 26 40C22 42 18 32 24 20C30 8 38 14 44 24C50 34 56 38 62 30C68 22 74 10 80 16C86 22 88 34 94 36C100 36 106 28 112 24C118 20 124 22 130 28C134 32 140 38 146 34C152 30 158 18 164 22"
-                    stroke="currentColor"
-                    strokeWidth="2.2"
-                    strokeLinecap="round"
-                    strokeLinejoin="round"
-                  />
-                </svg>
-                <div className="text-[9px] font-mono uppercase tracking-[0.2em] text-primary/80">
-                  Malith Raja
-                </div>
-              </div>
-
-              {/* Statement description with comfortable line-clamp protection */}
-              <p className="text-[11px] xl:text-[12px] text-slate-300 font-display leading-relaxed max-w-[195px] text-right border-r-2 border-primary/50 pr-2.5">
+              <p className="text-[11px] xl:text-[12px] text-slate-300 [.light_&]:text-slate-600 font-display leading-relaxed max-w-[270px] text-center">
                 Every project is approached with disciplined engineering, clean execution, and a strong focus on usability.
               </p>
             </motion.div>
@@ -336,7 +278,7 @@ export const MetricsSection: React.FC = () => {
               }}
               className="space-y-2 flex flex-col items-start text-left"
             >
-              <div className="text-5xl xl:text-6xl 2xl:text-7xl font-display font-bold tracking-tight leading-none select-none text-white hover:text-gradient transition-all">
+              <div className="text-5xl xl:text-6xl 2xl:text-7xl font-display font-bold tracking-tight leading-none select-none text-white [.light_&]:text-slate-900 hover:text-gradient transition-all">
                 Innovior
               </div>
               <div className="text-[10px] xl:text-[11px] font-display font-semibold uppercase tracking-[0.18em] text-slate-400 [.light_&]:text-slate-600 max-w-[190px] leading-relaxed">
@@ -350,66 +292,61 @@ export const MetricsSection: React.FC = () => {
       </div>
 
       {/* Mobile & Tablet Responsive Layout (< lg screens) */}
-      <div className="lg:hidden py-24 px-5 sm:px-8 relative z-10 space-y-12 max-w-2xl mx-auto">
+      <div className="lg:hidden py-16 px-4 sm:px-8 relative z-10 space-y-10 max-w-2xl mx-auto">
         {/* Mobile Header Card */}
-        <div className="relative w-full rounded-3xl p-8 sm:p-10 bg-[#090C16]/95 border border-white/10 shadow-2xl space-y-6">
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 border border-white/10">
-            <span className="w-2 h-2 rounded-full bg-primary animate-pulse" />
-            <span className="text-[10px] font-display font-semibold uppercase tracking-[0.22em] text-primary">
+        <div className="relative w-full rounded-3xl p-6 sm:p-10 bg-[#090C16]/95 [.light_&]:bg-white/95 border border-white/10 [.light_&]:border-slate-300/80 shadow-2xl space-y-5">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/5 [.light_&]:bg-teal-50 border border-white/10 [.light_&]:border-teal-200">
+            <span className="w-2 h-2 rounded-full bg-primary [.light_&]:bg-teal-500 animate-pulse" />
+            <span className="text-[10px] font-display font-semibold uppercase tracking-[0.22em] text-primary [.light_&]:text-teal-700">
               • • • IMPACT &amp; ENGINEERING METRICS
             </span>
           </div>
 
-          <div className="space-y-1">
-            <div className="text-3xl sm:text-4xl font-display font-semibold tracking-tight text-white leading-tight">
+          <div className="space-y-1 text-center flex flex-col items-center">
+            <div className="text-2xl sm:text-4xl font-display font-semibold tracking-tight text-white [.light_&]:text-slate-900 leading-snug">
               Engineering that
             </div>
-            <div className="text-3xl sm:text-4xl font-display font-semibold tracking-tight text-gradient leading-tight">
+            <div className="text-2xl sm:text-4xl font-display font-semibold tracking-tight text-gradient leading-[1.32] pb-1 px-1">
               drives real impact.
             </div>
           </div>
 
-          <p className="text-sm text-slate-300 font-display leading-relaxed border-l-2 border-primary/60 pl-3">
+          <p className="text-xs sm:text-sm text-slate-300 [.light_&]:text-slate-600 font-display leading-relaxed text-center max-w-lg mx-auto">
             Every project is approached with disciplined engineering, clean execution, and a strong focus on usability.
           </p>
-
-          <div className="flex items-center justify-between pt-4 border-t border-white/[0.08]">
-            <div className="text-xs font-display font-semibold text-primary">Malith Raja</div>
-            <span className="text-[10px] font-mono text-slate-400">Full Stack Engineer</span>
-          </div>
         </div>
 
         {/* Mobile Typographic Stats with Count-Up */}
-        <div className="grid grid-cols-2 gap-8 pt-4">
-          <div className="space-y-2">
-            <div className="text-4xl sm:text-5xl font-display font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
+        <div className="grid grid-cols-2 gap-5 sm:gap-8 pt-2">
+          <div className="space-y-1.5">
+            <div className="text-3xl sm:text-5xl font-display font-bold bg-gradient-to-r from-primary to-accent bg-clip-text text-transparent">
               <AnimatedCounter value={15} suffix="+" duration={1.2} trigger={true} />
             </div>
-            <div className="text-[10px] font-display font-semibold uppercase tracking-[0.18em] text-slate-400 leading-relaxed">
+            <div className="text-[10px] font-display font-semibold uppercase tracking-[0.18em] text-slate-400 [.light_&]:text-slate-600 leading-relaxed">
               SHIPPED FULL-STACK SYSTEMS
             </div>
           </div>
-          <div className="space-y-2">
-            <div className="text-4xl sm:text-5xl font-display font-bold bg-gradient-to-r from-cyber-sky to-primary bg-clip-text text-transparent">
+          <div className="space-y-1.5">
+            <div className="text-3xl sm:text-5xl font-display font-bold bg-gradient-to-r from-cyber-sky to-primary bg-clip-text text-transparent">
               <AnimatedCounter value={100} suffix="%" duration={1.5} trigger={true} />
             </div>
-            <div className="text-[10px] font-display font-semibold uppercase tracking-[0.18em] text-slate-400 leading-relaxed">
+            <div className="text-[10px] font-display font-semibold uppercase tracking-[0.18em] text-slate-400 [.light_&]:text-slate-600 leading-relaxed">
               TYPE-SAFE 60FPS FLUIDITY
             </div>
           </div>
-          <div className="space-y-2">
-            <div className="text-4xl sm:text-5xl font-display font-bold bg-gradient-to-r from-secondary via-cyber-sky to-primary bg-clip-text text-transparent">
+          <div className="space-y-1.5">
+            <div className="text-3xl sm:text-5xl font-display font-bold bg-gradient-to-r from-secondary via-cyber-sky to-primary bg-clip-text text-transparent">
               <AnimatedCounter value={11} suffix=" Yrs" duration={1.1} trigger={true} />
             </div>
-            <div className="text-[10px] font-display font-semibold uppercase tracking-[0.18em] text-slate-400 leading-relaxed">
+            <div className="text-[10px] font-display font-semibold uppercase tracking-[0.18em] text-slate-400 [.light_&]:text-slate-600 leading-relaxed">
               ACADEMIC FOUNDATION
             </div>
           </div>
-          <div className="space-y-2">
-            <div className="text-4xl sm:text-5xl font-display font-bold text-white">
+          <div className="space-y-1.5">
+            <div className="text-3xl sm:text-5xl font-display font-bold text-white [.light_&]:text-slate-900">
               Innovior
             </div>
-            <div className="text-[10px] font-display font-semibold uppercase tracking-[0.18em] text-slate-400 leading-relaxed">
+            <div className="text-[10px] font-display font-semibold uppercase tracking-[0.18em] text-slate-400 [.light_&]:text-slate-600 leading-relaxed">
               FULL STACK DEVELOPER INTERN
             </div>
           </div>

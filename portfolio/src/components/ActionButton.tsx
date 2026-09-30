@@ -105,7 +105,7 @@ const ActionButton = ({ theme, onToggleTheme }: ActionButtonProps) => {
     <>
       {/* Action Button */}
       <motion.div
-        className="fixed bottom-8 right-8 z-50"
+        className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 z-50"
         initial={{ scale: 0 }}
         animate={{ scale: 1 }}
         transition={{ delay: 1 }}
@@ -114,9 +114,9 @@ const ActionButton = ({ theme, onToggleTheme }: ActionButtonProps) => {
           onClick={() => setIsMenuOpen(!isMenuOpen)}
           whileHover={{ scale: 1.1, rotate: 180 }}
           whileTap={{ scale: 0.9 }}
-          className="w-14 h-14 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center text-black shadow-lg hover:shadow-primary/50 transition-all"
+          className="w-12 h-12 sm:w-14 sm:h-14 bg-gradient-to-r from-primary to-accent rounded-full flex items-center justify-center text-black shadow-lg hover:shadow-primary/50 transition-all"
         >
-          <Settings size={24} />
+          <Settings size={22} />
         </motion.button>
 
         {/* Action Menu */}
@@ -126,26 +126,26 @@ const ActionButton = ({ theme, onToggleTheme }: ActionButtonProps) => {
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: 20 }}
-              className="absolute bottom-20 right-0 bg-black/90 backdrop-blur-md border border-white/10 rounded-xl p-2 space-y-2 min-w-[200px]"
+              className="absolute bottom-16 sm:bottom-20 right-0 bg-black/90 [.light_&]:bg-white/95 backdrop-blur-md border border-white/10 [.light_&]:border-slate-300 rounded-2xl p-2 space-y-2 min-w-[210px] shadow-2xl [.light_&]:shadow-slate-300/60"
             >
               <button
                 onClick={() => {
                   onToggleTheme()
                   setIsMenuOpen(false)
                 }}
-                className="w-full flex items-center gap-3 px-4 py-3 hover:bg-white/10 rounded-lg transition-all"
+                className="w-full flex items-center gap-3 px-4 py-3 hover:bg-white/10 [.light_&]:hover:bg-slate-100 rounded-xl transition-all text-white [.light_&]:text-slate-800 cursor-pointer font-display font-medium text-sm"
               >
-                {theme === 'dark' ? <Sun size={20} /> : <Moon size={20} />}
-                <span>Change Theme</span>
+                {theme === 'dark' ? <Sun size={18} className="text-amber-400" /> : <Moon size={18} className="text-slate-700" />}
+                <span>{theme === 'dark' ? 'Switch to Light' : 'Switch to Dark'}</span>
               </button>
               <button
                 onClick={() => {
                   setIsChatOpen(true)
                   setIsMenuOpen(false)
                 }}
-                className="w-full flex items-center gap-3 px-4 py-3 hover:bg-white/10 rounded-lg transition-all"
+                className="w-full flex items-center gap-3 px-4 py-3 hover:bg-white/10 [.light_&]:hover:bg-slate-100 rounded-xl transition-all text-white [.light_&]:text-slate-800 cursor-pointer font-display font-medium text-sm"
               >
-                <MessageCircle size={20} />
+                <MessageCircle size={18} className="text-primary [.light_&]:text-teal-600" />
                 <span>Open Chat</span>
               </button>
             </motion.div>
@@ -160,33 +160,33 @@ const ActionButton = ({ theme, onToggleTheme }: ActionButtonProps) => {
             initial={{ opacity: 0, scale: 0.8, y: 50 }}
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.8, y: 50 }}
-            className="fixed bottom-8 right-8 w-96 h-[500px] bg-black/95 backdrop-blur-md border border-white/10 rounded-xl shadow-2xl z-50 flex flex-col"
+            className="fixed bottom-4 right-4 sm:bottom-8 sm:right-8 w-[calc(100vw-2rem)] sm:w-96 h-[480px] max-h-[82vh] bg-black/95 [.light_&]:bg-white/95 backdrop-blur-md border border-white/10 [.light_&]:border-slate-300 rounded-2xl shadow-2xl z-50 flex flex-col [.light_&]:text-slate-900"
           >
             {/* Header */}
-            <div className="flex items-center justify-between p-4 border-b border-white/10">
-              <h3 className="font-bold flex items-center gap-2">
+            <div className="flex items-center justify-between p-4 border-b border-white/10 [.light_&]:border-slate-200">
+              <h3 className="font-bold flex items-center gap-2 [.light_&]:text-slate-900 font-display">
                 💬 Chat with Malith
               </h3>
               <button
                 onClick={() => setIsChatOpen(false)}
-                className="hover:bg-white/10 p-2 rounded-lg transition-all"
+                className="hover:bg-white/10 [.light_&]:hover:bg-slate-100 p-2 rounded-lg transition-all text-white [.light_&]:text-slate-700"
               >
                 <X size={20} />
               </button>
             </div>
 
             {/* Messages */}
-            <div className="flex-1 overflow-y-auto p-4 space-y-4">
+            <div data-lenis-prevent className="flex-1 overflow-y-auto p-4 space-y-4 no-scrollbar">
               {messages.map((msg, i) => (
                 <div
                   key={i}
                   className={`flex ${msg.isBot ? 'justify-start' : 'justify-end'}`}
                 >
                   <div
-                    className={`max-w-[80%] px-4 py-2 rounded-xl ${
+                    className={`max-w-[80%] px-4 py-2 rounded-xl text-sm leading-relaxed ${
                       msg.isBot
-                        ? 'bg-white/10 text-white'
-                        : 'bg-gradient-to-r from-primary to-accent text-black'
+                        ? 'bg-white/10 text-white [.light_&]:bg-slate-100 [.light_&]:text-slate-800 border border-transparent [.light_&]:border-slate-200'
+                        : 'bg-gradient-to-r from-primary to-accent text-black font-medium shadow-sm'
                     }`}
                   >
                     {msg.text}
@@ -196,7 +196,7 @@ const ActionButton = ({ theme, onToggleTheme }: ActionButtonProps) => {
             </div>
 
             {/* Input */}
-            <div className="p-4 border-t border-white/10">
+            <div className="p-4 border-t border-white/10 [.light_&]:border-slate-200">
               <div className="flex gap-2">
                 <input
                   type="text"
@@ -204,7 +204,7 @@ const ActionButton = ({ theme, onToggleTheme }: ActionButtonProps) => {
                   onChange={(e) => setInput(e.target.value)}
                   onKeyPress={(e) => e.key === 'Enter' && handleSend()}
                   placeholder="Type your message..."
-                  className="flex-1 px-4 py-2 bg-white/5 border border-white/10 rounded-lg focus:border-primary focus:outline-none"
+                  className="flex-1 px-4 py-2 bg-white/5 border border-white/10 rounded-lg focus:border-primary focus:outline-none [.light_&]:bg-white [.light_&]:border-slate-300 [.light_&]:text-slate-900 [.light_&]:placeholder-slate-400 text-sm"
                 />
                 <button
                   onClick={handleSend}

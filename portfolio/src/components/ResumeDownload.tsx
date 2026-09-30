@@ -347,23 +347,23 @@ const ResumeDownload = ({ variant = 'compact' }: ResumeDownloadProps) => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           exit={{ opacity: 0 }}
-          className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+          className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-2.5 sm:p-4"
           onClick={() => setIsPreviewOpen(false)}
         >
           <motion.div
-            initial={{ scale: 0.9, opacity: 0 }}
+            initial={{ scale: 0.95, opacity: 0 }}
             animate={{ scale: 1, opacity: 1 }}
-            exit={{ scale: 0.9, opacity: 0 }}
-            className="bg-white text-black rounded-2xl max-w-4xl max-h-[90vh] overflow-hidden shadow-2xl"
+            exit={{ scale: 0.95, opacity: 0 }}
+            className="bg-white text-black rounded-2xl w-full max-w-4xl max-h-[92vh] overflow-hidden shadow-2xl flex flex-col"
             onClick={(e) => e.stopPropagation()}
           >
             {/* Header */}
-            <div className="p-6 bg-gradient-to-r from-primary to-accent">
+            <div className="p-4 sm:p-6 bg-gradient-to-r from-primary to-accent flex-shrink-0">
               <div className="flex items-center justify-between text-black">
-                <h2 className="text-2xl font-bold">Resume Preview</h2>
+                <h2 className="text-xl sm:text-2xl font-bold">Resume Preview</h2>
                 <button
                   onClick={() => setIsPreviewOpen(false)}
-                  className="text-black hover:text-gray-700 text-2xl"
+                  className="p-1 rounded-lg text-black hover:opacity-70 transition-opacity text-xl font-bold"
                 >
                   ✕
                 </button>
@@ -371,29 +371,29 @@ const ResumeDownload = ({ variant = 'compact' }: ResumeDownloadProps) => {
             </div>
 
             {/* Resume Content */}
-            <div className="p-8 overflow-y-auto max-h-[70vh] space-y-6">
+            <div data-lenis-prevent className="p-4 sm:p-8 overflow-y-auto max-h-[68vh] space-y-5 sm:space-y-6 no-scrollbar">
               {/* Personal Info */}
-              <div className="text-center border-b pb-6">
-                <h1 className="text-3xl font-bold mb-2">{resumeData.personalInfo.name}</h1>
-                <p className="text-xl text-gray-600 mb-4">{resumeData.personalInfo.title}</p>
-                <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600">
+              <div className="text-center border-b pb-5 sm:pb-6">
+                <h1 className="text-2xl sm:text-3xl font-bold mb-1 sm:mb-2">{resumeData.personalInfo.name}</h1>
+                <p className="text-sm sm:text-xl text-gray-600 mb-3 sm:mb-4">{resumeData.personalInfo.title}</p>
+                <div className="flex flex-wrap justify-center gap-3 sm:gap-4 text-xs sm:text-sm text-gray-600">
                   <div className="flex items-center gap-1">
-                    <MapPin size={16} />
+                    <MapPin size={14} />
                     <span>{resumeData.personalInfo.location}</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <Phone size={16} />
+                    <Phone size={14} />
                     <span>{resumeData.personalInfo.phone}</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <Mail size={16} />
+                    <Mail size={14} />
                     <span>{resumeData.personalInfo.email}</span>
                   </div>
                 </div>
-                <div className="flex flex-wrap justify-center gap-4 text-sm text-gray-600 mt-2">
-                  <span>LinkedIn: {resumeData.personalInfo.linkedin}</span>
-                  <span>GitHub: {resumeData.personalInfo.github}</span>
-                  <span>Portfolio: {resumeData.personalInfo.website}</span>
+                <div className="flex flex-wrap justify-center gap-2 sm:gap-4 text-xs sm:text-sm text-gray-600 mt-2">
+                  <span className="truncate max-w-[280px] sm:max-w-none">LinkedIn: {resumeData.personalInfo.linkedin}</span>
+                  <span className="truncate max-w-[280px] sm:max-w-none">GitHub: {resumeData.personalInfo.github}</span>
+                  <span className="truncate max-w-[280px] sm:max-w-none">Portfolio: {resumeData.personalInfo.website}</span>
                 </div>
               </div>
 

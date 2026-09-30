@@ -140,9 +140,9 @@ const AchievementTimeline: React.FC = () => {
         {/* Vertical Timeline */}
         <div className="relative">
           {/* Central Timeline Gradient Line */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-secondary transform md:-translate-x-0.5" />
+          <div className="absolute left-4 sm:left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-primary via-accent to-secondary transform md:-translate-x-0.5" />
 
-          <div className="space-y-12">
+          <div className="space-y-8 sm:space-y-12">
             {achievements.map((achievement, index) => (
               <motion.div
                 key={index}
@@ -155,41 +155,41 @@ const AchievementTimeline: React.FC = () => {
                 } flex-col md:gap-8`}
               >
                 {/* Timeline Dot Node */}
-                <div className="absolute left-8 md:left-1/2 w-4 h-4 bg-gradient-to-r from-primary to-accent rounded-full transform -translate-x-2 md:-translate-x-2 z-10 shadow-lg shadow-primary/50" />
+                <div className="absolute left-4 sm:left-8 md:left-1/2 w-3.5 h-3.5 sm:w-4 sm:h-4 bg-gradient-to-r from-primary to-accent rounded-full transform -translate-x-1.5 sm:-translate-x-2 md:-translate-x-2 z-10 shadow-lg shadow-primary/50" />
 
                 {/* Content Card */}
-                <div className={`w-full md:w-5/12 ml-16 md:ml-0 ${index % 2 === 0 ? '' : 'md:text-right'}`}>
+                <div className={`w-full md:w-5/12 ml-8 sm:ml-16 md:ml-0 ${index % 2 === 0 ? '' : 'md:text-right'}`}>
                   <motion.div
                     whileHover={{ y: -5, scale: 1.015 }}
-                    className="surface-card p-6 sm:p-7 hover:border-primary/50 hover:shadow-2xl transition-all"
+                    className="surface-card p-4 sm:p-7 hover:border-primary/50 hover:shadow-2xl transition-all"
                   >
                     {/* Year Badge */}
                     <div
-                      className={`inline-flex items-center gap-2 px-3 py-1 rounded-full text-xs font-semibold mb-4 ${achievement.bgColor} border border-white/10 text-white`}
+                      className={`inline-flex items-center gap-1.5 sm:gap-2 px-2.5 sm:px-3 py-1 rounded-full text-[11px] sm:text-xs font-semibold mb-3 sm:mb-4 ${achievement.bgColor} border border-white/10 text-white [.light_&]:text-slate-900`}
                     >
-                      <Calendar size={13} className="text-primary" />
+                      <Calendar size={13} className="text-primary flex-shrink-0" />
                       <span className="font-display tracking-wide">{achievement.year}</span>
                     </div>
 
                     {/* Achievement Header with Icon or Official School Crest */}
-                    <div className={`flex items-start gap-4 mb-4 ${index % 2 === 0 ? '' : 'md:flex-row-reverse'}`}>
+                    <div className={`flex items-start gap-3 sm:gap-4 mb-3 sm:mb-4 ${index % 2 === 0 ? '' : 'md:flex-row-reverse'}`}>
                       {achievement.badgeImage ? (
-                        <div className="w-14 h-14 rounded-2xl bg-white p-1.5 border border-white/40 flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-105 transition-transform">
+                        <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-white p-1 sm:p-1.5 border border-white/40 flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-105 transition-transform">
                           <img
                             src={achievement.badgeImage}
                             alt={achievement.title}
-                            className="w-full h-full object-contain rounded-xl"
+                            className="w-full h-full object-contain rounded-lg sm:rounded-xl"
                           />
                         </div>
                       ) : (
                         <div
-                          className={`w-12 h-12 rounded-xl ${achievement.bgColor} border border-white/10 flex items-center justify-center flex-shrink-0 shadow-md`}
+                          className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl ${achievement.bgColor} border border-white/10 flex items-center justify-center flex-shrink-0 shadow-md`}
                         >
                           {achievement.icon}
                         </div>
                       )}
-                      <div className="flex-1">
-                        <h3 className="text-lg sm:text-xl font-display font-bold text-white mb-1 leading-snug">
+                      <div className="flex-1 min-w-0">
+                        <h3 className="text-base sm:text-xl font-display font-bold text-white [.light_&]:text-slate-900 mb-1 leading-snug">
                           {achievement.title}
                         </h3>
                         <p className="text-primary text-xs sm:text-sm font-medium font-display">
@@ -199,7 +199,7 @@ const AchievementTimeline: React.FC = () => {
                     </div>
 
                     {/* Description */}
-                    <p className="text-slate-300 leading-relaxed mb-4 text-xs sm:text-sm font-display">
+                    <p className="text-slate-300 [.light_&]:text-slate-600 leading-relaxed mb-3 sm:mb-4 text-xs sm:text-sm font-display">
                       {achievement.description}
                     </p>
 
@@ -208,7 +208,7 @@ const AchievementTimeline: React.FC = () => {
                       {achievement.skills.map((skill, skillIndex) => (
                         <span
                           key={skillIndex}
-                          className="px-2.5 py-0.5 bg-white/5 border border-white/10 rounded-full text-[11px] text-slate-300 font-display font-medium"
+                          className="px-2 sm:px-2.5 py-0.5 bg-white/5 [.light_&]:bg-slate-200 border border-white/10 [.light_&]:border-slate-300 rounded-full text-[10px] sm:text-[11px] text-slate-300 [.light_&]:text-slate-700 font-display font-medium"
                         >
                           {skill}
                         </span>
@@ -229,38 +229,38 @@ const AchievementTimeline: React.FC = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-16 grid grid-cols-2 md:grid-cols-4 gap-6"
+          className="mt-12 sm:mt-16 grid grid-cols-2 md:grid-cols-4 gap-3 sm:gap-6"
         >
-          <div className="surface-card p-6 text-center border border-white/10 hover:border-primary/40 transition-all">
-            <div className="w-12 h-12 bg-primary/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-              <Award className="text-primary" size={24} />
+          <div className="surface-card p-4 sm:p-6 text-center border border-white/10 hover:border-primary/40 transition-all">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/20 rounded-xl flex items-center justify-center mx-auto mb-2 sm:mb-3">
+              <Award className="text-primary" size={20} />
             </div>
-            <div className="text-2xl sm:text-3xl font-bold font-display text-white">8</div>
-            <div className="text-slate-400 text-xs sm:text-sm font-display mt-1">Verified Milestones</div>
+            <div className="text-xl sm:text-3xl font-bold font-display text-white [.light_&]:text-slate-900">8</div>
+            <div className="text-slate-400 [.light_&]:text-slate-500 text-[11px] sm:text-sm font-display mt-0.5 sm:mt-1">Verified Milestones</div>
           </div>
 
-          <div className="surface-card p-6 text-center border border-white/10 hover:border-primary/40 transition-all">
-            <div className="w-12 h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-              <GraduationCap className="text-blue-400" size={24} />
+          <div className="surface-card p-4 sm:p-6 text-center border border-white/10 hover:border-primary/40 transition-all">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-blue-500/20 rounded-xl flex items-center justify-center mx-auto mb-2 sm:mb-3">
+              <GraduationCap className="text-blue-400" size={20} />
             </div>
-            <div className="text-2xl sm:text-3xl font-bold font-display text-white">BSc &amp; HND</div>
-            <div className="text-slate-400 text-xs sm:text-sm font-display mt-1">NIBM Software Eng</div>
+            <div className="text-xl sm:text-3xl font-bold font-display text-white [.light_&]:text-slate-900">BSc &amp; HND</div>
+            <div className="text-slate-400 [.light_&]:text-slate-500 text-[11px] sm:text-sm font-display mt-0.5 sm:mt-1">NIBM Software Eng</div>
           </div>
 
-          <div className="surface-card p-6 text-center border border-white/10 hover:border-primary/40 transition-all">
-            <div className="w-12 h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-              <Trophy className="text-emerald-400" size={24} />
+          <div className="surface-card p-4 sm:p-6 text-center border border-white/10 hover:border-primary/40 transition-all">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-emerald-500/20 rounded-xl flex items-center justify-center mx-auto mb-2 sm:mb-3">
+              <Trophy className="text-emerald-400" size={20} />
             </div>
-            <div className="text-2xl sm:text-3xl font-bold font-display text-white">11 Years</div>
-            <div className="text-slate-400 text-xs sm:text-sm font-display mt-1">Dharmaraja Heritage</div>
+            <div className="text-xl sm:text-3xl font-bold font-display text-white [.light_&]:text-slate-900">11 Years</div>
+            <div className="text-slate-400 [.light_&]:text-slate-500 text-[11px] sm:text-sm font-display mt-0.5 sm:mt-1">Dharmaraja Heritage</div>
           </div>
 
-          <div className="surface-card p-6 text-center border border-white/10 hover:border-primary/40 transition-all">
-            <div className="w-12 h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mx-auto mb-3">
-              <Briefcase className="text-purple-400" size={24} />
+          <div className="surface-card p-4 sm:p-6 text-center border border-white/10 hover:border-primary/40 transition-all">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-purple-500/20 rounded-xl flex items-center justify-center mx-auto mb-2 sm:mb-3">
+              <Briefcase className="text-purple-400" size={20} />
             </div>
-            <div className="text-2xl sm:text-3xl font-bold font-display text-white">Innovior</div>
-            <div className="text-slate-400 text-xs sm:text-sm font-display mt-1">Full Stack Intern</div>
+            <div className="text-xl sm:text-3xl font-bold font-display text-white [.light_&]:text-slate-900">Innovior</div>
+            <div className="text-slate-400 [.light_&]:text-slate-500 text-[11px] sm:text-sm font-display mt-0.5 sm:mt-1">Full Stack Intern</div>
           </div>
         </motion.div>
       </div>

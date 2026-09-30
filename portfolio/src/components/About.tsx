@@ -40,33 +40,33 @@ const About = () => {
           </h2>
         </AnimatedSectionHeader>
 
-        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-12 mb-16 items-center">
+        <div className="grid lg:grid-cols-[1.1fr_0.9fr] gap-8 sm:gap-12 mb-16 items-center">
           <motion.div
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="space-y-6"
+            className="space-y-5 sm:space-y-6"
           >
-            <div className="space-y-4">
-              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/40 bg-primary/10 text-primary text-xs font-display font-semibold uppercase tracking-wider">
+            <div className="space-y-3 sm:space-y-4">
+              <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full border border-primary/40 bg-primary/10 text-primary text-[11px] sm:text-xs font-display font-semibold uppercase tracking-wider">
                 <span className="w-2 h-2 rounded-full bg-accent animate-ping" />
                 Full Stack Developer Intern @ Innovior
               </div>
 
-              <h3 className="text-3xl sm:text-4xl font-display font-semibold text-white tracking-tight leading-tight">
+              <h3 className="text-2xl sm:text-4xl font-display font-semibold text-white [.light_&]:text-slate-900 tracking-tight leading-tight">
                 Crafting <span className="text-gradient">high-performance</span> digital products with modern web tech.
               </h3>
               
-              <p className="text-slate-300 leading-relaxed font-display text-base">
-                I am a Full Stack Developer Intern at <strong className="text-white">Innovior</strong> and a Computer Science undergraduate at <strong className="text-white">NIBM</strong>, following an enriching 11-year collegiate foundation at <strong className="text-white">Dharmaraja College, Kandy (2013–2024)</strong>.
+              <p className="text-slate-300 [.light_&]:text-slate-600 leading-relaxed font-display text-xs sm:text-base">
+                I am a Full Stack Developer Intern at <strong className="text-white [.light_&]:text-slate-900">Innovior</strong> and a Computer Science undergraduate at <strong className="text-white [.light_&]:text-slate-900">NIBM</strong>, following an enriching 11-year collegiate foundation at <strong className="text-white [.light_&]:text-slate-900">Dharmaraja College, Kandy (2013–2024)</strong>.
               </p>
 
-              <p className="text-slate-400 leading-relaxed font-display text-sm">
+              <p className="text-slate-400 [.light_&]:text-slate-500 leading-relaxed font-display text-xs sm:text-sm">
                 My engineering focus bridges modern, user-centered interface design with clean, scalable code. From building full-stack platforms with Next.js and Nest.JS to cloud-connected IoT monitoring systems like AgroSmart and Progressive Web Apps like SoundWave, I deliver robust, type-safe solutions.
               </p>
             </div>
 
-            <div className="grid sm:grid-cols-2 gap-4 pt-2">
+            <div className="grid grid-cols-2 gap-3 sm:gap-4 pt-2">
               {stats.map((stat, i) => (
                 <motion.div
                   key={i}
@@ -74,17 +74,17 @@ const About = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: i * 0.1 }}
-                  className="surface-card p-5 border border-white/10 hover:border-primary/40 transition-all group"
+                  className="surface-card p-3 sm:p-5 border border-white/10 hover:border-primary/40 transition-all group"
                 >
-                  <div className="flex items-center gap-3">
-                    <div className="flex h-10 w-10 items-center justify-center rounded-xl bg-primary/15 text-primary group-hover:scale-105 transition-transform">
+                  <div className="flex items-center gap-2.5 sm:gap-3">
+                    <div className="flex h-8 w-8 sm:h-10 sm:w-10 items-center justify-center rounded-lg sm:rounded-xl bg-primary/15 text-primary group-hover:scale-105 transition-transform flex-shrink-0">
                       {stat.icon}
                     </div>
-                    <div>
-                      <div className="text-xl font-display font-semibold text-white group-hover:text-primary transition-colors">
+                    <div className="min-w-0">
+                      <div className="text-sm sm:text-xl font-display font-semibold text-white [.light_&]:text-slate-900 group-hover:text-primary transition-colors truncate">
                         {stat.number}
                       </div>
-                      <div className="text-xs uppercase tracking-[0.15em] text-slate-400 font-display">
+                      <div className="text-[10px] sm:text-xs uppercase tracking-[0.1em] text-slate-400 [.light_&]:text-slate-500 font-display truncate">
                         {stat.label}
                       </div>
                     </div>
@@ -98,7 +98,7 @@ const About = () => {
             initial={{ opacity: 0, x: 40 }}
             whileInView={{ opacity: 1, x: 0 }}
             viewport={{ once: true }}
-            className="space-y-4"
+            className="space-y-3 sm:space-y-4"
           >
             {cards.map((card, i) => (
               <motion.div
@@ -107,11 +107,11 @@ const About = () => {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: i * 0.15 }}
-                className="surface-card p-6 border border-white/10 hover:border-primary/50 transition-all duration-300 group"
+                className="surface-card p-4 sm:p-6 border border-white/10 hover:border-primary/50 transition-all duration-300 group"
               >
-                <div className="flex gap-4 items-start">
+                <div className="flex gap-3 sm:gap-4 items-start">
                   {card.badgeImage ? (
-                    <div className="w-12 h-12 rounded-xl bg-white p-1 border border-white/40 flex items-center justify-center flex-shrink-0 shadow-md group-hover:scale-110 transition-transform">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-white p-1 border border-white/40 flex items-center justify-center flex-shrink-0 shadow-md group-hover:scale-110 transition-transform">
                       <img
                         src={card.badgeImage}
                         alt={card.title}
@@ -124,10 +124,10 @@ const About = () => {
                     </div>
                   )}
                   <div>
-                    <h4 className="text-lg font-display font-semibold text-white mb-1.5 group-hover:text-primary transition-colors">
+                    <h4 className="text-base sm:text-lg font-display font-semibold text-white [.light_&]:text-slate-900 mb-1 sm:mb-1.5 group-hover:text-primary transition-colors leading-snug">
                       {card.title}
                     </h4>
-                    <p className="text-slate-400 text-sm leading-relaxed font-display">
+                    <p className="text-slate-400 [.light_&]:text-slate-600 text-xs sm:text-sm leading-relaxed font-display">
                       {card.description}
                     </p>
                   </div>

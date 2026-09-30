@@ -427,17 +427,17 @@ Happy coding! 🚀
           </div>
 
           {/* Categories */}
-          <div className="flex flex-wrap justify-center gap-3">
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-3">
             {categories.map((category) => (
               <motion.button
                 key={category.id}
                 onClick={() => setSelectedCategory(category.id)}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className={`px-4 py-2 rounded-full text-sm font-medium transition-all ${
+                className={`px-3 sm:px-4 py-1.5 sm:py-2 rounded-full text-xs sm:text-sm font-medium transition-all ${
                   selectedCategory === category.id
-                    ? 'bg-gradient-to-r from-primary to-accent text-black'
-                    : 'bg-white/10 hover:bg-white/20 text-white border border-white/20'
+                    ? 'bg-gradient-to-r from-primary to-accent text-black font-semibold'
+                    : 'bg-white/10 [.light_&]:bg-slate-200 hover:bg-white/20 [.light_&]:hover:bg-slate-300 text-white [.light_&]:text-slate-800 border border-white/20 [.light_&]:border-slate-300'
                 }`}
               >
                 {category.name} ({category.count})
@@ -447,7 +447,7 @@ Happy coding! 🚀
         </div>
 
         {/* Blog Posts Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-8">
           {filteredPosts.map((post, index) => (
             <motion.article
               key={post.id}
@@ -467,51 +467,51 @@ Happy coding! 🚀
                   loading="lazy"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent" />
-                <div className="absolute bottom-4 left-4">
-                  <span className="px-3 py-1 bg-white/20 backdrop-blur-sm rounded-full text-xs font-medium">
+                <div className="absolute bottom-3 sm:bottom-4 left-3 sm:left-4">
+                  <span className="px-2.5 sm:px-3 py-0.5 sm:py-1 bg-white/20 backdrop-blur-sm rounded-full text-[11px] sm:text-xs font-medium text-white">
                     {categories.find(c => c.id === post.category)?.name}
                   </span>
                 </div>
               </div>
 
               {/* Post Content */}
-              <div className="p-6">
-                <div className="flex items-center gap-4 text-sm text-slate-400 mb-3">
+              <div className="p-4 sm:p-6">
+                <div className="flex items-center gap-3 sm:gap-4 text-xs sm:text-sm text-slate-400 [.light_&]:text-slate-500 mb-2 sm:mb-3">
                   <div className="flex items-center gap-1">
-                    <Calendar size={14} />
+                    <Calendar size={13} />
                     <span>{new Date(post.date).toLocaleDateString()}</span>
                   </div>
                   <div className="flex items-center gap-1">
-                    <Clock size={14} />
+                    <Clock size={13} />
                     <span>{post.readTime} min read</span>
                   </div>
                 </div>
 
-                <h3 className="text-xl font-display font-bold mb-3 group-hover:text-primary transition-colors">
+                <h3 className="text-lg sm:text-xl font-display font-bold mb-2 sm:mb-3 text-white [.light_&]:text-slate-900 group-hover:text-primary transition-colors leading-snug">
                   {post.title}
                 </h3>
 
-                <p className="text-slate-300 mb-4 line-clamp-3">
+                <p className="text-slate-300 [.light_&]:text-slate-600 mb-3 sm:mb-4 line-clamp-3 text-xs sm:text-sm">
                   {post.excerpt}
                 </p>
 
                 {/* Tags */}
-                <div className="flex flex-wrap gap-2 mb-4">
+                <div className="flex flex-wrap gap-1.5 sm:gap-2 mb-3 sm:mb-4">
                   {post.tags.slice(0, 3).map((tag) => (
                     <span
                       key={tag}
-                      className="px-2 py-1 bg-white/10 rounded text-xs text-slate-300"
+                      className="px-2 py-0.5 sm:py-1 bg-white/10 [.light_&]:bg-slate-200 rounded text-[11px] sm:text-xs text-slate-300 [.light_&]:text-slate-700 font-medium"
                     >
                       {tag}
                     </span>
                   ))}
                 </div>
 
-                <div className="flex items-center justify-between">
-                  <span className="text-primary font-medium group-hover:underline">
+                <div className="flex items-center justify-between text-xs sm:text-sm">
+                  <span className="text-primary font-semibold group-hover:underline">
                     Read More
                   </span>
-                  <ArrowRight size={16} className="text-primary group-hover:translate-x-1 transition-transform" />
+                  <ArrowRight size={15} className="text-primary group-hover:translate-x-1 transition-transform" />
                 </div>
               </div>
             </motion.article>
@@ -521,9 +521,9 @@ Happy coding! 🚀
         {/* No Results */}
         {filteredPosts.length === 0 && (
           <div className="text-center py-16">
-            <div className="text-6xl mb-4">📝</div>
-            <h3 className="text-xl font-bold mb-2">No posts found</h3>
-            <p className="text-slate-400">Try adjusting your search or filter criteria</p>
+            <div className="text-5xl sm:text-6xl mb-4">📝</div>
+            <h3 className="text-lg sm:text-xl font-bold mb-2 text-white [.light_&]:text-slate-900">No posts found</h3>
+            <p className="text-slate-400 [.light_&]:text-slate-600 text-xs sm:text-sm">Try adjusting your search or filter criteria</p>
           </div>
         )}
 
@@ -533,42 +533,42 @@ Happy coding! 🚀
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
-            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+            className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-2.5 sm:p-4"
             onClick={() => setSelectedPost(null)}
           >
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
+              initial={{ scale: 0.95, opacity: 0 }}
               animate={{ scale: 1, opacity: 1 }}
-              exit={{ scale: 0.9, opacity: 0 }}
-              className="bg-black/95 border border-white/10 rounded-2xl max-w-4xl max-h-[90vh] overflow-hidden"
+              exit={{ scale: 0.95, opacity: 0 }}
+              className="bg-slate-950 [.light_&]:bg-white border border-white/10 [.light_&]:border-slate-200 rounded-2xl w-full max-w-4xl max-h-[90vh] overflow-hidden flex flex-col shadow-2xl"
               onClick={(e) => e.stopPropagation()}
             >
               {/* Header */}
-              <div className="p-6 border-b border-white/10">
-                <div className="flex items-center justify-between mb-4">
-                  <div className="flex items-center gap-4 text-sm text-slate-400">
+              <div className="p-4 sm:p-6 border-b border-white/10 [.light_&]:border-slate-200">
+                <div className="flex items-center justify-between mb-3 sm:mb-4">
+                  <div className="flex items-center gap-3 sm:gap-4 text-xs sm:text-sm text-slate-400 [.light_&]:text-slate-500">
                     <div className="flex items-center gap-1">
-                      <Calendar size={14} />
+                      <Calendar size={13} />
                       <span>{new Date(selectedPost.date).toLocaleDateString()}</span>
                     </div>
                     <div className="flex items-center gap-1">
-                      <Clock size={14} />
+                      <Clock size={13} />
                       <span>{selectedPost.readTime} min read</span>
                     </div>
                   </div>
                   <button
                     onClick={() => setSelectedPost(null)}
-                    className="text-slate-400 hover:text-white transition-colors"
+                    className="p-1.5 rounded-lg text-slate-400 hover:text-white [.light_&]:hover:text-slate-900 hover:bg-white/10 [.light_&]:hover:bg-slate-100 transition-colors"
                   >
                     ✕
                   </button>
                 </div>
-                <h1 className="text-3xl font-display font-bold mb-4">{selectedPost.title}</h1>
-                <div className="flex flex-wrap gap-2">
+                <h1 className="text-xl sm:text-3xl font-display font-bold mb-3 text-white [.light_&]:text-slate-900 leading-snug">{selectedPost.title}</h1>
+                <div className="flex flex-wrap gap-1.5 sm:gap-2">
                   {selectedPost.tags.map((tag) => (
                     <span
                       key={tag}
-                      className="px-3 py-1 bg-white/10 rounded-full text-sm"
+                      className="px-2.5 sm:px-3 py-0.5 sm:py-1 bg-white/10 [.light_&]:bg-slate-200 rounded-full text-xs sm:text-sm text-slate-300 [.light_&]:text-slate-700 font-medium"
                     >
                       {tag}
                     </span>
@@ -577,8 +577,8 @@ Happy coding! 🚀
               </div>
 
               {/* Content */}
-              <div className="p-6 overflow-y-auto max-h-[60vh]">
-                <div className="prose prose-invert max-w-none">
+              <div data-lenis-prevent className="p-4 sm:p-6 overflow-y-auto max-h-[60vh] no-scrollbar">
+                <div className="prose prose-invert [.light_&]:prose-neutral max-w-none text-xs sm:text-sm leading-relaxed text-slate-300 [.light_&]:text-slate-700">
                   <div className="whitespace-pre-wrap">{selectedPost.content}</div>
                 </div>
               </div>

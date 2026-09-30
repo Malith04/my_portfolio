@@ -7,15 +7,19 @@
 
 @layer base {
   html {
-    scroll-behavior: smooth;
+    scroll-behavior: auto;
     scroll-padding-top: 5.5rem;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
     text-rendering: optimizeLegibility;
+    overflow-x: hidden;
+    max-width: 100vw;
   }
 
   body {
     @apply bg-ink text-slate-100 font-body antialiased;
+    overflow-x: hidden;
+    max-width: 100vw;
     background-image:
       radial-gradient(1200px 700px at 15% -10%, rgba(0, 245, 212, 0.12), transparent 60%),
       radial-gradient(1000px 600px at 85% 15%, rgba(121, 40, 202, 0.15), transparent 55%),
@@ -39,113 +43,128 @@
   html.light body {
     @apply bg-slate-50 text-slate-900;
     background-image:
-      radial-gradient(1200px 600px at 10% -10%, rgba(0, 245, 212, 0.09), transparent 60%),
-      radial-gradient(900px 500px at 90% 10%, rgba(121, 40, 202, 0.08), transparent 55%),
-      radial-gradient(700px 700px at 50% 100%, rgba(0, 255, 135, 0.06), transparent 60%);
+      radial-gradient(1200px 600px at 15% -10%, rgba(13, 148, 136, 0.08), transparent 60%),
+      radial-gradient(1000px 600px at 85% 15%, rgba(124, 58, 237, 0.06), transparent 55%),
+      radial-gradient(800px 800px at 50% 100%, rgba(5, 150, 105, 0.05), transparent 60%);
   }
 
   /* Surface and Card Styles in Light Mode */
-  html.light .surface-card {
-    @apply bg-white/95 border-slate-300/70 backdrop-blur-xl shadow-xl;
+  html.light .surface-card,
+  html.light .cyber-card {
+    background-color: rgba(255, 255, 255, 0.94) !important;
+    border-color: rgba(226, 232, 240, 0.9) !important;
+    box-shadow: 0 10px 30px -5px rgba(0, 0, 0, 0.05), 0 1px 3px rgba(0, 0, 0, 0.05) !important;
+    backdrop-filter: blur(20px);
   }
 
-  /* Text Color Overrides in Light Mode */
+  /* High-Contrast Typography in Light Mode */
+  html.light h1,
+  html.light h2,
+  html.light h3,
+  html.light h4,
+  html.light h5,
+  html.light h6,
+  html.light .section-title {
+    color: #0f172a !important;
+  }
+
+  html.light .surface-card h1,
+  html.light .surface-card h2,
+  html.light .surface-card h3,
+  html.light .surface-card h4,
+  html.light .surface-card strong {
+    color: #0f172a !important;
+  }
+
   html.light .text-slate-100 {
-    @apply text-slate-900;
+    color: #0f172a !important;
   }
 
   html.light .text-slate-200 {
-    @apply text-slate-800;
+    color: #1e293b !important;
   }
 
   html.light .text-slate-300 {
-    @apply text-slate-700;
+    color: #334155 !important;
   }
 
   html.light .text-slate-400 {
-    @apply text-slate-600;
+    color: #64748b !important;
+  }
+
+  html.light .text-gray-300 {
+    color: #334155 !important;
   }
 
   html.light .text-gray-400 {
-    @apply text-slate-600;
+    color: #64748b !important;
   }
 
-  /* Border and Background Overrides */
-  html.light .border-white\/10 {
-    @apply border-slate-300/60;
+  /* Dark Background Classes Automatically Adapting to Light */
+  html.light .bg-\[\#060810\],
+  html.light .bg-\[\#04060e\],
+  html.light .bg-\[\#080c16\] {
+    background-color: #f8fafc !important;
   }
 
-  html.light .border-white\/15 {
-    @apply border-slate-300/70;
+  html.light .bg-\[\#070913\],
+  html.light .bg-\[\#0B0F1C\]\/95,
+  html.light .bg-\[\#090C18\]\/90,
+  html.light .bg-\[\#090C16\]\/90,
+  html.light .bg-\[\#090C16\]\/95,
+  html.light .bg-\[\#030408\] {
+    background-color: #ffffff !important;
   }
 
-  html.light .border-white\/20 {
-    @apply border-slate-300/80;
+  html.light .bg-\[\#080B14\]\/60 {
+    background-color: rgba(248, 250, 252, 0.85) !important;
   }
 
-  html.light .bg-white\/5 {
-    @apply bg-white/90;
+  html.light .bg-ink,
+  html.light .bg-surface {
+    background-color: #f8fafc !important;
   }
 
-  html.light .bg-white\/10 {
-    @apply bg-slate-100/90;
-  }
-
-  html.light .bg-white\/20 {
-    @apply bg-slate-200/80;
-  }
-
-  html.light .bg-black\/40 {
-    @apply bg-white/95;
-  }
-
-  html.light .bg-black\/90 {
-    @apply bg-white/95;
-  }
-
-  html.light .bg-black\/95 {
-    @apply bg-white/95;
-  }
-
-  html.light .bg-ink\/90 {
-    @apply bg-white/95;
-  }
-
+  html.light .bg-black\/40,
+  html.light .bg-black\/60,
+  html.light .bg-black\/75,
+  html.light .bg-black\/90,
+  html.light .bg-black\/95,
+  html.light .bg-ink\/70,
+  html.light .bg-ink\/90,
   html.light .bg-ink\/95 {
-    @apply bg-white/95;
+    background-color: rgba(255, 255, 255, 0.95) !important;
   }
 
-  /* Navbar and Navigation */
-  html.light nav {
-    @apply bg-white/95 border-slate-300/50;
+  /* Modal screen backdrop overlay stays dim to frame white dialogs */
+  html.light .fixed.inset-0.bg-black\/80,
+  html.light .fixed.inset-0.bg-black\/75 {
+    background-color: rgba(15, 23, 42, 0.65) !important;
   }
 
-  /* Footer */
-  html.light footer {
-    @apply bg-white/95 border-slate-300/50;
+  html.light .bg-white\/5,
+  html.light .bg-white\/10 {
+    background-color: rgba(241, 245, 249, 0.9) !important;
   }
 
-  /* Pills and Badges */
+  html.light .border-white\/5,
+  html.light .border-white\/10,
+  html.light .border-white\/15,
+  html.light .border-white\/20,
+  html.light .border-white\/30,
+  html.light .border-white\/40 {
+    border-color: rgba(226, 232, 240, 0.9) !important;
+  }
+
+  /* Badges, Pills & Kickers */
   html.light .pill {
-    @apply border-slate-300/70 text-slate-700 bg-white/80;
+    border-color: rgba(203, 213, 225, 0.8) !important;
+    color: #334155 !important;
+    background-color: rgba(255, 255, 255, 0.9) !important;
   }
 
-  /* Section Kicker */
   html.light .section-kicker {
-    @apply text-slate-600;
-  }
-
-  /* Project Cards and Content */
-  html.light .surface-card h3 {
-    @apply text-slate-900;
-  }
-
-  html.light .surface-card p {
-    @apply text-slate-700;
-  }
-
-  html.light .surface-card .text-slate-400 {
-    @apply text-slate-600;
+    color: #0d9488 !important;
   }
 }
 
@@ -173,16 +192,40 @@
     @apply inline-flex items-center gap-1.5 font-display font-semibold text-[11px] uppercase tracking-wider text-primary border border-primary/30 bg-primary/10 px-3 py-1 rounded-full;
   }
 
-  /* Light Theme Component Overrides */
-  html.light .text-white {
+  /* Clean contrast for text-white in light mode without breaking dark buttons */
+  html.light .text-white:not(
+    button,
+    button *,
+    a.btn,
+    a.btn *,
+    [class*="bg-slate-900"],
+    [class*="bg-slate-900"] *,
+    [class*="bg-black"],
+    [class*="bg-black"] *,
+    [class*="bg-primary"],
+    [class*="bg-primary"] *,
+    [class*="bg-gradient-to-r from-primary"] *,
+    [class*="bg-gradient-to-r from-slate-900"] *
+  ) {
     color: #0f172a !important;
   }
 
-  html.light button {
+  /* Form Inputs and Interactive Controls in Light Theme */
+  html.light input,
+  html.light textarea,
+  html.light select {
     color: #0f172a !important;
+    background-color: #ffffff !important;
+    border-color: rgba(203, 213, 225, 0.9) !important;
   }
 
-  html.light a {
+  html.light input::placeholder,
+  html.light textarea::placeholder {
+    color: #94a3b8 !important;
+  }
+
+  html.light select option {
+    background-color: #ffffff !important;
     color: #0f172a !important;
   }
 
@@ -393,4 +436,85 @@
     background-size: 200% 200%;
     animation: electric-conduit 3s ease infinite;
   }
+}
+
+/* ========================================================
+   CUSTOMIZABLE CYBER SCROLLBAR (Full Website)
+   Sleek 7px pill scrollbar replacing bulky browser default
+   ======================================================== */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+
+::-webkit-scrollbar-track {
+  background: rgba(3, 2, 10, 0.95);
+  border-left: 1px solid rgba(255, 255, 255, 0.05);
+}
+
+::-webkit-scrollbar-thumb {
+  background: rgba(255, 255, 255, 0.22);
+  border-radius: 9999px;
+  border: 1.5px solid rgba(3, 2, 10, 0.95);
+  transition: background 0.2s ease, box-shadow 0.2s ease;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(180deg, #00f5d4 0%, #38bdf8 100%);
+  box-shadow: 0 0 10px rgba(0, 245, 212, 0.5);
+}
+
+::-webkit-scrollbar-thumb:active {
+  background: #00f5d4;
+  box-shadow: 0 0 14px rgba(0, 245, 212, 0.7);
+}
+
+/* Firefox scrollbar customization */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.25) rgba(3, 2, 10, 0.9);
+}
+
+/* Light Mode Website Scrollbar */
+html.light ::-webkit-scrollbar-track {
+  background: #f1f5f9;
+  border-left: 1px solid rgba(0, 0, 0, 0.06);
+}
+
+html.light ::-webkit-scrollbar-thumb {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1.5px solid #f1f5f9;
+}
+
+html.light ::-webkit-scrollbar-thumb:hover {
+  background: #0284c7;
+}
+
+html.light * {
+  scrollbar-color: rgba(0, 0, 0, 0.25) #f1f5f9;
+}
+
+/* ========================================================
+   HIDDEN SCROLLBAR FOR OPENING ELEMENTS (Modals, Popups, Drawers)
+   Removes the visible scrollbar while preserving 100% normal scrolling functionality
+   ======================================================== */
+.no-scrollbar,
+[data-lenis-prevent],
+.overflow-y-auto,
+.overflow-x-auto,
+.modal-scroll {
+  -ms-overflow-style: none !important;
+  scrollbar-width: none !important;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.no-scrollbar::-webkit-scrollbar,
+[data-lenis-prevent]::-webkit-scrollbar,
+.overflow-y-auto::-webkit-scrollbar,
+.overflow-x-auto::-webkit-scrollbar,
+.modal-scroll::-webkit-scrollbar {
+  display: none !important;
+  width: 0 !important;
+  height: 0 !important;
 }

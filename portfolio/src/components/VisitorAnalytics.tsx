@@ -75,7 +75,7 @@ const VisitorAnalytics = () => {
         <motion.div
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
-          className="surface-card p-4 max-w-sm shadow-2xl border border-white/20 bg-black/95 backdrop-blur-2xl"
+          className="surface-card p-4 w-[calc(100vw-2rem)] sm:w-auto sm:max-w-sm shadow-2xl border border-white/20 bg-black/95 [.light_&]:bg-white/95 backdrop-blur-2xl rounded-2xl"
         >
           <div className="flex items-center justify-between mb-3">
             <div className="flex items-center gap-2.5">

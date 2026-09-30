@@ -35,7 +35,7 @@ const Hero = () => {
   return (
     <section
       id="home"
-      className="relative w-full min-h-screen flex flex-col justify-center overflow-hidden bg-transparent select-none px-6 sm:px-10 lg:px-16 pt-28 pb-12 sm:pb-16"
+      className="relative w-full min-h-screen flex flex-col justify-center overflow-hidden bg-transparent select-none px-4 sm:px-10 lg:px-16 pt-28 pb-12 sm:pb-16"
     >
       {/* Subtle warm ambient lighting glow over center */}
       <div className="absolute top-[35%] left-[50%] -translate-x-1/2 -translate-y-1/2 w-[750px] h-[550px] bg-gradient-to-tr from-[#C5A880]/15 via-primary/10 to-transparent blur-[150px] rounded-full pointer-events-none z-10" />
@@ -53,37 +53,37 @@ const Hero = () => {
           className="max-w-xl lg:max-w-2xl relative pointer-events-auto space-y-3 sm:space-y-4"
         >
           {/* Signature Golden Illuminated Badge */}
-          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C5A880]/15 border border-[#C5A880]/40 shadow-[0_0_20px_rgba(197,168,128,0.25)]">
+          <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#C5A880]/15 [.light_&]:bg-[#C5A880]/20 border border-[#C5A880]/40 [.light_&]:border-[#C5A880]/60 shadow-[0_0_20px_rgba(197,168,128,0.25)]">
             <span className="w-2 h-2 rounded-full bg-[#00F5D4] shadow-[0_0_10px_#00F5D4] animate-pulse" />
-            <span className="text-[#F3E5D0] font-display font-semibold text-[11px] sm:text-xs tracking-[0.25em] uppercase">
+            <span className="text-[#F3E5D0] [.light_&]:text-[#8a6020] font-display font-semibold text-[11px] sm:text-xs tracking-[0.25em] uppercase">
               HI, I'M MALITH
             </span>
           </div>
 
           {/* Large Editorial Headline with Maximum Pop */}
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold tracking-tight text-white leading-[1.02] drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)]">
+          <h1 className="text-3xl sm:text-5xl md:text-6xl lg:text-7xl font-display font-bold tracking-tight text-white [.light_&]:text-slate-900 leading-[1.02] drop-shadow-[0_4px_24px_rgba(0,0,0,0.95)] [.light_&]:drop-shadow-none">
             Full Stack <br />
-            <span className="bg-gradient-to-r from-white via-slate-100 to-slate-200 bg-clip-text text-transparent">
+            <span className="bg-gradient-to-r from-white via-slate-100 to-slate-200 [.light_&]:from-slate-900 [.light_&]:via-slate-800 [.light_&]:to-slate-700 bg-clip-text text-transparent">
               Software Engineer.
             </span>
           </h1>
 
           {/* Dynamic Typewriter Subtitle */}
-          <div className="text-sm sm:text-base md:text-lg text-[#00F5D4] h-7 font-display font-semibold flex items-center drop-shadow-[0_2px_12px_rgba(0,245,212,0.3)]">
+          <div className="text-sm sm:text-base md:text-lg text-[#00F5D4] [.light_&]:text-teal-600 h-7 font-display font-semibold flex items-center drop-shadow-[0_2px_12px_rgba(0,245,212,0.3)] [.light_&]:drop-shadow-none">
             <span>{text}</span>
             <span className="text-[#C5A880] animate-pulse ml-0.5">_</span>
           </div>
 
           {/* High-Contrast Story Narrative with Highlighted Credentials */}
-          <p className="text-slate-100/95 text-xs sm:text-sm md:text-[15px] leading-relaxed font-display max-w-lg pt-0.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)]">
-            Full Stack Developer Intern at <strong className="text-white font-semibold underline decoration-primary/50 underline-offset-2">Innovior</strong> &amp; <strong className="text-white font-semibold inline-flex items-center gap-1.5"><img src="/images/nibm-logo.png" alt="NIBM" className="w-4 h-4 object-contain inline bg-white rounded-sm p-0.5" />NIBM</strong> undergraduate, grounded in an 11-year foundation at <strong className="text-[#E7CEAB] font-semibold inline-flex items-center gap-1.5"><img src="/images/dharmaraja-badge.jpg" alt="Dharmaraja" className="w-4 h-4 object-contain inline rounded-sm" />Dharmaraja College, Kandy (2013–2024)</strong>. Engineering Next.js 15, Nest.JS, React 19, and cloud-native full-stack systems.
+          <p className="text-slate-100/95 [.light_&]:text-slate-700 text-xs sm:text-sm md:text-[15px] leading-relaxed font-display max-w-lg pt-0.5 drop-shadow-[0_2px_8px_rgba(0,0,0,0.9)] [.light_&]:drop-shadow-none">
+            Full Stack Developer Intern at <strong className="text-white [.light_&]:text-slate-900 font-semibold underline decoration-primary/50 underline-offset-2">Innovior</strong> &amp; <strong className="text-white [.light_&]:text-slate-900 font-semibold inline-flex items-center gap-1.5"><img src="/images/nibm-logo.png" alt="NIBM" className="w-4 h-4 object-contain inline bg-white rounded-sm p-0.5" />NIBM</strong> undergraduate, grounded in an 11-year foundation at <strong className="text-[#E7CEAB] [.light_&]:text-[#8a6020] font-semibold inline-flex items-center gap-1.5"><img src="/images/dharmaraja-badge.jpg" alt="Dharmaraja" className="w-4 h-4 object-contain inline rounded-sm" />Dharmaraja College, Kandy (2013–2024)</strong>. Engineering Next.js 15, Nest.JS, React 19, and cloud-native full-stack systems.
           </p>
 
           {/* Action Buttons */}
           <div className="flex flex-wrap items-center gap-3 pt-2">
             <a
               href="#projects"
-              className="group inline-flex items-center gap-2 rounded-full bg-white px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-display font-semibold uppercase tracking-[0.16em] text-black transition-all hover:bg-[#C5A880] hover:text-black hover:scale-105 shadow-[0_10px_30px_rgba(255,255,255,0.25)]"
+              className="group inline-flex items-center gap-2 rounded-full bg-white [.light_&]:bg-slate-900 px-5 sm:px-6 py-2.5 sm:py-3 text-xs sm:text-sm font-display font-semibold uppercase tracking-[0.16em] text-black [.light_&]:text-white transition-all hover:bg-[#C5A880] [.light_&]:hover:bg-teal-600 hover:text-black [.light_&]:hover:text-white hover:scale-105 shadow-[0_10px_30px_rgba(255,255,255,0.25)] [.light_&]:shadow-[0_10px_30px_rgba(0,0,0,0.12)]"
             >
               Explore Featured Works
               <ArrowRight className="group-hover:translate-x-1 transition-transform" size={15} />

@@ -1,46 +1,96 @@
 import { motion } from 'framer-motion'
-import { useEffect, useState, useRef } from 'react'
+import { useEffect, useState, useRef, useLayoutEffect } from 'react'
 
 interface LoadingScreenProps {
   onLoadingComplete: () => void
 }
 
-interface QuantumParticle {
-  angle: number
-  radius: number
-  targetRadius: number
-  speed: number
-  size: number
-  color: string
-  alpha: number
-  spiralSpeed: number
+interface Coords {
+  startX: number
+  startY: number
+  destX: number
+  destY: number
+  targetScale: number
 }
 
 const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
   const [progress, setProgress] = useState(0)
-  const [isReady, setIsReady] = useState(false)
-  const canvasRef = useRef<HTMLCanvasElement | null>(null)
-  const animFrameId = useRef<number | null>(null)
+  const [isTransitioning, setIsTransitioning] = useState(false)
+  const [coords, setCoords] = useState<Coords>(() => {
+    if (typeof window === 'undefined') {
+      return { startX: 0, startY: 0, destX: 32, destY: 28, targetScale: 0.18 }
+    }
+    const estWidth = window.innerWidth < 640 ? 140 : 200
+    const estHeight = window.innerWidth < 640 ? 90 : 130
+    return {
+      startX: (window.innerWidth - estWidth) / 2,
+      startY: (window.innerHeight - estHeight) / 2 - 20,
+      destX: window.innerWidth < 640 ? 16 : 32,
+      destY: window.innerWidth < 640 ? 20 : 26,
+      targetScale: 0.18
+    }
+  })
+  const letterRef = useRef<HTMLDivElement>(null)
 
-  // Progress counter with smooth easing
+  // Measure initial center and navbar destination coordinates
+  const measureCoords = () => {
+    if (!letterRef.current) return
+    const letterRect = letterRef.current.getBoundingClientRect()
+    const navEl = document.getElementById('nav-brand-logo')
+    const navRect = navEl?.getBoundingClientRect()
+
+    const startX = (window.innerWidth - letterRect.width) / 2
+    const startY = (window.innerHeight - letterRect.height) / 2 - 20 // subtle optical lift
+
+    const destHeight = navRect && navRect.height > 0 ? navRect.height : 26
+    const targetScale = letterRect.height > 0 ? (destHeight * 0.95) / letterRect.height : 0.18
+
+    // Ensure destY centers vertically within the navbar logo container
+    const destX = navRect ? navRect.left : window.innerWidth < 640 ? 16 : 32
+    const destY = navRect
+      ? navRect.top + (navRect.height - letterRect.height * targetScale) / 2
+      : window.innerWidth < 640
+      ? 20
+      : 26
+
+    setCoords({ startX, startY, destX, destY, targetScale })
+  }
+
+  useLayoutEffect(() => {
+    measureCoords()
+    window.addEventListener('resize', measureCoords)
+    return () => window.removeEventListener('resize', measureCoords)
+  }, [])
+
+  // Smooth loading progression from 0 to 100%
   useEffect(() => {
     const startTime = performance.now()
-    const duration = 2000 // 2 seconds silky smooth load
+    const duration = 1800 // 1.8s smooth loading curve
 
-    const step = (time: number) => {
-      const elapsed = time - startTime
-      const rawPct = Math.min(100, Math.floor((elapsed / duration) * 100))
+    const step = (now: number) => {
+      const elapsed = now - startTime
+      const raw = Math.min(1, elapsed / duration)
+      // Ease out cubic for a silky deceleration near 100%
+      const ease = 1 - Math.pow(1 - raw, 3)
+      const currentPct = Math.min(100, Math.round(ease * 100))
 
-      setProgress(rawPct)
+      setProgress(currentPct)
 
-      if (rawPct < 100) {
+      if (raw < 1) {
         requestAnimationFrame(step)
       } else {
-        setIsReady(true)
-        // Smooth transition to main app
+        // Re-measure right before transition to ensure sub-pixel accuracy
+        measureCoords()
+
+        // Pause briefly at 100% so user sees full liquid charge
         setTimeout(() => {
-          onLoadingComplete()
-        }, 400)
+          setIsTransitioning(true)
+
+          // After MR glides into the navbar and curtain completes, finish loading
+          setTimeout(() => {
+            onLoadingComplete()
+          }, 1100)
+        }, 140)
       }
     }
 
@@ -48,307 +98,218 @@ const LoadingScreen = ({ onLoadingComplete }: LoadingScreenProps) => {
     return () => cancelAnimationFrame(frame)
   }, [onLoadingComplete])
 
-  // Canvas Quantum Inflow Particle Convergence
-  useEffect(() => {
-    const canvas = canvasRef.current
-    if (!canvas) return
-    const ctx = canvas.getContext('2d')
-    if (!ctx) return
-
-    let width = (canvas.width = window.innerWidth)
-    let height = (canvas.height = window.innerHeight)
-
-    const handleResize = () => {
-      if (!canvas) return
-      width = canvas.width = window.innerWidth
-      height = canvas.height = window.innerHeight
-    }
-    window.addEventListener('resize', handleResize)
-
-    // Generate 120 quantum inflow particles
-    const particles: QuantumParticle[] = []
-    const numParticles = 110
-    const colors = ['#00F5D4', '#7928CA', '#00FF87', '#FFFFFF', '#38BDF8']
-
-    for (let i = 0; i < numParticles; i++) {
-      particles.push({
-        angle: Math.random() * Math.PI * 2,
-        radius: 120 + Math.random() * Math.max(width, height) * 0.6,
-        targetRadius: 40 + Math.random() * 25,
-        speed: 0.8 + Math.random() * 2.2,
-        size: 1 + Math.random() * 2.2,
-        color: colors[Math.floor(Math.random() * colors.length)],
-        alpha: 0.2 + Math.random() * 0.7,
-        spiralSpeed: (0.015 + Math.random() * 0.02) * (Math.random() > 0.5 ? 1 : -1)
-      })
-    }
-
-    const render = (time: number) => {
-      ctx.clearRect(0, 0, width, height)
-      const cx = width / 2
-      const cy = height / 2
-
-      // 1. Quantum Inflow Particles
-      particles.forEach((p) => {
-        p.angle += p.spiralSpeed * (1 + (progress / 100) * 1.5)
-        p.radius -= p.speed * (0.8 + (progress / 100) * 2.2)
-
-        if (p.radius <= p.targetRadius) {
-          p.radius = Math.max(width, height) * 0.55 + Math.random() * 100
-          p.angle = Math.random() * Math.PI * 2
-        }
-
-        const px = cx + Math.cos(p.angle) * p.radius
-        const py = cy + Math.sin(p.angle) * p.radius
-
-        ctx.save()
-        ctx.globalAlpha = p.alpha * (0.4 + (progress / 100) * 0.6)
-        ctx.fillStyle = p.color
-        ctx.shadowColor = p.color
-        ctx.shadowBlur = 8
-        ctx.beginPath()
-        ctx.arc(px, py, p.size, 0, Math.PI * 2)
-        ctx.fill()
-        ctx.restore()
-      })
-
-      // 2. Gravitational Singularity Energy Core Glow
-      const corePulse = Math.sin(time * 0.006) * 6
-      const coreRadius = 38 + (progress / 100) * 20 + corePulse
-
-      const radGlow = ctx.createRadialGradient(cx, cy, 5, cx, cy, coreRadius * 2.2)
-      radGlow.addColorStop(0, 'rgba(0, 245, 212, 0.45)')
-      radGlow.addColorStop(0.35, 'rgba(121, 40, 202, 0.3)')
-      radGlow.addColorStop(0.7, 'rgba(0, 255, 135, 0.1)')
-      radGlow.addColorStop(1, 'rgba(0, 0, 0, 0)')
-
-      ctx.save()
-      ctx.fillStyle = radGlow
-      ctx.beginPath()
-      ctx.arc(cx, cy, coreRadius * 2.5, 0, Math.PI * 2)
-      ctx.fill()
-      ctx.restore()
-
-      animFrameId.current = requestAnimationFrame(render)
-    }
-
-    animFrameId.current = requestAnimationFrame(render)
-
-    return () => {
-      window.removeEventListener('resize', handleResize)
-      if (animFrameId.current) cancelAnimationFrame(animFrameId.current)
-    }
-  }, [progress])
-
-  // System telemetry status message based on progress
-  const getTelemetryMessage = () => {
-    if (progress < 25) return 'SYS://BOOT: INITIALIZING QUANTUM RUNTIME...'
-    if (progress < 50) return 'SYS://CALIBRATE: ALIGNING PHOTONIC SHADERS...'
-    if (progress < 75) return 'SYS://NEURAL: SYNCHRONIZING UI SUBSYSTEMS...'
-    if (progress < 95) return 'SYS://ENERGY: COMPILING RUNTIME CACHE...'
-    if (progress < 100) return 'SYS://SINGULARITY: FULL CAPACITY REACHED'
-    return 'SYS://READY: SYSTEM ONLINE • WELCOME'
-  }
-
-  // Calculate SVG circular arc offset
-  const circleRadius = 90
-  const circumference = 2 * Math.PI * circleRadius
-  const strokeDashoffset = circumference - (progress / 100) * circumference
-
   return (
-    <motion.div
-      initial={{ opacity: 1 }}
-      exit={{ opacity: 0, scale: 1.05 }}
-      transition={{ duration: 0.6, ease: [0.22, 1, 0.36, 1] }}
-      className="fixed inset-0 z-[9999] flex flex-col items-center justify-between bg-[#04060e] text-white select-none overflow-hidden"
-    >
-      {/* Dynamic Quantum Inflow Canvas */}
-      <canvas
-        ref={canvasRef}
-        className="absolute inset-0 pointer-events-none w-full h-full z-0"
-      />
-
-      {/* Subtle Background Radial Energy Gradients */}
-      <div className="absolute inset-0 pointer-events-none z-0">
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[550px] h-[550px] bg-gradient-to-tr from-primary/15 via-secondary/15 to-transparent rounded-full blur-[100px]" />
-      </div>
+    <div className="fixed inset-0 z-[99990] pointer-events-none select-none overflow-hidden">
+      {/* ============================================================ */}
+      {/* 1. SINGLE-COLOUR SOLID BACKGROUND CURTAIN                    */}
+      {/* ============================================================ */}
+      <motion.div
+        initial={{ y: '0%' }}
+        animate={{ y: isTransitioning ? '-100%' : '0%' }}
+        transition={{
+          duration: 0.85,
+          ease: [0.76, 0, 0.24, 1],
+          delay: 0.35 // Starts lifting as the letters approach the navbar
+        }}
+        className="fixed inset-0 z-[99991] bg-[#060812] [.light_&]:bg-slate-50 pointer-events-auto shadow-2xl"
+      >
+        {/* Subtle, soft ambient vignette in the center */}
+        <div className="absolute inset-0 bg-radial from-white/[0.02] to-transparent pointer-events-none" />
+      </motion.div>
 
       {/* ============================================================ */}
-      {/* TOP HUD TELEMETRY BAR                                       */}
+      {/* 2. SPREADING CIRCULAR RIPPLE AURA BEHIND MR LETTERS         */}
       {/* ============================================================ */}
-      <div className="relative z-10 w-full px-8 pt-8 flex justify-between items-center text-[11px] font-display font-medium uppercase tracking-[0.2em] text-slate-400">
-        <div className="flex items-center gap-2">
-          <span className="w-2 h-2 rounded-full bg-primary animate-ping" />
-          <span className="text-white font-semibold">MALITH.DEV</span>
-          <span className="text-primary/70">// QUANTUM RUNTIME v2.5</span>
-        </div>
+      <motion.div
+        animate={{
+          opacity: isTransitioning ? 0 : 1,
+          scale: isTransitioning ? 0.8 : 1
+        }}
+        transition={{ duration: 0.35, ease: 'easeOut' }}
+        className="fixed inset-0 z-[99993] flex items-center justify-center pointer-events-none"
+        style={{ transform: 'translateY(-20px)' }}
+      >
+        {/* Concentric Expanding Ripple Ring 1 */}
+        <motion.div
+          animate={{
+            scale: [0.35, 2.5],
+            opacity: [0.85, 0],
+            borderWidth: ['2px', '1px']
+          }}
+          transition={{
+            duration: 2.8,
+            repeat: Infinity,
+            ease: [0.1, 0.5, 0.3, 1]
+          }}
+          className="absolute w-52 h-52 sm:w-64 sm:h-64 rounded-full border border-primary/50 shadow-[0_0_45px_rgba(0,245,212,0.35)] pointer-events-none"
+        />
 
-        <div className="hidden sm:flex items-center gap-3">
-          <span className="text-slate-500">GEO: 6.9271° N, 79.8612° E</span>
-          <span className="text-primary">•</span>
-          <span className="text-slate-400 font-mono">LATENCY: &lt;1ms</span>
-        </div>
-      </div>
+        {/* Concentric Expanding Ripple Ring 2 */}
+        <motion.div
+          animate={{
+            scale: [0.35, 2.5],
+            opacity: [0.85, 0],
+            borderWidth: ['2px', '1px']
+          }}
+          transition={{
+            duration: 2.8,
+            repeat: Infinity,
+            delay: 0.93,
+            ease: [0.1, 0.5, 0.3, 1]
+          }}
+          className="absolute w-52 h-52 sm:w-64 sm:h-64 rounded-full border border-cyber-sky/45 shadow-[0_0_45px_rgba(56,189,248,0.3)] pointer-events-none"
+        />
+
+        {/* Concentric Expanding Ripple Ring 3 */}
+        <motion.div
+          animate={{
+            scale: [0.35, 2.5],
+            opacity: [0.85, 0],
+            borderWidth: ['2px', '1px']
+          }}
+          transition={{
+            duration: 2.8,
+            repeat: Infinity,
+            delay: 1.86,
+            ease: [0.1, 0.5, 0.3, 1]
+          }}
+          className="absolute w-52 h-52 sm:w-64 sm:h-64 rounded-full border border-accent/45 shadow-[0_0_45px_rgba(0,255,135,0.3)] pointer-events-none"
+        />
+
+        {/* Dynamic Glowing Energy Core */}
+        <motion.div
+          animate={{
+            scale: [0.85, 1.25, 0.85],
+            opacity: [0.3, 0.55, 0.3]
+          }}
+          transition={{
+            duration: 2.2,
+            repeat: Infinity,
+            ease: 'easeInOut'
+          }}
+          className="absolute w-56 h-56 sm:w-72 sm:h-72 rounded-full bg-gradient-to-tr from-primary/35 via-cyber-sky/25 to-accent/25 blur-3xl pointer-events-none"
+        />
+      </motion.div>
 
       {/* ============================================================ */}
-      {/* CENTER: 3D HOLOGRAPHIC GYROSCOPE & SINGULARITY MONOGRAM     */}
+      {/* 3. FLYING MR LETTERS -> NAVBAR WORDMARK                      */}
       {/* ============================================================ */}
-      <div className="relative z-10 flex flex-col items-center justify-center my-auto">
-        <div className="relative w-64 h-64 sm:w-72 sm:h-72 flex items-center justify-center">
-          {/* Outer SVG Circular Progress Arc */}
-          <svg className="absolute inset-0 w-full h-full -rotate-90 pointer-events-none">
-            {/* Background Track */}
-            <circle
-              cx="50%"
-              cy="50%"
-              r={circleRadius}
-              fill="none"
-              stroke="rgba(255, 255, 255, 0.08)"
-              strokeWidth="3"
-            />
-            {/* Progress Arc */}
-            <circle
-              cx="50%"
-              cy="50%"
-              r={circleRadius}
-              fill="none"
-              stroke="url(#arcGradient)"
-              strokeWidth="4"
-              strokeLinecap="round"
-              strokeDasharray={circumference}
-              strokeDashoffset={strokeDashoffset}
-              style={{
-                transition: 'stroke-dashoffset 0.1s linear',
-                filter: 'drop-shadow(0 0 10px rgba(0, 245, 212, 0.8))'
-              }}
-            />
-            <defs>
-              <linearGradient id="arcGradient" x1="0%" y1="0%" x2="100%" y2="100%">
-                <stop offset="0%" stopColor="#00F5D4" />
-                <stop offset="60%" stopColor="#7928CA" />
-                <stop offset="100%" stopColor="#00FF87" />
-              </linearGradient>
-            </defs>
-          </svg>
-
-          {/* 3D Holographic Gyro Ring 1 (X-Z Rotation) */}
-          <motion.div
-            className="absolute w-52 h-52 rounded-full border border-primary/40 pointer-events-none"
-            style={{
-              transformStyle: 'preserve-3d',
-              boxShadow: '0 0 20px rgba(0, 245, 212, 0.2)'
-            }}
-            animate={{
-              rotateX: [0, 360],
-              rotateY: [0, 180],
-              rotateZ: [0, 360]
-            }}
-            transition={{
-              duration: 8,
-              repeat: Infinity,
-              ease: 'linear'
-            }}
-          />
-
-          {/* 3D Holographic Gyro Ring 2 (Y-Z Counter-Rotation) */}
-          <motion.div
-            className="absolute w-44 h-44 rounded-full border border-secondary/50 pointer-events-none"
-            style={{
-              transformStyle: 'preserve-3d',
-              boxShadow: '0 0 20px rgba(121, 40, 202, 0.25)'
-            }}
-            animate={{
-              rotateX: [360, 0],
-              rotateY: [0, 360],
-              rotateZ: [180, -180]
-            }}
-            transition={{
-              duration: 6,
-              repeat: Infinity,
-              ease: 'linear'
-            }}
-          />
-
-          {/* Center Quantum Monogram Core */}
-          <motion.div
-            className="relative w-28 h-28 rounded-full p-[2px] bg-gradient-to-tr from-primary via-white to-secondary flex items-center justify-center shadow-[0_0_35px_rgba(0,245,212,0.45)]"
-            animate={{
-              scale: isReady ? [1, 1.1] : [1, 1.05, 1]
-            }}
-            transition={{
-              duration: 2,
-              repeat: isReady ? 0 : Infinity,
-              ease: 'easeInOut'
-            }}
-          >
-            <div className="w-full h-full rounded-full bg-[#050814]/90 backdrop-blur-xl flex items-center justify-center border border-white/20">
-              <span className="text-3xl sm:text-4xl font-display font-semibold tracking-tight text-gradient">
-                MR
-              </span>
-            </div>
-          </motion.div>
-        </div>
-
-        {/* Identity & Subtitle in Apple SF Pro */}
-        <div className="text-center mt-6 space-y-1">
-          <h2 className="text-2xl sm:text-3xl font-display font-semibold tracking-tight text-white">
-            Malith Rajamanthri
-          </h2>
-          <p className="text-xs font-display font-medium tracking-[0.22em] uppercase text-primary">
-            Frontend Engineer &amp; UI/UX Designer
-          </p>
-        </div>
-
-        {/* Digital Percentage & Live Frequency Bars */}
-        <div className="flex flex-col items-center mt-6">
-          <div className="flex items-baseline">
-            <span className="text-4xl sm:text-5xl font-display font-semibold tracking-tight text-white">
-              {progress}
+      <motion.div
+        ref={letterRef}
+        style={{
+          position: 'fixed',
+          left: 0,
+          top: 0,
+          transformOrigin: 'top left'
+        }}
+        initial={{
+          x: coords.startX,
+          y: coords.startY,
+          scale: 1,
+          opacity: 1
+        }}
+        animate={{
+          x: isTransitioning ? coords.destX : coords.startX,
+          y: isTransitioning ? coords.destY : coords.startY,
+          scale: isTransitioning ? coords.targetScale : 1,
+          opacity: 1
+        }}
+        transition={{
+          duration: 0.85,
+          ease: [0.76, 0, 0.24, 1]
+        }}
+        className="z-[99999] pointer-events-none flex items-baseline select-none"
+      >
+        {/* Brand Container with Expanding Letters */}
+        <div className="flex items-baseline font-display tracking-tight text-white [.light_&]:text-slate-900 leading-none">
+          {/* Letter M Block */}
+          <div className="relative inline-flex items-baseline">
+            {/* Outline / Ghost Background */}
+            <span className="text-8xl sm:text-9xl md:text-[130px] font-black text-white/10 [.light_&]:text-slate-200">
+              M
             </span>
-            <span className="text-primary font-display font-semibold text-lg ml-1">%</span>
+            {/* Liquid Fill Gradient */}
+            <span
+              className="absolute inset-0 text-8xl sm:text-9xl md:text-[130px] font-black text-transparent bg-clip-text bg-gradient-to-tr from-[#00F5D4] via-[#38BDF8] to-[#00FF87]"
+              style={{
+                clipPath: `inset(${100 - progress}% 0 0 0)`
+              }}
+            >
+              M
+            </span>
+
+            {/* Unfolding "alith " */}
+            <motion.span
+              initial={{ width: 0, opacity: 0 }}
+              animate={
+                isTransitioning
+                  ? { width: 'auto', opacity: 1 }
+                  : { width: 0, opacity: 0 }
+              }
+              transition={{
+                duration: 0.45,
+                delay: 0.38,
+                ease: [0.22, 1, 0.36, 1]
+              }}
+              className="overflow-hidden whitespace-nowrap text-8xl sm:text-9xl md:text-[130px] font-semibold text-white [.light_&]:text-slate-900"
+            >
+              alith&nbsp;
+            </motion.span>
           </div>
 
-          {/* Oscillating Audio/Frequency Telemetry Waves */}
-          <div className="flex items-center gap-1.5 h-6 mt-2">
-            {[...Array(14)].map((_, i) => (
-              <motion.span
-                key={i}
-                className="w-1 rounded-full bg-gradient-to-t from-primary to-accent"
-                animate={{
-                  height: [
-                    '4px',
-                    `${8 + Math.sin(i * 0.8 + progress * 0.1) * 16}px`,
-                    '4px'
-                  ]
-                }}
-                transition={{
-                  duration: 0.6,
-                  repeat: Infinity,
-                  delay: i * 0.05,
-                  ease: 'easeInOut'
-                }}
-              />
-            ))}
+          {/* Letter R Block */}
+          <div className="relative inline-flex items-baseline ml-1 sm:ml-2">
+            {/* Outline / Ghost Background */}
+            <span className="text-8xl sm:text-9xl md:text-[130px] font-black text-white/10 [.light_&]:text-slate-200">
+              R
+            </span>
+            {/* Liquid Fill Gradient */}
+            <span
+              className="absolute inset-0 text-8xl sm:text-9xl md:text-[130px] font-black text-transparent bg-clip-text bg-gradient-to-tr from-[#00F5D4] via-[#38BDF8] to-[#00FF87]"
+              style={{
+                clipPath: `inset(${100 - progress}% 0 0 0)`
+              }}
+            >
+              R
+            </span>
+
+            {/* Unfolding "ajamanthri" */}
+            <motion.span
+              initial={{ width: 0, opacity: 0 }}
+              animate={
+                isTransitioning
+                  ? { width: 'auto', opacity: 1 }
+                  : { width: 0, opacity: 0 }
+              }
+              transition={{
+                duration: 0.5,
+                delay: 0.44,
+                ease: [0.22, 1, 0.36, 1]
+              }}
+              className="overflow-hidden whitespace-nowrap text-8xl sm:text-9xl md:text-[130px] font-semibold text-white [.light_&]:text-slate-900"
+            >
+              ajamanthri
+            </motion.span>
           </div>
 
-          {/* Dynamic Console Telemetry Message */}
-          <p className="text-[11px] font-display font-semibold tracking-wider text-slate-400 uppercase mt-3 h-4">
-            {getTelemetryMessage()}
-          </p>
+          {/* Glowing Cyber Dot */}
+          <motion.span
+            initial={{ scale: 0, opacity: 0 }}
+            animate={
+              isTransitioning
+                ? { scale: 1, opacity: 1 }
+                : { scale: 0, opacity: 0 }
+            }
+            transition={{
+              duration: 0.3,
+              delay: 0.65,
+              ease: 'easeOut'
+            }}
+            className="w-4 h-4 rounded-full bg-[#00F5D4] inline-block shadow-[0_0_12px_#00F5D4] ml-3 self-center shrink-0"
+          />
         </div>
-      </div>
-
-      {/* ============================================================ */}
-      {/* BOTTOM FOOTER TELEMETRY                                      */}
-      {/* ============================================================ */}
-      <div className="relative z-10 w-full px-8 pb-8 flex justify-between items-center text-[10px] font-display font-medium uppercase tracking-[0.2em] text-slate-500">
-        <div>CORE FREQUENCY: 120 FPS // STABLE</div>
-        <div className="text-primary font-semibold tracking-widest">
-          {progress === 100 ? '● SYSTEM INITIALIZED' : '● LOADING RUNTIME'}
-        </div>
-        <div className="hidden sm:block">STATUS: READY FOR INTERACTION</div>
-      </div>
-    </motion.div>
+      </motion.div>
+    </div>
   )
 }
 

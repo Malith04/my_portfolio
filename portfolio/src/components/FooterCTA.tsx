@@ -11,68 +11,68 @@ export const FooterCTA: React.FC = () => {
   }
 
   return (
-    <footer className="relative pt-28 pb-16 px-4 overflow-hidden border-t border-white/10 bg-[#060810]">
+    <footer className="relative pt-16 sm:pt-28 pb-12 sm:pb-16 px-4 overflow-hidden border-t border-white/10 [.light_&]:border-slate-300/80 bg-[#060810] [.light_&]:bg-slate-100/90 transition-colors duration-300">
       {/* Background ambient lighting */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-64 bg-gradient-to-b from-primary/10 via-secondary/5 to-transparent blur-3xl pointer-events-none" />
 
-      <div className="max-w-7xl mx-auto space-y-16 relative z-10">
+      <div className="max-w-7xl mx-auto space-y-12 sm:space-y-16 relative z-10">
         {/* Top Status Pill */}
         <div className="flex items-center justify-between flex-wrap gap-4">
           <div className="flex items-center gap-2">
             <span className="w-2.5 h-2.5 rounded-full bg-accent animate-ping" />
-            <span className="text-xs font-display font-semibold uppercase tracking-[0.24em] text-slate-300">
+            <span className="text-[11px] sm:text-xs font-display font-semibold uppercase tracking-[0.2em] sm:tracking-[0.24em] text-slate-300 [.light_&]:text-slate-600">
               AVAILABLE FOR PROJECTS &amp; ROLES • 2 SLOTS
             </span>
           </div>
-          <span className="text-xs font-display text-slate-400">
+          <span className="text-xs font-display text-slate-400 [.light_&]:text-slate-500">
             Colombo, Sri Lanka • GMT+5:30
           </span>
         </div>
 
         {/* Signature Giant Editorial Title: "Let's Collab" */}
-        <div className="space-y-4">
-          <h2 className="text-6xl sm:text-7xl md:text-8xl lg:text-9xl font-display font-semibold tracking-tight text-white leading-[0.95] select-none">
+        <div className="space-y-3 sm:space-y-4">
+          <h2 className="text-4xl sm:text-6xl md:text-8xl lg:text-9xl font-display font-semibold tracking-tight text-white [.light_&]:text-slate-900 leading-[0.95] select-none">
             Let's <span className="text-gradient">Collab.</span>
           </h2>
-          <p className="text-slate-300 font-display text-base sm:text-lg max-w-xl">
+          <p className="text-slate-300 [.light_&]:text-slate-600 font-display text-sm sm:text-lg max-w-xl">
             Have a product idea, an open software engineering role, or a complex interaction system to build? Let's bring it to life.
           </p>
         </div>
 
         {/* 3-Column Editorial Grid: Left (Contact Info), Center (Portrait / Brand Anchor), Right (Navigation & Action) */}
-        <div className="grid md:grid-cols-3 gap-10 items-center pt-8 border-t border-white/10">
+        <div className="grid md:grid-cols-3 gap-8 sm:gap-10 items-center pt-8 border-t border-white/10 [.light_&]:border-slate-300/80">
           {/* Column 1: Mail & WhatsApp */}
-          <div className="space-y-6">
-            <div className="space-y-1.5">
-              <p className="text-[11px] font-display font-semibold uppercase tracking-[0.2em] text-primary">
+          <div className="space-y-5 sm:space-y-6">
+            <div className="space-y-1 sm:space-y-1.5">
+              <p className="text-[11px] font-display font-semibold uppercase tracking-[0.2em] text-primary [.light_&]:text-teal-700">
                 MAIL
               </p>
               <div className="flex items-center gap-2">
                 <a
                   href="mailto:malithrajamanthri@gmail.com"
-                  className="text-lg sm:text-xl font-display font-semibold text-white hover:text-primary transition-colors truncate"
+                  className="text-base sm:text-xl font-display font-semibold text-white [.light_&]:text-slate-900 hover:text-primary [.light_&]:hover:text-teal-600 transition-colors truncate"
                 >
                   malithrajamanthri@gmail.com
                 </a>
                 <button
                   onClick={handleCopyEmail}
-                  className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 text-slate-400 hover:text-white transition-colors"
+                  className="p-1.5 rounded-lg bg-white/5 hover:bg-white/10 [.light_&]:bg-slate-200/80 [.light_&]:hover:bg-slate-300 text-slate-400 [.light_&]:text-slate-700 hover:text-white transition-colors cursor-pointer flex-shrink-0"
                   title="Copy email to clipboard"
                 >
-                  {copied ? <Check size={14} className="text-accent" /> : <Copy size={14} />}
+                  {copied ? <Check size={14} className="text-accent [.light_&]:text-emerald-600" /> : <Copy size={14} />}
                 </button>
               </div>
             </div>
 
-            <div className="space-y-1.5">
-              <p className="text-[11px] font-display font-semibold uppercase tracking-[0.2em] text-accent">
+            <div className="space-y-1 sm:space-y-1.5">
+              <p className="text-[11px] font-display font-semibold uppercase tracking-[0.2em] text-accent [.light_&]:text-emerald-700">
                 WHATSAPP / PHONE
               </p>
               <a
                 href="https://wa.me/94767421844"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-lg sm:text-xl font-display font-semibold text-white hover:text-accent transition-colors block"
+                className="text-base sm:text-xl font-display font-semibold text-white [.light_&]:text-slate-900 hover:text-accent [.light_&]:hover:text-emerald-600 transition-colors block"
               >
                 +94 76 742 1844
               </a>
@@ -89,13 +89,13 @@ export const FooterCTA: React.FC = () => {
               />
             </div>
             <div>
-              <h4 className="text-base font-display font-semibold text-white">
+              <h4 className="text-base font-display font-semibold text-white [.light_&]:text-slate-900">
                 Malith Rajamanthri
               </h4>
-              <p className="text-xs text-slate-400 font-display">
+              <p className="text-xs text-slate-400 [.light_&]:text-slate-600 font-display">
                 Software Engineer Intern @ Innovior
               </p>
-              <p className="text-[11px] text-slate-400 font-display mt-0.5">
+              <p className="text-[11px] text-slate-400 [.light_&]:text-slate-500 font-display mt-0.5">
                 Dharmaraja College, Kandy (2013–2024)
               </p>
             </div>
@@ -105,7 +105,7 @@ export const FooterCTA: React.FC = () => {
           <div className="space-y-6 md:text-right flex flex-col md:items-end">
             <a
               href="#contact"
-              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white text-black font-display font-semibold text-xs uppercase tracking-[0.18em] hover:bg-primary hover:text-black transition-all hover:scale-105 shadow-xl"
+              className="inline-flex items-center gap-2 px-7 py-3.5 rounded-full bg-white [.light_&]:bg-slate-900 text-black [.light_&]:text-white font-display font-semibold text-xs uppercase tracking-[0.18em] hover:bg-primary [.light_&]:hover:bg-teal-600 hover:text-black [.light_&]:hover:text-white transition-all hover:scale-105 shadow-xl"
             >
               Start a project
               <ArrowUpRight size={16} />

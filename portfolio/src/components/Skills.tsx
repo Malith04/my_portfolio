@@ -125,22 +125,22 @@ const Skills = () => {
                     whileInView={{ opacity: 1, x: 0 }}
                     viewport={{ once: true }}
                     transition={{ delay: i * 0.1 + j * 0.05 }}
-                    className="flex items-center justify-between p-3 bg-white/5 rounded-xl hover:bg-white/10 transition-colors"
+                    className="flex flex-wrap sm:flex-nowrap items-center justify-between gap-2 p-3 bg-white/5 rounded-xl hover:bg-white/10 transition-colors"
                   >
-                    <div className="flex items-center gap-3 flex-1">
-                      <span className="text-slate-200 font-medium">{skill.name}</span>
-                      <span className={`px-2 py-1 rounded-full text-xs font-medium border ${getCategoryColor(skill.category)}`}>
+                    <div className="flex flex-wrap items-center gap-2 flex-1 min-w-[150px]">
+                      <span className="text-slate-200 [.light_&]:text-slate-900 font-medium text-xs sm:text-sm">{skill.name}</span>
+                      <span className={`px-2 py-0.5 rounded-full text-[10px] sm:text-xs font-medium border ${getCategoryColor(skill.category)}`}>
                         {skill.category}
                       </span>
                     </div>
                     
-                    <div className="flex items-center gap-3">
+                    <div className="flex items-center gap-2 sm:gap-3 shrink-0">
                       {/* Star Rating */}
-                      <div className="flex items-center gap-1">
+                      <div className="hidden sm:flex items-center gap-1">
                         {[...Array(5)].map((_, starIndex) => (
                           <Star
                             key={starIndex}
-                            size={14}
+                            size={13}
                             className={`${
                               starIndex < getStarRating(skill.level)
                                 ? 'text-primary fill-primary'
@@ -151,7 +151,7 @@ const Skills = () => {
                       </div>
                       
                       {/* Progress Bar */}
-                      <div className="w-24 h-2 bg-slate-700 rounded-full overflow-hidden">
+                      <div className="w-16 sm:w-24 h-2 bg-slate-700 rounded-full overflow-hidden">
                         <motion.div
                           initial={{ width: 0 }}
                           whileInView={{ width: `${skill.level}%` }}
@@ -162,7 +162,7 @@ const Skills = () => {
                       </div>
                       
                       {/* Percentage */}
-                      <span className="text-primary font-semibold text-sm w-10 text-right">
+                      <span className="text-primary font-semibold text-xs sm:text-sm w-8 sm:w-10 text-right">
                         {skill.level}%
                       </span>
                     </div>

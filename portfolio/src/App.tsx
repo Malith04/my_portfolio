@@ -34,6 +34,7 @@ function App() {
     const savedTheme = (localStorage.getItem('theme') as 'dark' | 'light') || 'dark'
     setTheme(savedTheme)
     document.documentElement.classList.toggle('light', savedTheme === 'light')
+    document.documentElement.classList.toggle('dark', savedTheme === 'dark')
 
     // Initialize analytics tracking
     analyticsService.trackPageView(window.location.pathname)
@@ -47,59 +48,61 @@ function App() {
     setTheme(newTheme)
     localStorage.setItem('theme', newTheme)
     document.documentElement.classList.toggle('light', newTheme === 'light')
+    document.documentElement.classList.toggle('dark', newTheme === 'dark')
   }
 
   return (
     <>
       <SEO />
-      <AnimatePresence mode="wait">
+
+      {/* Main Website Structure - rendered underneath the preloader curtain */}
+      <div className={`relative min-h-screen [overflow-x:clip] text-slate-100 [.light_&]:text-slate-900 transition-colors duration-300 ${isLoading ? 'pointer-events-none select-none' : ''}`}>
+        <SmoothScroll />
+        
+        {/* Ambient Silk Fluid WebGL Background (Portfolio Signature Cyber Sky Blue) */}
+        <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+          <Silk
+            speed={3.5}
+            scale={1}
+            color="#38bdf8"
+            noiseIntensity={1.4}
+            rotation={0.1}
+          />
+          <div className="absolute inset-0 bg-ink/70 [.light_&]:bg-slate-50/75 transition-colors duration-300" />
+        </div>
+
+        <MicroInteractions />
+        <Navbar isLoading={isLoading} />
+        <ActionButton theme={theme} onToggleTheme={toggleTheme} />
+        <VisitorAnalytics />
+
+        <main>
+          <Hero />
+          <ProjectDriftWall />
+          <PhilosophyStatement />
+          <MetricsSection />
+          <About />
+          <Skills />
+          <GitHubStats />
+          <Projects />
+          <ServicesAccordion />
+          <ProjectCaseStudies />
+          <TechStackComparison />
+          <Experience />
+          <AchievementTimeline />
+          <Blog />
+          <Contact />
+        </main>
+
+        <FooterCTA />
+      </div>
+
+      {/* Minimalist Single-Color Loading Screen with MR to Navbar Animation */}
+      <AnimatePresence>
         {isLoading && (
           <LoadingScreen onLoadingComplete={() => setIsLoading(false)} />
         )}
       </AnimatePresence>
-
-      {!isLoading && (
-        <div className="relative min-h-screen [overflow-x:clip]">
-          <SmoothScroll />
-          
-          {/* Ambient Silk Fluid WebGL Background (Portfolio Signature Cyber Sky Blue) */}
-          <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
-            <Silk
-              speed={3.5}
-              scale={1}
-              color="#38bdf8"
-              noiseIntensity={1.4}
-              rotation={0.1}
-            />
-            <div className="absolute inset-0 bg-ink/70" />
-          </div>
-
-          <MicroInteractions />
-          <Navbar />
-          <ActionButton theme={theme} onToggleTheme={toggleTheme} />
-          <VisitorAnalytics />
-
-          <main>
-            <Hero />
-            <ProjectDriftWall />
-            <PhilosophyStatement />
-            <MetricsSection />
-            <About />
-            <Skills />
-            <GitHubStats />
-            <Projects />
-            <ServicesAccordion />
-            <ProjectCaseStudies />
-            <TechStackComparison />
-            <Experience />
-            <AchievementTimeline />
-            <Blog />
-            <Contact />
-          </main>
-
-          <FooterCTA />
-        </div>
-      )}
     </>
   )
 }

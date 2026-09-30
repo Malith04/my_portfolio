@@ -105,9 +105,9 @@ const Experience = () => {
             <ScrollStackItem key={i}>
               <div className="relative group">
                 {/* Main Card */}
-                <div className="overflow-hidden rounded-2xl sm:rounded-3xl border border-white/15 bg-[#070913] hover:border-primary/50 transition-all duration-500 shadow-[0_25px_70px_rgba(0,0,0,0.9)] group-hover:shadow-[0_20px_50px_-10px_rgba(0,245,212,0.25)]">
+                <div className="overflow-hidden rounded-2xl sm:rounded-3xl border border-white/15 [.light_&]:border-slate-300/80 bg-[#070913] [.light_&]:bg-white hover:border-primary/50 transition-all duration-500 shadow-[0_25px_70px_rgba(0,0,0,0.9)] [.light_&]:shadow-[0_20px_50px_rgba(0,0,0,0.08)] group-hover:shadow-[0_20px_50px_-10px_rgba(0,245,212,0.25)]">
                   {/* Header with Gradient */}
-                  <div className={`relative p-6 sm:p-8 bg-gradient-to-r ${item.color} overflow-hidden`}>
+                  <div className={`relative p-4 sm:p-8 bg-gradient-to-r ${item.color} overflow-hidden`}>
                     {/* Background Pattern */}
                     <div className="absolute inset-0 opacity-15">
                       <div className="absolute top-0 right-0 w-40 h-40 bg-white rounded-full -translate-y-16 translate-x-16 blur-xl" />
@@ -115,39 +115,39 @@ const Experience = () => {
                     </div>
                     
                     <div className="relative z-10">
-                      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-4 mb-3">
-                        <div className="flex items-start gap-4">
+                      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-4 mb-3">
+                        <div className="flex items-start gap-3 sm:gap-4">
                           {item.logo && (
-                            <div className="w-14 h-14 rounded-2xl bg-white p-1.5 border border-white/40 flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-105 transition-transform">
+                            <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-white p-1 sm:p-1.5 border border-white/40 flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-105 transition-transform">
                               <img
                                 src={item.logo}
                                 alt={item.organization}
-                                className="w-full h-full object-contain rounded-xl"
+                                className="w-full h-full object-contain rounded-lg sm:rounded-xl"
                               />
                             </div>
                           )}
-                          <div>
-                            <div className="flex flex-wrap items-center gap-2 mb-2">
-                              <span className="inline-flex items-center gap-1.5 px-3 py-1 bg-black/40 backdrop-blur-md rounded-full text-white text-xs font-display font-semibold uppercase tracking-wider">
-                                <Calendar size={12} />
+                          <div className="min-w-0">
+                            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-1.5 sm:mb-2">
+                              <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 bg-black/40 [.light_&]:bg-white/80 backdrop-blur-md rounded-full text-white [.light_&]:text-slate-900 text-[11px] sm:text-xs font-display font-semibold uppercase tracking-wider shadow-sm">
+                                <Calendar size={11} />
                                 {item.period}
                               </span>
-                              <span className="inline-flex items-center px-3 py-1 bg-white/20 backdrop-blur-md rounded-full text-white text-xs font-display font-semibold uppercase tracking-wider">
+                              <span className="inline-flex items-center px-2.5 sm:px-3 py-0.5 sm:py-1 bg-white/20 [.light_&]:bg-white/90 backdrop-blur-md rounded-full text-white [.light_&]:text-slate-900 text-[11px] sm:text-xs font-display font-semibold uppercase tracking-wider shadow-sm">
                                 {item.badge}
                               </span>
                             </div>
-                            <h3 className="text-2xl sm:text-3xl font-display font-semibold text-white tracking-tight mb-1">
+                            <h3 className="text-xl sm:text-3xl font-display font-semibold text-white tracking-tight mb-1 leading-snug">
                               {item.title}
                             </h3>
-                            <p className="text-white/95 font-display font-medium text-base sm:text-lg flex items-center gap-2">
-                              {item.type === 'work' ? <Briefcase size={16} /> : <GraduationCap size={16} />}
+                            <p className="text-white/95 font-display font-medium text-sm sm:text-lg flex items-center gap-1.5 sm:gap-2">
+                              {item.type === 'work' ? <Briefcase size={15} /> : <GraduationCap size={15} />}
                               {item.organization}
                             </p>
                           </div>
                         </div>
                         <div className="text-left sm:text-right">
-                          <div className="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-black/30 backdrop-blur-md text-white/90 text-xs font-display font-medium">
-                            <MapPin size={13} className="text-primary" />
+                          <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-black/30 [.light_&]:bg-white/80 backdrop-blur-md text-white/90 [.light_&]:text-slate-900 text-[11px] sm:text-xs font-display font-medium shadow-sm">
+                            <MapPin size={12} className="text-primary [.light_&]:text-teal-700" />
                             {item.location}
                           </div>
                         </div>
@@ -155,29 +155,29 @@ const Experience = () => {
                     </div>
                   </div>
 
-                  {/* Content with solid opaque dark background */}
-                  <div className="p-6 sm:p-8 space-y-6 bg-[#070913]">
-                    <p className="text-slate-300 leading-relaxed font-display text-sm sm:text-base">
+                  {/* Content with solid opaque dark background in dark, crisp white in light */}
+                  <div className="p-4 sm:p-8 space-y-4 sm:space-y-6 bg-[#070913] [.light_&]:bg-white">
+                    <p className="text-slate-300 [.light_&]:text-slate-700 leading-relaxed font-display text-xs sm:text-base">
                       {item.description}
                     </p>
 
                     {/* Achievements */}
-                    <div className="space-y-3">
+                    <div className="space-y-2.5 sm:space-y-3">
                       <div className="flex items-center gap-2 mb-2">
-                        <Award className="text-primary" size={18} />
-                        <h4 className="font-display font-semibold text-white text-sm uppercase tracking-wider">
+                        <Award className="text-primary [.light_&]:text-teal-700" size={17} />
+                        <h4 className="font-display font-semibold text-white [.light_&]:text-slate-900 text-xs sm:text-sm uppercase tracking-wider">
                           Key Highlights &amp; Achievements
                         </h4>
                       </div>
                       
-                      <div className="grid sm:grid-cols-2 gap-3">
+                      <div className="grid sm:grid-cols-2 gap-2 sm:gap-3">
                         {item.achievements.map((achievement, j) => (
                           <div
                             key={j}
-                            className="flex items-start gap-3 p-3 bg-white/5 rounded-xl border border-white/5 hover:border-primary/30 hover:bg-primary/5 transition-all"
+                            className="flex items-start gap-2.5 sm:gap-3 p-2.5 sm:p-3 bg-white/5 [.light_&]:bg-slate-50 rounded-xl border border-white/5 [.light_&]:border-slate-200/80 hover:border-primary/30 hover:bg-primary/5 transition-all"
                           >
-                            <span className="w-2 h-2 bg-primary rounded-full mt-2 flex-shrink-0" />
-                            <span className="text-slate-300 text-xs sm:text-sm leading-relaxed font-display">
+                            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary [.light_&]:bg-teal-500 rounded-full mt-1.5 sm:mt-2 flex-shrink-0" />
+                            <span className="text-slate-300 [.light_&]:text-slate-700 text-xs sm:text-sm leading-relaxed font-display">
                               {achievement}
                             </span>
                           </div>
@@ -199,34 +199,34 @@ const Experience = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-16 grid grid-cols-1 md:grid-cols-3 gap-6"
+          className="mt-12 sm:mt-16 grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-6"
         >
-          <div className="surface-card p-6 text-center border-primary/20 hover:border-primary/50 transition-all">
-            <div className="w-12 h-12 bg-primary/20 text-primary rounded-2xl flex items-center justify-center mx-auto mb-3">
-              <Briefcase size={22} />
+          <div className="surface-card p-4 sm:p-6 text-center border-primary/20 hover:border-primary/50 transition-all">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-primary/20 text-primary rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-2 sm:mb-3">
+              <Briefcase size={20} />
             </div>
-            <h3 className="text-2xl font-display font-semibold text-white mb-1">Innovior</h3>
-            <p className="text-slate-400 text-xs uppercase tracking-wider font-display font-semibold text-primary">
+            <h3 className="text-xl sm:text-2xl font-display font-semibold text-white [.light_&]:text-slate-900 mb-0.5 sm:mb-1">Innovior</h3>
+            <p className="text-slate-400 [.light_&]:text-slate-600 text-[11px] sm:text-xs uppercase tracking-wider font-display font-semibold text-primary">
               Software Engineer Intern
             </p>
           </div>
           
-          <div className="surface-card p-6 text-center border-primary/20 hover:border-primary/50 transition-all">
-            <div className="w-12 h-12 bg-accent/20 text-accent rounded-2xl flex items-center justify-center mx-auto mb-3">
-              <GraduationCap size={22} />
+          <div className="surface-card p-4 sm:p-6 text-center border-primary/20 hover:border-primary/50 transition-all">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-accent/20 text-accent rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-2 sm:mb-3">
+              <GraduationCap size={20} />
             </div>
-            <h3 className="text-2xl font-display font-semibold text-white mb-1">NIBM &amp; Dharmaraja</h3>
-            <p className="text-slate-400 text-xs uppercase tracking-wider font-display font-semibold text-accent">
+            <h3 className="text-xl sm:text-2xl font-display font-semibold text-white [.light_&]:text-slate-900 mb-0.5 sm:mb-1">NIBM &amp; Dharmaraja</h3>
+            <p className="text-slate-400 [.light_&]:text-slate-600 text-[11px] sm:text-xs uppercase tracking-wider font-display font-semibold text-accent">
               BSc SE (UG) &amp; 11-Yr Alumnus
             </p>
           </div>
           
-          <div className="surface-card p-6 text-center border-primary/20 hover:border-primary/50 transition-all">
-            <div className="w-12 h-12 bg-secondary/20 text-secondary rounded-2xl flex items-center justify-center mx-auto mb-3">
-              <Award size={22} />
+          <div className="surface-card p-4 sm:p-6 text-center border-primary/20 hover:border-primary/50 transition-all">
+            <div className="w-10 h-10 sm:w-12 sm:h-12 bg-secondary/20 text-secondary rounded-xl sm:rounded-2xl flex items-center justify-center mx-auto mb-2 sm:mb-3">
+              <Award size={20} />
             </div>
-            <h3 className="text-2xl font-display font-semibold text-white mb-1">Production Ready</h3>
-            <p className="text-slate-400 text-xs uppercase tracking-wider font-display font-semibold text-secondary">
+            <h3 className="text-xl sm:text-2xl font-display font-semibold text-white [.light_&]:text-slate-900 mb-0.5 sm:mb-1">Production Ready</h3>
+            <p className="text-slate-400 [.light_&]:text-slate-600 text-[11px] sm:text-xs uppercase tracking-wider font-display font-semibold text-secondary">
               Next.js 15 &amp; Modern UI/UX
             </p>
           </div>

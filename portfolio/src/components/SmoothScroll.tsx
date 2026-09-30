@@ -13,14 +13,27 @@ export const SmoothScroll: React.FC = () => {
     document.documentElement.style.scrollBehavior = 'auto'
 
     const lenis = new Lenis({
-      duration: 1.15,
+      duration: 0.9,
       easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Lesmana-style exponential ease
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1,
-      touchMultiplier: 1.8,
+      wheelMultiplier: 1.05,
+      touchMultiplier: 1.5,
       infinite: false,
+      syncTouch: false,
+      allowNestedScroll: true,
+      prevent: (node) => {
+        if (!node || !(node instanceof HTMLElement)) return false
+        // Allow native smooth scrolling on modals, drawers, chat popups, or any nested scrollable container
+        return (
+          node.hasAttribute('data-lenis-prevent') ||
+          node.classList.contains('no-scrollbar') ||
+          node.classList.contains('overflow-y-auto') ||
+          node.classList.contains('overflow-y-scroll') ||
+          Boolean(node.closest?.('[data-lenis-prevent], .no-scrollbar, .overflow-y-auto, .overflow-y-scroll, [role="dialog"], .modal'))
+        )
+      }
     })
 
     // Expose lenis instance globally for anchor navigation & interactive triggers

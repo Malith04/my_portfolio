@@ -108,15 +108,15 @@ const Contact = () => {
         {/* Contact Method Switcher */}
         <div className="mb-12">
           {/* Tab Navigation */}
-          <div className="flex flex-wrap justify-center gap-2 mb-8 p-2 bg-white/5 backdrop-blur-sm rounded-2xl border border-white/10">
+          <div className="flex flex-wrap justify-center gap-1.5 sm:gap-2 mb-6 sm:mb-8 p-1.5 sm:p-2 bg-white/5 [.light_&]:bg-slate-200/50 backdrop-blur-sm rounded-2xl border border-white/10 [.light_&]:border-slate-300">
             {contactTabs.map((tab) => (
               <motion.button
                 key={tab.key}
                 onClick={() => setActiveContact(tab.key)}
-                className={`relative flex items-center gap-2 px-4 py-3 rounded-xl font-medium text-sm transition-all hover:scale-105 ${
+                className={`relative flex items-center gap-2 px-3 sm:px-4 py-2.5 sm:py-3 rounded-xl font-medium text-xs sm:text-sm transition-all hover:scale-105 ${
                   activeContact === tab.key
-                    ? 'text-white'
-                    : 'text-slate-400 hover:text-slate-200 dark:hover:text-slate-200 light:hover:text-slate-700'
+                    ? 'text-black font-semibold'
+                    : 'text-slate-400 hover:text-slate-200 dark:hover:text-slate-200 [.light_&]:text-slate-600 [.light_&]:hover:text-slate-900'
                 }`}
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
@@ -128,7 +128,7 @@ const Contact = () => {
                     transition={{ type: "spring", bounce: 0.2, duration: 0.6 }}
                   />
                 )}
-                <span className="relative z-10 flex items-center gap-2">
+                <span className="relative z-10 flex items-center gap-1.5 sm:gap-2">
                   {tab.icon}
                   <span className="hidden sm:inline">{tab.label}</span>
                 </span>
@@ -153,42 +153,42 @@ const Contact = () => {
                   <div className="absolute bottom-0 left-0 w-48 h-48 bg-white rounded-full translate-y-24 -translate-x-24" />
                 </div>
 
-                <div className="relative z-10 p-8">
+                <div className="relative z-10 p-4 sm:p-8">
                   {/* Header */}
-                  <div className="flex items-center justify-between mb-8">
-                    <div className="flex items-center gap-4">
-                      <div className={`w-16 h-16 rounded-2xl bg-gradient-to-br ${currentContact.color} flex items-center justify-center text-white shadow-lg`}>
+                  <div className="flex items-center justify-between mb-6 sm:mb-8">
+                    <div className="flex items-center gap-3 sm:gap-4">
+                      <div className={`w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-gradient-to-br ${currentContact.color} flex items-center justify-center text-white shadow-lg flex-shrink-0`}>
                         {currentContact.icon}
                       </div>
-                      <div>
-                        <h3 className="text-2xl font-display font-bold text-white mb-1">
+                      <div className="min-w-0">
+                        <h3 className="text-lg sm:text-2xl font-display font-bold text-white [.light_&]:text-slate-900 mb-0.5 sm:mb-1">
                           {currentContact.title}
                         </h3>
-                        <p className="text-slate-400">{currentContact.subtitle}</p>
+                        <p className="text-slate-400 [.light_&]:text-slate-600 text-xs sm:text-sm">{currentContact.subtitle}</p>
                       </div>
                     </div>
                   </div>
 
                   {/* Contact Value */}
-                  <div className="mb-8">
-                    <div className="bg-white/10 backdrop-blur-sm rounded-xl p-6 border border-white/20">
-                      <p className="text-slate-300 text-lg font-mono break-all">
+                  <div className="mb-6 sm:mb-8">
+                    <div className="bg-white/10 dark:bg-white/10 [.light_&]:bg-white/80 backdrop-blur-sm rounded-xl p-3.5 sm:p-6 border border-white/20 dark:border-white/20 [.light_&]:border-slate-300 shadow-sm">
+                      <p className="text-slate-300 dark:text-slate-300 [.light_&]:text-slate-900 text-sm sm:text-lg font-mono break-all font-medium">
                         {currentContact.displayValue}
                       </p>
                     </div>
                   </div>
 
                   {/* Action Buttons */}
-                  <div className="flex flex-wrap gap-4">
+                  <div className="flex flex-wrap gap-2.5 sm:gap-4">
                     <motion.a
                       href={currentContact.link}
                       target={currentContact.link.startsWith('http') ? '_blank' : '_self'}
                       rel={currentContact.link.startsWith('http') ? 'noopener noreferrer' : ''}
                       whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
-                      className={`flex items-center gap-3 px-6 py-4 bg-gradient-to-r ${currentContact.color} rounded-xl font-semibold text-white shadow-lg hover:shadow-xl transition-all flex-1 justify-center min-w-[140px] hover:brightness-110`}
+                      className={`flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 bg-gradient-to-r ${currentContact.color} rounded-xl font-semibold text-white shadow-lg hover:shadow-xl transition-all flex-1 justify-center min-w-[110px] sm:min-w-[140px] text-xs sm:text-sm hover:brightness-110`}
                     >
-                      <ExternalLink size={20} />
+                      <ExternalLink size={18} />
                       <span>Open</span>
                     </motion.a>
 
@@ -199,9 +199,9 @@ const Contact = () => {
                         rel="noopener noreferrer"
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
-                        className="flex items-center gap-3 px-6 py-4 bg-green-600 hover:bg-green-700 rounded-xl font-semibold text-white shadow-lg hover:shadow-xl transition-all flex-1 justify-center min-w-[140px]"
+                        className="flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 bg-green-600 hover:bg-green-700 rounded-xl font-semibold text-white shadow-lg hover:shadow-xl transition-all flex-1 justify-center min-w-[110px] sm:min-w-[140px] text-xs sm:text-sm"
                       >
-                        <MessageCircle size={20} />
+                        <MessageCircle size={18} />
                         <span>WhatsApp</span>
                       </motion.a>
                     )}
@@ -210,9 +210,9 @@ const Contact = () => {
                       onClick={() => copyToClipboard(currentContact.value)}
                       whileHover={{ scale: 1.05, y: -2 }}
                       whileTap={{ scale: 0.95 }}
-                      className="flex items-center gap-3 px-6 py-4 bg-white/10 hover:bg-slate-200 dark:hover:bg-white/20 light:hover:bg-slate-300 border border-white/20 dark:border-white/20 light:border-slate-300/60 rounded-xl font-semibold text-white dark:text-white light:text-slate-900 transition-all hover:shadow-lg"
+                      className="flex items-center gap-2 sm:gap-3 px-4 sm:px-6 py-3 sm:py-4 bg-white/10 dark:bg-white/10 [.light_&]:bg-white hover:bg-white/20 [.light_&]:hover:bg-slate-100 border border-white/20 dark:border-white/20 [.light_&]:border-slate-300 rounded-xl font-semibold text-white dark:text-white [.light_&]:text-slate-800 transition-all hover:shadow-lg flex-1 justify-center min-w-[110px] sm:min-w-[140px] text-xs sm:text-sm"
                     >
-                      <Copy size={20} />
+                      <Copy size={18} />
                       <span>Copy</span>
                     </motion.button>
                   </div>
@@ -227,7 +227,7 @@ const Contact = () => {
           initial={{ opacity: 0, y: 30 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="grid grid-cols-2 md:grid-cols-5 gap-4"
+          className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2.5 sm:gap-4"
         >
           {contactTabs.map((tab) => {
             const contact = contactMethods[tab.key]
@@ -237,14 +237,14 @@ const Contact = () => {
                 onClick={() => setActiveContact(tab.key)}
                 whileHover={{ y: -5, scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
-                className={`surface-card p-4 text-center hover:border-primary/50 dark:hover:border-primary/50 light:hover:border-slate-400/70 transition-all hover:shadow-lg ${
-                  activeContact === tab.key ? 'border-primary/50 bg-primary/5 dark:border-primary/50 dark:bg-primary/5 light:border-slate-400/70 light:bg-slate-100/80' : ''
+                className={`surface-card p-3 sm:p-4 text-center hover:border-primary/50 dark:hover:border-primary/50 [.light_&]:hover:border-teal-500/70 transition-all hover:shadow-lg ${
+                  activeContact === tab.key ? 'border-primary/50 bg-primary/5 dark:border-primary/50 dark:bg-primary/5 [.light_&]:border-teal-600 [.light_&]:bg-teal-500/10' : ''
                 }`}
               >
-                <div className={`w-12 h-12 rounded-xl bg-gradient-to-br ${contact.color} flex items-center justify-center mx-auto mb-3 text-white`}>
+                <div className={`w-10 h-10 sm:w-12 sm:h-12 rounded-xl bg-gradient-to-br ${contact.color} flex items-center justify-center mx-auto mb-2 sm:mb-3 text-white`}>
                   {tab.icon}
                 </div>
-                <p className="text-sm font-medium text-slate-300">{tab.label}</p>
+                <p className="text-xs sm:text-sm font-medium text-slate-300 [.light_&]:text-slate-700">{tab.label}</p>
               </motion.button>
             )
           })}
@@ -255,77 +255,77 @@ const Contact = () => {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-16"
+          className="mt-12 sm:mt-16"
         >
-          <div className="surface-card p-8 max-w-2xl mx-auto">
-            <div className="text-center mb-8">
-              <h3 className="text-2xl font-display font-bold mb-4">
+          <div className="surface-card p-4 sm:p-8 max-w-2xl mx-auto">
+            <div className="text-center mb-6 sm:mb-8">
+              <h3 className="text-xl sm:text-2xl font-display font-bold mb-2 sm:mb-4 text-white [.light_&]:text-slate-900">
                 Quick <span className="text-gradient">Message</span>
               </h3>
-              <p className="text-slate-400">
+              <p className="text-slate-400 [.light_&]:text-slate-600 text-xs sm:text-sm">
                 Send me a quick message and I'll get back to you within 24 hours
               </p>
             </div>
 
-            <form className="space-y-6">
-              <div className="grid md:grid-cols-2 gap-6">
+            <form className="space-y-4 sm:space-y-6">
+              <div className="grid md:grid-cols-2 gap-4 sm:gap-6">
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
+                  <label className="block text-xs sm:text-sm font-medium text-slate-300 [.light_&]:text-slate-700 mb-1.5 sm:mb-2">
                     Your Name
                   </label>
                   <input
                     type="text"
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-primary focus:outline-none text-white placeholder-slate-400 transition-colors"
+                    className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 bg-white/5 [.light_&]:bg-slate-100 border border-white/10 [.light_&]:border-slate-300 rounded-xl focus:border-primary focus:outline-none text-white [.light_&]:text-slate-900 placeholder-slate-400 [.light_&]:placeholder-slate-500 transition-colors text-sm"
                     placeholder="John Doe"
                   />
                 </div>
                 <div>
-                  <label className="block text-sm font-medium text-slate-300 mb-2">
+                  <label className="block text-xs sm:text-sm font-medium text-slate-300 [.light_&]:text-slate-700 mb-1.5 sm:mb-2">
                     Email Address
                   </label>
                   <input
                     type="email"
-                    className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-primary focus:outline-none text-white placeholder-slate-400 transition-colors"
+                    className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 bg-white/5 [.light_&]:bg-slate-100 border border-white/10 [.light_&]:border-slate-300 rounded-xl focus:border-primary focus:outline-none text-white [.light_&]:text-slate-900 placeholder-slate-400 [.light_&]:placeholder-slate-500 transition-colors text-sm"
                     placeholder="john@example.com"
                   />
                 </div>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-slate-300 [.light_&]:text-slate-700 mb-1.5 sm:mb-2">
                   Subject
                 </label>
-                <select className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-primary focus:outline-none text-white transition-colors">
-                  <option value="">Select a subject</option>
-                  <option value="Project">Project Collaboration</option>
-                  <option value="job">Job Opportunity</option>
-                  <option value="freelance">Freelance Work</option>
-                  <option value="general">General Inquiry</option>
+                <select className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 bg-white/5 [.light_&]:bg-slate-100 border border-white/10 [.light_&]:border-slate-300 rounded-xl focus:border-primary focus:outline-none text-white [.light_&]:text-slate-900 transition-colors text-sm">
+                  <option value="" className="bg-slate-900 [.light_&]:bg-white text-white [.light_&]:text-slate-900">Select a subject</option>
+                  <option value="Project" className="bg-slate-900 [.light_&]:bg-white text-white [.light_&]:text-slate-900">Project Collaboration</option>
+                  <option value="job" className="bg-slate-900 [.light_&]:bg-white text-white [.light_&]:text-slate-900">Job Opportunity</option>
+                  <option value="freelance" className="bg-slate-900 [.light_&]:bg-white text-white [.light_&]:text-slate-900">Freelance Work</option>
+                  <option value="general" className="bg-slate-900 [.light_&]:bg-white text-white [.light_&]:text-slate-900">General Inquiry</option>
                 </select>
               </div>
 
               <div>
-                <label className="block text-sm font-medium text-slate-300 mb-2">
+                <label className="block text-xs sm:text-sm font-medium text-slate-300 [.light_&]:text-slate-700 mb-1.5 sm:mb-2">
                   Message
                 </label>
                 <textarea
                   rows={4}
-                  className="w-full px-4 py-3 bg-white/5 border border-white/10 rounded-xl focus:border-primary focus:outline-none text-white placeholder-slate-400 transition-colors resize-none"
+                  className="w-full px-3.5 sm:px-4 py-2.5 sm:py-3 bg-white/5 [.light_&]:bg-slate-100 border border-white/10 [.light_&]:border-slate-300 rounded-xl focus:border-primary focus:outline-none text-white [.light_&]:text-slate-900 placeholder-slate-400 [.light_&]:placeholder-slate-500 transition-colors resize-none text-sm"
                   placeholder="Tell me about your project or opportunity..."
                 />
               </div>
 
               <motion.button
                 type="submit"
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-                className="w-full flex items-center justify-center gap-3 px-8 py-4 bg-gradient-to-r from-primary to-accent rounded-xl font-semibold text-black hover:shadow-lg hover:shadow-primary/50 transition-all"
+                whileHover={{ scale: 1.03 }}
+                whileTap={{ scale: 0.97 }}
+                className="w-full flex items-center justify-center gap-2.5 sm:gap-3 px-6 sm:px-8 py-3.5 sm:py-4 bg-gradient-to-r from-primary to-accent rounded-xl font-semibold text-black hover:shadow-lg hover:shadow-primary/50 transition-all text-sm sm:text-base"
               >
-                <Send size={20} />
+                <Send size={18} />
                 <span>Send Message</span>
               </motion.button>
 
-              <p className="text-center text-xs text-slate-500">
+              <p className="text-center text-xs text-slate-500 [.light_&]:text-slate-500">
                 Your message will be sent directly to my email. I typically respond within 24 hours.
               </p>
             </form>

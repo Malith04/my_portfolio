@@ -46,11 +46,21 @@
   border-radius: 28px;
   background: #070913;
   box-shadow: 0 20px 45px -5px rgba(0, 0, 0, 0.85);
-  transition: box-shadow 0.3s ease;
+  transition: box-shadow 0.3s ease, background 0.3s ease;
+}
+
+html.light .scroll-stack-card {
+  background: #ffffff !important;
+  box-shadow: 0 20px 45px -5px rgba(0, 0, 0, 0.08) !important;
+  border: 1px solid rgba(0, 0, 0, 0.08);
 }
 
 .scroll-stack-card:hover {
   box-shadow: 0 20px 45px -5px rgba(0, 245, 212, 0.2);
+}
+
+html.light .scroll-stack-card:hover {
+  box-shadow: 0 20px 45px -5px rgba(0, 245, 212, 0.15) !important;
 }
 
 .scroll-stack-end {

@@ -31,21 +31,21 @@ const ProjectDriftWall: React.FC = () => {
           </div>
 
           {/* Section Headline */}
-          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight text-white leading-tight">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-display font-bold tracking-tight text-white [.light_&]:text-slate-900 leading-tight">
             Featured <span className="text-gradient">Projects &amp; Architectures</span>
           </h2>
 
-          <p className="mt-3 text-slate-300 text-sm sm:text-base max-w-2xl font-display leading-relaxed">
+          <p className="mt-3 text-slate-300 [.light_&]:text-slate-600 text-sm sm:text-base max-w-2xl font-display leading-relaxed">
             A dynamic, perspective-tilted spatial wall displaying real-world web applications, IoT telemetries, and design systems. Hover any tile to lift and illuminate; click to explore in depth.
           </p>
         </div>
       </div>
 
       {/* 3D DriftWall Interactive Canvas (Edge-to-Edge Full Screen Width) */}
-      <div className="relative w-full h-[640px] sm:h-[700px] lg:h-[760px] overflow-hidden">
+      <div className="relative w-full h-[480px] sm:h-[640px] lg:h-[760px] overflow-hidden">
         {/* Top & Bottom Ambient Edge Fade */}
-        <div className="absolute top-0 inset-x-0 h-28 bg-gradient-to-b from-ink via-ink/75 to-transparent z-10 pointer-events-none" />
-        <div className="absolute bottom-0 inset-x-0 h-28 bg-gradient-to-t from-ink via-ink/75 to-transparent z-10 pointer-events-none" />
+        <div className="absolute top-0 inset-x-0 h-28 bg-gradient-to-b from-ink via-ink/75 to-transparent [.light_&]:from-slate-50 [.light_&]:via-slate-50/80 z-10 pointer-events-none" />
+        <div className="absolute bottom-0 inset-x-0 h-28 bg-gradient-to-t from-ink via-ink/75 to-transparent [.light_&]:from-slate-50 [.light_&]:via-slate-50/80 z-10 pointer-events-none" />
 
         {/* Ambient Center Glow */}
         <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[700px] h-[450px] bg-gradient-to-tr from-primary/10 via-secondary/10 to-transparent blur-[130px] rounded-full pointer-events-none z-0" />
@@ -80,7 +80,7 @@ const ProjectDriftWall: React.FC = () => {
           href="#projects"
           whileHover={{ scale: 1.05 }}
           whileTap={{ scale: 0.95 }}
-          className="inline-flex items-center gap-2.5 rounded-full bg-white/10 hover:bg-white/20 border border-white/20 hover:border-primary/60 px-6 py-3 text-xs sm:text-sm font-display font-semibold uppercase tracking-[0.16em] text-white transition-all backdrop-blur-md shadow-xl"
+          className="inline-flex items-center gap-2.5 rounded-full bg-white/10 hover:bg-white/20 [.light_&]:bg-slate-900 [.light_&]:hover:bg-slate-800 border border-white/20 hover:border-primary/60 [.light_&]:border-slate-800 px-6 py-3 text-xs sm:text-sm font-display font-semibold uppercase tracking-[0.16em] text-white transition-all backdrop-blur-md shadow-xl"
         >
           <Layers size={16} className="text-[#00F5D4]" />
           <span>View Detailed Case Studies &amp; Code</span>

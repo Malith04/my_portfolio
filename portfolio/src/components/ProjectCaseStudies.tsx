@@ -380,50 +380,50 @@ const ProjectCaseStudies = () => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-4"
+              className="fixed inset-0 bg-black/80 backdrop-blur-sm z-50 flex items-center justify-center p-2.5 sm:p-4"
               onClick={() => setSelectedProject(null)}
             >
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
-                className="bg-black/95 border border-white/10 rounded-2xl max-w-6xl max-h-[90vh] overflow-hidden"
+                className="bg-black/95 border border-white/10 rounded-2xl max-w-6xl w-full max-h-[92vh] overflow-hidden"
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Header */}
-                <div className="p-6 border-b border-white/10">
-                  <div className="flex items-center justify-between mb-4">
-                    <div>
-                      <h1 className="text-3xl font-display font-bold mb-2">{selectedCase.title}</h1>
-                      <p className="text-slate-400">{selectedCase.subtitle}</p>
+                <div className="p-4 sm:p-6 border-b border-white/10">
+                  <div className="flex items-start justify-between gap-4 mb-3 sm:mb-4">
+                    <div className="flex-1 min-w-0">
+                      <h1 className="text-lg sm:text-3xl font-display font-bold mb-1 leading-snug">{selectedCase.title}</h1>
+                      <p className="text-slate-400 text-xs sm:text-sm">{selectedCase.subtitle}</p>
                     </div>
                     <button
                       onClick={() => setSelectedProject(null)}
-                      className="text-slate-400 hover:text-white transition-colors text-2xl"
+                      className="text-slate-400 hover:text-white transition-colors text-xl sm:text-2xl p-1 cursor-pointer shrink-0"
                     >
                       ✕
                     </button>
                   </div>
 
                   {/* Quick Stats */}
-                  <div className="flex flex-wrap gap-6 text-sm">
-                    <div className="flex items-center gap-2">
-                      <Clock size={16} className="text-primary" />
+                  <div className="flex flex-wrap gap-3 sm:gap-6 text-xs sm:text-sm">
+                    <div className="flex items-center gap-1.5">
+                      <Clock size={14} className="text-primary" />
                       <span>{selectedCase.duration}</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Users size={16} className="text-primary" />
+                    <div className="flex items-center gap-1.5">
+                      <Users size={14} className="text-primary" />
                       <span>{selectedCase.team}</span>
                     </div>
-                    <div className="flex items-center gap-2">
-                      <Target size={16} className="text-primary" />
+                    <div className="flex items-center gap-1.5">
+                      <Target size={14} className="text-primary" />
                       <span>{selectedCase.status}</span>
                     </div>
                   </div>
                 </div>
 
                 {/* Content */}
-                <div className="p-6 overflow-y-auto max-h-[70vh] space-y-8">
+                <div data-lenis-prevent className="p-4 sm:p-6 overflow-y-auto max-h-[68vh] space-y-6 sm:space-y-8 no-scrollbar">
                   {/* Overview */}
                   <div>
                     <h3 className="text-xl font-bold mb-4 flex items-center gap-2">

@@ -373,25 +373,25 @@ const FarmModel = ({ sensorData }) => {
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
-              className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-4"
+              className="fixed inset-0 bg-black/80 backdrop-blur-md z-50 flex items-center justify-center p-2.5 sm:p-4"
               onClick={() => setSelectedProject(null)}
             >
               <motion.div
                 initial={{ scale: 0.9, opacity: 0 }}
                 animate={{ scale: 1, opacity: 1 }}
                 exit={{ scale: 0.9, opacity: 0 }}
-                className="bg-ink/95 backdrop-blur-xl border border-white/10 rounded-2xl max-w-5xl w-full max-h-[90vh] overflow-hidden"
+                className="bg-ink/95 backdrop-blur-xl border border-white/10 rounded-2xl max-w-5xl w-full max-h-[92vh] overflow-hidden"
                 onClick={(e) => e.stopPropagation()}
               >
                 {/* Modal Header */}
-                <div className="flex items-center justify-between p-6 border-b border-white/10">
-                  <div className="flex items-center gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center text-ink">
+                <div className="flex items-center justify-between p-4 sm:p-6 border-b border-white/10">
+                  <div className="flex items-center gap-3 sm:gap-4 flex-1 min-w-0 pr-2">
+                    <div className="w-10 h-10 sm:w-12 sm:h-12 bg-gradient-to-br from-primary to-secondary rounded-xl flex items-center justify-center text-ink shrink-0">
                       {selectedProject.icon}
                     </div>
-                    <div>
-                      <h3 className="text-2xl font-display font-semibold text-white">{selectedProject.title}</h3>
-                      <p className="text-primary text-xs font-mono mt-0.5">
+                    <div className="min-w-0 flex-1">
+                      <h3 className="text-base sm:text-2xl font-display font-semibold text-white truncate">{selectedProject.title}</h3>
+                      <p className="text-primary text-[10px] sm:text-xs font-mono mt-0.5 truncate">
                         {selectedProject.role ? `${selectedProject.role} • ` : ''}
                         {selectedProject.category === 'featured' ? '★ Featured Lead' : selectedProject.category === 'personal' ? 'Personal Project' : 'Group Project'}
                       </p>
@@ -399,7 +399,7 @@ const FarmModel = ({ sensorData }) => {
                   </div>
                   <button
                     onClick={() => setSelectedProject(null)}
-                    className="w-10 h-10 bg-white/10 hover:bg-white/20 rounded-lg flex items-center justify-center text-white transition-colors text-xl"
+                    className="w-8 h-8 sm:w-10 sm:h-10 bg-white/10 hover:bg-white/20 rounded-lg flex items-center justify-center text-white transition-colors text-lg sm:text-xl shrink-0 cursor-pointer"
                   >
                     ×
                   </button>
@@ -411,9 +411,9 @@ const FarmModel = ({ sensorData }) => {
                     <button
                       key={tab}
                       onClick={() => setActiveTab(tab)}
-                      className={`px-6 py-4 text-sm font-medium capitalize transition-colors ${
+                      className={`px-3.5 sm:px-6 py-2.5 sm:py-4 text-xs sm:text-sm font-medium capitalize transition-colors ${
                         activeTab === tab
-                          ? 'text-primary border-b-2 border-primary'
+                          ? 'text-primary border-b-2 border-primary font-semibold'
                           : 'text-slate-400 hover:text-white'
                       }`}
                     >
@@ -423,7 +423,7 @@ const FarmModel = ({ sensorData }) => {
                 </div>
 
                 {/* Modal Content */}
-                <div className="p-6 max-h-[60vh] overflow-y-auto">
+                <div data-lenis-prevent className="p-4 sm:p-6 max-h-[65vh] overflow-y-auto no-scrollbar">
                   {activeTab === 'overview' && (
                     <div className="space-y-6">
                       <p className="text-slate-300 leading-relaxed">{selectedProject.description}</p>

@@ -110,12 +110,17 @@ export const DriftWall: React.FC<DriftWallProps> = ({
     return () => mq.removeEventListener('change', onChange);
   }, []);
 
+  const isMobile = containerWidth < 768;
+  const effectiveTileWidth = isMobile ? Math.min(tileWidth, 160) : tileWidth;
+  const effectiveTileHeight = isMobile ? Math.min(tileHeight, 105) : tileHeight;
+  const effectiveGap = isMobile ? Math.min(gap, 12) : gap;
+
   // Compute effective columns dynamically so that the 3D plane fully covers full screen width with bleed
   const effectiveColumns = useMemo(() => {
-    const colUnit = tileWidth + gap;
+    const colUnit = effectiveTileWidth + effectiveGap;
     const needed = Math.ceil(((containerWidth || 1440) * 1.35) / colUnit);
-    return Math.max(columns ?? 6, needed, 7);
-  }, [containerWidth, tileWidth, gap, columns]);
+    return Math.max(isMobile ? 4 : (columns ?? 6), needed);
+  }, [containerWidth, effectiveTileWidth, effectiveGap, columns, isMobile]);
 
   const columnItems = useMemo(() => {
     if (!items.length) return [];
@@ -135,13 +140,13 @@ export const DriftWall: React.FC<DriftWallProps> = ({
   }, [items, effectiveColumns]);
 
   const columnMeta = useMemo(() => {
-    const unit = tileHeight + gap;
+    const unit = effectiveTileHeight + effectiveGap;
     return columnItems.map(col => {
       const copyHeight = Math.max(unit, col.length * unit);
       const copies = Math.max(2, Math.ceil((containerHeight * 1.6) / copyHeight) + 1);
       return { copyHeight, copies };
     });
-  }, [columnItems, tileHeight, gap, containerHeight]);
+  }, [columnItems, effectiveTileHeight, effectiveGap, containerHeight]);
 
   useLayoutEffect(() => {
     if (!containerRef.current) return;
@@ -372,11 +377,11 @@ export const DriftWall: React.FC<DriftWallProps> = ({
 
   const cssVars = useMemo(
     () => ({
-      '--dw-tile-w': `${tileWidth}px`,
-      '--dw-tile-h': `${tileHeight}px`,
-      '--dw-gap': `${gap}px`,
-      '--dw-radius': `${radius}px`,
-      '--dw-perspective': `${perspective}px`,
+      '--dw-tile-w': `${effectiveTileWidth}px`,
+      '--dw-tile-h': `${effectiveTileHeight}px`,
+      '--dw-gap': `${effectiveGap}px`,
+      '--dw-radius': `${isMobile ? Math.min(radius, 12) : radius}px`,
+      '--dw-perspective': `${isMobile ? Math.min(perspective, 900) : perspective}px`,
       '--dw-lift': `${lift}px`,
       '--dw-dim': dim,
       '--dw-gray': grayscale ? 1 : 0,
@@ -384,7 +389,7 @@ export const DriftWall: React.FC<DriftWallProps> = ({
       '--dw-edge': `${Math.max(0, (1 - fade) * 100)}%`,
       ...style
     } as React.CSSProperties),
-    [tileWidth, tileHeight, gap, radius, perspective, lift, dim, grayscale, overlayColor, fade, style]
+    [effectiveTileWidth, effectiveTileHeight, effectiveGap, isMobile, radius, perspective, lift, dim, grayscale, overlayColor, fade, style]
   );
 
   const renderTile = (item: DriftWallItem, id: string, colIndex: number) => {

@@ -87,7 +87,7 @@ const GitHubStats = () => {
         </AnimatedSectionHeader>
 
         {/* Stats Grid */}
-        <div className="grid grid-cols-2 lg:grid-cols-4 gap-6 mb-12">
+        <div className="grid grid-cols-2 lg:grid-cols-4 gap-3.5 sm:gap-6 mb-12">
           {statCards.map((stat, index) => (
             <motion.div
               key={index}
@@ -96,9 +96,9 @@ const GitHubStats = () => {
               viewport={{ once: true }}
               transition={{ delay: index * 0.1 }}
               whileHover={{ y: -5, scale: 1.02 }}
-              className="surface-card p-6 text-center hover:shadow-xl transition-all group"
+              className="surface-card p-4 sm:p-6 text-center hover:shadow-xl transition-all group"
             >
-              <div className={`w-14 h-14 mx-auto mb-4 rounded-2xl ${stat.bgColor} flex items-center justify-center shadow-lg transition-transform group-hover:scale-110`}>
+              <div className={`w-11 h-11 sm:w-14 sm:h-14 mx-auto mb-3 sm:mb-4 rounded-xl sm:rounded-2xl ${stat.bgColor} flex items-center justify-center shadow-lg transition-transform group-hover:scale-110`}>
                 {stat.icon}
               </div>
               <div className="text-3xl font-display font-bold text-white mb-2">
