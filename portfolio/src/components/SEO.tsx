@@ -13,8 +13,8 @@ const SEO = ({
   title = "Malith Rajamanthri - Software Engineer & Full-Stack Developer",
   description = "Passionate Software Engineer specializing in React, TypeScript, and modern web technologies. Building innovative solutions with clean, scalable code.",
   keywords = "Malith Rajamanthri, Software Engineer, Full-Stack Developer, React Developer, TypeScript, JavaScript, Web Development, Sri Lanka, NIBM, Portfolio",
-  image = "/images/hero-profile.jpg",
-  url = "https://malithrajamanthri.dev",
+  image = "https://malithraja.netlify.app/images/hero-profile.jpg",
+  url = "https://malithraja.netlify.app",
   type = "website"
 }: SEOProps) => {
 
