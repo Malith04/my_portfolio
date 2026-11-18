@@ -198,7 +198,7 @@ export const ServicesAccordion: React.FC = () => {
               initial={{ opacity: 0, scale: 0.96 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.4 }}
-              className="rounded-3xl border border-white/15 [.light_&]:border-slate-300/80 bg-[#090C18]/90 [.light_&]:bg-white/95 backdrop-blur-2xl p-6 shadow-2xl [.light_&]:shadow-xl space-y-5"
+              className="rounded-3xl border border-white/15 [.light_&]:border-slate-300/80 bg-[#090C18]/95 [.light_&]:bg-white/95 backdrop-blur-md p-6 shadow-2xl [.light_&]:shadow-xl space-y-5 transform-gpu"
             >
               {/* Preview Image with Device Frame styling */}
               <div className="relative h-60 rounded-2xl overflow-hidden border border-white/10 [.light_&]:border-slate-200 bg-black/60 [.light_&]:bg-slate-100 shadow-inner">

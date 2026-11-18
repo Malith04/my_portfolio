@@ -89,7 +89,7 @@ export const ReelActionBar = ({ reelId, initialLiked, echoesCount }: ReelProps) 
       demoGif: '/images/soundwave-ui.jpg',
       tech: ['React 18', 'Tailwind CSS', 'Firebase', 'Howler.js', 'Web Audio API', 'YouTube API'],
       github: 'https://github.com/Malith04/SoundWave.git',
-      live: 'https://amazing-soundwave.netlify.app',
+      live: 'https://soundwave-official.netlify.app/',
       category: 'personal',
       icon: <Music size={24} />,
       features: [
@@ -201,12 +201,12 @@ const FarmModel = ({ sensorData }) => {
           {projects.map((project, i) => (
             <motion.div
               key={i}
-              initial={{ opacity: 0, y: 50 }}
+              initial={{ opacity: 0, y: 28 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: i * 0.2 }}
-              whileHover={{ y: -8, scale: 1.015 }}
-              className="surface-card overflow-hidden hover:border-primary/50 dark:hover:border-primary/50 light:hover:border-slate-400/70 transition-all group h-full flex flex-col hover:shadow-2xl cursor-pointer border border-white/10 rounded-2xl bg-black/40 backdrop-blur-xl"
+              viewport={{ once: true, margin: '-50px' }}
+              transition={{ duration: 0.36, delay: i * 0.08, ease: [0.16, 1, 0.3, 1] }}
+              whileHover={{ y: -6, scale: 1.015 }}
+              className="surface-card overflow-hidden hover:border-primary/50 dark:hover:border-primary/50 light:hover:border-slate-400/70 transition-all group h-full flex flex-col hover:shadow-2xl cursor-pointer border border-white/10 rounded-2xl bg-[#070914]/90 backdrop-blur-sm"
               onClick={() => setSelectedProject(project)}
             >
               <div className="relative h-52 overflow-hidden bg-gradient-to-br from-primary/20 to-accent/20">

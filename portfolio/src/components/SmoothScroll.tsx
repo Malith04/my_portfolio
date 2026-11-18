@@ -13,13 +13,13 @@ export const SmoothScroll: React.FC = () => {
     document.documentElement.style.scrollBehavior = 'auto'
 
     const lenis = new Lenis({
-      duration: 0.9,
-      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Lesmana-style exponential ease
+      duration: 0.65, // Energetic, snappy, and responsive buttery-smooth feel
+      easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // Snappy exponential ease curve
       orientation: 'vertical',
       gestureOrientation: 'vertical',
       smoothWheel: true,
-      wheelMultiplier: 1.05,
-      touchMultiplier: 1.5,
+      wheelMultiplier: 1.25, // Energetic responsiveness to wheel movements
+      touchMultiplier: 1.8,
       infinite: false,
       syncTouch: false,
       allowNestedScroll: true,
@@ -61,7 +61,7 @@ export const SmoothScroll: React.FC = () => {
         e.preventDefault()
         lenis.scrollTo(targetElement as HTMLElement, {
           offset: -88,
-          duration: 1.2,
+          duration: 0.85,
           easing: (t: number) => Math.min(1, 1.001 - Math.pow(2, -10 * t))
         })
         window.history.pushState(null, '', href)

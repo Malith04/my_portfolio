@@ -253,7 +253,7 @@ export const mockData = {
       description: 'A Spotify-inspired music streaming application built with React and Web Audio API.',
       technologies: ['React', 'TypeScript', 'Web Audio API', 'Tailwind CSS'],
       githubUrl: 'https://github.com/malith/soundwave',
-      liveUrl: 'https://soundwave-demo.vercel.app',
+      liveUrl: 'https://soundwave-official.netlify.app/',
       imageUrl: '/images/soundwave-app.avif',
       featured: true
     }

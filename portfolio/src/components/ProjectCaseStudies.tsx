@@ -97,9 +97,9 @@ const ProjectCaseStudies = () => {
       ],
       
       links: {
-        live: "https://amazing-soundwave.netlify.app",
+        live: "https://soundwave-official.netlify.app/",
         github: "https://github.com/Malith04/SoundWave.git",
-        demo: "https://amazing-soundwave.netlify.app"
+        demo: "https://soundwave-official.netlify.app/"
       }
     },
     {
@@ -300,10 +300,10 @@ const ProjectCaseStudies = () => {
           {caseStudies.map((project, index) => (
             <motion.div
               key={project.id}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: index * 0.1 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.35, delay: index * 0.06, ease: [0.16, 1, 0.3, 1] }}
               className="surface-card overflow-hidden hover:border-primary/50 transition-all group cursor-pointer"
               onClick={() => setSelectedProject(project.id)}
             >

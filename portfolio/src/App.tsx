@@ -60,7 +60,7 @@ function App() {
         <SmoothScroll />
         
         {/* Ambient Silk Fluid WebGL Background (Portfolio Signature Cyber Sky Blue) */}
-        <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden">
+        <div className="fixed inset-0 pointer-events-none z-0 overflow-hidden transform-gpu will-change-transform">
           <Silk
             speed={3.5}
             scale={1}

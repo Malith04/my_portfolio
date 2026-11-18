@@ -166,7 +166,7 @@
 
 @layer components {
   .surface-card {
-    @apply bg-surface/85 border border-white/10 backdrop-blur-md rounded-2xl;
+    @apply bg-surface/90 border border-white/10 backdrop-blur-sm rounded-2xl;
     transform: translateZ(0);
     backface-visibility: hidden;
   }

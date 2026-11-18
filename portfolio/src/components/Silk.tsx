@@ -35,12 +35,10 @@ uniform float uRotation;
 uniform float uNoiseIntensity;
 uniform float uLightMode;
 
-const float e = 2.71828182845904523536;
-
-float noise(vec2 texCoord) {
-  float G = e;
-  vec2  r = (G * sin(G * texCoord));
-  return fract(r.x * r.y * (1.0 + texCoord.x));
+float noise(vec2 p) {
+  p = fract(p * vec2(123.34, 456.21));
+  p += dot(p, p + 45.32);
+  return fract(p.x * p.y);
 }
 
 vec2 rotateUvs(vec2 uv, float angle) {

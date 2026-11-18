@@ -1,7 +1,6 @@
 import { motion } from 'framer-motion'
 import AnimatedSectionHeader from './AnimatedSectionHeader'
 import { Calendar, MapPin, Award, Briefcase, GraduationCap } from 'lucide-react'
-import ScrollStack, { ScrollStackItem } from './ScrollStack'
 
 const Experience = () => {
   const timeline = [
@@ -90,109 +89,104 @@ const Experience = () => {
           </p>
         </AnimatedSectionHeader>
 
-        <ScrollStack
-          useWindowScroll={true}
-          itemDistance={40}
-          itemStackDistance={36}
-          stackPosition="14%"
-          scaleEndPosition="8%"
-          baseScale={0.88}
-          itemScale={0.035}
-          rotationAmount={0}
-          blurAmount={0}
-        >
+        <div className="space-y-6 sm:space-y-8 relative">
           {timeline.map((item, i) => (
-            <ScrollStackItem key={i}>
-              <div className="relative group">
-                {/* Main Card */}
-                <div className="overflow-hidden rounded-2xl sm:rounded-3xl border border-white/15 [.light_&]:border-slate-300/80 bg-[#070913] [.light_&]:bg-white hover:border-primary/50 transition-all duration-500 shadow-[0_25px_70px_rgba(0,0,0,0.9)] [.light_&]:shadow-[0_20px_50px_rgba(0,0,0,0.08)] group-hover:shadow-[0_20px_50px_-10px_rgba(0,245,212,0.25)]">
-                  {/* Header with Gradient */}
-                  <div className={`relative p-4 sm:p-8 bg-gradient-to-r ${item.color} overflow-hidden`}>
-                    {/* Background Pattern */}
-                    <div className="absolute inset-0 opacity-15">
-                      <div className="absolute top-0 right-0 w-40 h-40 bg-white rounded-full -translate-y-16 translate-x-16 blur-xl" />
-                      <div className="absolute bottom-0 left-0 w-32 h-32 bg-black rounded-full translate-y-12 -translate-x-12 blur-lg" />
-                    </div>
-                    
-                    <div className="relative z-10">
-                      <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-4 mb-3">
-                        <div className="flex items-start gap-3 sm:gap-4">
-                          {item.logo && (
-                            <div className="w-11 h-11 sm:w-14 sm:h-14 rounded-xl sm:rounded-2xl bg-white p-1 sm:p-1.5 border border-white/40 flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-105 transition-transform">
-                              <img
-                                src={item.logo}
-                                alt={item.organization}
-                                className="w-full h-full object-contain rounded-lg sm:rounded-xl"
-                              />
-                            </div>
-                          )}
-                          <div className="min-w-0">
-                            <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-1.5 sm:mb-2">
-                              <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 bg-black/40 [.light_&]:bg-white/80 backdrop-blur-md rounded-full text-white [.light_&]:text-slate-900 text-[11px] sm:text-xs font-display font-semibold uppercase tracking-wider shadow-sm">
-                                <Calendar size={11} />
-                                {item.period}
-                              </span>
-                              <span className="inline-flex items-center px-2.5 sm:px-3 py-0.5 sm:py-1 bg-white/20 [.light_&]:bg-white/90 backdrop-blur-md rounded-full text-white [.light_&]:text-slate-900 text-[11px] sm:text-xs font-display font-semibold uppercase tracking-wider shadow-sm">
-                                {item.badge}
-                              </span>
-                            </div>
-                            <h3 className="text-xl sm:text-3xl font-display font-semibold text-white tracking-tight mb-1 leading-snug">
-                              {item.title}
-                            </h3>
-                            <p className="text-white/95 font-display font-medium text-sm sm:text-lg flex items-center gap-1.5 sm:gap-2">
-                              {item.type === 'work' ? <Briefcase size={15} /> : <GraduationCap size={15} />}
-                              {item.organization}
-                            </p>
-                          </div>
-                        </div>
-                        <div className="text-left sm:text-right">
-                          <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-black/30 [.light_&]:bg-white/80 backdrop-blur-md text-white/90 [.light_&]:text-slate-900 text-[11px] sm:text-xs font-display font-medium shadow-sm">
-                            <MapPin size={12} className="text-primary [.light_&]:text-teal-700" />
-                            {item.location}
-                          </div>
-                        </div>
-                      </div>
-                    </div>
+            <motion.div
+              key={i}
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true, margin: '-40px' }}
+              transition={{ duration: 0.38, delay: i * 0.06, ease: [0.16, 1, 0.3, 1] }}
+              className="relative group"
+            >
+              {/* Main Card */}
+              <div className="overflow-hidden rounded-2xl sm:rounded-3xl border border-white/15 [.light_&]:border-slate-300/80 bg-[#070913] [.light_&]:bg-white hover:border-primary/50 transition-all duration-300 shadow-[0_16px_40px_rgba(0,0,0,0.6)] [.light_&]:shadow-[0_16px_36px_rgba(0,0,0,0.06)] group-hover:shadow-[0_20px_50px_-10px_rgba(0,245,212,0.25)]">
+                {/* Header with Gradient */}
+                <div className={`relative p-5 sm:p-8 bg-gradient-to-r ${item.color} overflow-hidden`}>
+                  {/* Background Pattern */}
+                  <div className="absolute inset-0 opacity-15 pointer-events-none">
+                    <div className="absolute top-0 right-0 w-40 h-40 bg-white rounded-full -translate-y-16 translate-x-16 blur-xl" />
+                    <div className="absolute bottom-0 left-0 w-32 h-32 bg-black rounded-full translate-y-12 -translate-x-12 blur-lg" />
                   </div>
-
-                  {/* Content with solid opaque dark background in dark, crisp white in light */}
-                  <div className="p-4 sm:p-8 space-y-4 sm:space-y-6 bg-[#070913] [.light_&]:bg-white">
-                    <p className="text-slate-300 [.light_&]:text-slate-700 leading-relaxed font-display text-xs sm:text-base">
-                      {item.description}
-                    </p>
-
-                    {/* Achievements */}
-                    <div className="space-y-2.5 sm:space-y-3">
-                      <div className="flex items-center gap-2 mb-2">
-                        <Award className="text-primary [.light_&]:text-teal-700" size={17} />
-                        <h4 className="font-display font-semibold text-white [.light_&]:text-slate-900 text-xs sm:text-sm uppercase tracking-wider">
-                          Key Highlights &amp; Achievements
-                        </h4>
-                      </div>
-                      
-                      <div className="grid sm:grid-cols-2 gap-2 sm:gap-3">
-                        {item.achievements.map((achievement, j) => (
-                          <div
-                            key={j}
-                            className="flex items-start gap-2.5 sm:gap-3 p-2.5 sm:p-3 bg-white/5 [.light_&]:bg-slate-50 rounded-xl border border-white/5 [.light_&]:border-slate-200/80 hover:border-primary/30 hover:bg-primary/5 transition-all"
-                          >
-                            <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary [.light_&]:bg-teal-500 rounded-full mt-1.5 sm:mt-2 flex-shrink-0" />
-                            <span className="text-slate-300 [.light_&]:text-slate-700 text-xs sm:text-sm leading-relaxed font-display">
-                              {achievement}
+                  
+                  <div className="relative z-10">
+                    <div className="flex flex-col sm:flex-row sm:items-start justify-between gap-3 sm:gap-4 mb-3">
+                      <div className="flex items-start gap-3 sm:gap-4">
+                        {item.logo && (
+                          <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-xl sm:rounded-2xl bg-white p-1 sm:p-1.5 border border-white/40 flex items-center justify-center flex-shrink-0 shadow-lg group-hover:scale-105 transition-transform">
+                            <img
+                              src={item.logo}
+                              alt={item.organization}
+                              className="w-full h-full object-contain rounded-lg sm:rounded-xl"
+                            />
+                          </div>
+                        )}
+                        <div className="min-w-0">
+                          <div className="flex flex-wrap items-center gap-1.5 sm:gap-2 mb-1.5 sm:mb-2">
+                            <span className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-0.5 sm:py-1 bg-black/40 [.light_&]:bg-white/80 backdrop-blur-sm rounded-full text-white [.light_&]:text-slate-900 text-[11px] sm:text-xs font-display font-semibold uppercase tracking-wider shadow-sm">
+                              <Calendar size={11} />
+                              {item.period}
+                            </span>
+                            <span className="inline-flex items-center px-2.5 sm:px-3 py-0.5 sm:py-1 bg-white/20 [.light_&]:bg-white/90 backdrop-blur-sm rounded-full text-white [.light_&]:text-slate-900 text-[11px] sm:text-xs font-display font-semibold uppercase tracking-wider shadow-sm">
+                              {item.badge}
                             </span>
                           </div>
-                        ))}
+                          <h3 className="text-xl sm:text-3xl font-display font-semibold text-white tracking-tight mb-1 leading-snug">
+                            {item.title}
+                          </h3>
+                          <p className="text-white/95 font-display font-medium text-sm sm:text-lg flex items-center gap-1.5 sm:gap-2">
+                            {item.type === 'work' ? <Briefcase size={15} /> : <GraduationCap size={15} />}
+                            {item.organization}
+                          </p>
+                        </div>
+                      </div>
+                      <div className="text-left sm:text-right flex-shrink-0">
+                        <div className="inline-flex items-center gap-1.5 px-2.5 sm:px-3 py-1 rounded-full bg-black/30 [.light_&]:bg-white/80 backdrop-blur-sm text-white/90 [.light_&]:text-slate-900 text-[11px] sm:text-xs font-display font-medium shadow-sm">
+                          <MapPin size={12} className="text-primary [.light_&]:text-teal-700" />
+                          {item.location}
+                        </div>
                       </div>
                     </div>
                   </div>
-
-                  {/* Bottom Accent */}
-                  <div className={`h-1 bg-gradient-to-r ${item.color}`} />
                 </div>
+
+                {/* Content with solid opaque dark background in dark, crisp white in light */}
+                <div className="p-5 sm:p-8 space-y-4 sm:space-y-6 bg-[#070913] [.light_&]:bg-white">
+                  <p className="text-slate-300 [.light_&]:text-slate-700 leading-relaxed font-display text-xs sm:text-base">
+                    {item.description}
+                  </p>
+
+                  {/* Achievements */}
+                  <div className="space-y-2.5 sm:space-y-3">
+                    <div className="flex items-center gap-2 mb-2">
+                      <Award className="text-primary [.light_&]:text-teal-700" size={17} />
+                      <h4 className="font-display font-semibold text-white [.light_&]:text-slate-900 text-xs sm:text-sm uppercase tracking-wider">
+                        Key Highlights &amp; Achievements
+                      </h4>
+                    </div>
+                    
+                    <div className="grid sm:grid-cols-2 gap-2.5 sm:gap-3">
+                      {item.achievements.map((achievement, j) => (
+                        <div
+                          key={j}
+                          className="flex items-start gap-2.5 sm:gap-3 p-3 bg-white/5 [.light_&]:bg-slate-50 rounded-xl border border-white/5 [.light_&]:border-slate-200/80 hover:border-primary/30 hover:bg-primary/5 transition-all"
+                        >
+                          <span className="w-1.5 h-1.5 sm:w-2 sm:h-2 bg-primary [.light_&]:bg-teal-500 rounded-full mt-1.5 sm:mt-2 flex-shrink-0 shadow-[0_0_8px_rgba(0,245,212,0.6)]" />
+                          <span className="text-slate-300 [.light_&]:text-slate-700 text-xs sm:text-sm leading-relaxed font-display">
+                            {achievement}
+                          </span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+                {/* Bottom Accent */}
+                <div className={`h-1 bg-gradient-to-r ${item.color}`} />
               </div>
-            </ScrollStackItem>
+            </motion.div>
           ))}
-        </ScrollStack>
+        </div>
 
         {/* Summary Stats */}
         <motion.div

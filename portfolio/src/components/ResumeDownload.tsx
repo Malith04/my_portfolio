@@ -12,95 +12,100 @@ const ResumeDownload = ({ variant = 'compact' }: ResumeDownloadProps) => {
   const resumeData = {
     personalInfo: {
       name: "Malith Rajamanthri",
-      title: "Software Engineer Intern @ Innovior | Frontend & UI/UX Engineer",
+      title: "Full Stack Developer Intern @ Innovior | Software Engineer",
       email: "malithrajamanthri@gmail.com",
       phone: "+94 76 742 1844",
       location: "Kandy, Sri Lanka",
-      website: "malithrajamanthri.netlify.app",
+      website: "https://malithraja.netlify.app",
       linkedin: "https://www.linkedin.com/in/hashintha-malith-794823361",
       github: "https://github.com/Malith04"
     },
-    summary: "Software Engineer Intern at Innovior and Software Engineering undergraduate with hands-on experience in production frontend systems, Next.js 15, React 19, TypeScript, Tailwind CSS, and REST API integration. Experienced in architecting scalable Progressive Web Applications (PWAs), UI/UX design systems, and cloud-connected platforms.",
+    summary: "Software Engineering undergraduate with hands-on experience in frontend and full-stack web application development using React.JS, Next.JS, Firebase, JavaScript, and REST API integration. Experienced in building scalable Progressive Web Applications (PWAs), cloud-connected dashboards, machine learning and IoT integrated smart monitoring systems. Currently working as an Intern Software Engineer, contributing to modern software engineering teams and building industry experience.",
     experience: [
       {
-        title: "Software Engineer Intern",
-        company: "Innovior",
-        period: "2024 - Present",
-        description: "Engineering production frontend systems, scalable React 19 / Next.js 15 web applications, and intuitive UI/UX workflows. Developing core features for ImpactEcho and enterprise client platforms."
-      },
-      {
-        title: "Software Engineering Student",
-        company: "National Institute of Business Management (NIBM)",
-        period: "2024 - Present",
-        description: "Pursuing BSc (Hons) in Software Engineering with focus on modern web technologies, full-stack development, algorithms, and software engineering practices."
-      },
-      {
-        title: "Full-Stack Developer",
-        company: "Independent Projects",
-        period: "2023 - Present",
-        description: "Developed multiple web applications including social-impact platforms, music streaming PWAs, and cloud monitoring solutions using React, Next.js, and TypeScript."
+        title: "Full Stack Developer Intern",
+        company: "Innovior (Pvt) Ltd",
+        period: "May 2026 – November 2026",
+        responsibilities: [
+          "Currently contributing full-stack software development projects and working on real-world applications.",
+          "Developing frontend applications using Next.js and backend services using Nest.JS.",
+          "Working with MongoDB for database operations and AWS S3 for cloud storage solutions.",
+          "Developing and integrating RESTful APIs for application functionality.",
+          "Creating UI/UX designs and prototypes using Figma"
+        ]
       }
     ],
     education: [
       {
-        degree: "BSc (Hons) Software Engineering (Reading)",
-        institution: "National Institute of Business Management (NIBM)",
-        period: "2024 - Present",
-        status: "Current"
+        degree: "BSc (Hons) Computer Science (Reading)",
+        institution: "National Institute of Business Management, Kandy",
+        period: "Present",
+        status: "Reading"
       },
       {
         degree: "Higher National Diploma in Software Engineering",
         institution: "National Institute of Business Management, Kandy",
-        period: "2024 - 2026",
-        status: "Enrolled / In Progress"
+        period: "2025 - 2026",
+        status: "Higher National Diploma"
       },
       {
-        degree: "Collegiate Education (Primary & Secondary)",
+        degree: "Diploma in Software Engineering",
+        institution: "National Institute of Business Management, Kandy",
+        period: "2024 - 2025",
+        status: "Diploma"
+      },
+      {
+        degree: "Secondary Education",
         institution: "Dharmaraja College, Kandy",
-        period: "2013 - 2024",
-        status: "Alumnus (11 Years)"
+        period: "Alumnus",
+        status: "Completed"
       }
     ],
     projects: [
       {
-        name: "ImpactEcho - Cause Social & Verified Volunteering",
-        tech: "Next.js 15, React 19, TypeScript, Tailwind CSS, Framer Motion 12, GSAP, Dexie.js, Zustand",
-        description: "Cause-driven social platform turning grassroots activism into verified volunteer hours. Served as Frontend Engineer & UI/UX Designer: built custom design system, multi-theme engine (dark/light/mono), vertical Reels player with custom ReelActionBar, 24h Stories studio, and Dexie.js offline caching."
+        name: "ImpactEcho – Verified Social Impact & Volunteering Platform",
+        tech: "Next.js, React, TypeScript, Tailwind CSS, Nest.js, PostgreSQL, Prisma, Python, FastAPI, Zustand, TanStack Query, Socket.IO, Dexie.js",
+        description: "Developed responsive social platform interfaces using Next.js, React, TypeScript and Tailwind CSS, focused on real-world volunteering and community engagement. Implemented secure backend services with JWT authentication, 2FA, role-based access control, real-time WebSockets, and an AI-powered content moderation microservice using Python and FastAPI. Developed backend services using Nest.js, TypeScript, PostgreSQL and Prisma implementing REST APIs, authentication, real-time messaging, campaign management, and verified volunteer attendance. Implemented frontend state management, API integration, real-time interaction support, and offline caching using Zustand, TanStack Query, Socket.IO and Dexie.js."
       },
       {
-        name: "SoundWave - Music Streaming PWA",
-        tech: "React, Firebase, Tailwind CSS, Howler.js",
-        description: "Spotify-inspired Progressive Web App with iTunes API, Jamendo API, YouTube Data API v3 integration, equalizer controls, spatial audio, and recommendation engine"
+        name: "SoundWave – Full-Stack Music Streaming Progressive Web Application",
+        tech: "React, Firebase, Tailwind CSS, Howler.js, iTunes API, Jamendo API, YouTube Data API v3",
+        description: "Developed Spotify-inspired Progressive Web App using React, Firebase, Tailwind CSS, and Howler.js. Integrated iTunes API, Jamendo API, YouTube Data API v3, and lyrics APIs. Implemented equalizer controls, spatial audio, create playlist, Music for mood fixing. Designed admin dashboard for managing users, songs, analytics, and uploads. Built recommendation engine using listening behaviour and genre-based scoring."
       },
       {
-        name: "AgroSmart 2.0 - Smart Agriculture Platform",
-        tech: "IoT Sensors, Real-time Dashboard, AR Visualization",
-        description: "IoT-based agriculture monitoring with environmental sensors, smart irrigation logic, and AI-based crop recommendations with AR visualization"
+        name: "AgroSmart 2.0 – AR-Based Smart Agriculture Monitoring and Visualization Platform",
+        tech: "Interactive Real-Time Visualization Dashboards, IoT, AR Visualization",
+        description: "Enhanced AgroSmart using interactive real-time visualization dashboards. Designed data-driven monitoring interfaces for environmental condition tracking. Integrated analytics-based crop recommendation modules. Improved usability using advanced visualization techniques."
       }
     ],
     skills: {
-      programming: ["TypeScript", "JavaScript", "Java", "Python", "PHP", "C#"],
-      frontend: ["Next.js 15", "React 19", "TypeScript", "Tailwind CSS", "Framer Motion", "GSAP", "Zustand", "HTML5/CSS3"],
-      backend: ["Node.js", "Firebase Authentication", "Firestore Database", "REST APIs", "Prisma"],
-      databases: ["PostgreSQL", "MySQL", "MongoDB", "Firebase Firestore", "Dexie.js (IndexedDB)"],
-      tools: ["Git", "GitHub", "VS Code", "Figma", "Vite", "Netlify", "Vercel"]
+      programming: ["JavaScript", "Java", "Python", "PHP", "C/C#"],
+      frontend: ["React.js", "Next.js", "Node.js", "HTML5", "CSS3", "Tailwind CSS", "Vite"],
+      backend: ["Node.js", "Nest.js", "Firebase", "REST APIs", "AWS S3"],
+      databases: ["MySQL", "MongoDB", "Firebase"],
+      tools: ["Git", "GitHub", "VS Code", "IntelliJ IDEA", "Android Studio", "Netlify", "Figma"]
     },
     competencies: [
-      "Frontend Web Development (React, Tailwind CSS)",
-      "Full-Stack Application Development", 
-      "Progressive Web Application (PWA) Development",
-      "REST API Integration",
-      "Firebase Cloud Integration",
-      "UI/UX Focused Interface Development",
-      "IoT-Integrated Smart Systems",
-      "Real-Time Data Processing Applications"
+      "Frontend & Full-Stack Web Application Development",
+      "Progressive Web Applications (PWAs)",
+      "RESTful API Development & Integration",
+      "Cloud-Connected Dashboards & AWS S3 Storage",
+      "Machine Learning & IoT Integrated Smart Systems",
+      "UI/UX Design & Prototyping (Figma)",
+      "Database Operations (MongoDB, MySQL, Firebase)",
+      "Real-Time WebSockets & Audio Processing"
     ],
     activities: [
-      "Member - Cricket Team, NIBM",
-      "U15 Cricket - Dharmaraja College Kandy",
-      "Committee Member - IT Society, NIBM",
-      "Organizing Team - Robotics Events, CYBOTS, Gaming Events"
-    ]
+      "Member of Cricket Team - NIBM",
+      "U15 Cricket – Dharmaraja College Kandy",
+      "U19 Baseball – Dharmaraja College Kandy",
+      "Organizing Team – Robotics Events, CYBOTS, Gaming Events"
+    ],
+    reference: {
+      name: "Mrs. H. M. D. S. Abeywardhana",
+      role: "Lecturer, NIBM Kandy",
+      phone: "+94 76 975 8124"
+    }
   }
 
   const downloadResume = (format: 'pdf' | 'docx') => {
@@ -171,6 +176,19 @@ const ResumeDownload = ({ variant = 'compact' }: ResumeDownloadProps) => {
     <div class="section">
         <h2>PROFESSIONAL SUMMARY</h2>
         <p>${resumeData.summary}</p>
+    </div>
+
+    <div class="section">
+        <h2>PROFESSIONAL EXPERIENCE</h2>
+        ${resumeData.experience.map(exp => `
+            <div class="experience-item">
+                <h3>${exp.title} - <span class="company">${exp.company}</span></h3>
+                <div class="period">${exp.period}</div>
+                <ul>
+                    ${exp.responsibilities.map(r => `<li>${r}</li>`).join('')}
+                </ul>
+            </div>
+        `).join('')}
     </div>
 
     <div class="section">
@@ -246,6 +264,15 @@ const ResumeDownload = ({ variant = 'compact' }: ResumeDownloadProps) => {
             <ul>
                 ${resumeData.activities.map(activity => `<li>${activity}</li>`).join('')}
             </ul>
+        </div>
+    </div>
+
+    <div class="section">
+        <h2>REFERENCES</h2>
+        <div class="education-item">
+            <h3>${resumeData.reference.name}</h3>
+            <div class="institution">${resumeData.reference.role}</div>
+            <div class="period">${resumeData.reference.phone}</div>
         </div>
     </div>
 </body>
@@ -403,6 +430,27 @@ const ResumeDownload = ({ variant = 'compact' }: ResumeDownloadProps) => {
                 <p className="text-gray-700 leading-relaxed">{resumeData.summary}</p>
               </div>
 
+              {/* Professional Experience */}
+              <div>
+                <h3 className="text-lg font-bold mb-3 text-primary">Professional Experience</h3>
+                <div className="space-y-4">
+                  {resumeData.experience.map((exp, index) => (
+                    <div key={index} className="border-l-2 border-primary pl-4">
+                      <div className="flex flex-wrap items-center justify-between gap-1">
+                        <h4 className="font-semibold text-base text-gray-900">{exp.title}</h4>
+                        <span className="text-xs text-gray-500 font-medium">{exp.period}</span>
+                      </div>
+                      <p className="text-sm font-semibold text-primary mb-2">{exp.company}</p>
+                      <ul className="list-disc list-inside space-y-1 text-sm text-gray-700">
+                        {exp.responsibilities.map((resp, rIdx) => (
+                          <li key={rIdx}>{resp}</li>
+                        ))}
+                      </ul>
+                    </div>
+                  ))}
+                </div>
+              </div>
+
               {/* Core Competencies */}
               <div>
                 <h3 className="text-lg font-bold mb-3 text-primary">Core Competencies</h3>
@@ -511,6 +559,16 @@ const ResumeDownload = ({ variant = 'compact' }: ResumeDownloadProps) => {
                       <span className="text-gray-700">{activity}</span>
                     </div>
                   ))}
+                </div>
+              </div>
+
+              {/* References */}
+              <div>
+                <h3 className="text-lg font-bold mb-3 text-primary">References</h3>
+                <div className="border-l-2 border-primary pl-4">
+                  <h4 className="font-semibold text-gray-900">{resumeData.reference.name}</h4>
+                  <p className="text-sm text-gray-600">{resumeData.reference.role}</p>
+                  <p className="text-xs text-gray-500 mt-0.5">{resumeData.reference.phone}</p>
                 </div>
               </div>
             </div>
